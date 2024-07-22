@@ -17,14 +17,4 @@ export class ContactUsComponent {
       console.log('Form is invalid');
     }
   }
-
-  onSearch(form: NgForm) {
-    if (form.valid) {
-      console.log('Search:', form.value.search);
-      // Handle the search submission here.
-    } else {
-      console.log('Search form is invalid');
-    }
-  }
-
 }
