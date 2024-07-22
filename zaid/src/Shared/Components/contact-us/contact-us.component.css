@@ -1,0 +1,67 @@
+/* General Container Styling */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background-color: rgb(248, 241, 241) !important; /* Background color */
+}
+
+/* Heading Styling */
+h2, h3 {
+  margin-top: 20px;
+  color: rgb(2, 84, 100) !important; /* Dark Blue Color */
+}
+
+/* List Items */
+ul {
+  padding: 0;
+}
+
+ul li {
+  margin: 5px 0;
+  color: rgb(2, 84, 100) !important; /* Dark Blue Color */
+}
+
+/* Form Styling */
+.form-group label {
+  color: rgb(2, 84, 100) !important; /* Dark Blue Color */
+}
+
+input.form-control, textarea.form-control, select.form-control {
+  border-color: rgb(232, 170, 66) !important; /* Light Orange Color */
+}
+
+input.form-control:focus, textarea.form-control:focus, select.form-control:focus {
+  border-color: rgb(229, 124, 35) !important; /* Orange Color */
+  box-shadow: 0 0 0 0.2rem rgba(229, 124, 35, 0.25) !important; /* Orange Shadow */
+}
+
+.btn-primary {
+  background-color: rgb(229, 124, 35) !important; /* Orange Color */
+  border-color: rgb(229, 124, 35) !important; /* Orange Color */
+}
+
+.btn-primary:hover {
+  background-color: rgb(232, 170, 66) !important; /* Light Orange Color */
+  border-color: rgb(232, 170, 66) !important; /* Light Orange Color */
+}
+
+/* Form File Input Placeholder */
+.form-control-file::before {
+  content: attr(placeholder);
+  color: rgb(2, 84, 100) !important; /* Dark Blue Color */
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Image Styling */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid rgb(232, 170, 66) !important; /* Light Orange Color */
+}
+
+/* Form Description Styling */
+.form-group small.form-text {
+  color: rgb(2, 84, 100) !important; /* Dark Blue Color */
+}
