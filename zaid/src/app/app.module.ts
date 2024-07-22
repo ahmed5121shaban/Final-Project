@@ -19,12 +19,6 @@ import { ContactUsComponent } from '../Shared/Components/contact-us/contact-us.c
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UserModule,
-    ActionModule,
-    FormsModule,
-    ItemsModule,
-    SharedModule,
-    AdminModule,
     ReactiveFormsModule
   
   ],
