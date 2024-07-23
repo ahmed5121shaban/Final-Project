@@ -16,7 +16,7 @@
                 <div class="row gy-3 overflow-hidden">
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" required  formControlName="name"
+                      <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name"   formControlName="name"
                       [ngClass]="{
                           'is-valid': form.controls['name'].valid, 
                           'is-invalid': form.controls['name'].invalid && form.controls['name'].touched
@@ -34,7 +34,7 @@
                   </div>
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required formControlName="email" [ngClass]="{
+                      <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com"  formControlName="email" [ngClass]="{
                         'is-valid': form.controls['email'].valid, 
                         'is-invalid': form.controls['email'].invalid && form.controls['email'].touched
                         }">
