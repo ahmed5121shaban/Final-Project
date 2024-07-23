@@ -1,0 +1,31 @@
+
+<div class="container-fluid my-5">
+  <div class="container d-flex justify-content-evenly">
+    <div class="col-3">
+      <div id="sidebar" class="d-flex flex-column  bg-dark rounded-2 p-3">
+        <p class="text-light">User</p>
+        <nav class="nav flex-column">
+          <a class="nav-link text-light" routerLink="profile" routerLinkActive="active">profile</a>
+          <a class="nav-link text-light" routerLink="payment" routerLinkActive="active">payment</a>
+          <a class="nav-link text-light" routerLink="profile-setting" routerLinkActive="active">profile-setting</a>
+          <a class="nav-link text-light" routerLink="shipping" routerLinkActive="active">shipping</a>
+          <a class="nav-link text-light" routerLink="verify-identity" routerLinkActive="active">verify-identity</a>
+        </nav>
+      </div>
+      <div id="sidebar" class="d-flex flex-column bg-dark rounded-2 p-3 my-4">
+        <p class="text-light bg-dark">Other</p>
+        <nav class="nav flex-column">
+          <a class="nav-link text-light" routerLink="">Home</a>
+          <a class="nav-link text-light" routerLink="">About</a>
+          <a class="nav-link text-light" routerLink="">Services</a>
+          <a class="nav-link text-light" routerLink="">Contact</a>
+        </nav>
+      </div>
+
+    </div>
+
+    <div class="col-7">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
