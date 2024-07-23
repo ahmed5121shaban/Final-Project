@@ -39,7 +39,7 @@
                         'is-invalid': registerForm.controls['email'].invalid && registerForm.controls['email'].touched
                         }">
                       <div class="valid-feedback">
-                       Looks great!
+            
                       </div>
                       <div class="invalid-feedback">
                          @if(registerForm.controls['email'].hasError("required")){
@@ -58,7 +58,7 @@
                         'is-invalid': registerForm.controls['password'].invalid && registerForm.controls['password'].touched
                         }">
                       <div class="valid-feedback">
-                       <span>Good Password</span> 
+                       <span>strong Password</span> 
                       </div>
                       <div class="invalid-feedback">
                          @if(registerForm.controls['password'].hasError("required")){

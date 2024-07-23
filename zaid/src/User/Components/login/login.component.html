@@ -22,13 +22,13 @@
                         'is-invalid': form.controls['email'].invalid && form.controls['email'].touched
                         }">
                       <div class="valid-feedback">
-                       Looks great!
+      
                       </div>
                       <div class="invalid-feedback">
                          @if(form.controls['email'].hasError("required")){
                             <span>Your Email is required </span>
                          } @else if (form.controls['email'].hasError("email")) {
-                            <span> Your Email must be like: yourname&commat;admin.com  </span>
+                            <span> Your Email must be like: yourname&commat;user.com  </span>
                          }
                       </div>
                       <label for="email" class="form-label">Email</label>
@@ -41,15 +41,11 @@
                         'is-invalid': form.controls['password'].invalid && form.controls['password'].touched
                         }">
                       <div class="valid-feedback">
-                       <span>Good Password</span> 
+            
                       </div>
                       <div class="invalid-feedback">
                          @if(form.controls['password'].hasError("required")){
                             <span>Password is required </span>
-                         }@else if (form.controls['password'].hasError("minLength")) {
-                            <span>password length not less than 8 characters  </span>
-                         } @else if (form.controls['password'].hasError("pattern")) {
-                            <span>Password contains at least one lowercase, one uppercase, at least one digit and special character</span>
                          }
                          
                       </div>
