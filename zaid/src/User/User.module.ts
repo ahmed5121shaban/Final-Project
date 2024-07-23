@@ -10,13 +10,15 @@ import { VerifyIdentityComponent } from './Components/Profile-Management/verify-
 import { UserRoutes } from './user.routing';
 import { RegisterComponent } from './Components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './Components/login/login.component';
 
 @NgModule({
   imports: [
     CommonModule,
     UserRoutes,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+  
   ],
   declarations: [
     UserComponent,
@@ -26,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PaymentComponent,
     ProfileSettingComponent,
     ShippingComponent,
-    VerifyIdentityComponent
+    VerifyIdentityComponent,
+    LoginComponent
   ]
 })
 export class UserModule { }

@@ -6,9 +6,11 @@ import { ProfileSettingComponent } from './Components/Profile-Management/profile
 import { ShippingComponent } from './Components/Profile-Management/shipping/shipping.component';
 import { VerifyIdentityComponent } from './Components/Profile-Management/verify-identity/verify-identity.component';
 import { RegisterComponent } from './Components/register/register.component';
+import { LoginComponent } from './Components/login/login.component';
 
 const routes: Routes = [
   { path: 'register' , component: RegisterComponent},
+  { path: 'login' , component: LoginComponent},
     { path: 'my', component: ProfileManagementComponent, children: [
       { path: 'profile', component: MyProfileComponent },
       { path: 'payment', component: PaymentComponent },
