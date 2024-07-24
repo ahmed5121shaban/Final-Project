@@ -8,7 +8,7 @@ footer ul li {
 }
 
 footer ul li a:hover {
-    color: #754ffe;
+    color: #003285;
 
 }
 
@@ -19,9 +19,8 @@ footer ul {
 footer {
     background-color:rgb(248, 241, 241) ;
     height: auto;
-    width: 100.9%;
+    width: 100%;
     color: rgb(229, 124, 35);
-    padding: 10px 110px;
 }
 
 .footer-logo img{

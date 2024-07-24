@@ -4,7 +4,7 @@
   <nav class="navbar navbar-expand-lg row mb-3">
     <div class="container-fluid">
       <div class="navbar-brand  col-sm-2 col-md-1 col-4">
-        <img src="logo-en.png" alt="Logo" class="img-fluid">
+        <a href=""><img src="logo-en.png" alt="Logo" class="img-fluid"></a>
       </div>
 
       <div class="col-sm-4 col-md-4 col-lg-4 d-sm-inline d-none col-xl-6 ">
@@ -32,7 +32,7 @@
               <i class="fas fa-bell" style="color: rgb(229, 124, 35); font-size: 22px;"></i>
               
             </button>
-              <ul class="dropdown-menu position-absolute " aria-labelledby="notificationsDropdown" >
+              <ul class="dropdown-menu  notificationsDropdown position-absolute " aria-labelledby="notificationsDropdown" >
                 <li class="notification-item ">
                   <a class="notification-link" href="#">
                     <div>
@@ -42,16 +42,22 @@
                     </div>
                     <span class="remove-notification">&times;</span>
                   </a>
-                </li>
-               
-                
+                </li>                
+                <li class="notification-item ">
+                  <a class="notification-link" href="#">
+                    <div>
+                        <p class="notification-text">Notification </p>
+                      
+                      <div class="notification-time">2024-07-24 14:30</div>
+                    </div>
+                    <span class="remove-notification">&times;</span>
+                  </a>
+                </li>                
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="See-all" href="#">See all notifications</a></li>
               </ul>
-             
-          
           </li>
-          <li class="col-md-2 col-lg-2 col-sm-3 col-4">
+          <!-- <li class="col-md-2 col-lg-2 col-sm-3 col-4">
             <a href="#Login" >Login</a>
           </li>
             <li class="col-md-2 col-lg-2 col-4 nav-item d-none d-sm-inline">
@@ -59,15 +65,33 @@
             </li>
             <li class="nav-item col-md-2 col-lg-2 col-3  d-sm-none d-inline ">
               <a href="#signup">Signup</a>
-            </li>
-          <!-- <li class="col-md-3 col-lg-3 col-3 nav-item">
-            <a href="#profile" class="nav-link"><i class="fas fa-user"
+            </li> -->
+          <li class="col-md-3 col-lg-3 col-3 nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle " role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" id="profileDropdown"><i class="fas fa-user"
                 style="line-height: 1; color:#003285; font-size: 22px;"></i><span class="d-none d-md-inline"
-                style=" margin-left: 3px !important; ">Profile</span></a>
+                style=" margin-left: 3px !important; " >Profile</span></a>
+                <ul class="dropdown-menu position-absolute " aria-labelledby="profileDropdown"  >
+                  <li class="profile-item">
+                    <a class="profile-link" href="#">
+                      edit profile
+                    </a>
+                  </li>
+                  <li class="profile-item">
+                    <a class="profile-link" href="#">
+                      auctions
+                    </a>
+                  </li>
+                  <li class="profile-item">
+                    <a class="profile-link" href="#">
+                      bids
+                    </a>
+                  </li>
+                </ul>
           </li>
+        
           <li class="col-md-1 col-lg-2 col-1 nav-item">
             <a href="#Logout">Logout</a>
-          </li> -->
+          </li>
         </ul>
 
       </div>
