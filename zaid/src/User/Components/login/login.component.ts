@@ -10,22 +10,30 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  form:FormGroup
-  constructor(private router:Router ,
-     private builder: FormBuilder,
+  form: FormGroup;
+  passwordFieldType: string = 'password';
+  passwordInputNotEmpty: boolean = false;
+  constructor(private router: Router,
+    private builder: FormBuilder,
     private authService: AuthService,
     private toastr: ToastrService,
-  ){
+  ) {
     this.form = this.builder.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required]],
-    })
+    });
+    this.form.get('password')!.valueChanges.subscribe(value => {
+      this.passwordInputNotEmpty = value.length > 0;
+    });
   }
 
   get email() {
     return this.form.controls['email'];
   }
-  get password() { return this.form.controls['password']; }
+  get password() {
+    return this.form.controls['password'];
+
+  }
 
   loginUser() {
     console.log(this.form.value)
@@ -44,5 +52,9 @@ export class LoginComponent {
         this.toastr.error('Something went wrong', 'Error');
       }
     );
+  }
+
+  togglePasswordVisibility() {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }

@@ -11,6 +11,9 @@ import { UserRoutes } from './user.routing';
 import { RegisterComponent } from './Components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './Components/login/login.component';
+import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
+import { NewPasswordComponent } from './Components/new-password/new-password.component';
+
 
 @NgModule({
   imports: [
@@ -29,7 +32,9 @@ import { LoginComponent } from './Components/login/login.component';
     ProfileSettingComponent,
     ShippingComponent,
     VerifyIdentityComponent,
-    LoginComponent
+    LoginComponent,
+PasswordResetComponent,
+NewPasswordComponent
   ]
 })
 export class UserModule { }

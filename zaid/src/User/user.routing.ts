@@ -7,10 +7,15 @@ import { ShippingComponent } from './Components/Profile-Management/shipping/ship
 import { VerifyIdentityComponent } from './Components/Profile-Management/verify-identity/verify-identity.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
+import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
+import { NewPasswordComponent } from './Components/new-password/new-password.component';
+
 
 const routes: Routes = [
   { path: 'register' , component: RegisterComponent},
   { path: 'login' , component: LoginComponent},
+  { path: 'reset-password' , component: PasswordResetComponent},
+  { path: 'new-password' , component: NewPasswordComponent},
     { path: 'my', component: ProfileManagementComponent, children: [
       { path: 'profile', component: MyProfileComponent },
       { path: 'payment', component: PaymentComponent },

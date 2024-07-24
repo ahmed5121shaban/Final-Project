@@ -12,7 +12,7 @@
                   </div>
                 </div>
               </div>
-              <form  [formGroup]="registerForm" (ngSubmit)="submitDetails()" >
+              <form  [formGroup]="registerForm" (ngSubmit)="submitDetails()">
                 <div class="row gy-3 overflow-hidden">
                   <div class="col-12">
                     <div class="form-floating mb-3">
@@ -21,9 +21,7 @@
                           'is-valid': registerForm.controls['name'].valid, 
                           'is-invalid': registerForm.controls['name'].invalid && registerForm.controls['name'].touched
                           }">
-                        <div class="valid-feedback">
-                         
-                        </div>
+                
                         <div class="invalid-feedback">
                            @if(registerForm.controls['name'].hasError("required")){
                                <span>Name is required </span>
@@ -38,9 +36,7 @@
                         'is-valid': registerForm.controls['email'].valid, 
                         'is-invalid': registerForm.controls['email'].invalid && registerForm.controls['email'].touched
                         }">
-                      <div class="valid-feedback">
-            
-                      </div>
+                      
                       <div class="invalid-feedback">
                          @if(registerForm.controls['email'].hasError("required")){
                             <span>Your Email is required </span>
@@ -58,7 +54,6 @@
                         'is-invalid': registerForm.controls['password'].invalid && registerForm.controls['password'].touched
                         }">
                       <div class="valid-feedback">
-                       <span>strong Password</span> 
                       </div>
                       <div class="invalid-feedback">
                          @if(registerForm.controls['password'].hasError("required")){
@@ -83,15 +78,16 @@
                         <span>Password matched</span> 
                        </div>
                        <div class="invalid-feedback">
-                        @if(registerForm.controls['confirmPassword'].hasError("mismatch")){
-                          <span>Password must be matched</span> 
-                       }
+                     @if(registerForm.controls['confirmPassword'].hasError("required")){
+                          <span>Password is required</span> 
+                       }@else if(registerForm.hasError("mismatch")){
+                        <span>Password must be matched</span> 
+                     }
                        
-                          
                        </div>
                       <label for="password" class="form-label">Repeat your password</label>
                     </div>
-                  <div class="col-12">
+                  <div class="col-12 py-4">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="" name="iAgree" id="iAgree" required>
                       <label class="form-check-label text-secondary" for="iAgree">
@@ -110,7 +106,7 @@
               <div class="row">
                 <div class="col-12">
                   <hr class="mt-5 mb-4 border-secondary-subtle">
-                  <p class="m-0 text-secondary text-center">Already have an account? <a routerLink="/user/login" class="link-primary text-decoration-none">Sign in</a></p>
+                  <p class="m-0 text-secondary text-center">Already have an account? <a routerLink="/user/login" class="link-primary text-decoration-none">Login</a></p>
                 </div>
               </div>
               <div class="row">

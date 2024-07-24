@@ -18,6 +18,19 @@ export class AuthService {
     return of(userDetails);
   }
 
+  updateUserPassword(email: string, newPassword: string): Observable<boolean> {
+    const users = this.getUsersFromLocalStorage();
+    const userIndex = users.findIndex(user => user.email === email);
+
+    if (userIndex !== -1) {
+      users[userIndex].password = newPassword;
+      this.setUsersToLocalStorage(users);
+      return of(true);
+    } else {
+      return of(false);
+    }
+  }
+
   getUserByEmail(email: string): Observable<User[]> {
     const users = this.getUsersFromLocalStorage();
     const filteredUsers = users.filter(user => user.email === email);
