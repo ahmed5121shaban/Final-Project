@@ -3,11 +3,11 @@
 
   <nav class="navbar navbar-expand-lg row mb-3">
     <div class="container-fluid">
-      <div class="navbar-brand  col-sm-2 col-md-1 col-4">
-        <a href=""><img src="logo-en.png" alt="Logo" class="img-fluid"></a>
+      <div class="navbar-brand  col-sm-2 col-md-2 col-4">
+        <a href=""><img src="" alt="Logo" class="img-fluid"></a>
       </div>
 
-      <div class="col-sm-4 col-md-4 col-lg-4 d-sm-inline d-none col-xl-6 ">
+      <div class="col-sm-6 col-md-4 col-lg-6 d-sm-inline d-none col-xl-6 ">
         <form class="input-group w-100 mt-3">
           <div class="search-box w-100">
             <i class="fa fa-search"></i>
@@ -16,80 +16,79 @@
         </form>
       </div>
 
-      <div class="col-md-6 col-sm-5 col-lg-6 col-7  col-xl-4  justify-content-center align-content-center">
-        <ul class="navbar-nav row d-flex flex-row justify-content-start">
-          <li class="col-md-3 col-lg-3 col-2 nav-item">
-            <a href="#saved-items" class="nav-link"><i class="fas fa-heart"
-                style="color: #003285; font-size: 22px;"></i> <span class="d-none d-md-inline"
-                style=" margin-left: 3px !important;">Saved</span> </a>
-          </li>
-          <li class="col-md-5 col-lg-4 col-sm-2 col-3 nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle d-none d-md-inline" id="notificationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+      <div class="col-md-6 col-sm-3 col-lg-4 col-5  col-xl-4  justify-content-center align-content-center">
+        <ul class="navbar-nav row d-flex flex-row justify-content-center">
+
+          <li class="col-md-5  col-lg-5 col-sm-3 col-4 nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle d-none d-md-inline" id="notificationsDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
               <i class="fas fa-bell" style="color: rgb(229, 124, 35); font-size: 22px;"></i>
               <span class="d-none d-md-inline" style="margin-left: 3px !important;">Notifications</span>
             </a>
-            <button class="btn  offcanvas-btn d-inline d-md-none" data-bs-toggle="offcanvas" aria-controls="notificationsOffcanvas" data-bs-target="#notificationsOffcanvas">
+            <button class="btn  offcanvas-btn d-inline d-md-none" data-bs-toggle="offcanvas"
+              aria-controls="notificationsOffcanvas" data-bs-target="#notificationsOffcanvas">
               <i class="fas fa-bell" style="color: rgb(229, 124, 35); font-size: 22px;"></i>
-              
+
             </button>
-              <ul class="dropdown-menu  notificationsDropdown position-absolute " aria-labelledby="notificationsDropdown" >
-                <li class="notification-item ">
-                  <a class="notification-link" href="#">
-                    <div>
-                        <p class="notification-text">Notification </p>
-                      
-                      <div class="notification-time">2024-07-24 14:30</div>
-                    </div>
-                    <span class="remove-notification">&times;</span>
-                  </a>
-                </li>                
-                <li class="notification-item ">
-                  <a class="notification-link" href="#">
-                    <div>
-                        <p class="notification-text">Notification </p>
-                      
-                      <div class="notification-time">2024-07-24 14:30</div>
-                    </div>
-                    <span class="remove-notification">&times;</span>
-                  </a>
-                </li>                
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="See-all" href="#">See all notifications</a></li>
-              </ul>
+            <ul class="dropdown-menu  notificationsDropdown position-absolute " aria-labelledby="notificationsDropdown">
+              <li class="notification-item ">
+                <a class="notification-link" href="#">
+                  <div>
+                    <p class="notification-text">Notification </p>
+
+                    <div class="notification-time">2024-07-24 14:30</div>
+                  </div>
+                  <span class="remove-notification">&times;</span>
+                </a>
+              </li>
+              <li class="notification-item ">
+                <a class="notification-link" href="#">
+                  <div>
+                    <p class="notification-text">Notification </p>
+
+                    <div class="notification-time">2024-07-24 14:30</div>
+                  </div>
+                  <span class="remove-notification">&times;</span>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="See-all" href="#">See all notifications</a></li>
+            </ul>
           </li>
-          <!-- <li class="col-md-2 col-lg-2 col-sm-3 col-4">
+          <!-- <li class="col-md-2 col-lg-2 col-5">
             <a href="#Login" >Login</a>
           </li>
-            <li class="col-md-2 col-lg-2 col-4 nav-item d-none d-sm-inline">
-              <a href="#signup" class="btn btn-outline-primary signup" style="padding: 1px 5px !important;">Signup</a>
-            </li>
-            <li class="nav-item col-md-2 col-lg-2 col-3  d-sm-none d-inline ">
+            
+            <li class="nav-item col-md-2 col-lg-2 col-3">
               <a href="#signup">Signup</a>
             </li> -->
-          <li class="col-md-3 col-lg-3 col-3 nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle " role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" id="profileDropdown"><i class="fas fa-user"
-                style="line-height: 1; color:#003285; font-size: 22px;"></i><span class="d-none d-md-inline"
-                style=" margin-left: 3px !important; " >Profile</span></a>
-                <ul class="dropdown-menu position-absolute " aria-labelledby="profileDropdown"  >
-                  <li class="profile-item">
-                    <a class="profile-link" href="#">
-                      edit profile
-                    </a>
-                  </li>
-                  <li class="profile-item">
-                    <a class="profile-link" href="#">
-                      auctions
-                    </a>
-                  </li>
-                  <li class="profile-item">
-                    <a class="profile-link" href="#">
-                      bids
-                    </a>
-                  </li>
-                </ul>
+          <li class="col-md-3 col-lg-3 col-4 nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle " role="button" data-bs-toggle="dropdown" aria-expanded="false"
+              aria-haspopup="true" id="profileDropdown"><i class="fas fa-user"
+                style="line-height: 1; color:#ffffff; font-size: 22px;"></i><span class="d-none d-md-inline"
+                style=" margin-left: 3px !important; ">Profile</span></a>
+            <ul class="dropdown-menu position-absolute profileDropdown " aria-labelledby="profileDropdown">
+              <li class="profile-item">
+                <a class="profile-link" href="#">
+                  edit profile
+                </a>
+              </li>
+              <li class="profile-item">
+                <a class="profile-link" href="#">
+                  auctions
+                </a>
+              </li>
+              <li class="profile-item">
+                <a class="profile-link" href="#">
+                  bids
+                </a>
+              </li>
+            </ul>
           </li>
-        
-          <li class="col-md-1 col-lg-2 col-1 nav-item">
+
+          <li class="col-md-1 col-lg-2 col-4 nav-item">
             <a href="#Logout">Logout</a>
           </li>
         </ul>
@@ -112,9 +111,10 @@
 </div>
 
 <div class="offcanvas offcanvas-end" id="notificationsOffcanvas" tabindex="-1">
-  <div class="offcanvas-header d-flex justify-content-between p-1" style="background-color: #003285;color: white;padding: 3px 10px !important;" >
+  <div class="offcanvas-header d-flex justify-content-between p-1"
+    style="background-color: #003285;color: white;padding: 3px 10px !important;">
     <h5 class="offcanvas-title">Notifications</h5>
-    <button type="button"  class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
     <ul class="list-unstyled">
