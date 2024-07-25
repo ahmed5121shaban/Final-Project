@@ -1,0 +1,20 @@
+.bid-info{
+    padding:15px 20px !important;
+    max-height: 150px;
+}
+.estimate-price,.end-date,.bid-limits{
+    font-size: 12px !important;
+    color: #5a5d74;
+}
+.title{
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(14, 14, 16);
+    line-height: 1.5;
+}
+
+/* .bid{
+    max-height: auto !important;
+} */
+
+

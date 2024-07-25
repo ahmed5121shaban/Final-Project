@@ -4,6 +4,7 @@ body{
     font-family: 'Ubuntu', sans-serif;
 }
 
+
 .btn-primary{
     background-color: #003285!important;
     border-color: #003285 !important;
@@ -11,6 +12,23 @@ body{
 .btn-primary:hover{
     background-color: #003385a1!important;
     border-color: #003285a1 !important;
+}
+.btn-outline-primary{
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+}
+.btn-outline-primary:hover{
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    color: #003285 !important;
+}
+.btn-secondery{
+    background-color: rgb(229, 124, 35)!important;
+    border-color: rgb(229, 124, 35) !important;
+}
+.btn-secondery:hover{
+    background-color: rgb(229, 124, 35)!important;
+    border-color: rgbargb(229, 124, 35)!important;
 }
 .btn-outline-primary{
     border-color: #ffffff !important;
