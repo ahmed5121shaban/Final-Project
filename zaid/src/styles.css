@@ -24,13 +24,13 @@ body{
     border-color: #ffffff !important;
     color: #003285 !important;
 }
-.btn-secondery{
+.btn-secondary{
     background-color: rgb(229, 124, 35)!important;
     border-color: rgb(229, 124, 35) !important;
     color: #ffffff !important;
 
 }
-.btn-secondery:hover{
+.btn-secondary:hover{
     background-color: rgba(229, 126, 35, 0.845)!important;
     border-color: rgbargb(229, 124, 35)!important;
 }

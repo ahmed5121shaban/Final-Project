@@ -1,0 +1,17 @@
+.delete-confirmation {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 50px auto;
+  }
+  
+  .delete-confirmation h2 {
+    margin-bottom: 20px;
+  }
+  
+  .delete-confirmation button {
+    margin: 0 10px;
+  }
+  
