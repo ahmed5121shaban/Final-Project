@@ -3,16 +3,39 @@
         <div class="item-title">
             <h1>item title</h1>
         </div>
+        <div class="col-md-7 row  ">
 
-        
-        <div class="col-md-7 row d-flex flex-column  ">
-            <div id="item-slider" class="carousel slide col-12">
-
+            <div id="carouselExampleIndicators" class="carousel slide col-12 mb-5" >
+                <div class="carousel-inner mb-5">
+                  <div *ngFor="let slide of itemImages; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
+                    <img [src]="slide.src" class="d-block w-100" [alt]="slide.alt">
+                  </div>
+                </div>
+              
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                </a>
+              
+                <div class="carousel-indicators">
+                  <button class="w-100"*ngFor="let slide of itemImages; let i = index" type="button" [attr.data-bs-target]="'#carouselExampleIndicators'" [attr.data-bs-slide-to]="i" [ngClass]="{'active': i === 0}" >
+                    <img [src]="slide.src" class="d-block w-100" [alt]="slide.alt">
+                  </button>
+                </div>
+              </div>
+              
+           <br>
+            
+            <!-- <div id="item-slider" class="carousel slide col-12" >
                 <div class="carousel-inner">
-                    <div class="carousel-item" *ngFor="let slide of slides; let i = index"
-                        [ngClass]="{'active': i === currentSlide}">
-                        <img [src]="slide.src" class="d-block w-100" [alt]="slide.alt">
-                    </div>
+                        @for( slide of itemImages; track $index; let i= $index ){
+                            <div class="carousel-item" [ngClass]="(i === currentSlide) ? 'active' : ''">
+                            <img [src]="slide.src" class="d-block w-100" [alt]="slide.alt">
+                        </div>
+                        }
+                      
                 </div>
                 <a class="carousel-control-prev" href="#item-slider" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -22,19 +45,21 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </a>
-                <!-- images list -->
-
-            </div>
-            <div class=" thumb-list-images d-none d-md-block mt-3 d-none d-md-block col-12 mb-md-5">
+            </div> -->
+            <!---------------------------- item thumbnail list ----------------------->
+            <!-- <div class=" thumb-list-images d-none d-md-block mt-3 d-none d-md-block col-12 mb-md-5">
                 <div class="thumb-list ">
-                    @for(thumb of slides ; track $index){
-                    <div class="thumb" (click)="selectSlide($index)">
+                    <div class="row" (click)="selectSlide($event)">
+
+                    @for(thumb of itemImages  ; track $index){
+                    <div class="thumb">
                         <img [src]="thumb.src" [alt]="thumb.alt">
                     </div>
                     }
+                </div>
 
                 </div>
-            </div>
+            </div> -->
         </div>
         
         <div class="bid col-md-5  justify-content-center  p-md-0 ">
@@ -96,8 +121,8 @@
             </div>
 
         </div>
-
     </div>
+    
     <div class="row">
         <div class="item-desc mb-4">
             <p class="title">Description</p>
@@ -132,71 +157,27 @@
         </div>
     </div>
     <h3 class="text-center">Similar Auctions</h3>
-<div id="cardCarousel" class="carousel slide  justify-content-center mb-3" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
+    <div id="cardCarousel" class="carousel slide justify-content-center mb-3" data-ride="carousel">
+        <div class="carousel-inner">
+            @for(group of groupedItems ; track $index; let i = $index){
+                <div class="carousel-item" [class.active]="i === 0">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="large_item_3649360_bbb8f93d91.jpg" class="card-img-top" alt="Item 1">
-                                <div class="card-body">
-                                    <h5 class="card-title">Item Title 1</h5>
-                                    <p class="card-text start-price">starting price: $10.00</p>
-                                </div>
-                            </div>
+                    @for(item of group; track $index){
+                      <div class="col-md-4">
+                        <div class="card">
+                          <img [src]="item.img" class="card-img-top" [alt]="item.title">
+                          <div class="card-body">
+                            <h5 class="card-title">{{item.title}}</h5>
+                            <p class="card-text start-price">starting price: {{item.price}}</p>
+                          </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="large_item_3649360_bbb8f93d91.jpg" class="card-img-top" alt="Item 2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Item Title 2</h5>
-                                    <p class="card-text start-price">starting price: $10.00</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="hd_item_3649360_e2ceb54174.jpg" class="card-img-top" alt="Item 3">
-                                <div class="card-body">
-                                    <h5 class="card-title">Item Title 3</h5>
-                                    <p class="card-text start-price">starting price: $10.00</p>
-                                </div>
-                            </div>
-                        </div>
+                      </div>
+                    }
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="large_item_3649360_bbb8f93d91.jpg" class="card-img-top" alt="Item 4">
-                                <div class="card-body">
-                                    <h5 class="card-title">Item Title 4</h5>
-                                    <p class="card-text start-price">starting price: $10.00</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="large_item_3649360_bbb8f93d91.jpg" class="card-img-top" alt="Item 5">
-                                <div class="card-body">
-                                    <h5 class="card-title">Item Title 5</h5>
-                                    <p class="card-text start-price">starting price: $10.00</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="large_item_3649360_bbb8f93d91.jpg" class="card-img-top" alt="Item 6">
-                                <div class="card-body">
-                                    <h5 class="card-title">Item Title 6</h5>
-                                    <p class="card-text start-price">starting price: $10.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                  </div>
+            }
+          
+        </div>
             <a class="carousel-control-prev" href="#cardCarousel" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="false"></span>
             </a>
