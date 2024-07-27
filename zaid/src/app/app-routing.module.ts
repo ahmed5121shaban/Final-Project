@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 
-  {path: 'user',loadChildren: () => import('../User/User.component').then(m => m.UserComponent)},
-  {path: 'admin',loadChildren: () => import('../Admin/Admin.component').then(m => m.AdminComponent)},
-  {path: 'action',loadChildren: () => import('../Action/Action.component').then(m => m.ActionComponent)},
-  {path: 'items',loadChildren: () => import('../Items/Items.component').then(m => m.ItemsComponent)},
+  { path: 'user', loadChildren: () => import('../User/User.component').then(m => m.UserComponent) },
+  { path: 'admin', loadChildren: () => import('../Admin/Admin.component').then(m => m.AdminComponent) },
+  { path: 'action', loadChildren: () => import('../Action/Action.module').then(m => m.ActionModule) },
+  { path: 'items', loadChildren: () => import('../Items/Items.component').then(m => m.ItemsComponent) },
   /* {path:'**',} ----  wild card  لسه معملنهاش   */
 
 ];
