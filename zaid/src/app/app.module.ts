@@ -7,13 +7,13 @@ import { ActionModule } from '../Action/Action.module';
 import { ItemsModule } from '../Items/Items.module';
 import { SharedModule } from '../Shared/Shared.module';
 import { AdminModule } from '../Admin/Admin.module';
-import { ReactiveFormsModule,FormsModule } from '@angular/forms';
-import { ContactUsComponent } from '../Shared/Components/contact-us/contact-us.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContactUsComponent
+   
 
   ],
   imports: [
@@ -21,11 +21,11 @@ import { ContactUsComponent } from '../Shared/Components/contact-us/contact-us.c
     AppRoutingModule,
     UserModule,
     ActionModule,
-    FormsModule,
+  
     ItemsModule,
     SharedModule,
     AdminModule,
-    ReactiveFormsModule
+    
   
   ],
   providers: [
