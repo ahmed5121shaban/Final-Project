@@ -1,12 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-<<<<<<< HEAD
 import { RegisterComponent } from './Components/register/register.component';
-
-const routes: Routes = [
-  { 
-    path:'',component:RegisterComponent
-   },
-=======
 import { ProfileManagementComponent } from './Components/Profile-Management/Profile-Management.component';
 import { MyProfileComponent } from './Components/Profile-Management/my-profile/my-profile.component';
 import { PaymentComponent } from './Components/Profile-Management/payment/payment.component';
@@ -22,7 +15,6 @@ const routes: Routes = [
       { path: 'shipping', component: ShippingComponent },
       { path: 'verify-identity', component: VerifyIdentityComponent },
     ] },
->>>>>>> bc991c456bc464477fcdb1886ef97f22c985eba7
 ];
 
 export const UserRoutes = RouterModule.forChild(routes);
