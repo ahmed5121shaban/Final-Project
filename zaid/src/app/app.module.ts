@@ -6,8 +6,10 @@ import { UserModule } from '../User/User.module';
 import { ItemsModule } from '../Items/Items.module';
 import { SharedModule } from '../Shared/Shared.module';
 import { AdminModule } from '../Admin/Admin.module';
+
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ActionModule } from '../Action/Action.module';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { ActionModule } from '../Action/Action.module';
     ReactiveFormsModule,
     SharedModule,
     ActionModule
-
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     provideClientHydration()
