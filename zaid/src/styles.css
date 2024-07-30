@@ -1,4 +1,61 @@
-<<<<<<< HEAD
+
+/* You can add global styles to this file, and also import other style files */
+
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+
+/* carousel button style start*/
+.parent-of-card .owl-next{
+  background-color: rgba(240, 248, 255, 0) !important;
+  position: absolute;
+  top: 40%;
+  left:  98%;
+}
+.parent-of-card .owl-prev{
+  background-color: rgba(240, 248, 255, 0) !important;
+  position: absolute;
+  top: 40%;
+  right:  99%;
+}
+/* carousel button style end*/
+
+/* Home Category Carousel button start*/
+
+.categoryCarousel .owl-next{
+  background-color: rgba(240, 248, 255, 0) !important;
+  position: absolute;
+  bottom: 15%;
+  left: 98%;
+
+}
+.categoryCarousel .owl-prev{
+  background-color: rgba(240, 248, 255, 0) !important;
+  position: absolute;
+}
+/* Home Category Carousel button end*/
+
+
+/* Home Testimonial Carousel dot start */
+.testimonialOption .owl-dot{
+  width: 20px !important;
+  margin-left: 20px !important;
+  border-radius: 20px !important;
+
+}
+.testimonialOption .owl-dot span{
+  width: 30px !important;
+  background-color: rgb(63, 63, 63) !important;
+}
+.testimonialOption .owl-dot.active span{
+  background-color: rgb(120, 120, 120) !important;
+}
+/* Home Testimonial Carousel dot end */
+
+
+
+
+
  body{
     border-color: #ffffff !important;
     color: #003285 !important;
@@ -16,7 +73,6 @@
     border-color: rgba(229, 124, 35)!important;
 }
 
-=======
 /* You can add global styles to this file, and also import other style files */
 /* english font start*/
   .ubuntu-light {
@@ -67,4 +123,3 @@
   font-style: italic;
 }
 /* english font end*/
->>>>>>> parent of da99e36 (Merge branch 'ahmed-gamal')
