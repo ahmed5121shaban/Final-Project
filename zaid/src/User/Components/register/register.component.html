@@ -12,20 +12,18 @@
                   </div>
                 </div>
               </div>
-              <form action="#!" [formGroup]="form" (ngSubmit)="send()" >
+              <form  [formGroup]="registerForm" (ngSubmit)="submitDetails()">
                 <div class="row gy-3 overflow-hidden">
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" required  formControlName="name"
+                      <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name"   formControlName="name"
                       [ngClass]="{
-                          'is-valid': form.controls['name'].valid, 
-                          'is-invalid': form.controls['name'].invalid && form.controls['name'].touched
+                          'is-valid': registerForm.controls['name'].valid, 
+                          'is-invalid': registerForm.controls['name'].invalid && registerForm.controls['name'].touched
                           }">
-                        <div class="valid-feedback">
-                         
-                        </div>
+                
                         <div class="invalid-feedback">
-                           @if(form.controls['name'].hasError("required")){
+                           @if(registerForm.controls['name'].hasError("required")){
                                <span>Name is required </span>
                            }
                         </div>
@@ -34,17 +32,15 @@
                   </div>
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required formControlName="email" [ngClass]="{
-                        'is-valid': form.controls['email'].valid, 
-                        'is-invalid': form.controls['email'].invalid && form.controls['email'].touched
+                      <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com"  formControlName="email" [ngClass]="{
+                        'is-valid': registerForm.controls['email'].valid, 
+                        'is-invalid': registerForm.controls['email'].invalid && registerForm.controls['email'].touched
                         }">
-                      <div class="valid-feedback">
-                       Looks great!
-                      </div>
+                      
                       <div class="invalid-feedback">
-                         @if(form.controls['email'].hasError("required")){
+                         @if(registerForm.controls['email'].hasError("required")){
                             <span>Your Email is required </span>
-                         } @else if (form.controls['email'].hasError("email")) {
+                         } @else if (registerForm.controls['email'].hasError("email")) {
                             <span> Your Email must be like: yourname&commat;admin.com  </span>
                          }
                       </div>
@@ -53,19 +49,18 @@
                   </div>
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required formControlName="pass"  [ngClass]="{
-                        'is-valid': form.controls['pass'].valid, 
-                        'is-invalid': form.controls['pass'].invalid && form.controls['pass'].touched
+                      <input type="password" class="form-control" name="password" id="password"  placeholder="Password"  formControlName="password"  [ngClass]="{
+                        'is-valid': registerForm.controls['password'].valid, 
+                        'is-invalid': registerForm.controls['password'].invalid && registerForm.controls['password'].touched
                         }">
                       <div class="valid-feedback">
-                       <span>Good Password</span> 
                       </div>
                       <div class="invalid-feedback">
-                         @if(form.controls['pass'].hasError("required")){
+                         @if(registerForm.controls['password'].hasError("required")){
                             <span>Password is required </span>
-                         }@else if (form.controls['pass'].hasError("minLength")) {
+                         }@else if (registerForm.controls['password'].hasError("minLength")) {
                             <span>password length not less than 8 characters  </span>
-                         } @else if (form.controls['pass'].hasError("pattern")) {
+                         } @else if (registerForm.controls['password'].hasError("pattern")) {
                             <span>Password contains at least one lowercase, one uppercase, at least one digit and special character</span>
                          }
                          
@@ -75,34 +70,34 @@
                   </div>
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="password" class="form-control" name="password" id="reppassword" value="" placeholder="Password" required ormControlName="repPass" [ngClass]="{
-                        'is-valid': form.controls['repPass'].valid, 
-                        'is-invalid': form.controls['repPass'].invalid && form.controls['repPass'].touched
+                      <input type="password" class="form-control" name="reppassword" id="reppassword"  placeholder="Password"  formControlName="confirmPassword" [ngClass]="{
+                        'is-valid': registerForm.controls['confirmPassword'].valid, 
+                        'is-invalid':registerForm.controls['confirmPassword'].invalid && registerForm.controls['confirmPassword'].touched
                         }">
                       <div class="valid-feedback">
                         <span>Password matched</span> 
                        </div>
                        <div class="invalid-feedback">
-                          @if(form.controls['repPass'].hasError("required")){
-                             <span>Password is required </span>
-                          }@else if (form.controls['repPass'].hasError("pattern")) {
-                             <span>password length not less than 8 characters  </span>
-                          }
-                          
+                     @if(registerForm.controls['confirmPassword'].hasError("required")){
+                          <span>Password is required</span> 
+                       }@else if(registerForm.hasError("mismatch")){
+                        <span>Password must be matched</span> 
+                     }
+                       
                        </div>
                       <label for="password" class="form-label">Repeat your password</label>
                     </div>
-                  <div class="col-12">
+                  <div class="col-12 py-4">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" name="iAgree" id="iAgree" required>
+                      <input class="form-check-input" type="checkbox"  name="iAgree" id="iAgree">
                       <label class="form-check-label text-secondary" for="iAgree">
-                        I agree to the <a href="#!" class="link-primary text-decoration-none">terms and conditions</a>
+                        I agree to the <a class="link-primary text-decoration-none">terms and conditions</a>
                       </label>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="d-grid">
-                      <button class="btn bsb-btn-2xl btn-primary" type="submit">Sign up</button>
+                      <button class="btn bsb-btn-2xl btn-primary" type="submit" [disabled]="registerForm.invalid">Sign up</button>
                     </div>
                   </div>
                 </div>
@@ -111,7 +106,7 @@
               <div class="row">
                 <div class="col-12">
                   <hr class="mt-5 mb-4 border-secondary-subtle">
-                  <p class="m-0 text-secondary text-center">Already have an account? <a href="#!" class="link-primary text-decoration-none">Sign in</a></p>
+                  <p class="m-0 text-secondary text-center">Already have an account? <a routerLink="/user/login" class="link-primary text-decoration-none">Login</a></p>
                 </div>
               </div>
               <div class="row">

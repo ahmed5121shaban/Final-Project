@@ -2,32 +2,19 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-<<<<<<< HEAD
-=======
-
->>>>>>> bc991c456bc464477fcdb1886ef97f22c985eba7
-import { ReactiveFormsModule,FormsModule } from '@angular/forms';
-
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-<<<<<<< HEAD
-
-=======
-    ContactUsComponent
->>>>>>> bc991c456bc464477fcdb1886ef97f22c985eba7
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
-    ReactiveFormsModule,
-  
-
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     provideClientHydration()
