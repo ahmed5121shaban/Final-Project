@@ -1,58 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
 
-
-body{
-    font-family: 'Ubuntu', sans-serif;
-}
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
 
-.btn-primary{
-    background-color: #003285!important;
-    border-color: #003285 !important;
+/* carousel button style start*/
+.parent-of-card .owl-next{
+  background-color: rgba(240, 248, 255, 0) !important;
+  position: absolute;
+  top: 40%;
+  left:  98%;
 }
-.btn-primary:hover{
-    background-color: #003385a1!important;
-    border-color: #003285a1 !important;
+.parent-of-card .owl-prev{
+  background-color: rgba(240, 248, 255, 0) !important;
+  position: absolute;
+  top: 40%;
+  right:  99%;
 }
-.btn-outline-primary{
-    border-color: #ffffff !important;
-    color: #ffffff !important;
-}
-.btn-outline-primary:hover{
-    background-color: #ffffff !important;
-    border-color: #ffffff !important;
-    color: #003285 !important;
-}
-.btn-secondary{
-    background-color: rgb(229, 124, 35)!important;
-    border-color: rgb(229, 124, 35) !important;
-    color: #ffffff !important;
+/* carousel button style end*/
+
+/* Home Category Carousel button start*/
+
+.categoryCarousel .owl-next{
+  background-color: rgba(240, 248, 255, 0) !important;
+  position: absolute;
+  bottom: 15%;
+  left: 98%;
 
 }
-.btn-secondary:hover{
-    background-color: rgba(229, 126, 35, 0.845)!important;
-    border-color: rgbargb(229, 124, 35)!important;
+.categoryCarousel .owl-prev{
+  background-color: rgba(240, 248, 255, 0) !important;
+  position: absolute;
 }
-.btn-outline-primary{
-    border-color: #ffffff !important;
-    color: #ffffff !important;
-}
-.btn-outline-primary:hover{
-    background-color: #ffffff !important;
-    border-color: #ffffff !important;
-    color: #003285 !important;
-}
-a{
-    color: rgba(0, 0, 0, 0.65);
-}
-body{
-    background-color:white !important;
+/* Home Category Carousel button end*/
+
+
+/* Home Testimonial Carousel dot start */
+.testimonialOption .owl-dot{
+  width: 20px !important;
+  margin-left: 20px !important;
+  border-radius: 20px !important;
 
 }
-.btn-link{
-    color: rgb(229, 124, 35)!important; 
-    padding: 0px !important;
+.testimonialOption .owl-dot span{
+  width: 30px !important;
+  background-color: rgb(63, 63, 63) !important;
 }
+.testimonialOption .owl-dot.active span{
+  background-color: rgb(120, 120, 120) !important;
+}
+/* Home Testimonial Carousel dot end */
+
+
+
+
 
 /* english font start*/
   .ubuntu-light {
@@ -103,4 +104,3 @@ body{
   font-style: italic;
 }
 /* english font end*/
-

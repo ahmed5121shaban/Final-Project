@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedComponent } from './Shared.component';
-import { NavComponent} from './Components/nav/nav.component';
-import { FooterComponent } from './Components/footer/footer.component';
+import { HomeComponent } from './Components/home/home.component';
+import { SharedRoutes } from './shared.routing';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    SharedRoutes,
+    CarouselModule,
+    
   ],
-  declarations: [SharedComponent,NavComponent,FooterComponent
-  ]
-  ,
-  exports: [
-    NavComponent,FooterComponent
+  declarations: [
+    SharedComponent,
+    HomeComponent,
+
   ]
 })
 export class SharedModule { }

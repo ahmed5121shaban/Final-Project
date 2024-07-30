@@ -1,3 +1,42 @@
-<p>
-  verify-identity works!
-</p>
+
+
+ <div class="container">
+
+          <h4 class="bg-dark text-light mb-4 p-3 rounded-2">Personal ID Verification</h4>
+          <form class="ms-4" [formGroup]="form" (ngSubmit)="addID()">
+              <div class="row mb-3">
+                  <div class="col-md-6">
+                      <label for="fname" class="form-label">First Name</label>
+                      <input type="text" class="form-control" formControlName="fname"
+                      [class]="{'is-valid':fname?.valid&&fname?.dirty,'is-invalid':fname?.invalid&&fname?.dirty}"
+                      id="fname" placeholder="Enter your first name" required>
+                  </div>
+                  <div class="col-md-6">
+                      <label for="lname" class="form-label">Last Name</label>
+                      <input type="text" class="form-control" formControlName="lname"
+                      [class]="{'is-valid':lname?.valid&&lname?.dirty,'is-invalid':lname?.invalid&&lname?.dirty}"
+                      id="lname" placeholder="Enter your last name" required>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <label for="dateOfBarth" class="form-label">Date of Birth</label>
+                  <input type="date" class="form-control" formControlName="dateOfBarth"
+                  [class]="{'is-valid':dateOfBarth?.valid&&dateOfBarth?.dirty,'is-invalid':dateOfBarth?.invalid&&dateOfBarth?.dirty}"
+                  id="dateOfBarth" required>
+              </div>
+              <div class="mb-3">
+                  <label for="idNumber" class="form-label">ID Number</label>
+                  <input type="text" class="form-control" formControlName="idNumber"
+                  [class]="{'is-valid':idNumber?.valid&&idNumber?.dirty,'is-invalid':idNumber?.invalid&&idNumber?.dirty}"
+                  id="idNumber" placeholder="Enter your ID number" required>
+              </div>
+              <div class="mb-3">
+                  <label for="idDocument" class="form-label">Upload ID Document</label>
+                  <input type="file" class="form-control" formControlName="idDocument"
+                  [class]="{'is-valid':idDocument?.valid&&idDocument?.dirty,'is-invalid':idDocument?.invalid&&idDocument?.dirty}"
+                  id="idDocument" accept=".jpg, .jpeg, .png, .pdf" required>
+              </div>
+
+              <button type="submit" [disabled]="form.invalid" class="btn btn-dark w-25 mt-3">Verify</button>
+          </form>
+  </div>
