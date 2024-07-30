@@ -1,161 +1,160 @@
 /* General Styles */
 body {
-  background-color: #F8F1F1 !important;
-  color: #025464 !important;
+  font-family: "Ubuntu", sans-serif;
+  color: #003285; /* Adjusted text color */
 }
 
 /* Contact Form Styles */
 .card {
-  border-radius: 15px !important;
-  border: 1px solid #E8AA42 !important;
-  background-color: #ffffff !important;
+  border-radius: 0.375rem; /* Bootstrap border-radius */
+  border: 1px solid #F8F1F1; /* Adjusted border color */
+  background-color: #F8F1F1; /* Adjusted background color */
 }
 
 .card-body {
-  padding: 3rem !important;
+  padding: 1.5rem; /* Bootstrap padding */
 }
 
-.form-control {
-  border: 1px solid #E8AA42 !important;
-  border-radius: 8px !important;
-  padding: 0.75rem 1rem !important;
-  background-color: #F8F1F1 !important;
-  color: #025464 !important;
+.form-control { 
+  color: #5E6278;/* Adjusted border color */
+  border-radius: 0.375rem; /* Bootstrap border-radius */
+  padding: 0.75rem 1rem; /* Bootstrap padding */
+  background-color: #f4f4f4;
+  border-color: #f4f4f4;
+ 
 }
 
 .form-control:focus {
-  border-color: #E57C23 !important;
-  box-shadow: 0 0 0 0.2rem rgba(229, 124, 35, 0.25) !important;
-}
-
-.btn-primary {
-  background-color: #025464 !important;
-  border-color: #025464 !important;
-}
-
-.btn-primary:hover {
-  background-color: #023F5D !important;
-  border-color: #023F5D !important;
+  border-color: #E57C23; /* Adjusted focus border color */
+  box-shadow: 0 0 0 0.2rem rgba(229, 124, 35, 0.25); /* Adjusted focus box shadow */
 }
 
 /* Validation Styles */
 .invalid-feedback {
-  color: #E57C23 !important;
-  display: block !important;
+  color: #E57C23; /* Adjusted danger color */
+  display: block;
 }
 
 /* Map Styles */
 #kt_contact_map {
-  border-radius: 0.5rem !important;
-  border: 1px solid #E8AA42 !important;
-  overflow: hidden !important;
+  border-radius: 0.375rem; /* Bootstrap border-radius */
+  border: 1px solid #E8AA42; /* Adjusted border color */
+  overflow: hidden;
 }
 
 iframe {
-  border: none !important;
+  border: none;
+}
+.bg-primary {
+  background-color: #E57C23; /* Choose your desired background color */
+  padding: 1rem; /* Adjust padding to create space around the SVG */
+  border-radius: 0.5rem; /* Optional: Adjust border radius for rounded corners */
 }
 
-/* Contact Information Styles */
-.text-dark {
-  color: #025464 !important;
+/* Additional styling for the span element */
+.svg-icon {    margin-bottom: -10px;
+  line-height: 1rem;
+  display: inline-flex; /* Ensure the background color surrounds the SVG */
+  align-items: center; /* Center align the SVG vertically */
+  justify-content: center; /* Center align the SVG horizontally */
+}
+.svg-icon.svg-icon-primary { 
+  color:#009ef7
 }
 
-.bg-light {
-  background-color: #F8F1F1 !important;
+
+
+
+
+
+/* Button Styles */
+.btn-secondary {
+  background-color: #E57C23; /* Adjusted background color */
+  border-color: #E57C23; /* Adjusted border color */
+  color: #ffffff; /* White text color */
 }
 
-.card-rounded {
-  border-radius: 15px !important;
+.btn-secondary:hover {
+  background-color: rgba(229, 124, 35, 0.845); /* Adjusted hover background color */
+  border-color: rgba(229, 124, 35, 0.845); /* Adjusted hover border color */
 }
 
-.card-body {
-  padding: 2rem !important;
+/* Additional Card Styles */
+.text-primary {
+  color: #025464; /* Adjusted text color */
 }
 
-/* Social Media Icons */
-.card img {
-  width: 30px !important;
-  height: 30px !important;
+.bg-secondary {
+  background-color: #E8AA42; /* Adjusted background color */
+}
+.social-icons-container {
+  margin: 40px 0;
 }
 
-/* Adjustments for Layout and Spacing */
-.row {
-  margin-bottom: 3rem !important;
+.social-icons {
+  display: flex;
+  justify-content: center;
 }
 
+.social-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F8F1F1;
+  background-color: #025464;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.social-icon.facebook {
+  background-color: #3b5998;
+}
+
+.social-icon.twitter {
+  background-color: #00aced;
+}
+
+.social-icon.linkedin {
+  background-color: #0077b5;
+}
+
+.social-icon.instagram {
+  background-color: #e4405f;
+}
+
+.social-icon:hover {
+  background-color: #E57C23;
+  color: #F8F1F1;
+}
+.ps-lg-10 {
+  padding-left: 2.5rem !important;
+}
 .col-md-6 {
-  padding-right: 1.5rem !important;
-  padding-left: 1.5rem !important;
-}
-
-.text-center {
-  text-align: center !important;
-}
-
-.mx-4 {
-  margin-left: 1rem !important;
-  margin-right: 1rem !important;
-}
-
-.my-2 {
-  margin-top: 0.5rem !important;
-  margin-bottom: 0.5rem !important;
-}
-
-.fs-5 {
-  font-size: 1.25rem !important;
-}
-
-.fs-6 {
-  font-size: 1.125rem !important;
-}
-
-.fw-bold {
-  font-weight: bold !important;
-}
-
-.fw-semibold {
-  font-weight: 600 !important;
-}
-
-.h-100 {
-  height: 100% !important;
-}
-
-.mb-5 {
-  margin-bottom: 3rem !important;
-}
-
-.mb-10 {
-  margin-bottom: 5rem !important;
-}
-
-/* Toast Notifications */
-.toast-success {
-  background-color: #025464 !important;
-  color: #ffffff !important;
-}
-
-.toast-error {
-  background-color: #E57C23 !important;
-  color: #ffffff !important;
-}
-
-.toast-info {
-  background-color: #E8AA42 !important;
-  color: #ffffff !important;
-}
-
-.toast-warning {
-  background-color: #F8F1F1 !important;
-  color: #025464 !important;
-}
-
-/* Close button and progress bar in toast */
-.toast .toast-close-button {
-  color: #ffffff !important;
-}
-
-.toast-progress {
-  background-color: #E57C23 !important;
-}
+  flex: 0 0 auto;
+  width: 50%; }
+ 
+  .p-10 {
+    padding: 2.5rem !important;
+  
+  }
+  .mb-lg-15 {
+    margin-bottom: 3.75rem !important;
+  }
+  .pe-lg-10 {
+    padding-right: 2.5rem !important;
+  } 
+  @media (min-width: 576px) {
+  .col-sm-6 {
+    flex: 0 0 auto;
+    width: 50%; }
+  }
+  g-5, .gy-5 {
+    --bs-gutter-y: 1.25rem; 
+  }
+  .mb-6{
+    margin-bottom: 70px !important;
+  }
