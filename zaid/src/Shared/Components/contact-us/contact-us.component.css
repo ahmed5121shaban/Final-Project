@@ -130,23 +130,7 @@ iframe {
   background-color: #E57C23;
   color: #F8F1F1;
 }
-.ps-lg-10 {
-  padding-left: 2.5rem !important;
-}
-.col-md-6 {
-  flex: 0 0 auto;
-  width: 50%; }
- 
-  .p-10 {
-    padding: 2.5rem !important;
-  
-  }
-  .mb-lg-15 {
-    margin-bottom: 3.75rem !important;
-  }
-  .pe-lg-10 {
-    padding-right: 2.5rem !important;
-  } 
+
   @media (min-width: 576px) {
   .col-sm-6 {
     flex: 0 0 auto;
