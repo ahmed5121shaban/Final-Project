@@ -7,6 +7,6 @@ const routes: Routes = [
   { path: 'edit-auction' , component: EditAuctionComponent},
 ];
 
-export const ActionRoutes = RouterModule.forChild(routes);
 
+export const ActionRoutes = RouterModule.forChild(routes);
 
