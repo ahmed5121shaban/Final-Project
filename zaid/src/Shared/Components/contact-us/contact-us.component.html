@@ -1,0 +1,88 @@
+
+  
+<div class="container mt-5">
+  <div class="row g-5">
+    <div class="col-md-6 pe-lg-5">
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="form mb-4 ubuntu-regular" novalidate>
+        <h1 class=" fs-3 fw-semibold text-primary mb-9 ubuntu-light">Send Us Email</h1>
+        <div class="row mb-2">
+          <div class="col-md-6 mb-3">
+            <label class="fs-5 fw-semibold mb-2 text-primary">Name</label>
+            <input type="text" formControlName="name" class="form-control form-control-solid" />
+            <div *ngIf="contactForm.get('name')?.invalid && (contactForm.get('name')?.dirty || contactForm.get('name')?.touched)" class="invalid-feedback">
+              Please enter your name.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="fs-5 fw-semibold mb-2 text-primary">Email</label>
+            <input type="email" formControlName="email" class="form-control form-control-solid" />
+            <div *ngIf="contactForm.get('email')?.invalid && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched)" class="invalid-feedback">
+              Please enter a valid email.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="fs-5 fw-semibold mb-2 text-primary">Subject</label>
+          <input formControlName="subject" class="form-control form-control-solid" />
+          <div *ngIf="contactForm.get('subject')?.invalid && (contactForm.get('subject')?.dirty || contactForm.get('subject')?.touched)" class="invalid-feedback">
+            Please enter the subject.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="fs-6 fw-semibold mb-2 text-primary">Message</label>
+          <textarea class="form-control form-control-solid" rows="6" formControlName="message"></textarea>
+          <div *ngIf="contactForm.get('message')?.invalid && (contactForm.get('message')?.dirty || contactForm.get('message')?.touched)" class="invalid-feedback">
+            Please enter your message.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-secondary" [disabled]="!contactForm.valid" id="kt_contact_submit_button">
+          <span class="indicator-label">Send Feedback</span>
+        </button>
+      </form>
+    </div>
+    <div class="col-md-6 ps-lg-10 mb-6">
+      <div id="kt_contact_map" class="w-100 rounded mb-2 mb-lg-0 mt-2" style="height:486px;">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1820.8460053432116!2d32.9070290509273!3d24.112324166414552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14367b29ab7470b1%3A0x35e183141754fe40!2zNFc2NCtXUVjYjCBVbm5hbWVkIFJvYWQsIEFzd2FuIDLYjCDYp9mE2KjYrdixINin2YTYo9it2YXYsSAxMjQ2NTE2!5e0!3m2!1sen!2seg!4v1721914075107!5m2!1sen!2seg"
+          width="100%"
+          height="100%"
+          style="border:0; border-radius: 0.5rem;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+  <div class="row g-5 mb-5 mb-lg-15">
+    <div class="col-sm-6 pe-lg-10">
+      <div class="text-center bg-light card-rounded d-flex flex-column justify-content-center p-10 h-100">
+        <h1 class="text-dark fw-bold my-3 fs-1 ubuntu-medium">Let’s Speak</h1>
+        <div class="text-gray-700 fw-semibold fs-2 ubuntu-medium">1 (833) 597-7538</div>
+      </div>
+    </div>
+    <div class="col-sm-6 ps-lg-10 ">
+      <div class="text-center bg-light card-rounded d-flex flex-column justify-content-center p-10 h-100">
+       <span class="svg-icon svg-icon-3tx svg-icon-primary">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.3" d="M18.0624 15.3453L13.1624 20.7453C12.5624 21.4453 11.5624 21.4453 10.9624 20.7453L6.06242 15.3453C4.56242 13.6453 3.76242 11.4453 4.06242 8.94534C4.56242 5.34534 7.46242 2.44534 11.0624 2.04534C15.8624 1.54534 19.9624 5.24534 19.9624 9.94534C20.0624 12.0453 19.2624 13.9453 18.0624 15.3453Z" fill="currentColor"></path>
+            <path d="M12.0624 13.0453C13.7193 13.0453 15.0624 11.7022 15.0624 10.0453C15.0624 8.38849 13.7193 7.04535 12.0624 7.04535C10.4056 7.04535 9.06241 8.38849 9.06241 10.0453C9.06241 11.7022 10.4056 13.0453 12.0624 13.0453Z" fill="currentColor"></path>
+            
+          </svg>
+        </span>
+        <h1 class="text-dark fw-bold my-3 fs-1 ubuntu-regular">Location</h1>
+        <div class="text-gray-700 fw-semibold fs-2 ubuntu-medium">198 West 21th Street, Suite 721 New York NY 10016</div>
+        
+      </div>
+    </div>
+    <div class="social-icons-container">
+      <div class="social-icons bg-light p-4 h-100">
+        <a href="#" class="social-icon facebook" onclick="event.preventDefault();"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="social-icon twitter" onclick="event.preventDefault();"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="social-icon instagram" onclick="event.preventDefault();"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="social-icon linkedin" onclick="event.preventDefault();"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+    
+  </div>
+</div>
