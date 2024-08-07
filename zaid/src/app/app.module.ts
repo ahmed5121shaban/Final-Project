@@ -25,7 +25,6 @@ import { AdminModule } from '../Admin/Admin.module';
     ToastrModule.forRoot(),
     UserModule,
     ActionModule,
-  
     ItemsModule,
     SharedModule,
     AdminModule,
