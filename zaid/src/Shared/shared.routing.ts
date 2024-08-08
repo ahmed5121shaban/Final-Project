@@ -6,10 +6,10 @@ import { ContactUsComponent } from './Components/contact-us/contact-us.component
 
 
 const routes: Routes = [
-  /* {path:'',component:SharedComponent}, */
-  //  {path:'',component:HomeComponent},
-   {path:'',component:ContactUsComponent},
-  // {path:'',component:AboutUsComponent},
+  // {path:'',component:SharedComponent}, 
+   {path:'',component:HomeComponent},
+   {path:'contact',component:ContactUsComponent},
+  {path:'about',component:AboutUsComponent},
 ];
 
 export const SharedRoutes = RouterModule.forChild(routes);
