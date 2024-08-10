@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActionComponent } from './Action.component';
-import { AuctionDetailsComponent } from './Components/auction-details/auction-details.component';
-import { DeleteConfirmationComponent } from './Components/delete-confirmation/delete-confirmation.component';
-import { AuctionListComponent } from './Components/auction-list/auction-list.component';
-import { AuctionEditComponent } from './Components/auction-edit/auction-edit.component';
-import { CreateAuctionComponent } from './Components/create-auction/create-auction.component';
 import { ActionRoutes } from './action.routing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateAuctionComponent } from './Components/create-auction/create-auction.component';
+import { AuctionEditComponent } from './Components/auction-edit/auction-edit.component';
+import { AuctionListComponent } from './Components/auction-list/auction-list.component';
+import { AuctionDetailsComponent } from './Components/auction-details/auction-details.component';
 
 @NgModule({
   imports: [
@@ -15,15 +14,15 @@ import { ActionRoutes } from './action.routing';
     ActionRoutes,
     FormsModule,
     ReactiveFormsModule,
+
   ],
   declarations: [
-    ActionComponent, 
-    AuctionListComponent, 
-    AuctionEditComponent,
-    CreateAuctionComponent,
-    AuctionDetailsComponent,
-    DeleteConfirmationComponent
-  ],
-  //exports:[AuctionListComponent,AuctionEditComponent]
+   
+  CreateAuctionComponent,
+  AuctionEditComponent,
+  AuctionListComponent,
+  AuctionDetailsComponent,
+
+  ]
 })
 export class ActionModule { }

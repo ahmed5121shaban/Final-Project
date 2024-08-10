@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './User.component';
-import { RegisterComponent } from './Components/register/register.component';
 import { ProfileManagementComponent } from './Components/Profile-Management/Profile-Management.component';
 import { MyProfileComponent } from './Components/Profile-Management/my-profile/my-profile.component';
 import { PaymentComponent } from './Components/Profile-Management/payment/payment.component';
@@ -10,9 +9,12 @@ import { ShippingComponent } from './Components/Profile-Management/shipping/ship
 import { VerifyIdentityComponent } from './Components/Profile-Management/verify-identity/verify-identity.component';
 import { UserRoutes } from './user.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModifyActionComponent } from './Components/Profile-Management/modify-action/modify-action.component';
+import { AddReviewComponent } from './Components/add-review/add-review.component';
+import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
-import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
 import { NewPasswordComponent } from './Components/new-password/new-password.component';
+import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
 
 
 @NgModule({
@@ -21,20 +23,21 @@ import { NewPasswordComponent } from './Components/new-password/new-password.com
     UserRoutes,
     FormsModule,
     ReactiveFormsModule,
-
   ],
   declarations: [
-    UserComponent,
     RegisterComponent,
+    LoginComponent,
+    NewPasswordComponent,
+    PasswordResetComponent,
+    UserComponent,
     ProfileManagementComponent,
     MyProfileComponent,
     PaymentComponent,
     ProfileSettingComponent,
     ShippingComponent,
     VerifyIdentityComponent,
-    LoginComponent,
-    PasswordResetComponent,
-    NewPasswordComponent
+    ModifyActionComponent,
+    AddReviewComponent
   ]
 })
 export class UserModule { }

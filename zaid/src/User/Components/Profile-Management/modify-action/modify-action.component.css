@@ -1,0 +1,29 @@
+.card-custom {
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+.card-custom:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.card-title-custom {
+  color: #343a40;
+  font-weight: 700;
+}
+.card-text-custom {
+  color: #495057;
+}
+.btn-custom {
+  background-color: #343a40;
+  color: white;
+  transition: background-color 0.3s;
+}
+.btn-custom:hover {
+  background-color: #495057;
+}
+.action-image {
+  border-radius: 15px;
+}
+.container-custom {
+  padding: 20px;
+}
