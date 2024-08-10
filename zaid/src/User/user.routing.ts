@@ -11,6 +11,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
 import { NewPasswordComponent } from './Components/new-password/new-password.component';
 import { AddReviewComponent } from './Components/add-review/add-review.component';
+import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
 
 const routes: Routes = [
   { path: 'add-review' , component: AddReviewComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'shipping', component: ShippingComponent },
       { path: 'verify-identity', component: VerifyIdentityComponent },
       { path: 'modify-action', component: ModifyActionComponent },
+      { path: 'reviews', component: MyReviewsComponent },
     ] },
 ];
 

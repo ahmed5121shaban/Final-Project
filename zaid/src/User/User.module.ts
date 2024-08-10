@@ -15,6 +15,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
 import { NewPasswordComponent } from './Components/new-password/new-password.component';
+import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { NewPasswordComponent } from './Components/new-password/new-password.com
     VerifyIdentityComponent,
     ModifyActionComponent,
 
-    AddReviewComponent
+    AddReviewComponent,
+      MyReviewsComponent
   ]
 })
 export class UserModule { }

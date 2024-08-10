@@ -178,7 +178,24 @@ body{
   color: rgb(229, 124, 35)!important; 
   padding: 0px !important;
 }
-
+.btn-link:hover{
+opacity: 0.7;
+}
+.bg-secondry{
+  background-color: rgb(229, 124, 35)!important;  
+}
+.bg-primary{
+  background-color: #003285 !important;
+}
+.text-primary{
+  color: #003285 !important;
+}
+.link-primary{
+  color: #003285 !important;
+}
+.text-orange{
+  color: rgb(229, 124, 35)!important; 
+}
 /* english font start*/
 .ubuntu-light {
 font-family: "Ubuntu", sans-serif;
