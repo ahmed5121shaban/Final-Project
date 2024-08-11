@@ -7,22 +7,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
-import { SharedModule } from "../Shared/Shared.module";
+import { FooterComponent } from '../Shared/Components/footer/footer.component';
+import { SharedModule } from '../Shared/Shared.module';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     SharedModule
+    
+   
 ],
   providers: [
     provideClientHydration()

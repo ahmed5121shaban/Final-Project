@@ -7,6 +7,7 @@ import { CreateAuctionComponent } from './Components/create-auction/create-aucti
 import { AuctionEditComponent } from './Components/auction-edit/auction-edit.component';
 import { AuctionListComponent } from './Components/auction-list/auction-list.component';
 import { AuctionDetailsComponent } from './Components/auction-details/auction-details.component';
+import { DeleteConfirmationComponent } from './Components/delete-confirmation/delete-confirmation.component';
 
 @NgModule({
   imports: [
@@ -14,15 +15,14 @@ import { AuctionDetailsComponent } from './Components/auction-details/auction-de
     ActionRoutes,
     FormsModule,
     ReactiveFormsModule,
-
   ],
   declarations: [
-   
-  CreateAuctionComponent,
-  AuctionEditComponent,
-  AuctionListComponent,
-  AuctionDetailsComponent,
-
+    ActionComponent,
+    CreateAuctionComponent,
+    AuctionEditComponent,
+    AuctionListComponent,
+    AuctionDetailsComponent,
+    DeleteConfirmationComponent
   ]
 })
 export class ActionModule { }
