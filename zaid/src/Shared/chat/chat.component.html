@@ -1,0 +1,17 @@
+<div class="container chat-container">
+  <div class="chat-header text-center mb-4">
+    <h2>Chat with {{ currentUser === 'Buyer' ? 'Seller' : 'Buyer' }}</h2>
+  </div>
+  <div class="chat-messages p-3 mb-4" #messagesContainer>
+    <div *ngFor="let message of messages" [ngClass]="{
+      'message-buyer': message.sender === 'Buyer',
+      'message-seller': message.sender === 'Seller'
+    }" class="message">
+      <strong>{{ message.sender }}:</strong> {{ message.text }}
+    </div>
+  </div>
+  <div class="chat-input d-flex">
+    <input [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" class="form-control mr-2" placeholder="Type a message..." />
+    <button (click)="sendMessage()" class="btn btn-primary">Send</button>
+  </div>
+</div>
