@@ -1,12 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-
-interface Message {
-  sender: string;
-  text: string;
-}
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-chat',
@@ -14,40 +6,86 @@ interface Message {
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  messages: Message[] = [];
+  messages: { text: string; sender: 'buyer' | 'seller'; time: string; date: string; day: string }[] = [];
   newMessage: string = '';
-  currentUser: string = 'Buyer'; // Change this to 'Seller' when logged in as seller
-  @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
+  isAuctionWon: boolean = true; // Set to true for testing; adjust based on actual auction status
+  showEmojiPicker: boolean = false;
+  emojis: string[] = ['😊', '😂', '😍', '🥺', '😎', '😢', '😜', '😉', '😇', '🤔']; // Expanded emoji list
 
-  ngOnInit(): void {
-    this.loadMessages();
-  }
-
-  loadMessages() {
-    // Simulate fetching messages from a server
-    this.messages = [
-      { sender: 'Seller', text: 'Hello, how can I help you?' },
-      { sender: 'Buyer', text: 'I have a question about the auction.' },
-      { sender: 'Seller', text: 'Sure, what would you like to know?' }
-    ];
+  ngOnInit() {
+    // Simulate initial messages for demonstration
+    if (this.isAuctionWon) {
+      this.messages = [
+        { text: 'Congratulations on winning the auction!', sender: 'seller', time: '23:58', date: this.formatDate(new Date()), day: this.formatDay(new Date()) },
+        { text: 'Thank you! I’m excited to proceed.', sender: 'buyer', time: '23:59', date: this.formatDate(new Date()), day: this.formatDay(new Date()) },
+        { text: 'Please provide your contact details so we can arrange the delivery.', sender: 'seller', time: '00:01', date: this.formatDate(new Date()), day: this.formatDay(new Date()) },
+        { text: 'Sure, here are my details...', sender: 'buyer', time: '00:02', date: this.formatDate(new Date()), day: this.formatDay(new Date()) }
+      ];
+    }
   }
 
   sendMessage() {
     if (this.newMessage.trim()) {
       this.messages.push({
-        sender: this.currentUser,
-        text: this.newMessage
+        text: this.newMessage,
+        sender: 'buyer', // Adjust based on who is sending the message
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        date: this.formatDate(new Date()),
+        day: this.formatDay(new Date())
       });
       this.newMessage = '';
-      this.scrollToBottom();
-      // Send message to the server
-      // this.chatService.sendMessage(this.newMessage);
     }
   }
 
-  scrollToBottom() {
-    setTimeout(() => {
-      this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
-    }, 0);
+  onFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (file.type.startsWith('image/')) {
+          this.messages.push({
+            text: `<img src="${reader.result}" alt="file" style="max-width: 100%; height: auto;">`,
+            sender: 'buyer',
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            date: this.formatDate(new Date()),
+            day: this.formatDay(new Date())
+          });
+        } else {
+          this.messages.push({
+            text: `<a href="${reader.result}" download="${file.name}">Download ${file.name}</a>`,
+            sender: 'buyer',
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            date: this.formatDate(new Date()),
+            day: this.formatDay(new Date())
+          });
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  toggleEmojiPicker() {
+    this.showEmojiPicker = !this.showEmojiPicker;
+  }
+
+  selectEmoji(emoji: string) {
+    this.newMessage += emoji;
+    this.showEmojiPicker = false;
+  }
+
+  handleKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.sendMessage();
+    }
+  }
+
+  formatDate(date: Date): string {
+    return date.toLocaleDateString(); // e.g., "8/16/2024"
+  }
+
+  formatDay(date: Date): string {
+    return date.toLocaleDateString('en-US', { weekday: 'long' }); // e.g., "Friday"
   }
 }
