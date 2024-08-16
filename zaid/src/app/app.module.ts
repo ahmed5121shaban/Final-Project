@@ -12,11 +12,10 @@ import { AdminModule } from '../Admin/Admin.module';
 
 
 
+
 @NgModule({
   declarations: [
-    AppComponent,
-   
-
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -25,12 +24,9 @@ import { AdminModule } from '../Admin/Admin.module';
     ToastrModule.forRoot(),
     UserModule,
     ActionModule,
-  
     ItemsModule,
     SharedModule,
-    AdminModule,
-    
-  
+    AdminModule
   ],
   providers: [
     provideClientHydration()

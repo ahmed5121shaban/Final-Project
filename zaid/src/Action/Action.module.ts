@@ -27,3 +27,13 @@ import { ActionRoutes } from './action.routing';
   //exports:[AuctionListComponent,AuctionEditComponent]
 })
 export class ActionModule { }
+export interface Reply {
+  id: number;
+  text: string;
+}
+
+export interface Comment {
+  id: number;
+  text: string;
+  replies: Reply[];
+}

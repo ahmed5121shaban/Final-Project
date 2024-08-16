@@ -8,6 +8,8 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { SharedRoutes } from './Shared-routing';
 import { NavComponent} from './Components/nav/nav.component';
 import { FooterComponent } from './Components/footer/footer.component';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
+import { NotificationsComponent } from './Components/notifications/notifications.component';
 
 @NgModule({
   imports: [
@@ -31,7 +33,7 @@ import { FooterComponent } from './Components/footer/footer.component';
     
     ReactiveFormsModule, FormsModule
   ],
-  declarations: [SharedComponent, AboutUsComponent,ContactUsComponent,NavComponent,FooterComponent]
+  declarations: [SharedComponent,AboutUsComponent,ContactUsComponent,NavComponent,FooterComponent,NotFoundComponent,NotificationsComponent]
   
   
   ,
