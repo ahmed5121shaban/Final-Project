@@ -4,8 +4,8 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from '../Shared/Components/not-found/not-found.component';
 
 const routes: Routes = [
-
-  {path:'',component:AppComponent},
+  {path:'', redirectTo:'home',pathMatch:"full"},
+  {path: 'home',loadChildren: () => import('../Shared/Shared.module').then(m => m.SharedModule)},
   {path: 'user',loadChildren: () => import('../User/User.module').then(m => m.UserModule)},
   {path: 'admin',loadChildren: () => import('../Admin/Admin.module').then(m => m.AdminModule)},
   {path: 'action',loadChildren: () => import('../Action/Action.module').then(m => m.ActionModule)},
@@ -13,7 +13,6 @@ const routes: Routes = [
   {path: 'shared',loadChildren: () => import('../Shared/Shared.module').then(m => m.SharedModule)},
   {path: '**',component:NotFoundComponent},
   /* {path:'**',} ----  wild card  لسه معملنهاش   */
-
 ];
 
 @NgModule({

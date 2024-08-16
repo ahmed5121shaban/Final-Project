@@ -16,6 +16,4 @@ const routes: Routes = [
 
 ];
 
-
 export const ActionRoutes = RouterModule.forChild(routes);
-
