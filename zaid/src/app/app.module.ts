@@ -9,12 +9,15 @@ import { ActionModule } from '../Action/Action.module';
 import { ItemsModule } from '../Items/Items.module';
 import { SharedModule } from '../Shared/Shared.module';
 import { AdminModule } from '../Admin/Admin.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    
    
 
   ],
@@ -25,10 +28,10 @@ import { AdminModule } from '../Admin/Admin.module';
     ToastrModule.forRoot(),
     UserModule,
     ActionModule,
-  
     ItemsModule,
     SharedModule,
     AdminModule,
+    FontAwesomeModule,
     
   
   ],

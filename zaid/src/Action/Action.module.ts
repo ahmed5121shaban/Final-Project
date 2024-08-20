@@ -8,6 +8,9 @@ import { AuctionListComponent } from './Components/auction-list/auction-list.com
 import { AuctionEditComponent } from './Components/auction-edit/auction-edit.component';
 import { CreateAuctionComponent } from './Components/create-auction/create-auction.component';
 import { ActionRoutes } from './action.routing';
+import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-feedback.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   imports: [
@@ -15,6 +18,10 @@ import { ActionRoutes } from './action.routing';
     ActionRoutes,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule
+    
+    
+    
   ],
   declarations: [
     ActionComponent, 
@@ -22,7 +29,8 @@ import { ActionRoutes } from './action.routing';
     AuctionEditComponent,
     CreateAuctionComponent,
     AuctionDetailsComponent,
-    DeleteConfirmationComponent
+    DeleteConfirmationComponent,
+    AuctionFeedbackComponent
   ],
   //exports:[AuctionListComponent,AuctionEditComponent]
 })
