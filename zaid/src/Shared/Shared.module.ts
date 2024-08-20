@@ -10,8 +10,15 @@ import { ContactUsComponent } from './Components/contact-us/contact-us.component
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { NavComponent} from './Components/nav/nav.component';
 import { FooterComponent } from './Components/footer/footer.component';
+import { FaqRulesComponent } from './Components/faq-rules/faq-rules.component';
+import { LoaderComponent } from './Components/loader/loader.component';
+import { LoaderService } from './Interseptors/loader intersptors/loader.service';
+import { LoadingInterceptor } from './Interseptors/loader intersptors/loading.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ChatComponent } from './chat/chat.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { NotificationsComponent } from './Components/notifications/notifications.component';
+
 
 @NgModule({
   imports: [
@@ -42,11 +49,19 @@ import { NotificationsComponent } from './Components/notifications/notifications
     ContactUsComponent,
     NavComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    FaqRulesComponent,
+    LoaderComponent,
+    ChatComponent
+  ],
+  providers: [
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ],
   exports: [
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    LoaderComponent
   ]
 })
 export class SharedModule { }
