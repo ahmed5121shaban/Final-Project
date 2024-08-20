@@ -1,3 +1,13 @@
+
+*{
+    margin:0px !important;
+    box-sizing: border-box !important;
+
+}
+
+
+
+
 footer ul li a {
     text-decoration: none;
     color: white;
