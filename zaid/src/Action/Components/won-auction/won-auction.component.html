@@ -1,0 +1,77 @@
+<div class="container mt-5 mb-5">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="text-primary text-start">Invoice Details</h2>
+    </div>
+    <div class="card-body">
+      
+      <div class="row">
+        <!-- Auction Item Image -->
+        <div class="col-md-4 align-content-center">
+          <img src="hd_item_3649360_e2ceb54174.jpg" alt="Auction Item" class="img-fluid rounded">
+        </div>
+        <!-- Auction Item and Invoice Details -->
+        <div class="col-md-8 mt-2">
+          <div class="row justify-content-center text-start mt-3 mb-3">
+       
+            <h5 class="card-title text-orange fs-3">Congratulations! You've won the auction.</h5>
+            <p class="card-text text-secondary fs-5">Please review your invoice and proceed to payment.</p>
+          
+        </div>
+          <div class="card mb-3">
+            <div class="card-body">
+              <p class="card-text text-secondary">ID: <strong> #123-456</strong> </p>
+              <p class="card-text text-secondary">Creation Date: <strong> Aug 16,2024</strong> </p>
+              <p class="card-text text-secondary">Status: <span class="badge bg-secondary text-black fw-bold">
+                  Unpaid</span> </p>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-body">
+
+              <p class="card-text text-secondary">Item Name: <strong> item title</strong> </p>
+              <p class="card-text text-secondary">Item Description: <strong> item description</strong></p>
+              <p class="card-text text-secondary">Price: <strong> $100.00</strong></p>
+              <p class="card-text text-secondary">Taxes: <strong> $10.00</strong></p>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-body">
+              <p class="card-text text-secondary">To: <strong> John Doe</strong> </p>
+              <p class="card-text text-secondary">Addres: <strong>Street, City</strong></p>
+              <p class="card-text text-secondary">Phone Number: <strong> +20 01115670221</strong></p>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-secondary">Total Price</h6>
+              <p class="card-text text-primary fs-3"><strong>$110.00</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Payment and Decline Buttons -->
+      <div class="d-flex justify-content-end gap-4 mt-3 mb-3">
+        <a href="/payment?invoiceId=12345" class="btn btn-primary btn-lg">Proceed to Payment</a>
+        <a href="#" class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#cancelModal">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelModalLabel">you sure you want to cancel?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <p class="text-secondary"> If you cancel, the 10% deposit paid at the beginning of the auction will not be refunded to your account.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No, Keep It</button>
+        <a href="/decline?auctionId=67890" class="btn btn-light">Yes, Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>

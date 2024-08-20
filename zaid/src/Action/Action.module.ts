@@ -8,6 +8,7 @@ import { AuctionEditComponent } from './Components/auction-edit/auction-edit.com
 import { AuctionListComponent } from './Components/auction-list/auction-list.component';
 import { AuctionDetailsComponent } from './Components/auction-details/auction-details.component';
 import { DeleteConfirmationComponent } from './Components/delete-confirmation/delete-confirmation.component';
+import { WonAuctionComponent } from './Components/won-auction/won-auction.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { DeleteConfirmationComponent } from './Components/delete-confirmation/de
     AuctionEditComponent,
     AuctionListComponent,
     AuctionDetailsComponent,
-    DeleteConfirmationComponent
+    DeleteConfirmationComponent,
+    WonAuctionComponent
   ]
 })
 export class ActionModule { }

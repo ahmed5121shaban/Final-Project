@@ -18,6 +18,7 @@ import { NewPasswordComponent } from './Components/new-password/new-password.com
 import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -42,7 +43,7 @@ import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/m
     ModifyActionComponent,
 
     AddReviewComponent,
-      MyReviewsComponent
+      MyReviewsComponent,
   ]
 })
 export class UserModule { }
