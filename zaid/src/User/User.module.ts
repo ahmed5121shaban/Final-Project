@@ -10,6 +10,13 @@ import { VerifyIdentityComponent } from './Components/Profile-Management/verify-
 import { UserRoutes } from './user.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModifyActionComponent } from './Components/Profile-Management/modify-action/modify-action.component';
+import { AddReviewComponent } from './Components/add-review/add-review.component';
+import { LoginComponent } from './Components/login/login.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
+import { NewPasswordComponent } from './Components/new-password/new-password.component';
+import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
+
 
 
 @NgModule({
@@ -27,7 +34,10 @@ import { ModifyActionComponent } from './Components/Profile-Management/modify-ac
     ProfileSettingComponent,
     ShippingComponent,
     VerifyIdentityComponent,
-    ModifyActionComponent
+    ModifyActionComponent,
+
+    AddReviewComponent,
+      MyReviewsComponent,
   ]
 })
 export class UserModule { }
