@@ -10,6 +10,8 @@ import { ContactUsComponent } from './Components/contact-us/contact-us.component
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { NavComponent} from './Components/nav/nav.component';
 import { FooterComponent } from './Components/footer/footer.component';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
+import { NotificationsComponent } from './Components/notifications/notifications.component';
 
 @NgModule({
   imports: [

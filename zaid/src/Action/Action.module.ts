@@ -28,3 +28,13 @@ import { WonAuctionComponent } from './Components/won-auction/won-auction.compon
   ]
 })
 export class ActionModule { }
+export interface Reply {
+  id: number;
+  text: string;
+}
+
+export interface Comment {
+  id: number;
+  text: string;
+  replies: Reply[];
+}
