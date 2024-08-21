@@ -1,0 +1,233 @@
+<div class="main  p-md-5 p-3">
+    <div class="row justify-content-between ">
+        <div class="item-title">
+            <h1>item title</h1>
+        </div>
+
+        <div class="col-md-7 row mb-5 ">
+            <div id="itemimages" class="carousel slide col-12 mb-5">
+                <div class="carousel-inner mb-5">
+                    @for(image of itemImages; track $index ; let i=$index){
+                    <div class="carousel-item" [class.active]="i === 0">
+                        <img [src]="image.src" class="d-block w-100" >
+                    </div>
+                    }
+
+                </div>
+
+                <a class="carousel-control-prev" href="#itemimages" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                </a>
+                <a class="carousel-control-next" href="#itemimages" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                </a>
+
+                <div class="carousel-indicators">
+                    @for( image of itemImages;track $index ;let i=$index){
+                    <button class="w-25" type="button" [attr.data-bs-target]="'#itemimages'"
+                        [attr.data-bs-slide-to]="i" [class.active]="i === 0">
+                        <img [src]="image.src" class="d-block w-100" >
+                    </button>
+                    }
+
+                </div>
+            </div>
+
+            <br>
+
+            <!-- <div id="item-slider" class="carousel slide col-12" >
+                <div class="carousel-inner">
+                        @for( slide of itemImages; track $index; let i= $index ){
+                            <div class="carousel-item" [ngClass]="(i === currentSlide) ? 'active' : ''">
+                            <img [src]="slide.src" class="d-block w-100" [alt]="slide.alt">
+                        </div>
+                        }
+
+                </div>
+                <a class="carousel-control-prev" href="#item-slider" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#item-slider" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div> -->
+            <!---------------------------- item thumbnail list ----------------------->
+            <!-- <div class=" thumb-list-images d-none d-md-block mt-3 d-none d-md-block col-12 mb-md-5">
+                <div class="thumb-list ">
+                    <div class="row" (click)="selectSlide($event)">
+
+                    @for(thumb of itemImages  ; track $index){
+                    <div class="thumb">
+                        <img [src]="thumb.src" [alt]="thumb.alt">
+                    </div>
+                    }
+                </div>
+
+                </div>
+            </div> -->
+        </div>
+
+        <div class="bid col-md-5  justify-content-center  p-md-0 mt-5 mt-md-0">
+            <div class="bid-info-place  mb-3 ">
+                <div class="bid-info row bg-light  mb-3">
+                    <div class="heighest-bid col-6">
+                        <p>Heighest bid:</p>
+                        <h5>300$</h5>
+                        <p class="estimate-price">Estimate: 257 EUR</p>
+                    </div>
+                    <div class="bid-ends-in col-6">
+                        <p>Ends in:</p>
+                        <h5 id="end-time">13hours</h5>
+                        <p class="end-date">25 Jul 2024 at 17:30 EEST</p>
+                    </div>
+                </div>
+                <div class="place-bid text-center ">
+                    <input type="number" name="" id="" class="form-control">
+                    <a href="" class=" btn btn-secondary w-100 mt-3 mb-1">Place A Bid</a>
+                    <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
+                        converted into SEK.</p>
+                </div>
+            </div>
+
+            <div class="bid-history mt-0 mb-5">
+                <p class="title">Bid history</p>
+                <div class="row single-bid">
+                    <div class="col-4 bidder">bidder</div>
+                    <div class="col-4 bid-date">24 Jul, 04:29</div>
+                    <div class="col-4 bid-amount">250 EUR</div>
+                </div>
+            </div>
+            <div class="payment">
+                <p class="title">Payment options for this item</p>
+                <svg viewBox="0 0 3311 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_135_54)">
+                        <path
+                            d="M119.971 6.0924C106.903 6.0924 95.2244 12.8866 95.2244 25.4393C95.2244 39.8349 115.937 40.8292 115.937 48.0611C115.937 51.1062 112.458 53.832 106.515 53.832C98.0824 53.832 91.7796 50.0232 91.7796 50.0232L89.0827 62.6903C89.0827 62.6903 96.3434 65.9076 105.983 65.9076C120.271 65.9076 131.514 58.7799 131.514 46.0125C131.514 30.8009 110.715 29.8362 110.715 23.1237C110.715 20.7383 113.571 18.1247 119.497 18.1247C126.182 18.1247 131.636 20.8947 131.636 20.8947L134.276 8.66044C134.276 8.66044 128.341 6.0924 119.971 6.0924ZM0.408478 7.01574L0.092041 8.86242C0.092041 8.86242 5.58992 9.87168 10.5416 11.8849C16.9174 14.1935 17.3716 15.5375 18.4454 19.7117L30.1463 64.9554H45.8315L69.9958 7.01574H54.3465L38.8196 46.4092L32.4836 13.0175C31.9026 9.1958 28.9593 7.01574 25.3566 7.01574H0.408478ZM76.2886 7.01574L64.0122 64.9554H78.9351L91.1683 7.01574H76.2886ZM159.519 7.01574C155.92 7.01574 154.014 8.94814 152.615 12.325L130.752 64.9554H146.401L149.429 56.1837H168.494L170.335 64.9554H184.143L172.097 7.01574H159.519ZM161.554 22.6693L166.193 44.4111H153.765L161.554 22.6693Z"
+                            fill="#1434CB"></path>
+                    </g>
+                    <g clip-path="url(#clip1_135_54)">
+                        <path d="M256.553 7.70003H287.918V64.3H256.553V7.70003Z" fill="#FF5F00"></path>
+                        <path
+                            d="M258.544 36.0014C258.544 24.5015 263.921 14.3015 272.186 7.70147C266.112 2.90148 258.445 0.00146484 250.081 0.00146484C230.266 0.00146484 214.235 16.1015 214.235 36.0014C214.235 55.9014 230.266 72.0014 250.081 72.0014C258.445 72.0014 266.112 69.1015 272.186 64.3015C263.921 57.8015 258.544 47.5014 258.544 36.0014Z"
+                            fill="#EB001B"></path>
+                        <path
+                            d="M330.235 36C330.235 55.9 314.205 72 294.39 72C286.026 72 278.359 69.1 272.285 64.3C280.649 57.7 285.926 47.5 285.926 36C285.926 24.5 280.55 14.3 272.285 7.70004C278.359 2.90004 286.026 3.05176e-05 294.39 3.05176e-05C314.205 3.05176e-05 330.235 16.2 330.235 36Z"
+                            fill="#F79E1B"></path>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_135_54">
+                            <rect width="184.235" height="60" fill="white" transform="translate(0 6)"></rect>
+                        </clipPath>
+                        <clipPath id="clip1_135_54">
+                            <rect width="116" height="72" fill="white" transform="translate(214.235)"></rect>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row mt-5 mt-md-2">
+        <div class="item-desc mb-4">
+            <p class="title">Description</p>
+            <p>item description</p>
+        </div>
+
+        <p class="title">Seller Information</p>
+        <div class="seller-info">
+            <div class="row">
+                <div class="">
+                    <h5>
+                        <a href="#profile" class="text-decoration-none">Seller Name</a>
+                    </h5>
+                </div>
+                <div class=" text-right">
+                    <div class="mb-2">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9734;</span>
+                        <span>(4.0)</span> <!-- Average rating -->
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2">
+                <a href="#" class="btn btn-link">View All Reviews</a>
+            </div>
+            <div>
+                <button class="btn btn-primary">Contact Seller</button>
+            </div>
+        </div>
+    </div>
+    <h3 class="text-center">Similar Auctions</h3>
+    <div id="cardCarousel" class="carousel slide justify-content-center mb-3">
+        <div class="carousel-inner">
+            @for(group of groupedItems ; track $index; let i = $index){
+            <div class="carousel-item" [class.active]="i === 0">
+                <div class="row">
+                    @for(item of group; track $index){
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img [src]="item.img" class="card-img-top" [alt]="item.title">
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.title}}</h5>
+                                <p class="card-text start-price">starting price: {{item.price}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+
+        </div>
+        <a class="carousel-control-prev" href="#cardCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+        </a>
+        <a class="carousel-control-next" href="#cardCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="false"></span>
+        </a>
+    </div>
+    <!-- ask question -->
+    <p class="title">Ask a Question</p>
+    <form id="questionForm" onsubmit="submitQuestion(event)">
+
+        <div class="form-group mb-3">
+            <label for="question">Your Question</label>
+            <textarea class="form-control mt-1" id="question" rows="3" placeholder="Type your question here"
+                required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary ">Submit Question</button>
+    </form>
+
+    <!-- comments  -->
+    @for( comment of comments;track $index){
+    <div class="media g-mb-30 media-comment">
+        <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15"
+            src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image Description">
+        <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+            <div class="g-mb-15">
+                <h5 class="h5 g-color-gray-dark-v1 mb-0">{{comment.author}}</h5>
+                <span class="g-color-gray-dark-v4 g-font-size-12">5 days ago</span>
+            </div>
+            <p>{{comment.text}}</p>
+            <ul class="list-inline d-sm-flex my-0">
+                <li class="list-inline-item ml-auto">
+                    <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                        <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i>
+                        Reply
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    }
+
+
+
+</div>

@@ -1,0 +1,180 @@
+* {
+  padding: 0px !important;
+  margin: 0px !important;
+  box-sizing: border-box !important;
+}
+
+.navbar {
+  background-color: #003285;
+  padding: 10px 20px !important;
+}
+
+
+.form-control:focus {
+  border-color: rgba(100, 116, 139, 0.664);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(100, 116, 139, 0.173);
+}
+
+.search-box {
+  position: relative;
+}
+
+.fa-search {
+  position: absolute;
+  left: 3%;
+  top: 35%;
+  background-color: white;
+  color: rgba(9, 11, 13, 0.592);
+
+}
+
+input[type=search] {
+  padding: 10px 50px !important;
+  color: #64748b;
+}
+
+a {
+  text-decoration: none;
+
+}
+
+.navbar-brand img {
+  height: 50px !important;
+  min-width: 70% !important;
+}
+
+
+.login,
+.signup {
+  width: 100% !important;
+  padding: 3px 9px !important;
+}
+
+.fa-heart:hover {
+  color: red !important;
+}
+
+.search-md {
+  margin-top: 10px !important;
+}
+
+
+
+.dropdown-menu a {
+  color: rgba(9, 11, 13, 0.592);
+}
+
+
+.notificationsDropdown {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 290px !important;
+  max-height: 300px !important;
+  overflow-y: auto;
+  padding: 10px !important;
+  z-index: 1000;
+  margin-top: 10px !important;
+}
+
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px !important;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.See-all {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px !important;
+  color: #003285 !important;
+
+}
+
+
+
+.notification-item:hover {
+  background-color: #e9ecef;
+
+}
+
+.notification-link {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.notification-time {
+  font-size: 0.9em;
+  color: gray;
+}
+
+.remove-notification {
+  cursor: pointer;
+  padding-left: 10px !important;
+}
+
+
+.dropdown-divider {
+  height: 1px !important;
+  overflow: hidden;
+  background-color: #e9ecef;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+/*---------------------------------------------profile-dropdown------------------------------- */
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px !important;
+  border-bottom: 1px solid #e9ecef;
+
+}
+
+.profile-item:hover {
+  background-color: #e9ecef;
+
+}
+
+.profile-link {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profileDropdown {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 160px !important;
+  max-height: 300px !important;
+  overflow-y: auto;
+  padding: 10px !important;
+  z-index: 1000;
+  margin-top: 10px !important;
+}
+
+.btn-close {
+  --bs-btn-close-color: #ccc !important;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: rgb(229, 124, 35);
+}
+
+a:focus {
+  color: rgb(229, 124, 35) !important;
+}

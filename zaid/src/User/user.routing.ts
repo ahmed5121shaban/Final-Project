@@ -6,6 +6,13 @@ import { ProfileSettingComponent } from './Components/Profile-Management/profile
 import { ShippingComponent } from './Components/Profile-Management/shipping/shipping.component';
 import { VerifyIdentityComponent } from './Components/Profile-Management/verify-identity/verify-identity.component';
 import { ModifyActionComponent } from './Components/Profile-Management/modify-action/modify-action.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { LoginComponent } from './Components/login/login.component';
+import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
+import { NewPasswordComponent } from './Components/new-password/new-password.component';
+import { AddReviewComponent } from './Components/add-review/add-review.component';
+import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
+
 import { CompleteAuctionComponent } from './Components/Profile-Management/complete-auction/complete-auction.component';
 import { WaitingAuctionComponent } from './Components/Profile-Management/waiting-auction/waiting-auction.component';
 import { WonAuctionComponent } from './Components/Profile-Management/won-auction/won-auction.component';
@@ -13,6 +20,12 @@ import { LiveAuctionsComponent } from './Components/Profile-Management/live-auct
 import { LostAuctionComponent } from './Components/Profile-Management/lost-auction/lost-auction.component';
 
 const routes: Routes = [
+  { path: 'register' , component: RegisterComponent},
+  { path: 'login' , component: LoginComponent},
+  { path: 'reset-password' , component: PasswordResetComponent},
+  { path: 'new-password' , component: NewPasswordComponent},
+  { path: 'add-review' , component: AddReviewComponent},
+
     { path: '', component: ProfileManagementComponent, children: [
       { path: '', component: MyProfileComponent },
       { path: 'payment', component: PaymentComponent},

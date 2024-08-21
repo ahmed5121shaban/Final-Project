@@ -52,6 +52,24 @@
 /* Home Testimonial Carousel dot end */
 
 
+ body{
+    border-color: #ffffff !important;
+    color: #003285 !important;
+}
+
+.btn-secondary {
+    background-color: rgb(229, 124, 35) !important;
+    border-color: rgb(229, 124, 35) !important;
+    color: #ffffff !important;
+
+}
+
+.btn-secondary:hover {
+    background-color: rgba(229, 126, 35, 0.845) !important;
+    border-color: rgbargb(229, 124, 35) !important;
+}
+
+/* You can add global styles to this file, and also import other style files */
 
 
 
