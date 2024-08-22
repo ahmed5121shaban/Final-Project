@@ -7,12 +7,12 @@ import { FaqRulesComponent } from './Components/faq-rules/faq-rules.component';
 import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
-  // {path:'',component:SharedComponent}, 
-  //  {path:'',component:HomeComponent},
-  //  {path:'contact',component:ContactUsComponent},
-  // // {path:'about',component:AboutUsComponent},
-  {path:'faq',component:FaqRulesComponent},
-  {path:'chat',component:ChatComponent},
+  // {path:'',component:SharedComponent},
+  { path: '', component: HomeComponent },
+  { path: 'contact', component: ContactUsComponent },
+  { path: 'about', component: AboutUsComponent },
+  { path: 'faq', component: FaqRulesComponent },
+  { path: 'chat', component: ChatComponent },
 ];
 
 export const SharedRoutes = RouterModule.forChild(routes);

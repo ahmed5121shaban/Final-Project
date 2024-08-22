@@ -1,8 +1,8 @@
 
 /* You can add global styles to this file, and also import other style files */
 
-/* @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default'; */
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
 
 /* carousel button style start*/
@@ -175,14 +175,14 @@ body{
 
 }
 .btn-link{
-  color: rgb(229, 124, 35)!important; 
+  color: rgb(229, 124, 35)!important;
   padding: 0px !important;
 }
 .btn-link:hover{
 opacity: 0.7;
 }
 .bg-secondary{
-  background-color: rgb(229, 124, 35)!important;  
+  background-color: rgb(229, 124, 35)!important;
 }
 .bg-primary{
   background-color: #003285 !important;
@@ -194,7 +194,7 @@ opacity: 0.7;
   color: #003285 !important;
 }
 .text-orange{
-  color: rgb(229, 124, 35)!important; 
+  color: rgb(229, 124, 35)!important;
 }
 /* english font start*/
 .ubuntu-light {
@@ -247,5 +247,5 @@ font-style: italic;
 /* english font end*/
 .text-primary {
   color: #003285 !important;
- 
+
 }
