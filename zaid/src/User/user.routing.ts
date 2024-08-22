@@ -12,6 +12,11 @@ import { PasswordResetComponent } from './Components/password-reset/password-res
 import { NewPasswordComponent } from './Components/new-password/new-password.component';
 import { AddReviewComponent } from './Components/add-review/add-review.component';
 import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
+import { CompleteAuctionComponent } from './Components/Profile-Management/complete-auction/complete-auction.component';
+import { WaitingAuctionComponent } from './Components/Profile-Management/waiting-auction/waiting-auction.component';
+import { WonAuctionComponent } from './Components/Profile-Management/won-auction/won-auction.component';
+import { LiveAuctionsComponent } from './Components/Profile-Management/live-auctions/live-auctions.component';
+import { LostAuctionComponent } from './Components/Profile-Management/lost-auction/lost-auction.component';
 
 
 const routes: Routes = [
@@ -21,7 +26,7 @@ const routes: Routes = [
   { path: 'new-password' , component: NewPasswordComponent},
   { path: 'add-review' , component: AddReviewComponent},
 
-    { path: '', component: ProfileManagementComponent, children: [
+  { path: '', component: ProfileManagementComponent, children: [
       { path: '', component: MyProfileComponent },
       { path: 'payment', component: PaymentComponent},
       { path: 'profile-setting', component: ProfileSettingComponent },
@@ -29,9 +34,16 @@ const routes: Routes = [
       { path: 'verify-identity', component: VerifyIdentityComponent },
       { path: 'modify-action', component: ModifyActionComponent },
       { path: 'reviews', component: MyReviewsComponent },
+      { path: 'complete-auction', component: CompleteAuctionComponent },
+      { path: 'waiting-auction', component: WaitingAuctionComponent },
+      {path:'won-auction',component:WonAuctionComponent},
+      {path:'live-auction',component:LiveAuctionsComponent},
+      {path:'lost-auction',component:LostAuctionComponent},
+
     ] },
-    { path: 'add-review' , component: AddReviewComponent},
-   
+
+  { path: 'add-review' , component: AddReviewComponent},
+
 ];
 
 export const UserRoutes = RouterModule.forChild(routes);

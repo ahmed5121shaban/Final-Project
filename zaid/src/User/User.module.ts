@@ -29,10 +29,8 @@ import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/m
   declarations: [
     RegisterComponent,
     LoginComponent,
-  
     NewPasswordComponent,
     PasswordResetComponent,
-
     UserComponent,
     ProfileManagementComponent,
     MyProfileComponent,
@@ -41,9 +39,8 @@ import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/m
     ShippingComponent,
     VerifyIdentityComponent,
     ModifyActionComponent,
-
     AddReviewComponent,
-      MyReviewsComponent,
+    MyReviewsComponent,
   ]
 })
 export class UserModule { }
