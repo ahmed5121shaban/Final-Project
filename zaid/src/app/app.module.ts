@@ -15,7 +15,13 @@ import { UserModule } from '../User/User.module';
 import { ActionModule } from '../Action/Action.module';
 import { ItemsModule } from '../Items/Items.module';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
+
+
 @NgModule({
+ 
   declarations: [AppComponent],
   imports: [
     BrowserModule,
@@ -27,6 +33,9 @@ import { ItemsModule } from '../Items/Items.module';
     ItemsModule,
     SharedModule,
     AdminModule,
+    FontAwesomeModule,
+    
+  
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
