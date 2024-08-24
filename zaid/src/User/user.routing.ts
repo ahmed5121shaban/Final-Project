@@ -17,6 +17,7 @@ import { WaitingAuctionComponent } from './Components/Profile-Management/waiting
 import { WonAuctionComponent } from './Components/Profile-Management/won-auction/won-auction.component';
 import { LiveAuctionsComponent } from './Components/Profile-Management/live-auctions/live-auctions.component';
 import { LostAuctionComponent } from './Components/Profile-Management/lost-auction/lost-auction.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'reset-password' , component: PasswordResetComponent},
   { path: 'new-password' , component: NewPasswordComponent},
   { path: 'add-review' , component: AddReviewComponent},
+  { path: 'user-profile' , component: UserProfileComponent},
 
   { path: '', component: ProfileManagementComponent, children: [
       { path: '', component: MyProfileComponent },
