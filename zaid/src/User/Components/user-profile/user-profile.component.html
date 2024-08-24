@@ -1,0 +1,256 @@
+<div class="container pt-5">
+    <div class="main">
+      
+        <div class=" col-12">
+            <div class="cover-img ">
+                <img style="width: 100%; height: 50vh;" src="mentor-single.png" alt="">
+                <div class="profile-img ">
+                    <img style="border-radius: 15px;" src="300-1.jpg" alt="">
+                </div>
+            </div>
+            <div class="p-3 p-md-5 pt-5">
+                <div class="info">
+                    <div class="personal  ">
+                        <div class="personal-info row gap-1 justify-content-between ">
+                            <h2 class="col-md-6 col-12 mb-1 "><b>Jitu Chauhan</b></h2>
+                            <div class="personal-btns d-md-flex d-none col-md-5 col-12 row gap-1 justify-content-end">
+                                <button class="btn btn-secondary col-auto d-flex align-items-center">
+                                    <i class="fas fa-heart" ></i><span > Save</span>
+                                </button>
+                                <button class="btn btn-primary col-auto d-flex align-items-center">
+                                    <i class="fas fa-envelope" style="margin-right: 8px;"></i><span>  Message</span>
+                                </button>
+                            </div>
+                            
+                            <div class="personal-btns mt-3 d-md-none d-flex gap-3">
+                                <button class="btn btn-secondary col-auto d-flex align-items-center">
+                                    <i class="fas fa-heart" ></i><b> Save</b>
+                                </button>
+                                <button class="btn btn-primary col-auto d-flex align-items-center">
+                                    <i class="fas fa-envelope" ></i><b>  Message</b>
+                                </button>
+                            </div>
+                            
+    
+                    </div>
+                    <div class="rating row mt-3 mb-2 ">
+                        <p class="col-12 col-md-3 mb-1"><span><i class="fas fa-star"
+                                    style="line-height: 1; color:#f59e0b;"></i>
+                                <b> 6.0</b> (16 Reviews)</span></p>
+                        <p class="col-12 col-md-3 mb-1"><span><i class="fas fa-gavel"
+                                    style="line-height: 1; color: #754ffe;"></i>
+                                <b> +70</b> Auction</span></p>
+                        <p class="col-12 col-md-3 mb-1"><span><i class="fas fa-location-dot"
+                                    style="line-height: 1; color: #dc2626;"></i> Cairo,Egypt</span></p>
+                    </div>
+    
+                </div>
+                <h5 class="pt-3 pb-2" ><b>Categories</b></h5>
+                <div class="skills">
+    
+                    <a href=""><i class="fas fa-car"></i> Vehicles</a>
+                    <a href=""><i class="fas fa-chair"></i> Furniture</a>
+                    <a href=""><i class="fas fa-stopwatch"></i> Clocks & Watches</a>
+                    <a href=""><i class="fas fa-gem"></i> Jewellery</a>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="d-block p-5">
+                <h2>Seller latest Auctions</h2>
+                <section class="py-5 position-relative parent-of-card">
+                    <div class="container">
+                      <div class="feature-parent-card">
+                  
+                        <owl-carousel-o [options]="liveAction" class="d-flex flex-nowrap ">
+                            @for (item of items; track $index) {
+                              <ng-template carouselSlide>
+                              <div  class="featured-card-carsoule me-3 ">
+                                <div class="card border-0 shadow-sm featured-auction">
+                                  <img
+                                    src="{{item.image}}"
+                                    class="card-img-top"
+                                    alt="Classic Car Auction"
+                                  />
+                                  <div class="card-body">
+                                    <h5 class="card-title">{{item.title}}</h5>
+                                    <p class="card-text">Date: {{item.text1}}</p>
+                                    <p class="card-text">Starting Bid: {{item.text2}}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </ng-template>
+                            }
+                        </owl-carousel-o>
+                      </div>       
+                    </div>
+                  </section>
+    
+            </div>
+        </div>
+    </div>
+    <br>
+    
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <div class=" reviews p-5 pt-1">
+                <div class="row align-items-center p-3  justify-content-between">
+                    <h4 class="col-12 col-md-6 mt-3">
+                        What Buyers say
+                    </h4>
+                    <div class="col-12 col-md-6  d-flex align-items-center  justify-content-start justify-content-md-end mt-3">
+                            <div class=" col-3 col-md-3 col-lg-3 col-xl-3">
+                                <p >sort by:</p>   
+                            </div>
+                            <div class="select  w-100 " style="width: 100% !important;"  >
+                                <select class="form-select p-2" id="select" style="width: 100%;">
+                                        <option selected value="">Recommended</option>
+                                        <option value="">Most Recent</option>
+                                   </select>
+                                
+                                
+                            </div>                        
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex p-2  justify-content-between">
+                        <div class="d-flex gap-3">
+                            <img src="300-4.jpg"
+                                style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
+                            <div>
+                                <p class="mentor-name mb-1 mt-2"><b>Satvik</b></p>
+                                <div class="rate-date d-md-flex flex-md-row d-flex flex-column">
+                                    <div class="rate d-flex me-1">
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                    </div>
+                                    <p style="font-size: 13px"> September 9, 2024 </p>
+                                </div>
+    
+                            </div>
+                        </div>
+                   
+    
+                    </div>
+                    <p class="text-secondary">
+                        The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
+                        as
+                        well.... if you are really confused or do need to know how to start your DSA career have a
+                        session
+                        with Sir... it will really help you.
+                    </p>
+                    <hr>
+                </div>
+              
+                <div>
+                    <div class="d-flex  p-3 justify-content-between">
+                        <div class="d-flex gap-3">
+                            <img src="300-4.jpg"
+                                style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
+                            <div>
+                                <p class="mentor-name mb-1 mt-2"><b>Satvik</b></p>
+                                <div class="rate-date d-md-flex flex-md-row d-flex flex-column">
+                                    <div class="rate d-flex me-1">
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                    </div>
+                                    <p style="font-size: 13px"> September 9, 2024 </p>
+                                </div>
+    
+                            </div>
+                        </div>
+    
+                    </div>
+                    <p class="text-secondary">
+                        The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
+                        as
+                        well.... if you are really confused or do need to know how to start your DSA career have a
+                        session
+                        with Sir... it will really help you.
+                    </p>
+                    <hr>
+                </div>
+               
+                <div>
+                    <div class="d-flex  p-3 justify-content-between">
+                        <div class="d-flex gap-3">
+                            <img src="300-4.jpg"
+                                style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
+                            <div>
+                                <p class="mentor-name mb-1 mt-2"><b>Satvik</b></p>
+                                <div class="rate-date d-md-flex flex-md-row d-flex flex-column">
+                                    <div class="rate d-flex me-1">
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                    </div>
+                                    <p style="font-size: 13px"> September 9, 2024 </p>
+                                </div>
+    
+                            </div>
+                        </div>
+    
+                    </div>
+                    <p class="text-secondary">
+                        The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
+                        as
+                        well.... if you are really confused or do need to know how to start your DSA career have a
+                        session
+                        with Sir... it will really help you.
+                    </p>
+                    <hr>
+                </div>
+                
+                <div class="pb-5 ">
+                    <div class="d-flex  p-3 justify-content-between">
+                        <div class="d-flex gap-3">
+                            <img src="300-4.jpg"
+                                style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
+                            <div>
+                                <p class="mentor-name mb-1 mt-2"><b>Satvik</b></p>
+                                <div class="rate-date d-md-flex ">
+                                    <div class="rate d-flex me-1">
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                                    </div>
+                                    <p style="font-size: 13px"> September 9, 2024 </p>
+                                </div>
+    
+                            </div>
+                        </div>    
+                    </div>
+                    <p class="text-secondary">
+                        The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
+                        as
+                        well.... if you are really confused or do need to know how to start your DSA career have a
+                        session
+                        with Sir... it will really help you.
+                    </p>
+                    <hr>
+                </div>
+             
+                <div class="link-primary text-center fs-5">
+                    <a>See More</a>
+                </div>
+    
+            </div>
+        </div>
+    
+    
+    </div>
+    </div>
