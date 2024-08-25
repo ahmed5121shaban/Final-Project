@@ -5,7 +5,7 @@ import { AuctionListComponent } from './Components/auction-list/auction-list.com
 import { AuctionEditComponent } from './Components/auction-edit/auction-edit.component';
 import { DeleteConfirmationComponent } from './Components/delete-confirmation/delete-confirmation.component';
 import { WonAuctionComponent } from './Components/won-auction/won-auction.component';
-import { WatchlistComponent } from './Components/watchlist/watchlist.component';
+
 import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-feedback.component';
 
 
@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'auction-edit' , component: AuctionEditComponent},
   { path: 'delete-confirm' , component: DeleteConfirmationComponent},
    { path: 'won-auction' , component: WonAuctionComponent},
-  { path: 'watchlist' , component: WatchlistComponent},
+
   { path: 'auction-details' , component:AuctionDetailsComponent},
   { path: 'auction-list' , component: AuctionListComponent},
   { path: 'auction-edit' , component: AuctionEditComponent},

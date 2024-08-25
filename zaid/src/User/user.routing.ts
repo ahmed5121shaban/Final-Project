@@ -42,11 +42,11 @@ const routes: Routes = [
       { path: 'profile-setting', component: ProfileSettingComponent },
       { path: 'shipping', component: ShippingComponent },
       { path: 'verify-identity', component: VerifyIdentityComponent },
-     
+
     ] },
       { path: 'modify-action', component: ModifyActionComponent },
       { path: 'reviews', component: MyReviewsComponent },
-      { path: 'watchlist', component: WatchlistComponent }
+      { path: 'watchlist', component: WatchlistComponent },
 
 
       { path: 'complete-auction', component: CompleteAuctionComponent },
