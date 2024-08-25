@@ -13,6 +13,13 @@ import { NewPasswordComponent } from './Components/new-password/new-password.com
 import { AddReviewComponent } from './Components/add-review/add-review.component';
 import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
 import { WatchlistComponent } from './Components/Profile-Management/watchlist/watchlist.component';
+import { CompleteAuctionComponent } from './Components/Profile-Management/complete-auction/complete-auction.component';
+import { WaitingAuctionComponent } from './Components/Profile-Management/waiting-auction/waiting-auction.component';
+import { WonAuctionComponent } from './Components/Profile-Management/won-auction/won-auction.component';
+import { LiveAuctionsComponent } from './Components/Profile-Management/live-auctions/live-auctions.component';
+import { LostAuctionComponent } from './Components/Profile-Management/lost-auction/lost-auction.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+
 
 const routes: Routes = [
   { path: 'register' , component: RegisterComponent},
@@ -20,11 +27,9 @@ const routes: Routes = [
   { path: 'reset-password' , component: PasswordResetComponent},
   { path: 'new-password' , component: NewPasswordComponent},
   { path: 'add-review' , component: AddReviewComponent},
-  { path: 'register' , component: RegisterComponent},
-  { path: 'login' , component: LoginComponent},
-  { path: 'reset-password' , component: PasswordResetComponent},
-  { path: 'new-password' , component: NewPasswordComponent},
-    { path: '', component: ProfileManagementComponent, children: [
+  { path: 'user-profile' , component: UserProfileComponent},
+
+  { path: '', component: ProfileManagementComponent, children: [
       { path: '', component: MyProfileComponent },
       { path: 'payment', component: PaymentComponent},
       { path: 'profile-setting', component: ProfileSettingComponent },
@@ -35,8 +40,16 @@ const routes: Routes = [
       { path: 'watchlist', component: WatchlistComponent }
 
 
+      { path: 'complete-auction', component: CompleteAuctionComponent },
+      { path: 'waiting-auction', component: WaitingAuctionComponent },
+      {path:'won-auction',component:WonAuctionComponent},
+      {path:'live-auction',component:LiveAuctionsComponent},
+      {path:'lost-auction',component:LostAuctionComponent},
+
     ] },
-    { path: 'add-review' , component: AddReviewComponent},
+
+  { path: 'add-review' , component: AddReviewComponent},
+
 ];
 
 export const UserRoutes = RouterModule.forChild(routes);

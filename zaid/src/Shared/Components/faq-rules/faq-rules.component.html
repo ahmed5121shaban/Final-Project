@@ -1,0 +1,43 @@
+<div class="faq-rules-container">
+  <!-- FAQ Section -->
+  <div class="faq-section">
+    <h1 class="section-title">Frequently Asked Questions</h1>
+    <div class="faq-search">
+      <input type="text" placeholder="Search FAQs..." [(ngModel)]="searchTerm" />
+    </div>
+    <div class="faq-categories">
+      <div class="category" *ngFor="let category of categories" (click)="selectCategory(category)">
+        {{ category.name }}
+      </div>
+    </div>
+    <div class="faq-accordion">
+      <div *ngFor="let question of filteredQuestions" class="faq-item">
+        <div class="faq-question" (click)="toggleAnswer(question)">
+          {{ question.question }}
+          <span class="faq-toggle" [class.active]="isOpen(question)">
+            <i class="fa" [ngClass]="{'fa-chevron-down': !isOpen(question), 'fa-chevron-up': isOpen(question)}"></i>
+          </span>
+        </div>
+        <div class="faq-answer" [ngClass]="{'open': isOpen(question)}" *ngIf="isOpen(question)">
+          {{ question.answer }}
+        </div>
+      </div>
+    </div>
+    <div class="contact-info">
+      <p>If you have further questions, please contact us at <a href="mailto:support@auction.com">support&commat;zaid.com</a>.</p>
+    </div>
+  </div>
+
+  <!-- Rules Section -->
+  <div class="rules-section">
+    <h1 class="section-title">Auction Rules</h1>
+    <ul class="rules-list">
+      <li>All bids are final. Please review your bid carefully before submitting.</li>
+      <li>Payment must be made within 24 hours of winning an auction.</li>
+      <li>All items are sold as-is, with no guarantees or warranties.</li>
+      <li>Shipping costs are the responsibility of the winning bidder.</li>
+      <li>Disputes must be reported within 7 days of the auction ending.</li>
+      <li>We reserve the right to cancel any bid or auction at our discretion.</li>
+    </ul>
+  </div>
+</div>

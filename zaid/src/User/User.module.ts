@@ -16,6 +16,9 @@ import { RegisterComponent } from './Components/register/register.component';
 import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
 import { NewPasswordComponent } from './Components/new-password/new-password.component';
 import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 
 @NgModule({
@@ -23,15 +26,14 @@ import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/m
     CommonModule,
     UserRoutes,
     FormsModule,
+    CarouselModule,
     ReactiveFormsModule,
   ],
   declarations: [
     RegisterComponent,
     LoginComponent,
-  
     NewPasswordComponent,
     PasswordResetComponent,
-
     UserComponent,
     ProfileManagementComponent,
     MyProfileComponent,
@@ -40,9 +42,9 @@ import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/m
     ShippingComponent,
     VerifyIdentityComponent,
     ModifyActionComponent,
-
     AddReviewComponent,
-      MyReviewsComponent
+    MyReviewsComponent,
+    UserProfileComponent,
   ]
 })
 export class UserModule { }

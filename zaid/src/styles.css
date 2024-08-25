@@ -1,8 +1,8 @@
 
 /* You can add global styles to this file, and also import other style files */
 
-/* @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default'; */
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
 
 /* carousel button style start*/
@@ -39,16 +39,17 @@
 /* Home Testimonial Carousel dot start */
 .testimonialOption .owl-dot{
   width: 20px !important;
-  margin-left: 20px !important;
+  margin-left: 25px !important;
   border-radius: 20px !important;
+  height: 10px !important;
 
 }
 .testimonialOption .owl-dot span{
-  width: 30px !important;
-  background-color: rgb(63, 63, 63) !important;
+  width: 50px !important;
+  background-color: #E57C23 !important;
 }
 .testimonialOption .owl-dot.active span{
-  background-color: rgb(120, 120, 120) !important;
+  background-color: #E8AA42 !important;
 }
 /* Home Testimonial Carousel dot end */
 
@@ -174,14 +175,14 @@ body{
 
 }
 .btn-link{
-  color: rgb(229, 124, 35)!important; 
+  color: rgb(229, 124, 35)!important;
   padding: 0px !important;
 }
 .btn-link:hover{
 opacity: 0.7;
 }
-.bg-secondry{
-  background-color: rgb(229, 124, 35)!important;  
+.bg-secondary{
+  background-color: rgb(229, 124, 35)!important;
 }
 .bg-primary{
   background-color: #003285 !important;
@@ -193,7 +194,7 @@ opacity: 0.7;
   color: #003285 !important;
 }
 .text-orange{
-  color: rgb(229, 124, 35)!important; 
+  color: rgb(229, 124, 35)!important;
 }
 /* english font start*/
 .ubuntu-light {
@@ -246,5 +247,5 @@ font-style: italic;
 /* english font end*/
 .text-primary {
   color: #003285 !important;
- 
+
 }
