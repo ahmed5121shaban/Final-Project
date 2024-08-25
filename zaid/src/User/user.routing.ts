@@ -30,13 +30,13 @@ const routes: Routes = [
   { path: 'new-password' , component: NewPasswordComponent},
   { path: 'seller-earnings', component: SellerEarningsComponent },
   { path: 'seller-withdraw', component: SellerwithdrawComponent },
-
-
+  { path: 'add-review' , component: AddReviewComponent},
+  { path: 'user-profile' , component: UserProfileComponent},
       { path: '', component: ProfileManagementComponent, children: [
       { path: 'profile', component: MyProfileComponent },
       { path: 'payment', component: PaymentComponent },
-      { path: 'add-review' , component: AddReviewComponent},
-      { path: 'user-profile' , component: UserProfileComponent},
+
+
       { path: '', component: MyProfileComponent },
       { path: 'payment', component: PaymentComponent},
       { path: 'profile-setting', component: ProfileSettingComponent },

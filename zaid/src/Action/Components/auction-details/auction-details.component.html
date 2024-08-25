@@ -1,3 +1,5 @@
+
+<div class="container">
 <div class="main  p-md-5 p-3">
     <div class="row justify-content-between ">
         <div class="item-title">
@@ -42,7 +44,7 @@
                             <img [src]="slide.src" class="d-block w-100" [alt]="slide.alt">
                         </div>
                         }
-                      
+
                 </div>
                 <a class="carousel-control-prev" href="#item-slider" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -96,7 +98,7 @@
                             <h5 class="mb-0 ">
                                 <button class="btn" data-toggle="collapse" data-target="#collapseOne"
                                     aria-expanded="true" aria-controls="collapseOne">
-                                    See Validations and Roles 
+                                    See Validations and Roles
                                 </button>
                             </h5>
                         </div>
@@ -177,7 +179,7 @@
                 </div>
             </div>
             <div class="mb-2">
-                <a href="#" class="btn btn-link">View All Reviews</a>
+                <a routerLink="/user/user-profile" class="btn btn-link">View All Reviews</a>
             </div>
             <div>
                 <button class="btn btn-primary">Contact Seller</button>
@@ -193,7 +195,7 @@
                     @for(item of group; track $index){
                     <div class="col-md-4">
                         <div class="card">
-                            <img [src]="item.img" class="card-img-top" [alt]="item.title">
+                          <a routerLink="../auction-details"><img [src]="item.img" class="card-img-top" [alt]="item.title"></a>
                             <div class="card-body">
                                 <h5 class="card-title">{{item.title}}</h5>
                                 <p class="card-text start-price">starting price: {{item.price}}</p>
@@ -251,4 +253,5 @@
 
 
 
+</div>
 </div>
