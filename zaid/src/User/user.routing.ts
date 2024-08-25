@@ -12,6 +12,7 @@ import { PasswordResetComponent } from './Components/password-reset/password-res
 import { NewPasswordComponent } from './Components/new-password/new-password.component';
 import { AddReviewComponent } from './Components/add-review/add-review.component';
 import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
+import { WatchlistComponent } from './Components/Profile-Management/watchlist/watchlist.component';
 
 const routes: Routes = [
   { path: 'register' , component: RegisterComponent},
@@ -31,6 +32,9 @@ const routes: Routes = [
       { path: 'verify-identity', component: VerifyIdentityComponent },
       { path: 'modify-action', component: ModifyActionComponent },
       { path: 'reviews', component: MyReviewsComponent },
+      { path: 'watchlist', component: WatchlistComponent }
+
+
     ] },
     { path: 'add-review' , component: AddReviewComponent},
 ];

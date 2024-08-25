@@ -7,7 +7,7 @@
         <a href=""><img src="" alt="Logo" class="img-fluid"></a>
       </div>
 
-      <div class="col-md-4 col-sm-6  d-sm-inline d-none col-xl-6 ">
+      <div class="col-md-5 col-sm-6  d-sm-inline d-none col-xl-6 ">
         <form class="input-group w-100 mt-3">
           <div class="search-box w-100">
             <i class="fa fa-search"></i>
@@ -19,13 +19,12 @@
       <div class="col-md-5 col-sm-3 col-lg-4 col-5  col-xl-4  justify-content-center align-content-center">
         <ul class="navbar-nav row d-flex flex-row justify-content-end justify-content-md-center">
 
-          <li class="col-md-6 col-lg-5 col-sm-3 col-4 nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle d-none d-md-inline" id="notificationsDropdown" role="button"
+          <li class="col-3 col-md-2 nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle d-none d-xl-inline" id="notificationsDropdown" role="button"
               data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
               <i class="fas fa-bell" style="color: rgb(229, 124, 35); font-size: 22px;"></i>
-              <span class="d-none d-md-inline" style="margin-left: 3px !important;">Notifications</span>
             </a>
-            <button class="btn  offcanvas-btn d-inline d-md-none" data-bs-toggle="offcanvas"
+            <button class="btn  offcanvas-btn d-inline d-xl-none" data-bs-toggle="offcanvas"
               aria-controls="notificationsOffcanvas" data-bs-target="#notificationsOffcanvas">
               <i class="fas fa-bell" style="color: rgb(229, 124, 35); font-size: 22px;"></i>
 
@@ -57,32 +56,37 @@
               <li><a class="See-all" href="shared/notifications">See all notifications</a></li>
             </ul>
           </li>
-          <li class="col-md-2 col-lg-2 col-5">
+          <!-- <li class="col-md-2 col-lg-2 col-5">
             <a href="#Login">Login</a>
           </li>
 
           <li class="nav-item col-md-2 col-lg-2 col-3">
             <a href="#signup">Signup</a>
-          </li>
-          <!-- <li class="col-4  nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle " role="button" data-bs-toggle="dropdown" aria-expanded="false"
+          </li> -->
+          <li class="col-4  nav-item dropdown">
+            <a class="nav-link dropdown-toggle " role="button" data-bs-toggle="dropdown" aria-expanded="false"
               aria-haspopup="true" id="profileDropdown"><i class="fas fa-user"
                 style="line-height: 1; color:#ffffff; font-size: 22px;"></i><span class="d-none d-md-inline"
-                style=" margin-left: 3px !important; ">Profile</span></a>
-            <ul class="dropdown-menu position-absolute profileDropdown " style=" margin-left: -73px !important; " aria-labelledby="profileDropdown">
+                style=" margin-left: 15px !important; ">Profile</span></a>
+            <ul class="dropdown-menu position-absolute profileDropdown " style=" margin-left: -83px !important; " aria-labelledby="profileDropdown">
               <li class="profile-item">
-                <a class="profile-link" href="#">
-                  edit profile
+                <a class="profile-link" href="user/">
+                  My Profile
+                </a>
+              </li>
+              <li class="profile-item">
+                <a class="profile-link" href="user/profile-setting">
+                  Edit profile
                 </a>
               </li>
               <li class="profile-item">
                 <a class="profile-link" href="#">
-                  auctions
+                  Auctions
                 </a>
               </li>
               <li class="profile-item">
                 <a class="profile-link" href="#">
-                  bids
+                  Bids
                 </a>
               </li>
               <li class="profile-item">
@@ -91,7 +95,7 @@
             </ul>
           </li>
 
-           -->
+          
         </ul>
 
       </div>
@@ -122,14 +126,14 @@
       <li class="notification-item">
         <a class="notification-link" href="#">
           <div>
-            <p class="notification-text">Notification</p>
+            <p class="notification-text" style="color:black">Notification</p>
             <div class="notification-time">2024-07-24 14:30</div>
           </div>
           <span class="remove-notification">&times;</span>
         </a>
       </li>
       <!-- More notifications... -->
-      <li><a class="dropdown-item See-all" href="#">See all notifications</a></li>
+      <li><a class="dropdown-item See-all" href="shared/notifications">See all notifications</a></li>
     </ul>
   </div>
 </div>

@@ -11,20 +11,15 @@ body {
 .not-found-container {
     text-align: center;
     background-color: #ffffff;
-    padding: 30px  !important;
+    padding: 90px  !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
-.not-found-container h1 {
-    font-size: 6em  !important;
-    margin: 0  !important;
-    color: rgb(229, 124, 35);
-}
 
 .not-found-container p {
     font-size: 1.5em  !important;
-    margin: 10px 0 20px  !important;
+    margin: 30px 0 20px  !important;
     color: #333333;
 }
 

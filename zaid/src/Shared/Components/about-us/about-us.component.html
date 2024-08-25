@@ -82,7 +82,7 @@
 
           <div id="teamCarousel" class="carousel slide" data-aos="fade-up">
             <div class="carousel-inner">
-              <div class="carousel-item" *ngFor="let slide of slides; let i = index" [ngClass]="{'active': i === currentIndex}">
+              <div class="carousel-item" *ngFor="let slide of slides; let i = index" [class.active]="i ===currentIndex" >
                 <div class="row">
                   <div class="col-md-4" *ngFor="let member of slide">
                     <div class="team-member" [ngStyle]="{'background-image': 'url(' + member.imageUrl + ')'}">

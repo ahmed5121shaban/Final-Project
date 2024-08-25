@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedComponent } from './Shared.component';
-import { HomeComponent } from './Components/home/home.component';
 import { SharedRoutes } from './shared.routing';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { ToastrModule } from 'ngx-toastr';
-import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { NavComponent} from './Components/nav/nav.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { NotificationsComponent } from './Components/notifications/notifications.component';
+import { AboutUsComponent } from './Components/about-us/about-us.component';
+import { HomeComponent } from './Components/home/home.component';
+import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 
 @NgModule({
   imports: [
@@ -38,11 +38,14 @@ import { NotificationsComponent } from './Components/notifications/notifications
 
   declarations: [
     SharedComponent, 
-    AboutUsComponent,
-    ContactUsComponent,
     NavComponent,
     FooterComponent,
-    HomeComponent
+    NotificationsComponent,
+    NotFoundComponent,
+    AboutUsComponent,
+    HomeComponent,
+    ContactUsComponent
+
   ],
   exports: [
     NavComponent,
