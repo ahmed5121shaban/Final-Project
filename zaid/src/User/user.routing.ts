@@ -46,7 +46,7 @@ const routes: Routes = [
     ] },
       { path: 'modify-action', component: ModifyActionComponent },
       { path: 'reviews', component: MyReviewsComponent },
-      { path: 'watchlist', component: WatchlistComponent }
+      { path: 'watchlist', component: WatchlistComponent },
 
 
       { path: 'complete-auction', component: CompleteAuctionComponent },
