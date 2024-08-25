@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'auction-edit' , component: AuctionEditComponent},
   { path: 'delete-confirm' , component: DeleteConfirmationComponent},
    { path: 'won-auction' , component: WonAuctionComponent},
-  { path: 'watchlist' , component: WatchlistComponent}
+  { path: 'watchlist' , component: WatchlistComponent},
   { path: 'auction-details' , component:AuctionDetailsComponent},
   { path: 'auction-list' , component: AuctionListComponent},
   { path: 'auction-edit' , component: AuctionEditComponent},
