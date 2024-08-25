@@ -39,23 +39,23 @@
 /* Home Testimonial Carousel dot start */
 .testimonialOption .owl-dot{
   width: 20px !important;
-  margin-left: 20px !important;
+  margin-left: 25px !important;
   border-radius: 20px !important;
+  height: 10px !important;
 
 }
 .testimonialOption .owl-dot span{
-  width: 30px !important;
-  background-color: rgb(63, 63, 63) !important;
+  width: 50px !important;
+  background-color: #E57C23 !important;
 }
 .testimonialOption .owl-dot.active span{
-  background-color: rgb(120, 120, 120) !important;
+  background-color: #E8AA42 !important;
 }
 /* Home Testimonial Carousel dot end */
 
 
  body{
     border-color: #ffffff !important;
-    color: #003285 !important;
 }
 
 .btn-secondary {

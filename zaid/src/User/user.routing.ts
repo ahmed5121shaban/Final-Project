@@ -14,11 +14,13 @@ import { SellerEarningsComponent } from './Components/seller-earnings/seller-ear
 import { SellerwithdrawComponent } from './Components/sellerwithdraw/sellerwithdraw.component';
 import { AddReviewComponent } from './Components/add-review/add-review.component';
 import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
+import { WatchlistComponent } from './Components/Profile-Management/watchlist/watchlist.component';
 import { CompleteAuctionComponent } from './Components/Profile-Management/complete-auction/complete-auction.component';
 import { WaitingAuctionComponent } from './Components/Profile-Management/waiting-auction/waiting-auction.component';
 import { WonAuctionComponent } from './Components/Profile-Management/won-auction/won-auction.component';
 import { LiveAuctionsComponent } from './Components/Profile-Management/live-auctions/live-auctions.component';
 import { LostAuctionComponent } from './Components/Profile-Management/lost-auction/lost-auction.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -32,6 +34,7 @@ const routes: Routes = [
       { path: 'profile', component: MyProfileComponent },
       { path: 'payment', component: PaymentComponent },
   { path: 'add-review' , component: AddReviewComponent},
+  { path: 'user-profile' , component: UserProfileComponent},
 
   { path: '', component: ProfileManagementComponent, children: [
       { path: '', component: MyProfileComponent },
@@ -43,6 +46,9 @@ const routes: Routes = [
     ] },
       { path: 'modify-action', component: ModifyActionComponent },
       { path: 'reviews', component: MyReviewsComponent },
+      { path: 'watchlist', component: WatchlistComponent }
+
+
       { path: 'complete-auction', component: CompleteAuctionComponent },
       { path: 'waiting-auction', component: WaitingAuctionComponent },
       {path:'won-auction',component:WonAuctionComponent},

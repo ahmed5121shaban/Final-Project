@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { FooterComponent } from '../Shared/Components/footer/footer.component';
 import { SharedModule } from '../Shared/Shared.module';
 import { AdminModule } from '../Admin/Admin.module';
 import { UserModule } from '../User/User.module';

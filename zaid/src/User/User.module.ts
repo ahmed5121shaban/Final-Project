@@ -18,6 +18,8 @@ import { NewPasswordComponent } from './Components/new-password/new-password.com
 import { SellerEarningsComponent } from './Components/seller-earnings/seller-earnings.component';
 import { SellerwithdrawComponent } from './Components/sellerwithdraw/sellerwithdraw.component';
 import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 
@@ -26,6 +28,7 @@ import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/m
     CommonModule,
     UserRoutes,
     FormsModule,
+    CarouselModule,
     ReactiveFormsModule,
   ],
   declarations: [
@@ -48,6 +51,7 @@ import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/m
     ModifyActionComponent,
     AddReviewComponent,
     MyReviewsComponent,
+    UserProfileComponent,
   ]
 })
 export class UserModule { }

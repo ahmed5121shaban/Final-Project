@@ -1,0 +1,39 @@
+.skills a {
+    color: #64748b;
+    text-decoration: none;
+    padding: 4px 6px !important;
+    border: 1px solid rgba(100, 116, 139, 0.289);
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.skills a:hover {
+    border: 1px solid #c4c5c8;
+    color: #003285 !important;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0px 5px;
+}
+
+.profile-img {
+    margin-top: -12% !important;
+    margin-left: 5% !important;
+}
+
+.card {
+    border-radius: 10px !important;
+    border: none;
+    transition-duration: 0.5s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card-img img {
+    border-radius: 10px !important;
+}
