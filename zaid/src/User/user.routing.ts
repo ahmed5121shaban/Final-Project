@@ -10,6 +10,8 @@ import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
 import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
 import { NewPasswordComponent } from './Components/new-password/new-password.component';
+import { SellerEarningsComponent } from './Components/seller-earnings/seller-earnings.component';
+import { SellerwithdrawComponent } from './Components/sellerwithdraw/sellerwithdraw.component';
 import { AddReviewComponent } from './Components/add-review/add-review.component';
 import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
 import { WatchlistComponent } from './Components/Profile-Management/watchlist/watchlist.component';
@@ -26,15 +28,23 @@ const routes: Routes = [
   { path: 'login' , component: LoginComponent},
   { path: 'reset-password' , component: PasswordResetComponent},
   { path: 'new-password' , component: NewPasswordComponent},
+  { path: 'seller-earnings', component: SellerEarningsComponent },
+  { path: 'seller-withdraw', component: SellerwithdrawComponent },
   { path: 'add-review' , component: AddReviewComponent},
   { path: 'user-profile' , component: UserProfileComponent},
+      { path: '', component: ProfileManagementComponent, children: [
+      { path: 'profile', component: MyProfileComponent },
+      { path: 'payment', component: PaymentComponent },
 
-  { path: '', component: ProfileManagementComponent, children: [
+
       { path: '', component: MyProfileComponent },
       { path: 'payment', component: PaymentComponent},
       { path: 'profile-setting', component: ProfileSettingComponent },
       { path: 'shipping', component: ShippingComponent },
       { path: 'verify-identity', component: VerifyIdentityComponent },
+
+
+
       { path: 'modify-action', component: ModifyActionComponent },
       { path: 'reviews', component: MyReviewsComponent },
       { path: 'watchlist', component: WatchlistComponent },

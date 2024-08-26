@@ -1,46 +1,10 @@
-<style>
-  .nav-pills .active{
-  
-    background-color: transparent !important;
-    color:#1e0f57 !important;
-    border: none !important;
-    
-  }
-  .nav-pills a{
-    color:#64748b;
-   
-  }
-  .custum-container{
-    margin-left: 10rem;
-    margin-right: 10rem; 
 
-  }
-  .custum-btn{
-    background-color: #1e0f57 !important;
-
-  }
-  @media (max-width:1700px) {
-    .custum-container{
-      margin-left: 5rem;
-    margin-right: 5rem;
-
-    }
-    
-  }
-  @media (max-width:700px){
-    .custum-container{
-      margin-left: 1rem;
-    margin-right: 1rem;
-    
-  }
-}
-  
-
-</style>
 <main class="custum-container mt-5">
     <h5 class="fs-6 fw-normal mb-4">All Items</h5>
     <div>
-    <a class="fs-4 fw-medium d-lg-none d-block mb-4 text-decoration-none text-dark" data-bs-toggle="collapse" href="#filter" aria-controls="filter" aria-expanded="true" role="button"><svg class="feather feather-filter" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg> Filter</a>
+    <a class="fs-4 fw-medium d-lg-none d-block mb-4 text-decoration-none text-dark" data-bs-toggle="collapse" href="#filter" aria-controls="filter" aria-expanded="true" role="button">
+      <svg class="feather feather-filter" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg> Filter</a>
     <div class="collapse" id="filter">
       <div class="mb-3">
       <a  class="text-decoration-none border-0 text-dark btn btn-lg bg-secondary-subtle rounded rounded-3 w-100 fs-4  d-flex justify-content-between fw-medium align-items-center" data-bs-toggle="collapse" href="#Categories" aria-controls="Categories" aria-expanded="true" role="button" ><span>Categories</span><svg class="feather feather-chevron-down" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"/></svg></a>
@@ -48,7 +12,7 @@
         <nav class="category bg-light rounded rounded-bottom-3 rounded-top-0 pb-2 pt-2">
           <ul class="list-unstyled ">
               <li>
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark fs-5 mb-2">
+                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark fs-6 mb-2">
                       <span class="ms-2 link-underline-opacity-10-hover">Any Category</span>
                       <span class="me-2">(2,000)</span>
                   </a>
@@ -92,7 +56,7 @@
       <a  class="text-decoration-none text-dark btn btn-lg bg-secondary-subtle rounded rounded-3 w-100 fs-4  d-flex justify-content-between fw-medium align-items-center" data-bs-toggle="collapse"  href="#Countries" aria-controls="Countries" aria-expanded="true" role="button" ><span>Countries</span><svg class="feather feather-chevron-down" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"/></svg></a>
       <div class="collapse" id="Countries">
         <nav class="category bg-light rounded rounded-bottom-3 rounded-top-0 pb-2 pt-2">
-          
+
           <ul class="list-unstyled ">
               <li>
                   <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark fs-5 mb-2">
@@ -137,12 +101,12 @@
       </div>
     </div>
     </div>
-  
- 
+
+
     <section class="row column-gap-4 ">
     <div class="col-3 d-lg-block d-none">
         <nav class="category bg-light rounded rounded-3 pb-2 mb-4">
-            <h3 class="bg-secondary-subtle rounded-top-3 pb-2"><span class="ms-2 fs-4  ">Categories</span></h3>
+            <h3 class=" pb-2"><span class="ms-2" >Categories</span></h3>
             <ul class="list-unstyled ">
                 <li>
                     <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark fs-5 mb-2">
@@ -261,7 +225,7 @@
                       <li class="page-item ">
                         <a class="page-link" href="#" aria-label="Previous">
                           <span aria-hidden="true" class="text-dark fs-4">&laquo;</span>
-                          
+
                         </a>
                       </li>
                       <li class="page-item"><a class="page-link text-dark fs-4" href="#">1</a></li>
@@ -270,12 +234,12 @@
                       <li class="page-item">
                         <a class="page-link" href="#" aria-label="Next">
                           <span aria-hidden="true" class="text-dark fs-4">&raquo;</span>
-                          
+
                         </a>
                       </li>
                     </ul>
                   </nav>
-                
+
             </div>
             <div class="row">
             <div class="col-lg-4 col-md-6 col-12 mt-5">
@@ -283,7 +247,9 @@
                 <div id="first" class="carousel slide " data-bs-ride="true">
                     <div class="carousel-inner ">
                       <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_dda3254431.jpg" class="d-block w-100 card-img-top" alt="..." >
+                        <a routerLink="../auction-details">
+                          <img src="Images/large_item_3556143_dda3254431.jpg" class=" d-block w-100 card-img-top" alt="..." >
+                        </a>
                       </div>
                       <div class="carousel-item" style="height: 30vh;">
                         <img src="Images/large_item_3556143_ca2df49ba2.jpg" class="d-block w-100 card-img-top" alt="..." >
@@ -306,14 +272,14 @@
         <p class="card-text text-secondary fs-6 fw-medium mb-1">1 day</p>
         <p class="card-text text-secondary fs-6 fw-medium">Estimate</p>
         <h5 class="card-title">100 EUR</h5>
-       
+
     </div>
 </div>
 </div>
 <div class="col-lg-4 col-md-6 col-12 mt-5">
     <div class="card">
-    <div id="second" class="carousel slide " data-bs-ride="true">
-        <div class="carousel-inner ">
+    <div id="second" class="carousel slide" data-bs-ride="true">
+        <div class="carousel-inner">
           <div class="carousel-item active" style="height: 30vh;">
             <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top" alt="..." >
           </div>
@@ -491,7 +457,7 @@
                       <li class="page-item ">
                         <a class="page-link" href="#" aria-label="Previous">
                           <span aria-hidden="true" class="fs-4 text-dark">&laquo;</span>
-                          
+
                         </a>
                       </li>
                       <li class="page-item "><a class="page-link fs-4 text-dark" href="#">1</a></li>
@@ -500,33 +466,33 @@
                       <li class="page-item">
                         <a class="page-link" href="#" aria-label="Next">
                           <span aria-hidden="true" class="fs-4 text-dark">&raquo;</span>
-                          
+
                         </a>
                       </li>
                     </ul>
                   </nav>
-                
+
             </div>
             <div class="row">
             <div class="col-lg-4 col-md-6 col-12 mt-5">
                 <div class="card">
-                <div id="first" class="carousel slide " data-bs-ride="true">
+                <div id="first2" class="carousel slide " data-bs-ride="true">
                     <div class="carousel-inner ">
                       <div class="carousel-item active" style="height: 30vh;">
                         <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top" alt="..." >
                       </div>
                       <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top" alt="..." >
+                        <img src="Images/large_item_3556143_dda3254431.jpg" class="d-block w-100 card-img-top" alt="..." >
                       </div>
                       <div class="carousel-item" style="height: 30vh;">
                         <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top" alt="..." >
                       </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#first" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#first2" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#first" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#first2" data-bs-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </button>
@@ -536,13 +502,13 @@
         <p class="card-text text-secondary fs-6 fw-medium mb-1">1 day</p>
         <p class="card-text text-secondary fs-6 fw-medium">Estimate</p>
         <h5 class="card-title">100 EUR</h5>
-       
+
     </div>
 </div>
 </div>
 <div class="col-lg-4 col-md-6 col-12 mt-5">
     <div class="card">
-    <div id="second" class="carousel slide " data-bs-ride="true">
+    <div id="second2" class="carousel slide " data-bs-ride="true">
         <div class="carousel-inner ">
           <div class="carousel-item active" style="height: 30vh;">
             <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top" alt="..." >
@@ -554,11 +520,11 @@
             <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top" alt="..." >
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#second" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#second2" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#second" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#second2" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
@@ -575,7 +541,7 @@
 
 <div class="col-lg-4 col-md-6 col-12 mt-5">
     <div class="card">
-    <div id="sixth" class="carousel slide " data-bs-ride="true">
+    <div id="third2" class="carousel slide " data-bs-ride="true">
         <div class="carousel-inner ">
           <div class="carousel-item active" style="height: 30vh;">
             <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top" alt="..." >
@@ -587,11 +553,11 @@
             <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top" alt="..." >
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#sixth" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#third2" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#sixth" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#third2" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
@@ -610,7 +576,7 @@
 
         </div>
       </div>
-      
+
 
     </div>
 

@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActionComponent } from './Action.component';
-import { ActionRoutes } from './action.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CreateAuctionComponent } from './Components/create-auction/create-auction.component';
-import { AuctionEditComponent } from './Components/auction-edit/auction-edit.component';
-import { AuctionListComponent } from './Components/auction-list/auction-list.component';
 import { AuctionDetailsComponent } from './Components/auction-details/auction-details.component';
 import { DeleteConfirmationComponent } from './Components/delete-confirmation/delete-confirmation.component';
+import { AuctionListComponent } from './Components/auction-list/auction-list.component';
+import { AuctionEditComponent } from './Components/auction-edit/auction-edit.component';
+import { CreateAuctionComponent } from './Components/create-auction/create-auction.component';
+import { ActionRoutes } from './action.routing';
+import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-feedback.component';
+
 import { WonAuctionComponent } from './Components/won-auction/won-auction.component';
 
 @NgModule({
@@ -24,6 +26,10 @@ import { WonAuctionComponent } from './Components/won-auction/won-auction.compon
     AuctionListComponent,
     AuctionDetailsComponent,
     DeleteConfirmationComponent,
+    AuctionFeedbackComponent,
+
+  //exports:[AuctionListComponent,AuctionEditComponent]
+
     WonAuctionComponent
   ]
 })

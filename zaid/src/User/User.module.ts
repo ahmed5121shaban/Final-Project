@@ -9,15 +9,17 @@ import { ShippingComponent } from './Components/Profile-Management/shipping/ship
 import { VerifyIdentityComponent } from './Components/Profile-Management/verify-identity/verify-identity.component';
 import { UserRoutes } from './user.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ModifyActionComponent } from './Components/Profile-Management/modify-action/modify-action.component';
 import { AddReviewComponent } from './Components/add-review/add-review.component';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
 import { NewPasswordComponent } from './Components/new-password/new-password.component';
+import { SellerEarningsComponent } from './Components/seller-earnings/seller-earnings.component';
+import { SellerwithdrawComponent } from './Components/sellerwithdraw/sellerwithdraw.component';
 import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ModifyActionComponent } from './Components/Profile-Management/modify-action/modify-action.component';
 
 
 
@@ -41,6 +43,11 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ProfileSettingComponent,
     ShippingComponent,
     VerifyIdentityComponent,
+    LoginComponent,
+    PasswordResetComponent,
+    NewPasswordComponent,
+    SellerEarningsComponent,
+    SellerwithdrawComponent,
     ModifyActionComponent,
     AddReviewComponent,
     MyReviewsComponent,

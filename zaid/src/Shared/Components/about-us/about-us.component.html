@@ -84,8 +84,8 @@
             <div class="carousel-inner">
               <div class="carousel-item" *ngFor="let slide of slides; let i = index" [class.active]="i ===currentIndex" >
                 <div class="row">
-                  <div class="col-md-4" *ngFor="let member of slide">
-                    <div class="team-member" >
+                  <div class="col-md-4" *ngFor="let member of teamMembers">
+                    <div class="team-member">
                       <!-- Add any content here if needed -->
                     </div>
                     <h4 class="team-member-name">{{ member.name }}</h4>
@@ -103,7 +103,7 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-        </div> 
+        </div>
 
         <!-- Social Media Icons -->
         <div class="social-icons-container">
@@ -114,7 +114,7 @@
             <a href="#" class="social-icon linkedin" onclick="event.preventDefault();"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>

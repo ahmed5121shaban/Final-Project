@@ -8,19 +8,20 @@ import { NotificationsComponent } from './Components/notifications/notifications
 import { FaqRulesComponent } from './Components/faq-rules/faq-rules.component';
 import { ChatComponent } from './chat/chat.component';
 
+
 const routes: Routes = [
-  // {path:'',component:SharedComponent}, 
+  // {path:'',component:SharedComponent},
    {path:'',component:HomeComponent},
    {path:'contact',component:ContactUsComponent},
   {path:'about',component:AboutUsComponent},
   {path:'notifications',component:NotificationsComponent},
 
-  // {path:'',component:SharedComponent},
+   {path:'app-chat',component:ChatComponent},
   { path: '', component: HomeComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'faq', component: FaqRulesComponent },
-  { path: 'chat', component: ChatComponent },
+
 ];
 
 export const SharedRoutes = RouterModule.forChild(routes);

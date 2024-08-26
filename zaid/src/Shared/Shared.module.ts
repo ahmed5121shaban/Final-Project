@@ -11,12 +11,12 @@ import { FaqRulesComponent } from './Components/faq-rules/faq-rules.component';
 import { LoaderComponent } from './Components/loader/loader.component';
 import { LoaderService } from './Interseptors/loader intersptors/loader.service';
 import { LoadingInterceptor } from './Interseptors/loader intersptors/loading.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ChatComponent } from './chat/chat.component';
-import { HomeComponent } from './Components/home/home.component';
-
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient } from '@angular/common/http';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { NotificationsComponent } from './Components/notifications/notifications.component';
+import { HomeComponent } from './Components/home/home.component';
+import { ContactUsComponent } from './Components/contact-us/contact-us.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -24,6 +24,8 @@ import { NotificationsComponent } from './Components/notifications/notifications
     CommonModule,
     SharedRoutes,
     CarouselModule,
+    FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 5000, // الوقت الذي تظهر فيه الرسالة (بالميللي ثانية)
       positionClass: 'toast-top-right', // مكان ظهور الرسالة
@@ -38,20 +40,26 @@ import { NotificationsComponent } from './Components/notifications/notifications
         warning: 'toast-warning',
       }
     }),
-    
+
     ReactiveFormsModule, FormsModule
   ],
 
   declarations: [
-    SharedComponent, 
+    SharedComponent,
     NavComponent,
     FooterComponent,
+    HomeComponent,
     FaqRulesComponent,
     LoaderComponent,
-    ChatComponent,
-    HomeComponent
+    NotificationsComponent,
+    NotFoundComponent,
+    ContactUsComponent,
+    ChatComponent
+
+
   ],
   providers: [
+
     LoaderService,
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ],

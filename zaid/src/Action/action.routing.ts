@@ -6,6 +6,8 @@ import { AuctionEditComponent } from './Components/auction-edit/auction-edit.com
 import { DeleteConfirmationComponent } from './Components/delete-confirmation/delete-confirmation.component';
 import { WonAuctionComponent } from './Components/won-auction/won-auction.component';
 
+import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-feedback.component';
+
 
 const routes: Routes = [
   { path: 'create-auction' , component: CreateAuctionComponent},
@@ -14,6 +16,11 @@ const routes: Routes = [
   { path: 'auction-edit' , component: AuctionEditComponent},
   { path: 'delete-confirm' , component: DeleteConfirmationComponent},
    { path: 'won-auction' , component: WonAuctionComponent},
+
+  
+  { path: 'auction-feedback' , component: AuctionFeedbackComponent},
+
+
 ];
 
 export const ActionRoutes = RouterModule.forChild(routes);
