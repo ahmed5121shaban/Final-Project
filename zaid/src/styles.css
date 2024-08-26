@@ -19,6 +19,14 @@
   right:  99%;
 }
 /* carousel button style end*/
+@media screen and (max-width: 700px) {
+  .parent-of-card .owl-prev {
+    display: none !important;
+  }
+  .parent-of-card .owl-next {
+    display: none !important;
+  }
+}
 
 /* Home Category Carousel button start*/
 
@@ -32,6 +40,15 @@
 .categoryCarousel .owl-prev{
   background-color: rgba(240, 248, 255, 0) !important;
   position: absolute;
+}
+
+@media screen and (max-width: 700px) {
+  .categoryCarousel .owl-next{
+    display: none !important;
+  }
+  .categoryCarousel .owl-prev {
+    display: none !important;
+  }
 }
 /* Home Category Carousel button end*/
 
@@ -52,6 +69,10 @@
   background-color: #E8AA42 !important;
 }
 /* Home Testimonial Carousel dot end */
+
+
+
+
 
 
  body{

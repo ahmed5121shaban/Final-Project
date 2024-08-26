@@ -1,6 +1,8 @@
 .card-custom {
   border-radius: 15px;
   transition: transform 0.3s;
+  position: relative ;
+  overflow: hidden ;
 }
 .card-custom:hover {
   transform: translateY(-10px);
@@ -26,4 +28,22 @@
 }
 .container-custom {
   padding: 20px;
+}
+
+
+.hover-button {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  display: none !important;
+  z-index: 10 !important;
+}
+
+.card-custom:hover .hover-button {
+  display: block !important;
+}
+
+.card-custom:hover .card-body {
+  opacity: 0.3 !important;
 }
