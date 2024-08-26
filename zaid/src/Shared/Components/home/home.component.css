@@ -55,6 +55,10 @@
 .newsletter-section .container {
   background-color: #f8f9fa;
 }
+
+
+
+
 .newsletter-section .container .btn {
   background-color: #003285;
   color: #fff;
@@ -183,3 +187,11 @@ border-bottom: 1px solid #999; */
 .rating-color{
   color:#fbc634 !important;
 }
+
+
+@media screen and (max-width: 600px) {
+ .newsletter-image{
+  display: none !important;
+ }
+}
+
