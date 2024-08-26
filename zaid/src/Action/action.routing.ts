@@ -16,11 +16,7 @@ const routes: Routes = [
   { path: 'auction-edit' , component: AuctionEditComponent},
   { path: 'delete-confirm' , component: DeleteConfirmationComponent},
    { path: 'won-auction' , component: WonAuctionComponent},
-
-  
   { path: 'auction-feedback' , component: AuctionFeedbackComponent},
-
-
 ];
 
 export const ActionRoutes = RouterModule.forChild(routes);

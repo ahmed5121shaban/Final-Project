@@ -28,6 +28,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('../Items/Items.module').then((m) => m.ItemsModule),
   },
+  {
+    path: 'shared',
+    loadChildren: () =>
+      import('../Shared/Shared.module').then((m) => m.SharedModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
