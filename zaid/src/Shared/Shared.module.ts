@@ -54,7 +54,8 @@ import { ChatComponent } from './chat/chat.component';
     NotificationsComponent,
     NotFoundComponent,
     ContactUsComponent,
-    ChatComponent
+    ChatComponent,
+  
 
 
   ],
@@ -66,7 +67,8 @@ import { ChatComponent } from './chat/chat.component';
   exports: [
     NavComponent,
     FooterComponent,
-    LoaderComponent
+    LoaderComponent,
+  
   ]
 })
 export class SharedModule { }
