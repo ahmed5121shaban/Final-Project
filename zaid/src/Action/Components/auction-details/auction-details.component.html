@@ -1,3 +1,5 @@
+
+<div class="container">
 <div class="main  p-md-5 p-3">
     <div class="row justify-content-between ">
         <div class="item-title">
@@ -9,7 +11,7 @@
                 <div class="carousel-inner mb-5">
                     @for(image of itemImages; track $index ; let i=$index){
                     <div class="carousel-item" [class.active]="i === 0">
-                        <img [src]="image.src" class="d-block w-100" >
+                        <img [src]="image.src" class="d-block w-100">
                     </div>
                     }
 
@@ -24,9 +26,9 @@
 
                 <div class="carousel-indicators">
                     @for( image of itemImages;track $index ;let i=$index){
-                    <button class="w-25" type="button" [attr.data-bs-target]="'#itemimages'"
-                        [attr.data-bs-slide-to]="i" [class.active]="i === 0">
-                        <img [src]="image.src" class="d-block w-100" >
+                    <button class="w-25" type="button" [attr.data-bs-target]="'#itemimages'" [attr.data-bs-slide-to]="i"
+                        [class.active]="i === 0">
+                        <img [src]="image.src" class="d-block w-100">
                     </button>
                     }
 
@@ -42,7 +44,7 @@
                             <img [src]="slide.src" class="d-block w-100" [alt]="slide.alt">
                         </div>
                         }
-                      
+
                 </div>
                 <a class="carousel-control-prev" href="#item-slider" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -88,6 +90,27 @@
                     <a href="" class=" btn btn-secondary w-100 mt-3 mb-1">Place A Bid</a>
                     <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
                         converted into SEK.</p>
+                </div>
+                <!-- roles accordion  -->
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" style="text-align: center;" id="headingOne">
+                            <h5 class="mb-0 ">
+                                <button class="btn" data-toggle="collapse" data-target="#collapseOne"
+                                    aria-expanded="true" aria-controls="collapseOne">
+                                    See Validations and Roles
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
+                            data-parent="#accordion">
+                            <div class="card-body" style="text-align: center;">
+                                Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
+                                converted into SEK.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -156,7 +179,7 @@
                 </div>
             </div>
             <div class="mb-2">
-                <a href="#" class="btn btn-link">View All Reviews</a>
+                <a routerLink="/user/user-profile" class="btn btn-link">View All Reviews</a>
             </div>
             <div>
                 <button class="btn btn-primary">Contact Seller</button>
@@ -172,7 +195,7 @@
                     @for(item of group; track $index){
                     <div class="col-md-4">
                         <div class="card">
-                            <img [src]="item.img" class="card-img-top" [alt]="item.title">
+                          <a routerLink="../auction-details"><img [src]="item.img" class="card-img-top" [alt]="item.title"></a>
                             <div class="card-body">
                                 <h5 class="card-title">{{item.title}}</h5>
                                 <p class="card-text start-price">starting price: {{item.price}}</p>
@@ -230,4 +253,5 @@
 
 
 
+</div>
 </div>
