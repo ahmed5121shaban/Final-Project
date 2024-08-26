@@ -4,7 +4,7 @@ import { SharedComponent } from './Shared.component';
 import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import { FaqRulesComponent } from './Components/faq-rules/faq-rules.component';
-import { ChatComponent } from './chat/chat.component';
+import { ChatComponent } from './Components/chat/chat.component';
 
 const routes: Routes = [
   // {path:'',component:SharedComponent}, 

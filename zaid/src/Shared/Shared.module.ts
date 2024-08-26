@@ -15,7 +15,7 @@ import { LoaderComponent } from './Components/loader/loader.component';
 import { LoaderService } from './Interseptors/loader intersptors/loader.service';
 import { LoadingInterceptor } from './Interseptors/loader intersptors/loading.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ChatComponent } from './chat/chat.component';
+import { ChatComponent } from './Components//chat/chat.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { NotificationsComponent } from './Components/notifications/notifications.component';
 
