@@ -16,6 +16,7 @@ import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { NotificationsComponent } from './Components/notifications/notifications.component';
 import { HomeComponent } from './Components/home/home.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { ContactUsComponent } from './Components/contact-us/contact-us.component
     NotificationsComponent,
     NotFoundComponent,
     ContactUsComponent,
+    ChatComponent
 
 
   ],

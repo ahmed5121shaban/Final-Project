@@ -116,7 +116,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
   updateFilteredMessages() {
     this.filteredMessages = [
-      ...this.messages.filter(msg => 
+      ...this.messages.filter(msg =>
         msg.text.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
         msg.senderName.toLowerCase().includes(this.searchTerm.toLowerCase())
       ),
