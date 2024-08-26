@@ -1,38 +1,48 @@
-
-*{
-    margin:0px !important;
-    box-sizing: border-box !important;
-
-}
-
-
-
-
-footer ul li a {
-    text-decoration: none;
+.footer {
+    background-color: #003285;
     color: white;
+    padding: 40px 0;
 }
-
-footer ul li {
-    margin-bottom: 7px;
+.footer a {
+    color: white;
+    text-decoration: none;
 }
-
-footer ul li a:hover {
-    color: rgb(229, 124, 35);
+.footer a:hover {
+    text-decoration: underline;
+}
+.footer .footer-heading {
+    margin-bottom: 20px;
+}
+.footer .footer-links {
+    padding: 0px !important;
 
 }
-footer ul li a:focus {
-    color: rgb(229, 124, 35);
-
-}
-
-footer ul {
+.footer .footer-links li {
     list-style: none;
+    margin-bottom: 10px;
 }
+.footer .newsletter {
+    padding: 0px;
 
-footer {
-    background-color:#003285 ;
-    height: auto;
-    color: rgb(229, 124, 35);
 }
-
+.footer .newsletter input[type="email"] {
+    padding: 10px;
+    border: none;
+    border-radius: 0;
+    flex: 1;
+}
+.footer .newsletter button {
+    background-color: rgb(229, 124, 35);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+}
+.footer .newsletter button:hover {
+    background-color: #e57a23;
+}
+.footer-bottom {
+    border-top: 1px solid #4d5866;
+    padding-top: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
