@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-chat',
@@ -16,9 +17,14 @@ export class ChatComponent implements OnInit, AfterViewInit {
   otherConversationMessages: { text: string; sender: 'buyer' | 'seller'; time: string; date: string; day: string; senderName: string }[] = [
     { text: 'هذا هو نص الرسالة من محادثة أخرى', sender: 'seller', time: '12:30', date: '10 August 2024', day: 'Saturday', senderName: 'Other Seller' }
   ];
-  isSmallScreen: boolean = window.innerWidth < 768;
+  isSmallScreen: boolean = false;
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    // Check if the platform is a browser before accessing window
+    this.isSmallScreen = isPlatformBrowser(this.platformId) && window.innerWidth < 768;
+  }
 
   ngOnInit() {
     this.initializeMessages();
@@ -26,12 +32,16 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.fileInput.nativeElement.addEventListener('change', (event) => this.onFileChange(event));
+    if (isPlatformBrowser(this.platformId)) {
+      this.fileInput.nativeElement.addEventListener('change', (event) => this.onFileChange(event));
+    }
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
-    this.isSmallScreen = window.innerWidth < 768;
+    if (isPlatformBrowser(this.platformId)) {
+      this.isSmallScreen = window.innerWidth < 768;
+    }
   }
 
   initializeMessages() {
