@@ -13,6 +13,8 @@ import { LoaderService } from './Interseptors/loader intersptors/loader.service'
 import { LoadingInterceptor } from './Interseptors/loader intersptors/loading.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ChatComponent } from './chat/chat.component';
+import { HomeComponent } from './Components/home/home.component';
+
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { NotificationsComponent } from './Components/notifications/notifications.component';
 
@@ -44,10 +46,10 @@ import { NotificationsComponent } from './Components/notifications/notifications
     SharedComponent, 
     NavComponent,
     FooterComponent,
-    HomeComponent,
     FaqRulesComponent,
     LoaderComponent,
-    ChatComponent
+    ChatComponent,
+    HomeComponent
   ],
   providers: [
     LoaderService,

@@ -85,7 +85,7 @@
               <div class="carousel-item" *ngFor="let slide of slides; let i = index" [class.active]="i ===currentIndex" >
                 <div class="row">
                   <div class="col-md-4" *ngFor="let member of slide">
-                    <div class="team-member" [ngStyle]="{'background-image': 'url(' + member.imageUrl + ')'}">
+                    <div class="team-member" >
                       <!-- Add any content here if needed -->
                     </div>
                     <h4 class="team-member-name">{{ member.name }}</h4>

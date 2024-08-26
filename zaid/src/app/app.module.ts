@@ -25,7 +25,7 @@ import { ItemsModule } from '../Items/Items.module';
     ActionModule,
     ItemsModule,
     SharedModule,
-    AdminModule,
+    AdminModule
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
