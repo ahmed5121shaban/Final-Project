@@ -187,3 +187,10 @@ border-bottom: 1px solid #999; */
 .rating-color{
   color:#fbc634 !important;
 }
+
+
+@media screen and (max-width: 600px) {
+ .newsletter-image{
+  display: none !important;
+ }
+}
