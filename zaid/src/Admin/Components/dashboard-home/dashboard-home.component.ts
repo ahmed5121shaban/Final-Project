@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',
-  styleUrls: ['./dashboard-home.component.css', '../../Admin.component.css'],
+  styleUrls: ['./dashboard-home.component.css'],
+  //, '../../Admin.component.css'
 
 })
 export class DashboardHomeComponent implements OnInit {
