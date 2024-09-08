@@ -11,9 +11,23 @@ body {
 .not-found-container {
     text-align: center;
     background-color: #ffffff;
-    padding: 90px  !important;
+    padding: 100px  !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+}
+
+@keyframes up-down{
+
+    0%{
+        transform: translateY(10px);
+    }
+    100%{
+        transform: translateY(-10px);
+    }
+}
+
+.not-found-container img{
+   animation:up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
 

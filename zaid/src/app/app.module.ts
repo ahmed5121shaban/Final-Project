@@ -5,7 +5,6 @@ import {
 } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AdminModule } from '../Admin/Admin.module';
@@ -13,7 +12,6 @@ import { UserModule } from '../User/User.module';
 import { ActionModule } from '../Action/Action.module';
 import { ItemsModule } from '../Items/Items.module';
 import { SharedModule } from '../Shared/Shared.module';
-
 
 
 @NgModule({
@@ -32,7 +30,6 @@ import { SharedModule } from '../Shared/Shared.module';
 
 
   ],
-  providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

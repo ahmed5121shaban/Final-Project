@@ -1,7 +1,6 @@
-// src/app/Interceptors/loader-interceptor/loader.component.ts
 
 import { Component } from '@angular/core';
-import { LoaderService } from '../../Interseptors/loader intersptors/loader.service'; // تأكد من أن المسار صحيح
+import { LoaderService } from '../../Interseptors/loader intersptors/loader.service';
 
 @Component({
   selector: 'app-loader',
@@ -17,15 +16,5 @@ export class LoaderComponent {
       this.isLoading = loading;
     });
   }
-  ngOnInit(): void {
-    this.loadData();
-  }
-
-  loadData() {
-    this.loaderService.show(); 
-    
-    setTimeout(() => {
-      this.loaderService.hide();
-    }, 3000);
-  }
+ 
 }

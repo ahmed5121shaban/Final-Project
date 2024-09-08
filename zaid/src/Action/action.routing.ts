@@ -18,13 +18,7 @@ const routes: Routes = [
   { path: 'auction-edit' , component: AuctionEditComponent},
   { path: 'delete-confirm' , component: DeleteConfirmationComponent},
    { path: 'won-auction' , component: WonAuctionComponent},
-
-  { path: 'auction-details' , component:AuctionDetailsComponent},
-  { path: 'auction-list' , component: AuctionListComponent},
-  { path: 'auction-edit' , component: AuctionEditComponent},
-  { path: 'delete-confirm' , component: DeleteConfirmationComponent},
   { path: 'auction-feedback' , component: AuctionFeedbackComponent},
-
 ];
 
 export const ActionRoutes = RouterModule.forChild(routes);

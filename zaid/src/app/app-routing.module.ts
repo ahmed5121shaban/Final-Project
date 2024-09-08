@@ -37,7 +37,6 @@ const routes: Routes = [
       import('../Shared/Shared.module').then((m) => m.SharedModule),
   },
   { path: '**', component: NotFoundComponent },
-  /* {path:'**',} ----  wild card  لسه معملنهاش   */
 ];
 
 @NgModule({
