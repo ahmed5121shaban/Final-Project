@@ -12,7 +12,7 @@ import { UserModule } from '../User/User.module';
 import { ActionModule } from '../Action/Action.module';
 import { ItemsModule } from '../Items/Items.module';
 import { SharedModule } from '../Shared/Shared.module';
-
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { SharedModule } from '../Shared/Shared.module';
     SharedModule,
     AdminModule
   ],
-  providers: [provideClientHydration()],
+  providers: [provideClientHydration()
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
