@@ -28,7 +28,7 @@ import { SharedModule } from '../Shared/Shared.module';
     ActionModule,
     ItemsModule,
     SharedModule,
-    AdminModule,
+    
 
 
   ],

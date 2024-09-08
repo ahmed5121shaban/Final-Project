@@ -9,6 +9,8 @@ import { WonAuctionComponent } from './Components/won-auction/won-auction.compon
 import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-feedback.component';
 
 
+
+
 const routes: Routes = [
   { path: 'create-auction' , component: CreateAuctionComponent},
   { path: 'auction-details' , component: AuctionDetailsComponent},
@@ -22,7 +24,6 @@ const routes: Routes = [
   { path: 'auction-edit' , component: AuctionEditComponent},
   { path: 'delete-confirm' , component: DeleteConfirmationComponent},
   { path: 'auction-feedback' , component: AuctionFeedbackComponent},
-
 
 ];
 

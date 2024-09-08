@@ -16,6 +16,7 @@ import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { NotificationsComponent } from './Components/notifications/notifications.component';
 import { HomeComponent } from './Components/home/home.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
+import { UserLayoutComponent } from './Components/user-layout/user-layout.component';
 
 
 @NgModule({
@@ -53,6 +54,8 @@ import { ContactUsComponent } from './Components/contact-us/contact-us.component
     NotificationsComponent,
     NotFoundComponent,
     ContactUsComponent,
+    UserLayoutComponent,
+    
 
 
   ],
@@ -64,7 +67,8 @@ import { ContactUsComponent } from './Components/contact-us/contact-us.component
   exports: [
     NavComponent,
     FooterComponent,
-    LoaderComponent
+    LoaderComponent,
+    
   ]
 })
 export class SharedModule { }

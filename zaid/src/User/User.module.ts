@@ -23,6 +23,7 @@ import { ModifyActionComponent } from './Components/Profile-Management/modify-ac
 
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -52,6 +53,7 @@ import { ModifyActionComponent } from './Components/Profile-Management/modify-ac
     AddReviewComponent,
     MyReviewsComponent,
     UserProfileComponent,
+    
   ]
 })
 export class UserModule { }
