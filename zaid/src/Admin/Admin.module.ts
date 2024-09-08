@@ -8,7 +8,6 @@ import { DashboardHomeComponent } from './Components/dashboard-home/dashboard-ho
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 import { DashboardLayoutComponent } from './Components/dashboard-layout/dashboard-layout.component';
-import { AdminRoutes } from './admin.routing';
 
 
 @NgModule({
