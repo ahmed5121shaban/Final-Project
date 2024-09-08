@@ -21,7 +21,6 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
   declarations: [
      AdminComponent,
      ProfileReviewComponent,
-    AdminComponent,
     DashboardHomeComponent,
   ]
 })
