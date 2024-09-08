@@ -9,7 +9,6 @@ import { AuctionEditComponent } from './Components/auction-edit/auction-edit.com
 import { CreateAuctionComponent } from './Components/create-auction/create-auction.component';
 import { ActionRoutes } from './action.routing';
 import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-feedback.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { WonAuctionComponent } from './Components/won-auction/won-auction.component';
 
@@ -19,10 +18,6 @@ import { WonAuctionComponent } from './Components/won-auction/won-auction.compon
     ActionRoutes,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
-    
-    
-    
   ],
   declarations: [
     ActionComponent,
@@ -32,9 +27,9 @@ import { WonAuctionComponent } from './Components/won-auction/won-auction.compon
     AuctionDetailsComponent,
     DeleteConfirmationComponent,
     AuctionFeedbackComponent,
- 
+
   //exports:[AuctionListComponent,AuctionEditComponent]
-    
+
     WonAuctionComponent
   ]
 })

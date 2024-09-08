@@ -38,7 +38,7 @@ export class FaqRulesComponent {
       ]
     }
   ];
-  
+
   get filteredQuestions() {
     if (this.selectedCategory) {
       const category = this.categories.find(c => c.name === this.selectedCategory);

@@ -8,19 +8,16 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { SharedModule } from '../Shared/Shared.module';
 import { AdminModule } from '../Admin/Admin.module';
 import { UserModule } from '../User/User.module';
 import { ActionModule } from '../Action/Action.module';
 import { ItemsModule } from '../Items/Items.module';
-
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { SharedModule } from '../Shared/Shared.module';
 
 
 
 @NgModule({
- 
+
   declarations: [AppComponent],
   imports: [
     BrowserModule,
@@ -32,9 +29,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ItemsModule,
     SharedModule,
     AdminModule,
-    FontAwesomeModule,
-    
-  
+
+
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],

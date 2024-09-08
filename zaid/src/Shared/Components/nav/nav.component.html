@@ -53,16 +53,16 @@
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="See-all" href="shared/notifications">See all notifications</a></li>
+              <li><a class="See-all" routerLink="shared/notifications">See all notifications</a></li>
             </ul>
           </li>
-          <!-- <li class="col-md-2 col-lg-2 col-5">
-            <a href="#Login">Login</a>
+  <li class="col-md-2 col-lg-2 col-5">
+            <a routerLink="user/login">Login</a>
           </li>
 
           <li class="nav-item col-md-2 col-lg-2 col-3">
-            <a href="#signup">Signup</a>
-          </li> -->
+            <a href="user/register">Signup</a>
+          </li>
           <li class="col-4  nav-item dropdown">
             <a class="nav-link dropdown-toggle " role="button" data-bs-toggle="dropdown" aria-expanded="false"
               aria-haspopup="true" id="profileDropdown"><i class="fas fa-user"
@@ -70,32 +70,18 @@
                 style=" margin-left: 15px !important; ">Profile</span></a>
             <ul class="dropdown-menu position-absolute profileDropdown " style=" margin-left: -83px !important; " aria-labelledby="profileDropdown">
               <li class="profile-item">
-                <a class="profile-link" href="user/">
+                <a class="profile-link" href="user/profile">
                   My Profile
                 </a>
               </li>
+
               <li class="profile-item">
-                <a class="profile-link" href="user/profile-setting">
-                  Edit profile
-                </a>
-              </li>
-              <li class="profile-item">
-                <a class="profile-link" href="#">
-                  Auctions
-                </a>
-              </li>
-              <li class="profile-item">
-                <a class="profile-link" href="#">
-                  Bids
-                </a>
-              </li>
-              <li class="profile-item">
-                <a href="#Logout">Logout</a>
+                <a routerLink="">Logout</a>
               </li>
             </ul>
           </li>
 
-          
+
         </ul>
 
       </div>
@@ -133,7 +119,7 @@
         </a>
       </li>
       <!-- More notifications... -->
-      <li><a class="dropdown-item See-all" href="shared/notifications">See all notifications</a></li>
+      <li><a class="dropdown-item See-all" routerLink="shared/notifications">See all notifications</a></li>
     </ul>
   </div>
 </div>
