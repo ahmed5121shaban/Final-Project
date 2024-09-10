@@ -18,49 +18,49 @@ export class HomeComponent implements OnInit {
       title:'Classic Car Auction 1',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/501/500'
     },
     {
       title:'Classic Car Auction 2',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/510/500'
     },
     {
       title:'Classic Car Auction 3',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/501/510'
     },
     {
       title:'Classic Car Auction 4',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/510/501'
     },
     {
       title:'Classic Car Auction 5',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/500/502'
     },
     {
       title:'Classic Car Auction 6',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/520/500'
     },
     {
       title:'Classic Car Auction 7',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/502/500'
     },
     {
       title:'Classic Car Auction 8',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/500/520'
     }]
 
   }
@@ -157,7 +157,7 @@ export class HomeComponent implements OnInit {
     pullDrag: true,
     dots: false,
     navSpeed: 700,
-    navText: ['',
+    navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
               '<img src="next-filled-svgrepo-com.svg" width="50px">'],
     responsive: {
       0: {
