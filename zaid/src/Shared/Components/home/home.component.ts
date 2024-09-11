@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     dots: true,
-    navSpeed: 700,
+    navSpeed: 300,
     navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
               '<img src="next-filled-svgrepo-com.svg" width="50px">'],
     responsive: {
@@ -92,9 +92,10 @@ export class HomeComponent implements OnInit {
         items: 3
       },
       940: {
-        items: 3
+        items: 6
       }
     },
+    slideBy:5,
     nav: true
   }
 
@@ -104,7 +105,7 @@ export class HomeComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     dots: false,
-    navSpeed: 700,
+    navSpeed: 300,
     navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
               '<img src="next-filled-svgrepo-com.svg" width="50px">'],
     responsive: {
@@ -118,9 +119,10 @@ export class HomeComponent implements OnInit {
         items: 3
       },
       940: {
-        items: 4
+        items: 6
       }
     },
+    slideBy:5,
     nav: true
   }
 
@@ -156,7 +158,7 @@ export class HomeComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     dots: false,
-    navSpeed: 700,
+    navSpeed: 300,
     navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
               '<img src="next-filled-svgrepo-com.svg" width="50px">'],
     responsive: {
@@ -173,6 +175,7 @@ export class HomeComponent implements OnInit {
         items: 9
       }
     },
+    slideBy: 5,
     nav: true
   }
   toNext(next:HTMLElement){
