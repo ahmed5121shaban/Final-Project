@@ -18,49 +18,53 @@ export class HomeComponent implements OnInit {
       title:'Classic Car Auction 1',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://picsum.photos/400/400'
+
+      image:'https://picsum.photos/501/500'
+
     },
     {
       title:'Classic Car Auction 2',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://picsum.photos/401/401'
+
+      image:'https://picsum.photos/510/500'
+
     },
     {
       title:'Classic Car Auction 3',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://picsum.photos/402/402'
+      image:'https://picsum.photos/501/510'
     },
     {
       title:'Classic Car Auction 4',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://picsum.photos/403/403'
+      image:'https://picsum.photos/510/501'
     },
     {
       title:'Classic Car Auction 5',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://picsum.photos/404/404'
+      image:'https://picsum.photos/500/502'
     },
     {
       title:'Classic Car Auction 6',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://picsum.photos/405/405'
+      image:'https://picsum.photos/520/500'
     },
     {
       title:'Classic Car Auction 7',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://picsum.photos/406/406'
+      image:'https://picsum.photos/502/500'
     },
     {
       title:'Classic Car Auction 8',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://picsum.photos/407/407'
+      image:'https://picsum.photos/500/520'
     }]
 
   }
@@ -74,7 +78,7 @@ export class HomeComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     dots: true,
-    navSpeed: 700,
+    navSpeed: 300,
     navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
               '<img src="next-filled-svgrepo-com.svg" width="50px">'],
     responsive: {
@@ -88,9 +92,10 @@ export class HomeComponent implements OnInit {
         items: 3
       },
       940: {
-        items: 3
+        items: 6
       }
     },
+    slideBy:5,
     nav: true
   }
 
@@ -100,7 +105,7 @@ export class HomeComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     dots: false,
-    navSpeed: 700,
+    navSpeed: 300,
     navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
               '<img src="next-filled-svgrepo-com.svg" width="50px">'],
     responsive: {
@@ -114,9 +119,10 @@ export class HomeComponent implements OnInit {
         items: 3
       },
       940: {
-        items: 4
+        items: 6
       }
     },
+    slideBy:5,
     nav: true
   }
 
@@ -152,23 +158,24 @@ export class HomeComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     dots: false,
-    navSpeed: 700,
+    navSpeed: 300,
     navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
               '<img src="next-filled-svgrepo-com.svg" width="50px">'],
     responsive: {
       0: {
-        items: 3
+        items: 2
       },
       400: {
-        items: 5
+        items: 4
       },
       740: {
-        items: 9
+        items: 6
       },
       940: {
-        items: 14
+        items: 9
       }
     },
+    slideBy: 5,
     nav: true
   }
 
