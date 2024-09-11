@@ -15,9 +15,7 @@ const routes: Routes = [
    {path:'contact',component:ContactUsComponent},
   {path:'about',component:AboutUsComponent},
   {path:'notifications',component:NotificationsComponent},
-
    {path:'app-chat',component:ChatComponent},
-  { path: '', component: HomeComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'faq', component: FaqRulesComponent },

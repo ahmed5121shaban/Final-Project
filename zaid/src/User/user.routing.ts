@@ -32,24 +32,16 @@ const routes: Routes = [
   { path: 'seller-withdraw', component: SellerwithdrawComponent },
   { path: 'add-review' , component: AddReviewComponent},
   { path: 'user-profile' , component: UserProfileComponent},
+
       { path: '', component: ProfileManagementComponent, children: [
       { path: 'profile', component: MyProfileComponent },
       { path: 'payment', component: PaymentComponent },
-
-
-      { path: '', component: MyProfileComponent },
-      { path: 'payment', component: PaymentComponent},
       { path: 'profile-setting', component: ProfileSettingComponent },
       { path: 'shipping', component: ShippingComponent },
       { path: 'verify-identity', component: VerifyIdentityComponent },
-
-
-
       { path: 'modify-action', component: ModifyActionComponent },
       { path: 'reviews', component: MyReviewsComponent },
       { path: 'watchlist', component: WatchlistComponent },
-
-
       { path: 'complete-auction', component: CompleteAuctionComponent },
       { path: 'waiting-auction', component: WaitingAuctionComponent },
       {path:'won-auction',component:WonAuctionComponent},
@@ -58,7 +50,7 @@ const routes: Routes = [
 
     ] },
 
-  { path: 'add-review' , component: AddReviewComponent},
+ 
 
 ];
 

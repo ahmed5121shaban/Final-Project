@@ -5,41 +5,46 @@
             <div class="mt-3">
                 <form class="ms-4" [formGroup]="form">
 
-                    <div class="mb-3">
-                        <label for="fullName" class="form-label">Full Name</label>
-                        <input type="text"
+                    <div class="form-floating mb-3">
+
+                        <input type="text" id="floatingInput"
                          class="form-control " formControlName="name"
                          [class]="{'is-valid':name?.valid&&name?.dirty,'is-invalid':name?.invalid&&name?.dirty}"
-                         id="fullName" placeholder="Full Name" required>
+                          placeholder="Full Name" required>
+                          <label for="floatingInput" class="ms-3">Full Name</label>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Address Line 1</label>
-                        <input type="text" class="form-control" formControlName="address"
+                    <div class="form-floating mb-3">
+
+                        <input type="text" class="form-control" formControlName="address" id="floatingInput"
                         [class]="{'is-valid':address?.valid&&address?.dirty,'is-invalid':address?.invalid&&address?.dirty}"
-                        id="address" placeholder="Address Line 1" required>
+                         placeholder="Address Line 1" required>
+                         <label for="floatingInput" class="ms-3">Address Line 1</label>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="city" class="form-label">City</label>
-                        <input type="text" class="form-control" formControlName="aCity"
+                    <div class="form-floating mb-3">
+
+                        <input type="text" class="form-control" formControlName="aCity" id="floatingInput"
                         [class]="{'is-valid':aCity?.valid&&aCity?.dirty,'is-invalid':aCity?.invalid&&aCity?.dirty}"
-                        id="city" placeholder="City" required>
+                         placeholder="City" required>
+                         <label for="floatingInput" class="ms-3">City</label>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="state" class="form-label">State</label>
-                            <input type="text" class="form-control" formControlName="aState"
+                    <div class=" row mb-3">
+                        <div class="form-floating col-md-6">
+
+                            <input type="text" class="form-control" formControlName="aState" id="floatingInput"
                             [class]="{'is-valid':aState?.valid&&aState?.dirty,'is-invalid':aState?.invalid&&aState?.dirty}"
-                            id="state" placeholder="State" required>
+                             placeholder="State" required>
+                             <label for="floatingInput" class="ms-3">State</label>
                         </div>
 
-                        <div class="col-md-6">
-                            <label for="postalCode" class="form-label">Postal Code</label>
-                            <input type="text" class="form-control" formControlName="aPostalCode"
+                        <div class="form-floating col-md-6">
+
+                            <input type="text" class="form-control" formControlName="aPostalCode" id="floatingInput"
                             [class]="{'is-valid':aPostalCode?.valid&&aPostalCode?.dirty,'is-invalid':aPostalCode?.invalid&&aPostalCode?.dirty}"
-                            id="postalCode" placeholder="Postal Code" required>
+                             placeholder="Postal Code" required>
+                             <label for="floatingInput" class="ms-3">Postal Code</label>
                         </div>
                     </div>
 

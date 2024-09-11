@@ -2,38 +2,40 @@
   <div class="bg-dark text-white rounded-2">
     <h4 class="mb-4 p-3">Edit your profile</h4>
   </div>
-  <form class="row ms-3 w-75" [formGroup]="form" (ngSubmit)="editProfile()">
+  <form class="row ms-3 w-75 " [formGroup]="form" (ngSubmit)="editProfile()">
     <div><h5 class="fw-bolder opacity-75">ID: 153142</h5></div>
-    <div class="col-6 mb-3">
-      <label for="validationServer01" class="form-label">First name</label>
+    <div class="form-floating col-6 mb-3 ">
       <input
         type="text"
+        id="floatingInput"
         class="form-control is-valid"
         formControlName="fname"
+        placeholder="name@example.com"
         [class]="{'is-valid':fname?.valid&&fname?.dirty,'is-invalid':fname?.invalid&&fname?.dirty}"
-        id="validationServer01"
         required
       />
+      <label for="floatingInput" class="ms-3">First name</label>
 
       @if (fname?.errors?.['maxLength']){<div class="invalid-feedback">your last name must be less than 20 character!</div>}
-      @if (fname?.errors?.['minLength']){<div class="invalid-feedback">your last name must be more than 4 character!</div>}
-      @if (fname?.errors?.['required']){<div class="invalid-feedback">this field is required!</div>}
+      @else if (fname?.errors?.['minLength']){<div class="invalid-feedback">your last name must be more than 4 character!</div>}
+      @else {<div class="invalid-feedback">this field is required!</div>}
 
     </div>
-    <div class="col-6 mb-3">
-      <label for="validationServer02" class="form-label">Last name</label>
+    <div class="form-floating col-6 mb-3">
+
       <input
         type="text"
+        id="floatingInput"
         class="form-control is-valid"
         formControlName="lname"
+        placeholder="last name"
         [class]="{'is-valid':lname?.valid&&lname?.dirty,'is-invalid':lname?.invalid&&lname?.dirty}"
-        id="validationServer02"
         required
       />
-
+      <label for="floatingInput" class="ms-3">Last name</label>
       @if (lname?.errors?.['maxLength']){<div class="invalid-feedback">your last name must be less than 20 character!</div>}
-      @if (lname?.errors?.['minLength']){<div class="invalid-feedback">your last name must be more than 4 character!</div>}
-      @if (lname?.errors?.['required']){<div class="invalid-feedback">this field is required!</div>}
+      @else if (lname?.errors?.['minLength']){<div class="invalid-feedback">your last name must be more than 4 character!</div>}
+      @else{<div class="invalid-feedback">this field is required!</div>}
 
     </div>
     <div class="col-12 mb-3">
@@ -48,35 +50,39 @@
         required
       />
     </div>
-    <div class="col-12 mb-3">
-      <label for="validationServer02" class="form-label">Email</label>
+    <div class="form-floating col-12 mb-3">
       <input
         type="email"
         class="form-control"
         [class]="{'is-valid':email?.valid&&email?.dirty,'is-invalid':email?.invalid&&email?.dirty}"
         formControlName="email"
-        id="validationServer02"
+        placeholder="text"
+        id="floatingInput"
         value="Otto"
         required
       />
+      <label for="floatingInput" class="ms-3">Email</label>
+
       @if(email?.errors?.['email']){<div class="invalid-feedback">this email not valid!</div>}
-      @if(email?.errors?.['required']){<div class="invalid-feedback">this input is required!</div>}
+      @else{<div class="invalid-feedback">this input is required!</div>}
 
     </div>
 
     <div><h5 class="fw-bolder opacity-75 my-3">Address</h5></div>
 
-    <div class="col-12 mb-3">
-      <label for="validationServer03" class="form-label">Street</label>
+    <div class="form-floating col-12 mb-3">
       <input
         type="text"
         class="form-control is-invalid"
         formControlName="aStreet"
         [class]="{'is-valid':aStreet?.valid&&aStreet?.dirty,'is-invalid':aStreet?.invalid&&aStreet?.dirty}"
-        id="validationServer03"
+        id="floatingInput"
+        placeholder="Street"
         aria-describedby="validationServer03Feedback"
         required
       />
+      <label for="floatingInput" class="ms-3">Street</label>
+
       @if(aStreet?.errors?.['required'])
       {<div id="validationServer03Feedback" class="invalid-feedback">
         Please provide a valid Street.
@@ -84,34 +90,38 @@
 
     </div>
 
-    <div class="col-12 mb-3">
-      <label for="validationServer05" class="form-label">Postal code</label>
+    <div class="form-floating col-12 mb-3">
+
       <input
         type="text"
         class="form-control is-invalid"
         formControlName="aPostalCode"
         [class]="{'is-valid':aPostalCode?.valid&&aPostalCode?.dirty,'is-invalid':aPostalCode?.invalid&&aPostalCode?.dirty}"
-        id="validationServer05"
+        placeholder="text"
+        id="floatingInput"
         aria-describedby="validationServer05Feedback"
         required
       />
+      <label for="floatingInput" class="ms-3">Postal code</label>
       @if(aPostalCode?.errors?.['required'])
       {<div id="validationServer05Feedback" class="invalid-feedback">
         Please provide a valid Postal code.
       </div>}
     </div>
 
-    <div class="col-12 mb-3">
-      <label for="validationServer03" class="form-label">City</label>
+    <div class="form-floating col-12 mb-3">
       <input
         type="text"
         class="form-control is-invalid"
         formControlName="aCity"
         [class]="{'is-valid':aCity?.valid&&aCity?.dirty,'is-invalid':aCity?.invalid&&aCity?.dirty}"
-        id="validationServer03"
+        placeholder="text"
+        id="floatingInput"
         aria-describedby="validationServer03Feedback"
         required
       />
+      <label for="floatingInput" class="ms-3">City</label>
+
       @if(aCity?.errors?.['required'])
       {<div id="validationServer03Feedback" class="invalid-feedback">
         Please provide a valid city.
@@ -120,13 +130,14 @@
     </div>
 
     <div class="col-12 mb-3">
-      <label for="validationServer04" class="form-label">Country</label>
+      <label for="Country" class="form-check-label">Country</label>
+
       <select
         class="form-select is-invalid"
         formControlName="aCountry"
         [class]="{'is-valid':aCountry?.valid&&aCountry?.dirty,'is-invalid':aCountry?.invalid&&aCountry?.dirty}"
-
-        id="validationServer04"
+        placeholder="text"
+        id="Country"
         aria-describedby="validationServer04Feedback"
         required
       >
@@ -402,6 +413,7 @@
         <option value="ZM">Zambia</option>
         <option value="ZW">Zimbabwe</option>
       </select>
+
       @if(aCountry?.errors?.['required'])
       {<div id="validationServer04Feedback" class="invalid-feedback">
         Please select a valid state.
@@ -409,14 +421,15 @@
 
     </div>
 
-    <div class="col-12 mb-3">
-      <label for="validationServer04" class="form-label">Time zone</label>
+    <div class=" col-12 mb-3">
+      <label for="International" class="form-check-label">Time zone</label>
+
       <select
         class="form-select is-invalid"
         formControlName="aTimeZone"
         [class]="{'is-valid':aTimeZone?.valid&&aTimeZone?.dirty,'is-invalid':aTimeZone?.invalid&&aTimeZone?.dirty}"
-
-        id="validationServer04"
+        placeholder="text"
+        id="International"
         aria-describedby="validationServer04Feedback"
         required
       >
@@ -588,6 +601,7 @@
         <option value="Samoa">(GMT+13:00) Samoa</option>
         <option value="Tokelau Is.">(GMT+13:00) Tokelau Is.</option>
       </select>
+
       @if(aTimeZone?.errors?.['required'])
       {<div id="validationServer04Feedback" class="invalid-feedback">
         Please select a valid state.
@@ -596,16 +610,18 @@
     </div>
 
     <div class="col-12 mb-3">
-      <label for="validationServer04" class="form-label">Currency</label>
+      <label for="Currency" class="form-check-label">Currency</label>
+
       <select
         class="form-select is-invalid"
         formControlName="aCurrency"
         [class]="{'is-valid':aCurrency?.valid&&aCurrency?.dirty,'is-invalid':aCurrency?.invalid&&aCurrency?.dirty}"
-
-        id="validationServer04"
+        placeholder="text"
+        id="Currency"
         aria-describedby="validationServer04Feedback"
         required
       >
+
         <option selected="selected" value="SEK">EGP</option>
         <option value="EUR">EUR</option>
         <option value="EUR">USD</option>
@@ -621,45 +637,47 @@
 
     <div><h5 class="fw-bolder opacity-75 my-3">Phone Numbers</h5></div>
 
-    <div class="col-12 mb-3">
-      <label for="validationServer05" class="form-label"
-        >Mobile phone number</label
-      >
+    <div class="form-floating col-12 mb-3">
+
       <input
         type="text"
         class="form-control is-invalid"
         formControlName="firstPhNum"
         [class]="{'is-valid':firstPhNum?.valid&&firstPhNum?.dirty,'is-invalid':firstPhNum?.invalid&&firstPhNum?.dirty}"
-
-        id="validationServer05"
+        placeholder="text"
+        id="floatingInput"
         aria-describedby="validationServer05Feedback"
         required
       />
+      <label for="floatingInput" class="ms-3"
+      >Mobile phone number</label
+    >
       @if(firstPhNum?.errors?.['required'])
       { <div id="validationServer05Feedback" class="invalid-feedback">
         Please provide a valid phone number.
       </div>}
       @if (firstPhNum?.errors?.['maxLength']){<div class="invalid-feedback">your last name must be less than 20 character!</div>}
-      @if (firstPhNum?.errors?.['minLength']){<div class="invalid-feedback">your last name must be more than 4 character!</div>}
+      @else if (firstPhNum?.errors?.['minLength']){<div class="invalid-feedback">your last name must be more than 4 character!</div>}
 
     </div>
 
-    <div class="col-md-12 mb-3">
-      <label for="validationServer05" class="form-label"
-        >Other phone numbers</label
-      >
+    <div class="form-floating col-md-12 mb-3">
+
       <input
         type="text"
         class="form-control is-invalid"
         formControlName="secondPhNum"
         [class]="{'is-valid':secondPhNum?.valid&&secondPhNum?.dirty,'is-invalid':secondPhNum?.invalid&&secondPhNum?.dirty}"
-        id="validationServer05"
+        placeholder="text"
+        id="floatingInput"
         aria-describedby="validationServer05Feedback"
         required
       />
-
+      <label for="floatingInput" class="ms-3"
+      >Other phone numbers</label
+    >
       @if (secondPhNum?.errors?.['maxLength']){<div class="invalid-feedback">your last name must be less than 20 character!</div>}
-      @if (secondPhNum?.errors?.['minLength']){<div class="invalid-feedback">your last name must be more than 4 character!</div>}
+      @else if (secondPhNum?.errors?.['minLength']){<div class="invalid-feedback">your last name must be more than 4 character!</div>}
 
     </div>
 
