@@ -161,16 +161,16 @@ export class HomeComponent implements OnInit {
               '<img src="next-filled-svgrepo-com.svg" width="50px">'],
     responsive: {
       0: {
-        items: 3
+        items: 2
       },
       400: {
-        items: 5
+        items: 4
       },
       740: {
-        items: 9
+        items: 6
       },
       940: {
-        items: 15
+        items: 9
       }
     },
     nav: true
