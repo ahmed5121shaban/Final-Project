@@ -14,7 +14,6 @@ import { ItemsModule } from '../Items/Items.module';
 import { SharedModule } from '../Shared/Shared.module';
 
 
-
 @NgModule({
 
   declarations: [AppComponent],
@@ -27,11 +26,10 @@ import { SharedModule } from '../Shared/Shared.module';
     ActionModule,
     ItemsModule,
     SharedModule,
-    AdminModule,
+    
 
 
   ],
-  providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

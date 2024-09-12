@@ -1,0 +1,213 @@
+/* your-component-name.component.scss */
+
+.content-wrapper {
+    padding: 30px;
+  }
+  
+  .card-profile {
+    margin-bottom: 20px;
+  }
+  
+  .card-header-bg {
+    height: 140px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .card-profile-body {
+    text-align: center;
+  }
+  
+  .profile-avata img {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .card-footer {
+    padding: 20px;
+  }
+  
+  
+  .table-product img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .dropdown-menu {
+    min-width: 160px;
+  }
+  
+  .custom-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px 20px;
+  }
+  
+  .card-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0;
+  }
+  
+  .card-header .dropdown-toggle {
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .table-product {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  
+  .table-product thead {
+    background-color: #f5f5f5;
+    font-weight: 600;
+  }
+  
+  .table-product th, .table-product td {
+    padding: 12px 15px;
+    vertical-align: middle;
+    font-size: 14px;
+  }
+  
+  .table-product img {
+    width: 40px;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .table-product .dropdown-toggle {
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .table-product .dropdown-toggle:after {
+    display: none;
+  }
+  
+  .table-product .dropdown-menu {
+    min-width: 120px;
+    font-size: 14px;
+  }
+  .table-hover{
+    background-color: #dee2e6;
+  }
+  .table-product tr{
+    height: 4rem;
+  }
+
+  /* button :active{
+   background-color: rgb(229, 124, 35)!important;
+   color: white;
+  } */
+
+
+  /* General Styles */
+  .card-header {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .table-product {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+  .table-product th, .table-product td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .table-product thead th {
+    background-color: #343a40;
+    color: #fff;
+    font-weight: bold;
+    border-bottom: 2px solid #fff;
+  }
+
+  .table-product tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+
+  .table-product tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .table-product img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    color: #343a40;
+  }
+
+  .icon-burger-mini {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .dropdown-menu {
+    min-width: 150px;
+  }
+
+  .dropdown-item {
+    font-size: 0.875rem;
+  }
+
+  /* Chart Container */
+  .table-product .chart-container {
+    width: 100px;
+    height: 50px;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .table-product thead {
+      display: none;
+    }
+
+    .table-product, .table-product tbody, .table-product tr, .table-product td {
+      display: block;
+      width: 100%;
+    }
+
+    .table-product td {
+      text-align: right;
+      position: relative;
+      padding-left: 50%;
+      padding-bottom: 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    .table-product td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      width: 45%;
+      padding-left: 1rem;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+  }
+

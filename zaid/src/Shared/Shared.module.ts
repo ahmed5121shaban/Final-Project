@@ -17,6 +17,7 @@ import { NotificationsComponent } from './Components/notifications/notifications
 import { HomeComponent } from './Components/home/home.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import { ChatComponent } from './chat/chat.component';
+import { UserLayoutComponent } from './Components/user-layout/user-layout.component';
 
 
 @NgModule({
@@ -54,7 +55,10 @@ import { ChatComponent } from './chat/chat.component';
     NotificationsComponent,
     NotFoundComponent,
     ContactUsComponent,
-    ChatComponent
+    ChatComponent,
+  
+    UserLayoutComponent,
+    
 
 
   ],
@@ -66,7 +70,10 @@ import { ChatComponent } from './chat/chat.component';
   exports: [
     NavComponent,
     FooterComponent,
-    LoaderComponent
+    LoaderComponent,
+  
+    
+    
   ]
 })
 export class SharedModule { }

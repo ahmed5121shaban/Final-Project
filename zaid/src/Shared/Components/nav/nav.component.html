@@ -1,125 +1,66 @@
-<div class="row">
+<nav class="navbar navbar-expand-lg navbar-custom ">
+    <div class="container">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarNav">
+            <form class="form form-inline mx-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+            <ul class="navbar-nav ">
+                <!-- Logged Out State -->
+                <!-- <li class="nav-item">
+              <a class="nav-link" routerLink="user/login">Login</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLink="user/register">Sign Up</a>
+          </li> -->
 
+                <!-- Logged In State (Hidden by Default) -->
+                <li class="nav-item dropdown " id="notificationsDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left notifications-dropdown"
+                        aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">
+                            <strong>New Bid Placed</strong>
+                            <div>A new bid has been placed on your item.</div>
+                            <div class="notification-time">2024-08-26 14:30</div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <strong>Item Sold</strong>
+                            <div>Your item has been sold successfully.</div>
+                            <div class="notification-time">2024-08-25 16:45</div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <strong>Payment Received</strong>
+                            <div>Your payment has been processed.</div>
+                            <div class="notification-time">2024-08-24 10:15</div>
+                        </a>
+                        <a class=" dropdown-item text-decoration-none  " routerLink="../shared/notifications">See All
+                            Notifications</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown " id="profileDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdownLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdownLink">
+                        <a class="dropdown-item" routerLink="user/profile">My Profile</a>
 
-  <nav class="navbar navbar-expand-lg row mb-3">
-    <div class="container-fluid">
-      <div class="navbar-brand  col-sm-2 col-md-2 col-4">
-        <a href=""><img src="" alt="Logo" class="img-fluid"></a>
-      </div>
-
-      <div class="col-md-5 col-sm-6  d-sm-inline d-none col-xl-6 ">
-        <form class="input-group w-100 mt-3">
-          <div class="search-box w-100">
-            <i class="fa fa-search"></i>
-            <input type="search" class="form-control ps-5" placeholder="Search items & sellers">
-          </div>
-        </form>
-      </div>
-
-      <div class="col-md-5 col-sm-3 col-lg-4 col-5  col-xl-4  justify-content-center align-content-center">
-        <ul class="navbar-nav row d-flex flex-row justify-content-end justify-content-md-center">
-
-          <li class="col-3 col-md-2 nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle d-none d-xl-inline" id="notificationsDropdown" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-              <i class="fas fa-bell" style="color: rgb(229, 124, 35); font-size: 22px;"></i>
-            </a>
-            <button class="btn  offcanvas-btn d-inline d-xl-none" data-bs-toggle="offcanvas"
-              aria-controls="notificationsOffcanvas" data-bs-target="#notificationsOffcanvas">
-              <i class="fas fa-bell" style="color: rgb(229, 124, 35); font-size: 22px;"></i>
-
-            </button>
-            <ul class="dropdown-menu  notificationsDropdown position-absolute " aria-labelledby="notificationsDropdown">
-              <li class="notification-item ">
-                <a class="notification-link" href="#">
-                  <div>
-                    <p class="notification-text">Notification </p>
-
-                    <div class="notification-time">2024-07-24 14:30</div>
-                  </div>
-                  <span class="remove-notification">&times;</span>
-                </a>
-              </li>
-              <li class="notification-item ">
-                <a class="notification-link" href="#">
-                  <div>
-                    <p class="notification-text">Notification </p>
-
-                    <div class="notification-time">2024-07-24 14:30</div>
-                  </div>
-                  <span class="remove-notification">&times;</span>
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="See-all" routerLink="shared/notifications">See all notifications</a></li>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+                <li class="nav-item " id="sellLink">
+                    <a class="nav-link btn btn-primary text-start" routerLink="../action/create-auction">Sell</a>
+                </li>
             </ul>
-          </li>
-  <li class="col-md-2 col-lg-2 col-5">
-            <a routerLink="user/login">Login</a>
-          </li>
-
-          <li class="nav-item col-md-2 col-lg-2 col-3">
-            <a href="user/register">Signup</a>
-          </li>
-          <li class="col-4  nav-item dropdown">
-            <a class="nav-link dropdown-toggle " role="button" data-bs-toggle="dropdown" aria-expanded="false"
-              aria-haspopup="true" id="profileDropdown"><i class="fas fa-user"
-                style="line-height: 1; color:#ffffff; font-size: 22px;"></i><span class="d-none d-md-inline"
-                style=" margin-left: 15px !important; ">Profile</span></a>
-            <ul class="dropdown-menu position-absolute profileDropdown " style=" margin-left: -83px !important; " aria-labelledby="profileDropdown">
-              <li class="profile-item">
-                <a class="profile-link" href="user/profile">
-                  My Profile
-                </a>
-              </li>
-
-              <li class="profile-item">
-                <a routerLink="">Logout</a>
-              </li>
-            </ul>
-          </li>
-
-
-        </ul>
-
-      </div>
-    </div>
-
-  </nav>
-  <div class="row justify-content-center  d-sm-none search-md ">
-    <div class="col-11">
-      <form class="input-group w-100 mt-3">
-        <div class="search-box w-100">
-          <i class="fa fa-search"></i>
-          <input type="search" class="form-control ps-5" placeholder="Search items & sellers">
         </div>
-      </form>
+
     </div>
-  </div>
-
-</div>
-
-<div class="offcanvas offcanvas-end" id="notificationsOffcanvas" tabindex="-1">
-  <div class="offcanvas-header d-flex justify-content-between p-1"
-    style="background-color: #003285;color: white;padding: 3px 10px !important;">
-    <h5 class="offcanvas-title">Notifications</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <ul class="list-unstyled">
-      <li class="notification-item">
-        <a class="notification-link" href="#">
-          <div>
-            <p class="notification-text" style="color:black">Notification</p>
-            <div class="notification-time">2024-07-24 14:30</div>
-          </div>
-          <span class="remove-notification">&times;</span>
-        </a>
-      </li>
-      <!-- More notifications... -->
-      <li><a class="dropdown-item See-all" routerLink="shared/notifications">See all notifications</a></li>
-    </ul>
-  </div>
-</div>
+</nav>
