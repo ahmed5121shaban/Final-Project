@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
       title:'Classic Car Auction 3',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://picsum.photos/501/510'
+      image:'https://picsum.photos/520/510'
     },
     {
       title:'Classic Car Auction 4',
@@ -77,10 +77,10 @@ export class HomeComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: true,
+    dots: false,
     navSpeed: 300,
-    navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
-              '<img src="next-filled-svgrepo-com.svg" width="50px">'],
+    navText: ['<',
+              '>'],
     responsive: {
       0: {
         items: 1
@@ -106,8 +106,8 @@ export class HomeComponent implements OnInit {
     pullDrag: true,
     dots: false,
     navSpeed: 300,
-    navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
-              '<img src="next-filled-svgrepo-com.svg" width="50px">'],
+    navText: ['<',
+              '>'],
     responsive: {
       0: {
         items: 1
@@ -159,8 +159,8 @@ export class HomeComponent implements OnInit {
     pullDrag: true,
     dots: false,
     navSpeed: 300,
-    navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
-              '<img src="next-filled-svgrepo-com.svg" width="50px">'],
+    navText: ['<',
+              '>'],
     responsive: {
       0: {
         items: 2
@@ -172,7 +172,7 @@ export class HomeComponent implements OnInit {
         items: 6
       },
       940: {
-        items: 9
+        items: 13
       }
     },
     slideBy: 5,

@@ -1,11 +1,9 @@
 .card-custom {
   border-radius: 15px;
-  transition: transform 0.3s;
   position: relative ;
   overflow: hidden ;
 }
 .card-custom:hover {
-  transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 .card-title-custom {
