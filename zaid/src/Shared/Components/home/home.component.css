@@ -231,8 +231,10 @@ border-bottom: 1px solid #999; */
   text-align: left;
 }
 .custom-product-card{
-  background-color: #f4f4f4;
+  background-color: #ffffff;
+
 }
+
 .card-icon{
   position: absolute;
   top: 10%;
