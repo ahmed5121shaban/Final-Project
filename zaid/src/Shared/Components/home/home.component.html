@@ -291,27 +291,34 @@
 
     <h2 class="mb-5 fw-bold">Featured Auctions</h2>
 
+
+
+
     <div class="feature-parent-card">
 
       <owl-carousel-o [options]="customOptions" class="d-flex flex-nowrap ">
           @for (item of items; track $index) {
             <ng-template carouselSlide>
-            <div  class="featured-card-carsoule me-3 ">
-              <div class="card border-0 shadow-sm featured-auction">
-                <img
-                  src="{{item.image}}"
-                  class="card-img-top"
-                  alt="Classic Car Auction"
-
-                  style="background-color: brown !important;"
-                />
-                <div class="card-body">
-                  <a [owlRouterLink]="['/action/auction-list']" class="card-title text-decoration-none fw-bold ">{{item.title}}</a>
-                  <p class="card-text">Date: {{item.text1}}</p>
-                  <p class="card-text">Starting Bid: {{item.text2}}</p>
+              <div class="custom-card mt-5 me-2 border border-1  rounded-2">
+                <div class=" position-relative">
+                  <img src="{{item.image}}" class="card-img-top" alt="Mark Seliger Print">
+                  <div class=" card-icon bg-dark">
+                    <i class="fa-regular fa-heart " style="color: #ffffff;"></i>
+                  </div>
                 </div>
-              </div>
-            </div>
+
+                  <div class="card-body p-1">
+                    <a [owlRouterLink]="['/action/auction-list']" class="card-title text-decoration-none fw-bold">{{item.title}} <br>MARK SELIGER. PRINT</a>
+                    <p class="mb-1"><small class="text-muted">{{item.text1}}</small></p>
+                    <p class="bids">53 bids</p>
+                    <p class="price">{{item.text2}} EUR</p>
+                  </div>
+                </div>
+
+
+
+
+
           </ng-template>
           }
       </owl-carousel-o>
