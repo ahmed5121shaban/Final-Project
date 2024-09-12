@@ -32,16 +32,24 @@
 /* Home Category Carousel button start*/
 
 .categoryCarousel .owl-next{
-  background-color: rgba(240, 248, 255, 0) !important;
+  background-color: rgb(5, 66, 120) !important;
+  border-radius: 20Px !important;
+  width: 30px !important;
+  height: 30px !important;
+  font-weight: 900 !important;
   position: absolute;
-  bottom: 15%;
+  bottom: 45%;
   left: 98%;
-
 }
+
 .categoryCarousel .owl-prev{
-  background-color: rgba(240, 248, 255, 0) !important;
+  background-color: rgb(5, 66, 120) !important;
+  border-radius: 20Px !important;
+  width: 30px !important;
+  height: 30px !important;
+  font-weight: 900 !important;
   position: absolute;
-  bottom: 15%;
+  bottom: 45%;
   right: 99%;
 }
 
