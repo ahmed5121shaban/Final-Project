@@ -164,12 +164,12 @@ body{
 
 
 .btn-primary{
-  background-color: #003285!important;
-  border-color: #003285 !important;
+  background-color: rgb(44, 40, 36)!important;
+  border-color:rgb(44, 40, 36) !important;
 }
 .btn-primary:hover{
-  background-color: #003385a1!important;
-  border-color: #003285a1 !important;
+  background-color:#003285!important;
+  border-color: #003285 !important;
 }
 .btn-outline-primary{
   border-color: #ffffff !important;
@@ -190,15 +190,7 @@ body{
   background-color: rgba(229, 126, 35, 0.845)!important;
   border-color: rgbargb(229, 124, 35)!important;
 }
-.btn-outline-primary{
-  border-color: #ffffff !important;
-  color: #ffffff !important;
-}
-.btn-outline-primary:hover{
-  background-color: #ffffff !important;
-  border-color: #ffffff !important;
-  color: #003285 !important;
-}
+
 a{
   color: rgba(0, 0, 0, 0.65);
 }
