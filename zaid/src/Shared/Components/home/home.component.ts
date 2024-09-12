@@ -18,13 +18,17 @@ export class HomeComponent implements OnInit {
       title:'Classic Car Auction 1',
       text1:'August 15, 2024',
       text2:'$10,000',
+
       image:'https://picsum.photos/501/500'
+
     },
     {
       title:'Classic Car Auction 2',
       text1:'August 15, 2024',
       text2:'$10,000',
+
       image:'https://picsum.photos/510/500'
+
     },
     {
       title:'Classic Car Auction 3',
@@ -65,11 +69,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    //setInterval(()=>{
-
-    //},3000)
-  }
+  ngOnInit() {}
 
 
   customOptions: OwlOptions = {
@@ -178,22 +178,15 @@ export class HomeComponent implements OnInit {
     slideBy: 5,
     nav: true
   }
+
   toNext(next:HTMLElement){
     let next1 = next?.children
     next?.prepend(next1?.item(next1.length - 1) as HTMLElement)
-
-               /*  let allChild = next.parentElement?.firstChild?.lastChild
-              let child = allChild?.childNodes
-              allChild?.replaceChild(child?.item(0) as ChildNode,child?.item(this.items.length -1) as ChildNode )
-              console.log(child) */
-              //let allChild = next.parentElement?.firstElementChild?.lastElementChild;
   }
 
   toPrev(prev:HTMLElement){
     let prev1 = prev?.children
     prev?.append(prev1.item(0) as HTMLElement)
-
-               //let allChild = prev.parentElement?.firstElementChild?.lastElementChild
   }
 
 }

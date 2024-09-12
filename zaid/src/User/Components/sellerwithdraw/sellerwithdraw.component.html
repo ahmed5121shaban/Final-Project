@@ -2,7 +2,7 @@
     <div class="row mt-5 mb-5" >
         <div class="col-lg-6 col-12 ">
             <div class="mb-4">
-                <a routerLink ="/seller-earnings" class="text-dark"><i class="fa-solid fa-arrow-left"></i>   Back to Earnings</a>
+                <a routerLink ="/user/seller-earnings" class="text-dark"><i class="fa-solid fa-arrow-left"></i>   Back to Earnings</a>
             </div>
             <h2 class="mb-5">Withdraw balance</h2>
             <div class="mb-5">
@@ -12,11 +12,11 @@
             <div>
                 <h4 class="text-secondary fw-normal mb-3">Select your preferred payout method.</h4>
                 <div class="d-flex flex-column">
-                <a href="#" class="btn  btn-lg mb-3 rounded rounded-1 border-black border-1" data-bs-toggle="modal" data-bs-target="#paypalModal"><img src="Images/paypal.svg" alt=""></a>
-                <a href="#" class="btn  btn-lg mb-3 rounded rounded-1 border-black border-1" data-bs-toggle="modal" data-bs-target="#stripeModal"><img src="Images/stripe.svg" alt=""></a>
+                <a href="#" class="btn  mb-3 rounded rounded-1 border-black border-1" data-bs-toggle="modal" data-bs-target="#paypalModal"><img src="Images/paypal.svg" alt=""></a>
+                <a href="#" class="btn  mb-3 rounded rounded-1 border-black border-1" data-bs-toggle="modal" data-bs-target="#stripeModal"><img src="Images/stripe.svg" alt=""></a>
                 
                 <div class="modal fade"  id="paypalModal" tabindex="-1" aria-labelledby="paypalModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-dialog modal-dialog-centered modal">
                         <div class="modal-content">
                             <div  class="d-flex justify-content-end my-4 mx-4">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -60,9 +60,9 @@
 
             </div>
             <div class="modal fade"  id="stripeModal" tabindex="-1" aria-labelledby="stripeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-dialog modal-dialog-centered modal">
                     <div class="modal-content">
-                        <div  class="d-flex justify-content-end my-4 mx-4">
+                        <div  class="d-flex justify-content-end my-4 mx-4 ">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                         <div class="modal-body">

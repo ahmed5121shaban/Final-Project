@@ -3,7 +3,7 @@
 <div class="container mt-5">
   <div class="row g-5">
     <div class="col-md-6 pe-lg-5">
-      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="form mb-4 ubuntu-regular" novalidate>
+      <form [formGroup]="contactForm"  (ngSubmit)="onSubmit()" class="form mb-4 ubuntu-regular" novalidate>
         <h1 class=" fs-3 fw-semibold text-primary mb-9 ubuntu-light">Send Us Email</h1>
         <div class="row mb-2">
           <div class="col-md-6 mb-3">
@@ -19,7 +19,7 @@
             <div *ngIf="contactForm.get('email')?.invalid && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched)" class="invalid-feedback">
               Please enter a valid email.
             </div>
-          </div>
+        </div>
         </div>
         <div class="mb-3">
           <label class="fs-5 fw-semibold mb-2 text-primary">Subject</label>

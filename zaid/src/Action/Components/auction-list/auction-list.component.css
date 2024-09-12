@@ -9,27 +9,3 @@
   color:#64748b;
 
 }
-.custum-container{
-  margin-left: 10rem;
-  margin-right: 10rem;
-
-}
-.custum-btn{
-  background-color: #1e0f57 !important;
-
-}
-@media (max-width:1700px) {
-  .custum-container{
-    margin-left: 5rem;
-  margin-right: 5rem;
-
-  }
-
-}
-@media (max-width:700px){
-  .custum-container{
-    margin-left: 1rem;
-  margin-right: 1rem;
-
-}
-}

@@ -36,7 +36,7 @@ export class LoginComponent {
   }
 
   loginUser() {
-    console.log(this.form.value)
+    // console.log(this.form.value)
     const { email, password } = this.form.value;
     this.authService.getUserByEmail(email).subscribe(
       response => {
