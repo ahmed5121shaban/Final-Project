@@ -53,12 +53,13 @@
                     </div>
                     <div class="mt-4">
                         <form [formGroup]="paypalForm" (submit)="paypalSubmit()">
-                            <div class="mb-3">
-                                <label for="paypalEmail" class="form-label">PayPal Email</label>
-                                <input type="email" class="form-control" formControlName="paypalEmail"
+                            <div class="form-floating mb-3">
+                                <input type="email" id="floatingInput" class="form-control" formControlName="paypalEmail"
                                 [class]="{'is-valid':paypalEmail?.valid&&paypalEmail?.dirty,
                                           'is-invalid':paypalEmail?.invalid&&paypalEmail?.dirty}"
                                          id="paypalEmail" placeholder="PayPal email" required>
+                                         <label for="floatingInput" class="ms-3">PayPal Email</label>
+
                                         @if (paypalEmail?.errors?.['email']) {
                                           <div class="invalid-feedback">must valid email!</div>
                                         }@else {
@@ -81,12 +82,13 @@
                     </div>
                     <div class="mt-4">
                         <form [formGroup]="stripeForm" (submit)="stripeSubmit()">
-                            <div class="mb-3">
-                                <label for="stripeEmail" class="form-label">Stripe Email</label>
-                                <input type="email" class="form-control" formControlName="stripeEmail"
+                            <div class="form-floating mb-3">
+                                <input type="email" id="floatingInput" class="form-control" formControlName="stripeEmail"
                                 [class]="{'is-valid':stripeEmail?.valid&&stripeEmail?.dirty,
                                           'is-invalid':stripeEmail?.invalid&&stripeEmail?.dirty}"
                                  id="stripeEmail" placeholder="Stripe email" required>
+                                 <label for="floatingInput" class="ms-3">Stripe Email</label>
+
                                  @if (stripeEmail?.errors?.['email']) {
                                   <div class="invalid-feedback">must valid email!</div>
                                  }@else{
@@ -94,12 +96,13 @@
                                  }
 
                             </div>
-                            <div class="mb-3">
-                                <label for="stripeAPIKey" class="form-label">API Key</label>
-                                <input type="text" class="form-control" formControlName="stripeAPIKey"
+                            <div class="form-floating mb-3">
+                                <input type="text" id="floatingInput" class="form-control" formControlName="stripeAPIKey"
                                 [class]="{'is-valid':stripeAPIKey?.valid&&stripeAPIKey?.dirty,
                                           'is-invalid':stripeAPIKey?.invalid&&stripeAPIKey?.dirty}"
                                        id="stripeAPIKey" placeholder="API Key" required>
+                                       <label for="floatingInput" class="ms-3">API Key</label>
+
                                        @if (stripeAPIKey?.errors?.['required']) {
                                         <div class="invalid-feedback">this input is required!</div>
                                        }

@@ -9,8 +9,8 @@ export class NotificationsComponent {
 
   
  notifications=[
-  {content:"auction is started",time:"10 minutes "},
-  {content:"auction is started",time:"10 minutes"}
+  {link:"",content:"auction is started",time:"10 minutes "},
+  {link:"",content:"auction is started",time:"10 minutes "},
 ]
 
 
