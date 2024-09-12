@@ -77,10 +77,10 @@ export class HomeComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: true,
+    dots: false,
     navSpeed: 300,
-    navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
-              '<img src="next-filled-svgrepo-com.svg" width="50px">'],
+    navText: ['<',
+              '>'],
     responsive: {
       0: {
         items: 1
@@ -106,8 +106,8 @@ export class HomeComponent implements OnInit {
     pullDrag: true,
     dots: false,
     navSpeed: 300,
-    navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
-              '<img src="next-filled-svgrepo-com.svg" width="50px">'],
+    navText: ['<',
+              '>'],
     responsive: {
       0: {
         items: 1

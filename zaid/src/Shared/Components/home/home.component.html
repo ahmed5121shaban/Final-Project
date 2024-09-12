@@ -183,7 +183,7 @@
             class="card-body d-flex flex-column justify-content-evenly"
             style="height: 35vh"
           >
-            <h4 class="card-title fw-bold">Wide Variety of Auctions</h4>
+            <h4 class="card-title-how fw-bold">Wide Variety of Auctions</h4>
             <p class="card-text">
               From art and antiques to cars and collectibles, we have it all.
             </p>
@@ -198,7 +198,7 @@
             class="card-body d-flex flex-column justify-content-evenly"
             style="height: 35vh"
           >
-            <h4 class="card-title fw-bold">Secure Bidding</h4>
+            <h4 class="card-title-how fw-bold">Secure Bidding</h4>
             <p class="card-text">
               Your bids and transactions are secure with our top-notch
               encryption.
@@ -213,7 +213,7 @@
             class="card-body d-flex flex-column justify-content-evenly"
             style="height: 35vh"
           >
-            <h4 class="card-title fw-bold">Expert Auctioneers</h4>
+            <h4 class="card-title-how fw-bold">Expert Auctioneers</h4>
             <p class="card-text">
               Our experienced auctioneers ensure a smooth and fair bidding
               process.
@@ -228,7 +228,7 @@
             class="card-body d-flex flex-column justify-content-evenly"
             style="height: 35vh"
           >
-            <h4 class="card-title fw-bold">24/7 Customer Support</h4>
+            <h4 class="card-title-how fw-bold">24/7 Customer Support</h4>
             <p class="card-text">
               We're here to help you every step of the way, anytime you need us.
             </p>
@@ -289,7 +289,7 @@
 <section class="py-5 bg-light position-relative parent-of-card">
   <div class="container pt-5">
 
-    <h2 class="mb-5 fw-bold">Featured Auctions</h2>
+    <a routerLink="../action/auction-list" class="mb-5 fs-2 fw-bold text-decoration-none">Featured Auctions</a>
 
 
 
@@ -299,11 +299,11 @@
       <owl-carousel-o [options]="customOptions" class="d-flex flex-nowrap ">
           @for (item of items; track $index) {
             <ng-template carouselSlide>
-              <div class="custom-card mt-5 me-2 border border-1  rounded-2">
+              <div class="custom-product-card mt-5 me-2 border border-1  rounded-2">
                 <div class=" position-relative">
                   <img src="{{item.image}}" class="card-img-top" alt="Mark Seliger Print">
                   <div class=" card-icon bg-dark">
-                    <i class="fa-regular fa-heart " style="color: #ffffff;"></i>
+                    <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
                   </div>
                 </div>
 
@@ -329,10 +329,6 @@
 
   </div>
 
-  <div class="text-center mt-4">
-    <a routerLink="../action/auction-list" class="btn btn-secondary">View All Auctions</a>
-  </div>
-
 </section>
 
 
@@ -341,29 +337,33 @@
 <section class="py-5 bg-light position-relative parent-of-card">
   <div class="container py-5">
 
-    <h2 class="mb-5 fw-bold">Live Auctions</h2>
+    <a routerLink="../action/auction-list" class="mb-5 fs-2 fw-bold text-decoration-none">Live Auctions</a>
 
     <div class="feature-parent-card">
 
       <owl-carousel-o [options]="liveAction" class="d-flex flex-nowrap ">
           @for (item of items; track $index) {
             <ng-template carouselSlide>
-            <div  class="featured-card-carsoule me-3 ">
-              <div class="card border-0 shadow-sm featured-auction">
-                <img
-                  src="{{item.image}}"
-                  class="card-img-top"
-                  alt="Classic Car Auction"
-
-                  style="background-color: brown !important;"
-                />
-                <div class="card-body">
-                  <a [owlRouterLink]="['/action/auction-list']" class="card-title text-decoration-none fw-bold ">{{item.title}}</a>
-                  <p class="card-text">Date: {{item.text1}}</p>
-                  <p class="card-text">Starting Bid: {{item.text2}}</p>
+              <div class="custom-product-card mt-5 me-2 border border-1  rounded-2">
+                <div class=" position-relative">
+                  <img src="{{item.image}}" class="card-img-top" alt="Mark Seliger Print">
+                  <div class=" card-icon bg-dark">
+                    <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
+                  </div>
                 </div>
-              </div>
-            </div>
+
+                  <div class="card-body p-1">
+                    <a [owlRouterLink]="['/action/auction-list']" class="card-title text-decoration-none fw-bold">{{item.title}} <br>MARK SELIGER. PRINT</a>
+                    <p class="mb-1"><small class="text-muted">{{item.text1}}</small></p>
+                    <p class="bids">53 bids</p>
+                    <p class="price">{{item.text2}} EUR</p>
+                  </div>
+                </div>
+
+
+
+
+
           </ng-template>
           }
       </owl-carousel-o>
@@ -374,9 +374,6 @@
 
   </div>
 
-  <div class="text-center mt-2 mb-5 pb-5">
-    <a routerLink="../action/auction-list" class="btn btn-secondary">All Live Auctions</a>
-  </div>
 
 </section>
 
@@ -395,38 +392,38 @@
     <div class=" d-lg-flex flex-wrap col-7  justify-content-end m-md-auto m-sm-auto  py-5">
 
       <div class="col-lg-5 col-md-12 col-sm-12 me-3 mb-3">
-        <div class="card border-0 shadow-sm h-100 card-hover">
-          <div class="card-body py-5 text-center">
-            <h4 class="card-title">Browse Auctions</h4>
-            <p class="card-text">
+        <div class="card-body-work border-0 shadow-sm h-100 card-hover">
+          <div class=" py-5 text-center">
+            <h4 class="card-title-how mb-4">Browse Auctions</h4>
+            <p class="">
               Explore our extensive list of upcoming and ongoing auctions.
             </p>
           </div>
         </div>
       </div>
       <div class="col-lg-5 col-md-12 col-sm-12 mb-3">
-        <div class="card border-0 shadow-sm h-100 card-hover">
-          <div class="card-body py-5 text-center">
-            <h4 class="card-title">Register to Bid</h4>
-            <p class="card-text">Sign up and create your bidder profile.</p>
+        <div class="card-body-work border-0 shadow-sm h-100 card-hover">
+          <div class=" py-5 text-center">
+            <h4 class="card-title-how mb-4">Register to Bid</h4>
+            <p class="">Sign up and create your bidder profile.</p>
           </div>
         </div>
       </div>
       <div class="col-lg-5 col-md-12 col-sm-12 me-3">
-        <div class="card border-0 shadow-sm h-100 card-hover">
-          <div class="card-body py-5 text-center">
-            <h4 class="card-title">Place Your Bid</h4>
-            <p class="card-text">
+        <div class="card-body-work border-0 shadow-sm h-100 card-hover">
+          <div class=" py-5 text-center">
+            <h4 class="card-title-how mb-4">Place Your Bid</h4>
+            <p class="">
               Enter your maximum bid and let our system handle the rest.
             </p>
           </div>
         </div>
       </div>
-      <div class="col-lg-5 col-md-12 col-sm-12 mt-md-3 mt-sm-3">
-        <div class="card border-0 shadow-sm h-100 card-hover">
-          <div class="card-body py-5 text-center">
-            <h4 class="card-title">Win and Pay</h4>
-            <p class="card-text">
+      <div class="last-card col-lg-5 col-md-12 col-sm-12 ">
+        <div class=" card-body-work border-0 shadow-sm h-100 card-hover">
+          <div class=" py-5 text-center">
+            <h4 class="card-title-how mb-4 ">Win and Pay</h4>
+            <p class="">
               If you win, proceed with the payment and await your item.
             </p>
           </div>
