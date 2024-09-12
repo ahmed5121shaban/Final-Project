@@ -7,16 +7,25 @@
 
 /* carousel button style start*/
 .parent-of-card .owl-next{
-  background-color: rgba(240, 248, 255, 0) !important;
+  background-color: rgb(176, 176, 176) !important;
+  border-radius: 20Px !important;
+  width: 30px !important;
+  height: 30px !important;
+  font-weight: 900 !important;
+
   position: absolute;
   top: 40%;
-  left:  98%;
+  left:  97%;
 }
 .parent-of-card .owl-prev{
-  background-color: rgba(240, 248, 255, 0) !important;
+  background-color: rgb(176, 176, 176) !important;
+  border-radius: 20Px !important;
+  width: 30px !important;
+  height: 30px !important;
+  font-weight: 900 !important;
   position: absolute;
   top: 40%;
-  right:  99%;
+  right:  98%;
 
 }
 /* carousel button style end*/
