@@ -159,8 +159,8 @@ export class HomeComponent implements OnInit {
     pullDrag: true,
     dots: false,
     navSpeed: 300,
-    navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
-              '<img src="next-filled-svgrepo-com.svg" width="50px">'],
+    navText: ['<',
+              '>'],
     responsive: {
       0: {
         items: 2
@@ -172,7 +172,7 @@ export class HomeComponent implements OnInit {
         items: 6
       },
       940: {
-        items: 9
+        items: 13
       }
     },
     slideBy: 5,
