@@ -82,15 +82,12 @@
 }
 .testimonialOption .owl-dot span{
   width: 50px !important;
-  background-color: #E57C23 !important;
+  background-color: rgb(208, 208, 208) !important;
 }
 .testimonialOption .owl-dot.active span{
-  background-color: #E8AA42 !important;
+  background-color: rgb(146, 146, 146) !important;
 }
 /* Home Testimonial Carousel dot end */
-
-
-
 
 
 
