@@ -1,5 +1,5 @@
 .hero-section {
-  background-image:linear-gradient(#bebebe,#6b6b6b), url('https://via.placeholder.com/1920x600');
+  background-image:linear-gradient(#bebebe0e,#363636b4), url('https://picsum.photos/1500/1500');
   background-size: cover;
   background-position: center;
 }
@@ -43,6 +43,8 @@
 .card-title {
   font-weight: bold;
 }
+
+
 .testimonial-blockquote {
   background: #f8f9fa;
   border-left: 5px solid #212222;
@@ -195,3 +197,63 @@ border-bottom: 1px solid #999; */
  }
 }
 
+
+
+.custom-card img {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+.card-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.small-text {
+  font-size: 0.8rem;
+  color: #6c757d;
+  text-align: left;
+}
+
+.bids {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-align: left;
+}
+
+.price {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #28a745;
+  text-align: left;
+}
+.custom-product-card{
+  background-color: #ffffff;
+
+}
+
+.card-icon{
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  padding: 4px 7px;
+  border-radius: 20px;
+}
+
+.card-title-how{
+  margin: 0 auto;
+}
+.card-body-work{
+  background-color: #fafafa;
+  border-radius: 20px;
+  color:#007bff;
+}
+
+@media screen and (max-width: 991px){
+  .last-card{
+    margin-top: 20px;
+  }
+}

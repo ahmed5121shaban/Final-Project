@@ -18,58 +18,58 @@ export class HomeComponent implements OnInit {
       title:'Classic Car Auction 1',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+
+      image:'https://picsum.photos/501/500'
+
     },
     {
       title:'Classic Car Auction 2',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+
+      image:'https://picsum.photos/510/500'
+
     },
     {
       title:'Classic Car Auction 3',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/520/510'
     },
     {
       title:'Classic Car Auction 4',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/510/501'
     },
     {
       title:'Classic Car Auction 5',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/500/502'
     },
     {
       title:'Classic Car Auction 6',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/520/500'
     },
     {
       title:'Classic Car Auction 7',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/502/500'
     },
     {
       title:'Classic Car Auction 8',
       text1:'August 15, 2024',
       text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
+      image:'https://picsum.photos/500/520'
     }]
 
   }
 
-  ngOnInit() {
-    //setInterval(()=>{
-
-    //},3000)
-  }
+  ngOnInit() {}
 
 
   customOptions: OwlOptions = {
@@ -77,10 +77,10 @@ export class HomeComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: true,
-    navSpeed: 700,
-    navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
-              '<img src="next-filled-svgrepo-com.svg" width="50px">'],
+    dots: false,
+    navSpeed: 300,
+    navText: ['<',
+              '>'],
     responsive: {
       0: {
         items: 1
@@ -92,9 +92,10 @@ export class HomeComponent implements OnInit {
         items: 3
       },
       940: {
-        items: 3
+        items: 6
       }
     },
+    slideBy:5,
     nav: true
   }
 
@@ -104,9 +105,9 @@ export class HomeComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     dots: false,
-    navSpeed: 700,
-    navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
-              '<img src="next-filled-svgrepo-com.svg" width="50px">'],
+    navSpeed: 300,
+    navText: ['<',
+              '>'],
     responsive: {
       0: {
         items: 1
@@ -118,9 +119,10 @@ export class HomeComponent implements OnInit {
         items: 3
       },
       940: {
-        items: 4
+        items: 6
       }
     },
+    slideBy:5,
     nav: true
   }
 
@@ -156,41 +158,35 @@ export class HomeComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     dots: false,
-    navSpeed: 700,
-    navText: ['',
-              '<img src="next-filled-svgrepo-com.svg" width="50px">'],
+    navSpeed: 300,
+    navText: ['<',
+              '>'],
     responsive: {
       0: {
-        items: 3
+        items: 2
       },
       400: {
-        items: 5
+        items: 4
       },
       740: {
-        items: 9
+        items: 6
       },
       940: {
-        items: 15
+        items: 13
       }
     },
+    slideBy: 5,
     nav: true
   }
+
   toNext(next:HTMLElement){
     let next1 = next?.children
     next?.prepend(next1?.item(next1.length - 1) as HTMLElement)
-
-               /*  let allChild = next.parentElement?.firstChild?.lastChild
-              let child = allChild?.childNodes
-              allChild?.replaceChild(child?.item(0) as ChildNode,child?.item(this.items.length -1) as ChildNode )
-              console.log(child) */
-              //let allChild = next.parentElement?.firstElementChild?.lastElementChild;
   }
 
   toPrev(prev:HTMLElement){
     let prev1 = prev?.children
     prev?.append(prev1.item(0) as HTMLElement)
-
-               //let allChild = prev.parentElement?.firstElementChild?.lastElementChild
   }
 
 }
