@@ -3,11 +3,11 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-12 col-lg-10 col-xl-8 col-xxl-8">
                 <div class="card border-0 shadow-sm rounded-4">
-                    <div class="card-body p-3 p-md-4 p-xl-5">
+                    <div class="card-body p-2 p-md-3 p-xl-4">
                         <div class="row">
                             <div class="col-12">
                                 <div class="mb-5">
-                                    <h2 class="h3 text-center text-primary">Create Auction</h2>
+                                    <h2 class="h3 text-center text-primary">Create New Auction</h2>
                                 </div>
                             </div>
                         </div>
@@ -24,12 +24,7 @@
                                                     @if(auctionForm.controls['itemTitle'].hasError("required")){
                                                         <span>item Title is required </span>
                                                     }
-                                                    <!--  @else if (auctionForm.controls['itemTitle'].hasError("minLength")) {
-                                                        <span>Title must be at least 3 characters long </span> -->
-
-                                                <!-- }@else if (auctionForm.controls['itemTitle'].hasError("maxLength")) {
-                                                        <span> Title cannot be more than 20 characters long</span>
-                                                    } -->
+                                               
                                                  </div>
                                         <label for="itemTitle" class="form-label">Item Title</label>
                                     </div>
@@ -45,11 +40,7 @@
                                                     @if(auctionForm.controls['itemDescription'].hasError("required")){
                                                         <span>Item description is required </span>
                                                     }
-                                                    <!-- @else if (auctionForm.controls['itemDescription'].hasError("MinLengthValidator")) {
-                                                        <span>Description must be at least 10 characters long. </span>
-                                                    }@else if (auctionForm.controls['itemDescription'].hasError("MaxLengthValidator")) {
-                                                        <span>Description cannot be more than 150 characters long</span>
-                                                    } -->
+                                                   
                                                  </div>
                                         <label for="itemDescription" class="form-label">Item Description</label>
                                     </div>
@@ -115,7 +106,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="mb-3">
-                                        <label for="formFileMultiple" class="form-label">Upload multiple Images</label>
+                                        <label for="formFileMultiple" class="form-label fs-5">Upload multiple Images</label>
                                         <input class="form-control" type="file" (change)="choose($event)"  id="formFileMultiple" multiple formControlName="images"
                                         [ngClass]="{
                                             'is-invalid': auctionForm.controls['images'].invalid && auctionForm.controls['images'].touched
@@ -150,13 +141,13 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="mb-3">
-                                        <label for="formFileMultiple" class="form-label">Upload item Warranty certificate or contract  (if has)</label>
+                                        <label for="formFileMultiple" class="form-label fs-5">Upload item Warranty certificate or contract  (if has)</label>
                                         <input class="form-control" type="file" id="formFileMultiple" multiple>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 mb-2">
                                     <div class="form-check">
-                                      <label for="paymentMethods" class="form-label">Payment Methods</label>
+                                      <label for="paymentMethods" class="form-label fs-5">Payment Methods</label>
                                       <div class="form-check mt-2">
                                         <input class="form-check-input" type="radio" id="paymentPaypal" formControlName="paymentMethod"
                                           name="paymentMethod" value="paypal"  [ngClass]="{
@@ -178,8 +169,9 @@
                                     </div>
                                   </div>
                                 <div class="col-12">
-                                    <div class="d-grid">
-                                        <button class="btn bsb-btn-2xl btn-primary" type="submit" [disabled]="auctionForm.invalid" >Create</button>
+                                    <div class="d-flex justify-content-end align-items-end">
+                                        <button class="btn btn-secondary me-3 my-4 px-5">Submit</button>
+                                        <button class="btn btn-outline-primary bg-transparent my-4 px-4">Cancel</button>
                                     </div>
                                 </div>
                             </div>
