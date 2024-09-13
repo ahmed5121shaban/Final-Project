@@ -6,6 +6,8 @@
 
 
 /* carousel button style start*/
+
+
 .parent-of-card .owl-next{
   background-color: rgb(176, 176, 176) !important;
   border-radius: 20Px !important;
@@ -200,31 +202,36 @@ body{
 .btn-primary{
   background-color: rgb(44, 40, 36)!important;
   border-color:rgb(44, 40, 36) !important;
-  background-color: rgb(44, 40, 36)!important;
-  border-color:rgb(44, 40, 36) !important;
+border-radius: 0px;
+ 
 }
 .btn-primary:hover{
   background-color:rgba(44, 40, 36, 0.577) !important;
-  border-color: rgba(44, 40, 36, 0.577)  !important;
+  border-color:rgb(44, 40, 36, 0.577) !important;
+
 }
 .btn-outline-primary{
-  border-color: #ffffff !important;
-  color: #ffffff !important;
+  border-color: rgba(44, 40, 36)!important;
+  color: rgba(44, 40, 36)!important;
+  border-radius: 0px;
+
+
 }
 .btn-outline-primary:hover{
-  background-color: #ffffff !important;
-  border-color: #ffffff !important;
-  color: rgba(44, 40, 36)!important;
+  background-color: rgba(44, 40, 36)!important;
+  border-color: rgba(44, 40, 36) !important;
+  color: #ffffff!important;
 }
 .btn-secondary{
   background-color: rgb(229, 124, 35)!important;
   border-color: rgb(229, 124, 35) !important;
   color: #ffffff !important;
+  border-radius: 0px;
 
 }
 .btn-secondary:hover{
-  background-color: rgba(229, 126, 35, 0.845)!important;
-  border-color: rgbargb(229, 124, 35)!important;
+  background-color: rgb(44, 40, 36)!important;
+  border-color: rgb(44, 40, 36)!important;
 }
 
 

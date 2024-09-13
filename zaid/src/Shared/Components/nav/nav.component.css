@@ -42,9 +42,16 @@
   background-color: white;
 }
 .form{
-  width:45%;
+  width:20%;
   border: 1px solid rgb(44, 40, 36) ;
-  margin-left:23% !important;
+  margin-left:0% !important;
+}
+.form input:focus{
+  border-color: #f67206 !important;
+  border-width: 0.5px;
+  box-shadow: none !important;
+  outline: none !important;
+
 }
 .navbar-custom .btn-primary {
   background-color: rgb(229, 124, 35);

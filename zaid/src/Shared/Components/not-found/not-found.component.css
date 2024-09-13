@@ -1,18 +1,8 @@
-body {
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200vh !important;
-    margin: 0  !important;
-}
 
 .not-found-container {
     text-align: center;
     background-color: #ffffff;
     padding: 100px  !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
@@ -28,24 +18,23 @@ body {
 
 .not-found-container img{
    animation:up-down 2s ease-in-out infinite alternate-reverse both;
+   width: 200px;
 }
 
 
 .not-found-container p {
-    font-size: 1.5em  !important;
     margin: 30px 0 20px  !important;
     color: #333333;
+    font-size: 18px !important;
 }
 
-.not-found-container .back-home {
-    text-decoration: none;
-    background-color: rgb(229, 124, 35);
-    color: #ffffff;
-    padding: 10px 20px  !important;
-    border-radius: 5px  !important;
-    transition: background-color 0.3s  !important;
-}
+@media (max-width:400px) {
+   
+.not-found-container img{
 
-.not-found-container .back-home:hover {
-    background-color: rgb(229, 124, 35);
-}
+    width: 70% !important;
+   }
+   p{
+    font-size: 1.3em !important;
+   }
+  }
