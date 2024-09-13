@@ -54,23 +54,8 @@
   font-size: 0.9em;
   color: #6c757d;
 }
-.newsletter-section .container {
-  background-color: #f8f9fa;
-}
 
 
-
-
-.newsletter-section .container .btn {
-  background-color: #003285;
-  color: #fff;
-}
-.newsletter-section .form-control {
-  border-radius: 0;
-}
-.newsletter-section .btn-primary {
-  border-radius: 0;
-}
 
 /* Card Hover Effects */
 .card-hover {
@@ -328,19 +313,18 @@ border-bottom: 1px solid #999; */
   color: #141414;
 }
 .why-choose-us .feature-box {
-  background: #fff;
+  background: #ffffff00;
   padding: 30px;
   margin-bottom: 30px;
   position: relative;
   overflow: hidden;
-
   transition: .4s;
 }
 .why-choose-us .feature-box:hover {
   transform: translateY(-10px);
 }
 .why-choose-us .feature-box:hover .fbc-btn{
-  background: #232323;
+  background: #212529;
   color: #fff;
 }
 .why-choose-us .feature-box::before {
@@ -352,8 +336,11 @@ border-bottom: 1px solid #999; */
   margin: auto;
   width: 90%;
   height: 70%;
-  background: #3e3e3e;
+  background: #212529;
   border-radius: 50%;
+}
+.why-choose-us .feature-box:hover::before {
+  background: #fff; /* Changes color on hover */
 }
 .why-choose-us .fbc-btn {
   display: inline-block;
