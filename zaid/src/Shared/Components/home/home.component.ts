@@ -166,17 +166,54 @@ export class HomeComponent implements OnInit {
         items: 2
       },
       400: {
+        items: 3
+      },
+      484: {
         items: 4
       },
       740: {
-        items: 6
+        items: 7
       },
       940: {
-        items: 13
+        items: 10
       }
     },
     slideBy: 5,
     nav: true
+  }
+
+  testimonialCarousel: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 300,
+    navText: ['<',
+              '>'],
+    responsive: {
+      0: {
+        items: 2
+      },
+      400: {
+        items: 3
+      },
+      484: {
+        items: 4
+      },
+      740: {
+        items: 7
+      },
+      940: {
+        items: 10
+      }
+    },
+    slideBy: 5,
+    nav: false,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+    autoplaySpeed: 1000,
   }
 
   toNext(next:HTMLElement){

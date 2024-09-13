@@ -41,7 +41,7 @@
 /* Home Category Carousel button start*/
 
 .categoryCarousel .owl-next{
-  background-color: rgb(5, 66, 120) !important;
+  background-color: #212121 !important;
   border-radius: 20Px !important;
   width: 30px !important;
   height: 30px !important;
@@ -52,14 +52,14 @@
 }
 
 .categoryCarousel .owl-prev{
-  background-color: rgb(5, 66, 120) !important;
+  background-color: #212121 !important;
   border-radius: 20Px !important;
   width: 30px !important;
   height: 30px !important;
   font-weight: 900 !important;
   position: absolute;
   bottom: 45%;
-  right: 99%;
+  right: 98%;
 }
 
 @media screen and (max-width: 700px) {

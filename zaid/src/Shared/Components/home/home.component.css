@@ -257,3 +257,8 @@ border-bottom: 1px solid #999; */
     margin-top: 20px;
   }
 }
+.event-section {
+  background-image:linear-gradient(#bebebe0e,#363636b4), url('https://picsum.photos/1501/1501');
+  background-size: cover;
+  background-position: center;
+}
