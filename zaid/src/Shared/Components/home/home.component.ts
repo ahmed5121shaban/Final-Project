@@ -193,19 +193,16 @@ export class HomeComponent implements OnInit {
               '>'],
     responsive: {
       0: {
-        items: 2
+        items: 1
       },
       400: {
-        items: 3
-      },
-      484: {
-        items: 4
+        items: 1
       },
       740: {
-        items: 7
+        items: 2
       },
       940: {
-        items: 10
+        items: 3
       }
     },
     slideBy: 5,

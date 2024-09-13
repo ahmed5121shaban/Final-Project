@@ -240,52 +240,8 @@
   </div>
 </section>
 
+
 <!-- Featured Auctions Section -->
-<!-- <section class="py-5 bg-light position-relative">
-  <div class="container pt-5">
-
-    <h2 class="mb-5 fw-bold">Featured Auctions</h2>
-
-    <div class="row flex-nowrap overflow-hidden feature-parent-card" #parent>
-
-      @for (item of items; track $index) {
-        <div  class="col-md-4 featured-card-carsoule">
-          <div class="card border-0 shadow-sm featured-auction">
-            <img
-              src="{{item.image}}"
-              class="card-img-top"
-              alt="Classic Car Auction"
-            />
-            <div class="card-body">
-              <h5 class="card-title">{{item.title}}</h5>
-              <p class="card-text">Date: {{item.text1}}</p>
-              <p class="card-text">Starting Bid: {{item.text2}}</p>
-            </div>
-          </div>
-        </div>
-      }
-
-
-    </div>
-
-
-  </div>
-
-  <div class="text-center mt-4">
-    <a href="#" class="btn btn-dark">View All Auctions</a>
-  </div>
-
-  <div class="position-absolute" #prev style="top: 50%; left: 4%;cursor: pointer;" (click)="toPrev(parent)">
-    <img width="40px"  src="previous-filled-svgrepo-com.svg"  alt="" />
-  </div>
-  <div class="position-absolute" #next style="top: 50%; right: 4%;cursor: pointer;" (click)="toNext(parent)">
-    <img width="45px"  src="next-filled-svgrepo-com.svg"  alt="" />
-  </div>
-</section>
- -->
-
-
-<!-- Featured Auctions Section (2) -->
 <section class="py-5 bg-light position-relative parent-of-card">
   <div class="container pt-5">
 
@@ -377,6 +333,68 @@
 
 </section>
 
+<!-- Category Section-->
+<section class="py-5 bg-light position-relative">
+  <div class="container my-5">
+    <a routerLink="../action/auction-list" class="mb-5 fs-2 fw-bold text-decoration-none">Popular searches</a>
+  </div>
+  <div class="container d-flex flex-wrap">
+    <a class="col-12 col-md-6 col-lg-6 mb-4 text-decoration-none" routerLink="../action/auction-list" style="height: 300px;">
+      <div class="shadow rounded-1" style="height: 80%; width: 97%;">
+        <img style="height: 100%; width: 100%;" src="https://picsum.photos/500/501" alt="">
+      </div>
+      <div class="pt-2">
+        <p class="fw-semibold opacity-75">Category Name</p>
+      </div>
+    </a>
+
+    <a class="col-12 col-md-6 col-lg-3 mb-4 text-decoration-none" routerLink="../action/auction-list" style="height: 300px;">
+      <div class="shadow rounded-1" style="height: 80%; width: 97%;">
+        <img style="height: 100%; width: 100%;" src="https://picsum.photos/500/502" alt="">
+      </div>
+      <div class="pt-2">
+        <p class="fw-semibold opacity-75">Category Name</p>
+      </div>
+    </a>
+
+    <a class="col-12 col-md-6 col-lg-3 mb-4 text-decoration-none" routerLink="../action/auction-list" style="height: 300px;">
+      <div class="shadow rounded-1" style="height: 80%; width: 97%;">
+        <img style="height: 100%; width: 100%;" src="https://picsum.photos/500/503" alt="">
+      </div>
+      <div class="pt-2">
+        <p class="fw-semibold opacity-75">Category Name</p>
+      </div>
+    </a>
+
+    <a class="col-12 col-md-6 col-lg-3 mb-4 text-decoration-none" routerLink="../action/auction-list" style="height: 300px;">
+      <div class="shadow rounded-1" style="height: 80%; width: 97%;">
+        <img style="height: 100%; width: 100%;" src="https://picsum.photos/500/504" alt="">
+      </div>
+      <div class="pt-2">
+        <p class="fw-semibold opacity-75">Category Name</p>
+      </div>
+    </a>
+
+    <a class="col-12 col-md-6 col-lg-6 mb-4 text-decoration-none" routerLink="../action/auction-list" style="height: 300px;">
+      <div class="shadow rounded-1" style="height: 80%; width: 97%;">
+        <img style="height: 100%; width: 100%;" src="https://picsum.photos/500/505" alt="">
+      </div>
+      <div class="pt-2">
+        <p class="fw-semibold opacity-75">Category Name</p>
+      </div>
+    </a>
+
+    <a class="col-12 col-md-6 col-lg-3 mb-4 text-decoration-none" routerLink="../action/auction-list" style="height: 300px;">
+      <div class="shadow rounded-1" style="height: 80%; width: 97%;">
+        <img style="height: 100%; width: 100%;" src="https://picsum.photos/500/506" alt="">
+      </div>
+      <div class="pt-2">
+        <p class="fw-semibold opacity-75">Category Name</p>
+      </div>
+    </a>
+  </div>
+</section>
+
 
 <!-- Event Section -->
 <section class=" event-section d-flex align-items-start py-5" style="height: 90vh">
@@ -395,57 +413,61 @@
 </section>
 
 <!-- How It Works Section -->
-<section class="py-5 bg-primary text-white" >
+<section class="py-5 bg-primary text-white">
   <div class="container d-lg-flex align-items-center justify-content-between py-3">
+    <!-- Text Section -->
     <div class="col-lg-4 ps-5 ms-5 m-md-auto m-sm-auto">
       <h1 class="mb-3">How It Works</h1>
-      <p class="mb-3 fw-semibold opacity-75">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, beatae.</p>
-      <!-- <button class="btn btn-secondary">Read More</button> -->
+      <p class="mb-3 fw-semibold opacity-75">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, beatae.
+      </p>
     </div>
 
-    <div class=" d-lg-flex flex-wrap col-7  justify-content-end m-md-auto m-sm-auto  py-5">
-
+    <!-- Cards Section -->
+    <div class="d-lg-flex flex-wrap col-7 justify-content-end m-md-auto m-sm-auto py-5">
+      <!-- Card 1 -->
       <div class="col-lg-5 col-md-12 col-sm-12 me-3 mb-3">
         <div class="card-body-work border-0 shadow-sm h-100 card-hover">
-          <div class=" py-5 text-center">
+          <div class="py-5 text-center">
             <h4 class="card-title-how mb-4">Browse Auctions</h4>
-            <p class="">
-              Explore our extensive list of upcoming and ongoing auctions.
-            </p>
+            <p>Explore our extensive list of upcoming and ongoing auctions.</p>
           </div>
         </div>
       </div>
+
+      <!-- Card 2 -->
       <div class="col-lg-5 col-md-12 col-sm-12 mb-3">
         <div class="card-body-work border-0 shadow-sm h-100 card-hover">
-          <div class=" py-5 text-center">
+          <div class="py-5 text-center">
             <h4 class="card-title-how mb-4">Register to Bid</h4>
-            <p class="">Sign up and create your bidder profile.</p>
+            <p>Sign up and create your bidder profile.</p>
           </div>
         </div>
       </div>
+
+      <!-- Card 3 -->
       <div class="col-lg-5 col-md-12 col-sm-12 me-3">
         <div class="card-body-work border-0 shadow-sm h-100 card-hover">
-          <div class=" py-5 text-center">
+          <div class="py-5 text-center">
             <h4 class="card-title-how mb-4">Place Your Bid</h4>
-            <p class="">
-              Enter your maximum bid and let our system handle the rest.
-            </p>
+            <p>Enter your maximum bid and let our system handle the rest.</p>
           </div>
         </div>
       </div>
-      <div class="last-card col-lg-5 col-md-12 col-sm-12 ">
-        <div class=" card-body-work border-0 shadow-sm h-100 card-hover">
-          <div class=" py-5 text-center">
-            <h4 class="card-title-how mb-4 ">Win and Pay</h4>
-            <p class="">
-              If you win, proceed with the payment and await your item.
-            </p>
+
+      <!-- Card 4 -->
+      <div class="col-lg-5 col-md-12 col-sm-12">
+        <div class="card-body-work border-0 shadow-sm h-100 card-hover">
+          <div class="py-5 text-center">
+            <h4 class="card-title-how mb-4">Win and Pay</h4>
+            <p>If you win, proceed with the payment and await your item.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- the second Testimonial design-->
 <section class="py-5 bg-light ">
