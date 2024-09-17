@@ -5,11 +5,11 @@
     border-top: 1px solid #2b2b2b;
     text-align: center;
 }
-.footer  h5 a {
+.footer   a,p,h6 {
     color: #000 !important; 
     text-decoration: none;
 }
-.footer  h5 a:hover {
+.footer  a:hover {
     color: #C54513 !important;
 }
 .footer .footer-heading {
