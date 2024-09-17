@@ -6,7 +6,15 @@
 
 
 /* carousel button style start*/
+
+
 .parent-of-card .owl-next{
+  background-color: rgb(176, 176, 176) !important;
+  border-radius: 20Px !important;
+  width: 30px !important;
+  height: 30px !important;
+  font-weight: 900 !important;
+
   background-color: rgb(176, 176, 176) !important;
   border-radius: 20Px !important;
   width: 30px !important;
@@ -16,6 +24,7 @@
   position: absolute;
   top: 40%;
   left:  97%;
+  left:  97%;
 }
 .parent-of-card .owl-prev{
   background-color: rgb(176, 176, 176) !important;
@@ -23,8 +32,15 @@
   width: 30px !important;
   height: 30px !important;
   font-weight: 900 !important;
+  background-color: rgb(176, 176, 176) !important;
+  border-radius: 20Px !important;
+  width: 30px !important;
+  height: 30px !important;
+  font-weight: 900 !important;
   position: absolute;
   top: 40%;
+  right:  98%;
+
   right:  98%;
 
 }
@@ -41,25 +57,28 @@
 /* Home Category Carousel button start*/
 
 .categoryCarousel .owl-next{
-  background-color: rgb(5, 66, 120) !important;
+  background-color: #212121 !important;
   border-radius: 20Px !important;
   width: 30px !important;
   height: 30px !important;
   font-weight: 900 !important;
   position: absolute;
+  bottom: 45%;
   bottom: 45%;
   left: 98%;
 }
 
+
 .categoryCarousel .owl-prev{
-  background-color: rgb(5, 66, 120) !important;
+  background-color: #212121 !important;
   border-radius: 20Px !important;
   width: 30px !important;
   height: 30px !important;
   font-weight: 900 !important;
   position: absolute;
   bottom: 45%;
-  right: 99%;
+  bottom: 45%;
+  right: 98%;
 }
 
 @media screen and (max-width: 700px) {
@@ -84,8 +103,10 @@
 .testimonialOption .owl-dot span{
   width: 50px !important;
   background-color: rgb(208, 208, 208) !important;
+  background-color: rgb(208, 208, 208) !important;
 }
 .testimonialOption .owl-dot.active span{
+  background-color: rgb(146, 146, 146) !important;
   background-color: rgb(146, 146, 146) !important;
 }
 /* Home Testimonial Carousel dot end */
@@ -172,30 +193,38 @@ body{
 .btn-primary{
   background-color: rgb(44, 40, 36)!important;
   border-color:rgb(44, 40, 36) !important;
+border-radius: 0px;
+ 
 }
 .btn-primary:hover{
-  background-color:#003285!important;
-  border-color: #003285 !important;
+  background-color:rgba(44, 40, 36, 0.577) !important;
+  border-color:rgb(44, 40, 36, 0.577) !important;
+
 }
 .btn-outline-primary{
-  border-color: #ffffff !important;
-  color: #ffffff !important;
+  border-color: rgba(44, 40, 36)!important;
+  color: rgba(44, 40, 36)!important;
+  border-radius: 0px;
+
+
 }
 .btn-outline-primary:hover{
-  background-color: #ffffff !important;
-  border-color: #ffffff !important;
-  color: #003285 !important;
+  background-color: rgba(44, 40, 36)!important;
+  border-color: rgba(44, 40, 36) !important;
+  color: #ffffff!important;
 }
 .btn-secondary{
   background-color: rgb(229, 124, 35)!important;
   border-color: rgb(229, 124, 35) !important;
   color: #ffffff !important;
+  border-radius: 0px;
 
 }
 .btn-secondary:hover{
-  background-color: rgba(229, 126, 35, 0.845)!important;
-  border-color: rgbargb(229, 124, 35)!important;
+  background-color: rgb(44, 40, 36)!important;
+  border-color: rgb(44, 40, 36)!important;
 }
+
 
 a{
   color: rgba(0, 0, 0, 0.65);
@@ -215,13 +244,13 @@ opacity: 0.7;
   background-color: rgb(229, 124, 35)!important;
 }
 .bg-primary{
-  background-color: #003285 !important;
+  background-color: rgba(44, 40, 36)!important;
 }
 .text-primary{
-  color: #003285 !important;
+  color: rgba(44, 40, 36) !important;
 }
 .link-primary{
-  color: #003285 !important;
+  color: rgba(44, 40, 36) !important;
 }
 .text-orange{
   color: rgb(229, 124, 35)!important;
@@ -276,6 +305,6 @@ font-style: italic;
 }
 /* english font end*/
 .text-primary {
-  color: #003285 !important;
+  color: rgba(44, 40, 36)!important;
 
 }
