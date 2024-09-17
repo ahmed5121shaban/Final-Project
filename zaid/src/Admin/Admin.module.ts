@@ -6,6 +6,7 @@ import { ProfileReviewComponent } from './Components/profile-review/profile-revi
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { DashboardHomeComponent } from './Components/dashboard-home/dashboard-home.component';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { AuctionLiveStreamComponent } from './Components/auction-live-stream/auction-live-stream.component';
 
 import { DashboardLayoutComponent } from './Components/dashboard-layout/dashboard-layout.component';
 import { AddEventComponent } from './Components/add-event/add-event.component';
@@ -31,5 +32,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
      ProfileReviewComponent,
     DashboardHomeComponent,
    DashboardLayoutComponent,AddEventComponent,UsersListComponent,EventsListComponent,AuctionsListComponent,ComplaintsListComponent]
+   DashboardLayoutComponent,
+   AuctionLiveStreamComponent]
 })
 export class AdminModule { }

@@ -10,8 +10,6 @@ import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
 import { PasswordResetComponent } from './Components/password-reset/password-reset.component';
 import { NewPasswordComponent } from './Components/new-password/new-password.component';
-import { SellerEarningsComponent } from './Components/seller-earnings/seller-earnings.component';
-import { SellerwithdrawComponent } from './Components/sellerwithdraw/sellerwithdraw.component';
 import { AddReviewComponent } from './Components/add-review/add-review.component';
 import { MyReviewsComponent } from './Components/Profile-Management/my-reviews/my-reviews.component';
 import { WatchlistComponent } from './Components/Profile-Management/watchlist/watchlist.component';
@@ -21,6 +19,8 @@ import { WonAuctionComponent } from './Components/Profile-Management/won-auction
 import { LiveAuctionsComponent } from './Components/Profile-Management/live-auctions/live-auctions.component';
 import { LostAuctionComponent } from './Components/Profile-Management/lost-auction/lost-auction.component';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+import { SellerEarningsComponent } from './Components/Profile-Management/seller-earnings/seller-earnings.component';
+import { SellerwithdrawComponent } from './Components/Profile-Management/sellerwithdraw/sellerwithdraw.component';
 
 
 const routes: Routes = [
@@ -28,8 +28,6 @@ const routes: Routes = [
   { path: 'login' , component: LoginComponent},
   { path: 'reset-password' , component: PasswordResetComponent},
   { path: 'new-password' , component: NewPasswordComponent},
-  { path: 'seller-earnings', component: SellerEarningsComponent },
-  { path: 'seller-withdraw', component: SellerwithdrawComponent },
   { path: 'add-review' , component: AddReviewComponent},
   { path: 'user-profile' , component: UserProfileComponent},
 
@@ -47,6 +45,8 @@ const routes: Routes = [
       {path:'won-auction',component:WonAuctionComponent},
       {path:'live-auction',component:LiveAuctionsComponent},
       {path:'lost-auction',component:LostAuctionComponent},
+      { path: 'seller-earnings', component: SellerEarningsComponent },
+      { path: 'seller-withdraw', component: SellerwithdrawComponent },
 
     ] },
 

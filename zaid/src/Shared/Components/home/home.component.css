@@ -1,5 +1,5 @@
 .hero-section {
-  background-image:linear-gradient(#bebebe,#6b6b6b), url('https://via.placeholder.com/1920x600');
+  background-image:linear-gradient(#bebebe0e,#363636b4), url('https://picsum.photos/1500/1500');
   background-size: cover;
   background-position: center;
 }
@@ -43,6 +43,8 @@
 .card-title {
   font-weight: bold;
 }
+
+
 .testimonial-blockquote {
   background: #f8f9fa;
   border-left: 5px solid #212222;
@@ -52,23 +54,8 @@
   font-size: 0.9em;
   color: #6c757d;
 }
-.newsletter-section .container {
-  background-color: #f8f9fa;
-}
 
 
-
-
-.newsletter-section .container .btn {
-  background-color: #003285;
-  color: #fff;
-}
-.newsletter-section .form-control {
-  border-radius: 0;
-}
-.newsletter-section .btn-primary {
-  border-radius: 0;
-}
 
 /* Card Hover Effects */
 .card-hover {
@@ -195,3 +182,181 @@ border-bottom: 1px solid #999; */
  }
 }
 
+
+
+.custom-card img {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+.card-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.small-text {
+  font-size: 0.8rem;
+  color: #6c757d;
+  text-align: left;
+}
+
+.bids {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-align: left;
+}
+
+.price {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #28a745;
+  text-align: left;
+}
+.custom-product-card{
+  background-color: #ffffff;
+
+}
+
+.card-icon{
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  padding: 4px 7px;
+  border-radius: 20px;
+}
+
+.card-title-how{
+  margin: 0 auto;
+}
+.card-body-work{
+  background-color: #fafafa;
+  border-radius: 20px;
+  color:#007bff;
+}
+
+@media screen and (max-width: 991px){
+  .last-card{
+    margin-top: 20px;
+  }
+}
+.event-section {
+  background-image:linear-gradient(#bebebe0e,#363636b4), url('https://picsum.photos/1501/1501');
+  background-size: cover;
+  background-position: center;
+}
+
+
+.finix-text h6{
+  color: #141414;
+  font-weight: 400;
+  font-size: 17px;
+}
+.finix-text h2 {
+  font-weight: 400;
+  font-size: 35px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.finix-text p {
+  color: #606060;
+  font-size: 15px;
+  line-height: 1.8rem;
+}
+.why-choose-us {
+  margin-top: 90px;
+}
+.why-choose-us .finix-text h2 {
+  font-weight: 500;
+}
+.why-choose-us .ct-btn {
+  display: inline-block;
+  width: 85px;
+  height: 85px;
+  line-height: 85px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 60px;
+  background: #fff;
+  position: absolute;
+  top: 77%;
+  right: 43%;
+}
+.why-choose-us .ct-btn::before {
+  content: "";
+  height: 85px;
+  width: 85px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #141414;
+  border-radius: 50%;
+  animation: choose 1.6s ease-out infinite;
+}
+@keyframes choose{
+  0%,30%{
+      transform: scale(0);
+      opacity: 1;
+  }
+  50%{
+      transform: scale(1.5);
+      opacity: .7;
+  }
+  100%{
+      transform: scale(2);
+      opacity: 0;
+  }
+}
+.why-choose-us .ct-btn a{
+  color: #141414;
+}
+.why-choose-us .feature-box {
+  background: #ffffff00;
+  padding: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+  transition: .4s;
+}
+.why-choose-us .feature-box:hover {
+  transform: translateY(-10px);
+}
+.why-choose-us .feature-box:hover .fbc-btn{
+  background: #212529;
+  color: #fff;
+}
+.why-choose-us .feature-box::before {
+  content: "";
+  position: absolute;
+  top: -115px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 90%;
+  height: 70%;
+  background: #212529;
+  border-radius: 50%;
+}
+.why-choose-us .feature-box:hover::before {
+  background: #fff; /* Changes color on hover */
+}
+.why-choose-us .fbc-btn {
+  display: inline-block;
+  height: 90px;
+  width: 90px;
+  line-height: 90px;
+  background: #fff;
+  border-radius: 50%;
+  text-align: center;
+  color: #141414;
+  position: relative;
+  transition: .4s;
+}
+.active-feature{
+  margin-top: -30px;
+}
+.why-choose-us .finix-text{
+  position: relative;
+}
