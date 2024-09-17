@@ -8,7 +8,7 @@
 .title {
   font-family: 'Ubuntu', sans-serif !important;
   color: #025464 !important;
-  font-size: 2rem !important; /* Increased font size */
+  font-size: 2rem !important;
   transition: color 0.3s ease !important;
 }
 
@@ -19,7 +19,7 @@
 .caption {
   font-family: 'Zain', sans-serif !important;
   color: #025464 !important;
-  font-size: 1.5rem !important; /* Increased font size */
+  font-size: 1.5rem !important;
 }
 
 .large-image {
@@ -34,7 +34,7 @@
   color: #025464 !important;
   margin: 20px 0 !important;
   text-align: left !important;
-  font-size: 1.5rem !important; /* Increased font size */
+  font-size: 1.5rem !important;
   transition: color 0.3s ease !important;
 }
 
@@ -55,20 +55,20 @@
 }
 
 .figure i {
-  font-size: 2.5rem !important; /* Increased icon size */
+  font-size: 2.5rem !important;
   color: #E57C23 !important;
 }
 
 .figure h4 {
   font-family: 'Ubuntu', sans-serif !important;
   color: #025464 !important;
-  font-size: 1.8rem !important; /* Increased font size */
+  font-size: 1.8rem !important;
 }
 
 .figure p {
   font-family: 'Zain', sans-serif !important;
   color: #E8AA42 !important;
-  font-size: 1.2rem !important; /* Increased font size */
+  font-size: 1.2rem !important;
 }
 
 @media (max-width: 768px) {
@@ -77,15 +77,15 @@
   }
 
   .figure i {
-    font-size: 2rem !important; /* Increased icon size for small screens */
+    font-size: 2rem !important;
   }
 
   .figure h4 {
-    font-size: 1.5rem !important; /* Increased font size for small screens */
+    font-size: 1.5rem !important;
   }
 
   .figure p {
-    font-size: 1rem !important; /* Increased font size for small screens */
+    font-size: 1rem !important;
   }
 }
 
@@ -98,7 +98,7 @@
   border-left: 4px solid #E57C23 !important;
   padding-left: 20px !important;
   margin-bottom: 20px !important;
-  font-size: 1.2rem !important; /* Increased font size */
+  font-size: 1.2rem !important;
 }
 
 .publications {
@@ -129,17 +129,17 @@
 }
 
 .article-title {
-  font-size: 1.5rem !important; /* Increased font size */
+  font-size: 1.5rem !important;
   margin: 10px 0 !important;
 }
 
 .article-content {
-  font-size: 1rem !important; /* Increased font size */
+  font-size: 1rem !important;
 }
 
 .article-author,
 .article-date {
-  font-size: 0.9rem !important; /* Increased font size */
+  font-size: 0.9rem !important;
   color: #555 !important;
 }
 
@@ -155,7 +155,7 @@
   margin: 40px 0 !important;
 }
 
-.team-member {
+.team-member-img {
   background-color: #025464 !important;
   border-radius: 50% !important;
   width: 100px !important;
@@ -201,7 +201,7 @@
   color: #F8F1F1 !important;
   background-color: #025464 !important;
   border-radius: 50% !important;
-  font-size: 1.8rem !important; /* Increased icon size */
+  font-size: 1.8rem !important;
   transition: background-color 0.3s ease, color 0.3s ease !important;
 }
 

@@ -12,6 +12,7 @@ export class AboutUsComponent implements OnInit, AfterViewInit {
   @ViewChild('teamCarousel', { static: false }) carouselElementRef!: ElementRef;
 
   teamMembers = [
+    
     { name: 'Ahmed Ali', position: 'Head of Technology', imageUrl: './300-1.jpg' },
     { name: 'Mona Samy', position: 'Lead UX/UI Designer', imageUrl: './300-2.jpg' },
     { name: 'Hossam Rami', position: 'Operations Manager', imageUrl: './300-3.jpg' },
@@ -30,6 +31,7 @@ export class AboutUsComponent implements OnInit, AfterViewInit {
       AOS.init(); // Initialize AOS if in the browser
     }
     this.createSlides();
+    
   }
 
   ngAfterViewInit(): void {

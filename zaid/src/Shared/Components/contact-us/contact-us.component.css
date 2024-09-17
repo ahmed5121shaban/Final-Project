@@ -2,31 +2,31 @@
 body {
   font-family: "Ubuntu", sans-serif;
   color: #003285; /* Adjusted text color */
+  font-size: 0.875rem; /* Smaller font size */
 }
 
 /* Contact Form Styles */
 .card {
-  border-radius: 0.375rem; /* Bootstrap border-radius */
+  border-radius: 0.25rem; /* Smaller border-radius */
   border: 1px solid #F8F1F1; /* Adjusted border color */
   background-color: #F8F1F1; /* Adjusted background color */
 }
 
 .card-body {
-  padding: 1.5rem; /* Bootstrap padding */
+  padding: 1rem; /* Smaller padding */
 }
 
 .form-control { 
-  color: #5E6278;/* Adjusted border color */
-  border-radius: 0.375rem; /* Bootstrap border-radius */
-  padding: 0.75rem 1rem; /* Bootstrap padding */
+  color: #5E6278; /* Adjusted border color */
+  border-radius: 0.25rem; /* Smaller border-radius */
+  padding: 0.5rem 0.75rem; /* Smaller padding */
   background-color: #f4f4f4;
   border-color: #f4f4f4;
- 
 }
 
 .form-control:focus {
   border-color: #E57C23; /* Adjusted focus border color */
-  box-shadow: 0 0 0 0.2rem rgba(229, 124, 35, 0.25); /* Adjusted focus box shadow */
+  box-shadow: 0 0 0 0.1rem rgba(229, 124, 35, 0.25); /* Smaller focus box shadow */
 }
 
 /* Validation Styles */
@@ -37,7 +37,7 @@ body {
 
 /* Map Styles */
 #kt_contact_map {
-  border-radius: 0.375rem; /* Bootstrap border-radius */
+  border-radius: 0.25rem; /* Smaller border-radius */
   border: 1px solid #E8AA42; /* Adjusted border color */
   overflow: hidden;
 }
@@ -45,33 +45,34 @@ body {
 iframe {
   border: none;
 }
+
+/* Background Color */
 .bg-primary {
   background-color: #E57C23; /* Choose your desired background color */
-  padding: 1rem; /* Adjust padding to create space around the SVG */
-  border-radius: 0.5rem; /* Optional: Adjust border radius for rounded corners */
+  padding: 0.5rem; /* Smaller padding */
+  border-radius: 0.25rem; /* Smaller border radius */
 }
 
 /* Additional styling for the span element */
-.svg-icon {    margin-bottom: -10px;
-  line-height: 1rem;
+.svg-icon {
+  margin-bottom: -8px; /* Adjusted margin */
+  line-height: 0.875rem; /* Smaller line-height */
   display: inline-flex; /* Ensure the background color surrounds the SVG */
   align-items: center; /* Center align the SVG vertically */
   justify-content: center; /* Center align the SVG horizontally */
 }
+
 .svg-icon.svg-icon-primary { 
-  color:#009ef7
+  color: #009ef7;
 }
-
-
-
-
-
 
 /* Button Styles */
 .btn-secondary {
   background-color: #E57C23; /* Adjusted background color */
   border-color: #E57C23; /* Adjusted border color */
   color: #ffffff; /* White text color */
+  font-size: 0.875rem; /* Smaller font size */
+  padding: 0.5rem 1rem; /* Smaller padding */
 }
 
 .btn-secondary:hover {
@@ -87,8 +88,9 @@ iframe {
 .bg-secondary {
   background-color: #E8AA42; /* Adjusted background color */
 }
+
 .social-icons-container {
-  margin: 40px 0;
+  margin: 20px 0; /* Smaller margin */
 }
 
 .social-icons {
@@ -97,16 +99,16 @@ iframe {
 }
 
 .social-icon {
-  width: 40px;
-  height: 40px;
-  margin: 0 10px;
+  width: 30px; /* Smaller width */
+  height: 30px; /* Smaller height */
+  margin: 0 20px; /* Smaller margin */
   display: flex;
   align-items: center;
   justify-content: center;
   color: #F8F1F1;
   background-color: #025464;
   border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: 1.2rem; /* Smaller font size */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -131,14 +133,17 @@ iframe {
   color: #F8F1F1;
 }
 
-  @media (min-width: 576px) {
+@media (min-width: 576px) {
   .col-sm-6 {
     flex: 0 0 auto;
-    width: 50%; }
+    width: 50%; 
   }
-  g-5, .gy-5 {
-    --bs-gutter-y: 1.25rem; 
-  }
-  .mb-6{
-    margin-bottom: 70px !important;
-  }
+}
+
+.g-5, .gy-5 {
+  --bs-gutter-y: 1rem; /* Smaller gutter size */
+}
+
+.mb-6 {
+  margin-bottom: 50px !important; /* Smaller margin-bottom */
+}

@@ -1,0 +1,74 @@
+<div class="container mt-4">
+  <form [formGroup]="searchForm" class="search-container mb-4">
+    <div class="input-group mb-2">
+      <input type="text" class="form-control" placeholder="Search by event name..." formControlName="name">
+    </div>
+    <div class="input-group mb-2">
+      <input type="date" class="form-control" placeholder="Start Date" formControlName="startDate">
+    </div>
+    <div class="input-group mb-2">
+      <input type="date" class="form-control" placeholder="End Date" formControlName="endDate">
+    </div>
+    <div class="input-group mb-2">
+      <select class="form-control" formControlName="category">
+        <option value="">Select Category</option>
+        <option *ngFor="let category of ['Art', 'Electronics']" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+  </form>
+
+  <div class="table-wrapper">
+    <ngx-datatable
+      #datatable
+      class="bootstrap"
+      [rows]="currentPageEvents"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="'auto'"
+      (sort)="onSort($event)"
+    >
+      <ngx-datatable-column name="Event Name" prop="name" [width]="200"></ngx-datatable-column>
+      <ngx-datatable-column name="Description" prop="description" [width]="285"></ngx-datatable-column>
+      <ngx-datatable-column name="Start Date" prop="startDate" [width]="190" [cellTemplate]="dateTemplate"></ngx-datatable-column>
+      <ngx-datatable-column name="End Date" prop="endDate" [width]="190" [cellTemplate]="dateTemplate"></ngx-datatable-column>
+      <ngx-datatable-column name="Category" prop="category" [width]="160"></ngx-datatable-column>
+      <ngx-datatable-column name="Open Auctions" [width]="170" [cellTemplate]="openAuctionsTemplate"></ngx-datatable-column>
+      <ngx-datatable-column name="Event Image" [width]="190" [cellTemplate]="imageTemplate"></ngx-datatable-column>
+
+    </ngx-datatable>
+
+    <ng-template #dateTemplate let-value="value">
+      {{ value ? (value | date:'yyyy-MM-dd') : '' }}
+    </ng-template>
+
+    <ng-template #openAuctionsTemplate let-row="row">
+      <ul>
+        <li *ngFor="let auction of getOpenAuctions(row.category)">
+          {{ auction.title }} - {{ auction.status }}
+        </li>
+      </ul>
+    </ng-template>
+    <ng-template #imageTemplate let-row="row">
+      <img [src]="row.imageUrl" alt="{{ row.name }}" class="event-image" />
+    </ng-template>
+  </div>
+
+  <nav *ngIf="totalPages > 1" aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="onPage(currentPage - 1)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li *ngFor="let page of [].constructor(totalPages); let i = index" class="page-item" [class.active]="currentPage === i + 1">
+        <a class="page-link" (click)="onPage(i + 1)">{{ i + 1 }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="onPage(currentPage + 1)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
