@@ -1,0 +1,87 @@
+<div class="container mt-4">
+  <form [formGroup]="searchForm" class="search-container mb-4">
+    <div class="input-group mb-2">
+      <input type="text" class="form-control" placeholder="Search by name..." formControlName="name">
+    </div>
+    <div class="input-group mb-2">
+      <input type="date" class="form-control" placeholder="Start Date" formControlName="startDate">
+    </div>
+    <div class="input-group mb-2">
+      <input type="date" class="form-control" placeholder="End Date" formControlName="endDate">
+    </div>
+    <div class="input-group mb-2">
+      <select class="form-control" formControlName="status">
+        <option value="">Select Status</option>
+        <option value="Open">Open</option>
+        <option value="Closed">Closed</option>
+        <option value="Live">Live</option>
+      </select>
+    </div>
+    <div class="input-group mb-2">
+      <input type="text" class="form-control" placeholder="Seller Name" formControlName="sellerName">
+    </div>
+    <div class="input-group mb-2">
+      <select class="form-control" formControlName="paymentStatus">
+        <option value="">Select Payment Status</option>
+        <option value="Paid">Paid</option>
+        <option value="Unpaid">Unpaid</option>
+      </select>
+    </div>
+  </form>
+
+  <div class="table-wrapper">
+    <ngx-datatable
+      class="bootstrap"
+      [rows]="currentPageAuctions"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="'auto'"
+      (sort)="onSort($event)"
+      (page)="onPage($event)"
+      [sortType]="sortType"
+    >
+      <ngx-datatable-column name="Name" prop="name" [width]="150"></ngx-datatable-column>
+      <ngx-datatable-column name="ID" prop="id" [width]="80"></ngx-datatable-column>
+      <ngx-datatable-column name="Quantity" prop="quantity" [width]="150"></ngx-datatable-column>
+      <ngx-datatable-column name="Status" prop="status" [width]="120"></ngx-datatable-column>
+      <ngx-datatable-column name="Start Date" [cellTemplate]="startDateTemplate" [width]="180"></ngx-datatable-column>
+      <ngx-datatable-column name="End Date" [cellTemplate]="endDateTemplate" [width]="180"></ngx-datatable-column>
+      <ngx-datatable-column name="Payment Status" prop="paymentStatus" [width]="200"></ngx-datatable-column>
+      <ngx-datatable-column name="Seller Name" prop="sellerName" [width]="200"></ngx-datatable-column>
+      <ngx-datatable-column name="Live URL" [cellTemplate]="liveUrlTemplate" [width]="160"></ngx-datatable-column>
+      <ngx-datatable-column name="Image" [cellTemplate]="imageTemplate" [width]="120"></ngx-datatable-column>
+    </ngx-datatable>
+
+    <ng-template #startDateTemplate let-value="value">
+      {{ value ? (value | date:'yyyy-MM-dd') : '' }}
+    </ng-template>
+    
+    <ng-template #endDateTemplate let-value="value">
+      {{ value ? (value | date:'yyyy-MM-dd') : '' }}
+    </ng-template>
+    
+    <ng-template #liveUrlTemplate let-value="value">
+      <a *ngIf="value" (click)="goToLiveAuction(value)" class="live-auction-link">View Live</a>
+    </ng-template>
+    
+    <ng-template #imageTemplate let-value="value">
+      <img *ngIf="value" [src]="value" alt="Auction Image" class="auction-image"/>
+    </ng-template>
+  </div>
+
+  <nav>
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1" (click)="onPage(currentPage - 1)">
+        <a class="page-link">Previous</a>
+      </li>
+      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" 
+          [class.active]="i + 1 === currentPage" (click)="onPage(i + 1)">
+        <a class="page-link">{{ i + 1 }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages" (click)="onPage(currentPage + 1)">
+        <a class="page-link">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>

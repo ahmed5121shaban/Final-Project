@@ -1,0 +1,76 @@
+<div class="container mt-4">
+  <form [formGroup]="searchForm" class="search-container mb-4">
+    <div class="input-group mb-2">
+      <input type="text" class="form-control" placeholder="Search by name..." formControlName="name">
+    </div>
+    <div class="input-group mb-2">
+      <input type="date" class="form-control" placeholder="Start Date" formControlName="startDate">
+    </div>
+    <div class="input-group mb-2">
+      <input type="date" class="form-control" placeholder="End Date" formControlName="endDate">
+    </div>
+    <div class="input-group mb-2">
+      <select class="form-control" formControlName="status">
+        <option value="">Select Status</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+    <div class="input-group mb-2">
+      <input type="text" class="form-control" placeholder="Email" formControlName="email">
+    </div>
+    <div class="input-group mb-2">
+      <select class="form-control" formControlName="role">
+        <option value="">Select Role</option>
+        <option value="Admin">Admin</option>
+        <option value="User">User</option>
+        <!-- Add other roles as needed -->
+      </select>
+    </div>
+  </form>
+
+  <div class="table-wrapper">
+    <ngx-datatable
+      #datatable
+      class="bootstrap"
+      [rows]="currentPageUsers"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="'auto'"
+      (sort)="onSort($event)"
+      (page)="onPage($event)"
+      [sortType]="sortType"
+    >
+      <ngx-datatable-column name="Name" prop="name" [width]="150"></ngx-datatable-column>
+      <ngx-datatable-column name="ID" prop="id" [width]="80"></ngx-datatable-column>
+      <ngx-datatable-column name="Email" prop="email" [width]="200"></ngx-datatable-column>
+      <ngx-datatable-column name="Status" prop="status" [width]="100"></ngx-datatable-column>
+      <ngx-datatable-column name="Registered Date" [cellTemplate]="registeredDateTemplate" [width]="150"></ngx-datatable-column>
+      <ngx-datatable-column name="Last Login" [cellTemplate]="lastLoginTemplate" [width]="150"></ngx-datatable-column>
+      <ngx-datatable-column name="Role" prop="role" [width]="100"></ngx-datatable-column>
+    </ngx-datatable>
+
+    <ng-template #registeredDateTemplate let-value="value">
+      {{ value ? (value | date:'yyyy-MM-dd') : '' }}
+    </ng-template>
+    <ng-template #lastLoginTemplate let-value="value">
+      {{ value ? (value | date:'yyyy-MM-dd') : '' }}
+    </ng-template>
+  </div>
+
+  <nav>
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1" (click)="onPage(currentPage - 1)">
+        <a class="page-link">Previous</a>
+      </li>
+      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" 
+          [class.active]="i + 1 === currentPage" (click)="onPage(i + 1)">
+        <a class="page-link">{{ i + 1 }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages" (click)="onPage(currentPage + 1)">
+        <a class="page-link">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>

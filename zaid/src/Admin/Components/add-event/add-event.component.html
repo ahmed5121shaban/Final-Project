@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <h2>Add Event</h2>
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Event Name -->
+    <div class="form-floating mb-3">
+      <input type="text" id="eventName" class="form-control" formControlName="name" placeholder="Event Name" required>
+      <label for="eventName" class="form-label">Event Name</label>
+    </div>
+    
+    <!-- Description -->
+    <div class="form-floating mb-3">
+      <input type="text" id="eventDescription" class="form-control" formControlName="description" placeholder="Description" required>
+      <label for="eventDescription" class="form-label">Description</label>
+    </div>
+    
+    <!-- Start Date -->
+    <div class="form-floating mb-3">
+      <input type="date" id="eventStartDate" class="form-control" formControlName="startDate" placeholder="Start Date" required>
+      <label for="eventStartDate" class="form-label">Start Date</label>
+    </div>
+    
+    <!-- End Date -->
+    <div class="form-floating mb-3">
+      <input type="date" id="eventEndDate" class="form-control" formControlName="endDate" placeholder="End Date" required>
+      <label for="eventEndDate" class="form-label">End Date</label>
+    </div>
+    
+    <!-- Category -->
+    <div class="form-floating mb-3">
+      <select id="category" class="form-select" formControlName="category" (change)="onCategoryChange($event)" required>
+        <option value="">Select Category</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+      <label for="category" class="form-label">Category</label>
+    </div>
+    
+    <!-- Open Auction(s) -->
+    <div class="form-floating mb-3" *ngIf="openAuctions.length > 0">
+      <div formArrayName="openAuctions">
+        <div *ngFor="let auction of openAuctionsControls; let i = index">
+          <select [formControlName]="i" class="form-select">
+            <option value="">Select Open Auction</option>
+            <option *ngFor="let auctionOption of openAuctions" [value]="auctionOption">{{ auctionOption }}</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" (click)="addAuction()">Add Another Auction</button>
+    </div>
+    
+    <!-- Image Upload -->
+    <div class="form-floating mb-3">
+      <input type="file" id="auctionImage" (change)="onFileChange($event)" />
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Add Event</button>
+  </form>
+</div>

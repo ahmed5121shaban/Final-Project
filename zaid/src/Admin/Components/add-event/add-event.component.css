@@ -1,0 +1,101 @@
+/* General container styling */
+.container {
+  width: 100% !important;
+  max-width: 600px !important; /* Adjust to the desired max width */
+  margin: 0 auto !important; /* Center the container */
+  padding: 20px !important;
+  background-color: #f8f9fa !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Heading styling */
+h2 {
+  text-align: center !important;
+  margin-bottom: 20px !important;
+  color: #343a40 !important;
+}
+
+/* Label styling */
+.form-label {
+  display: block !important;
+  margin-bottom: 5px !important;
+  font-weight: bold !important;
+  color: #495057 !important;
+}
+
+/* Floating labels styling */
+.form-floating {
+  margin-bottom: 20px !important;
+  position: relative !important; /* Required for floating labels */
+}
+
+/* Input and select fields styling */
+.input-group input,
+.input-group select,
+input[type="file"] {
+  width: 100% !important;
+  padding: 12px !important;
+  border: 1px solid #ced4da !important;
+  border-radius: 0.375rem !important;
+  transition: border-color 0.3s ease !important;
+  box-sizing: border-box !important;
+}
+
+/* Focus styling for input and select fields */
+.input-group input:focus,
+.input-group select:focus,
+input[type="file"]:focus {
+  border-color: #007bff !important;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25) !important;
+}
+
+/* Submit button styling */
+button[type="submit"] {
+  width: 100% !important;
+  padding: 12px !important;
+  background-color: #007bff !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 0.375rem !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3 !important;
+}
+
+/* Button to add more auctions */
+button[type="button"] {
+  display: block !important;
+  width: auto !important;
+  margin-top: 10px !important;
+  padding: 10px 20px !important;
+  background-color: #17a2b8 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 0.375rem !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+}
+
+button[type="button"]:hover {
+  background-color: #138496 !important;
+}
+
+/* Styling for file input */
+input[type="file"] {
+  padding: 6px !important;
+  border: 1px solid #ced4da !important;
+  border-radius: 0.375rem !important;
+  background-color: #fff !important;
+  cursor: pointer !important;
+  margin-top: 8px !important; /* Space between the label and the input */
+}
+
+/* Remove unused custom file input button styles */
+.custom-file-upload {
+  display: none !important; /* Hide this as it's not used anymore */
+}
