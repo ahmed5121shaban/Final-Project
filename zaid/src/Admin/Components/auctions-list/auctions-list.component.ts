@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SortType } from '@swimlane/ngx-datatable';
 
-interface Auction {
+ interface Auction {
   name: string;
   id: number;
   quantity: number;

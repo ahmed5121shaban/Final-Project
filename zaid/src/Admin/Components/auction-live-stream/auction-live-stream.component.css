@@ -57,6 +57,7 @@
 .single-bid{
 margin-bottom: 15px;
 align-items: center;
+
 }
 /*------------------------------- comment style -----------------------*/
   
@@ -104,7 +105,9 @@ align-items: center;
 .media-comment {
     margin-top:20px
 }
-
+.the-heighst{
+background-color: rgb(164, 248, 184);
+}
   
   
 /* .bid{
