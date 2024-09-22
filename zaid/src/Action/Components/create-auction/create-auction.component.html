@@ -3,7 +3,7 @@
         <!-- Product Information Section -->
         <div class="col-lg-8">
             <div class="form-section mb-4">
-                <h5 class="mt-3">Create New Auction</h5>
+                <h5 class="mt-3">Add Item</h5>
                 <form [formGroup]="auctionForm" (ngSubmit)="onSubmit()">
                     <div class="row mb-3">
                         <div class="col-md-6">
@@ -131,12 +131,11 @@
                     <label for="formFileMultiple" class="form-label">Upload Warranty certificate ,contract (if has)</label>
                     <input class="form-control" type="file" id="formFileMultiple" multiple>
                 </div>
-
             </div>
 
 
             <div class="d-flex justify-content-center align-items-center">
-                <button class="btn btn-secondary me-3 my-4 px-5">Create Auction</button>
+                <button class="btn btn-secondary me-3 my-4 px-5">Create item</button>
                 <button routerLink="" class="btn btn-outline-primary bg-transparent my-4 px-4">Cancel</button>
             </div>
         </div>
