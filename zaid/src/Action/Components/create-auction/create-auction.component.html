@@ -38,25 +38,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="duration" class="form-label">Auction duration</label>
-                            <select class="form-select" id="duration" formControlName="duration" [ngClass]="{
-                            'is-invalid': auctionForm.controls['duration'].invalid && auctionForm.controls['duration'].touched
-                            }">
-                                <option selected disabled>Select duration</option>
-                                <option value="1">1 day</option>
-                                <option value="3">3 days</option>
-                                <option value="7">7 days</option>
-                                <option value="14">14 days</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                @if(auctionForm.controls['category'].hasError("required")){
-                                <span>Auction duration is required </span>
-                                }
-                            </div>
-                        </div>
-                    </div>
                     <div class="mb-3">
                         <label for="formFileMultiple" class="form-label">Upload multiple Images</label>
                         <input class="form-control" type="file" (change)="choose($event)" id="formFileMultiple" multiple
