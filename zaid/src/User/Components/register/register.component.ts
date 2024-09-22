@@ -22,25 +22,28 @@ export class RegisterComponent {
     private builder: FormBuilder
   ) {
     this.registerForm = this.builder.group({
-      name: ["", [Validators.required]],
+      firstName: ["", [Validators.required]],
+      lastName: ["", [Validators.required]],
       email: ["", [Validators.required, Validators.email]],
       password: ["", [
         Validators.required,
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@*%$#])[A-Za-z\d@*%$#]{8,}$/)
       ]],
-      confirmPassword: ["", [
-        Validators.required,
-      ]]
-    }, { validator: this.passwordMatchValidator });
+      confirmPassword: ["", Validators.required]
+    }, { validators: this.passwordMatchValidator }); 
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
-    return formGroup.get('password')?.value === formGroup.get('confirmPassword')?.value
-      ? null : { 'mismatch': true };
-  }
+    const password = formGroup.get('password')?.value;
+    const confirmPassword = formGroup.get('confirmPassword')?.value;
 
-  get fullName() {
-    return this.registerForm.controls['name'];
+    return password === confirmPassword ? null : { mismatch: true };
+  }
+  get firstName() {
+    return this.registerForm.controls['firstName'];
+  }
+  get lastName() {
+    return this.registerForm.controls['lastName'];
   }
 
   get email() {
