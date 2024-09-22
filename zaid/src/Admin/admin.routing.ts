@@ -13,7 +13,7 @@ const routes: Routes = [
   { path:"home",component:DashboardHomeComponent },
      { path: 'profile-review' , component:ProfileReviewComponent},
      
-     { path: 'auction-live-stream', component: AuctionLiveStreamComponent }
+     { path: 'auction-live-stream', component: AuctionLiveStreamComponent },
 
      { path: 'add-event' , component:AddEventComponent},
     //  { path: 'users-list' , component:UsersListComponent},
