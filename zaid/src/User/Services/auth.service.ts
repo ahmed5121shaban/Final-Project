@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interface/auth';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,12 @@ export class AuthService {
 
   private localStorageKey = 'users';
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
+
+
+  loginUser(value:any){
+    return this.http.post("http://localhost:63280/api/acount/login",value);
+  }
 
   registerUser(userDetails: User): Observable<User> {
     const users = this.getUsersFromLocalStorage();
