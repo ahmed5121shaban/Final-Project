@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interface/auth';
-import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { of } from 'rxjs/internal/observable/of';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +11,17 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   private localStorageKey = 'token';
-  isLoggedIn:boolean =false
+  isloggedUserSubject!: BehaviorSubject<boolean>
 
   constructor(private http:HttpClient) { }
-
+get isLoggedIn(){
+  if(localStorage.getItem(this.localStorageKey))
+    return true
+  return false
+  }
 
   loginUser(value:any){
-    this.isLoggedIn = true
+    this.isloggedUserSubject.next(true)
     return this.http.post("http://localhost:63280/api/acount/login",value);
   }
 
