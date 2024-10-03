@@ -17,11 +17,12 @@ export class AuthService {
     return this.http.post("http://localhost:63280/api/acount/login",value);
   }
 
-  registerUser(userDetails: User): Observable<User> {
-    const users = this.getUsersFromLocalStorage();
+  registerUser(userDetails: any){
+    /* const users = this.getUsersFromLocalStorage();
     users.push(userDetails);
     this.setUsersToLocalStorage(users);
-    return of(userDetails);
+    return of(userDetails); */
+    return this.http.post("http://localhost:63280/api/Acount/register",userDetails);
   }
 
   updateUserPassword(email: string, newPassword: string): Observable<boolean> {
