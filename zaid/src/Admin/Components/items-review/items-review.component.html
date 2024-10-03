@@ -1,0 +1,94 @@
+<div class="container mt-5">
+  <h2 class=" mb-4">Review Items</h2>
+
+  <!-- Search Bar -->
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Search items...">
+    </div>
+  </div>
+
+  <!-- Items Table -->
+  <div class="table-responsive text-center text-align-center">
+    <table class="table table-bordered table-hover">
+      <thead class="table-light table-borderless">
+        <tr>
+          <th>Item Title</th>
+          <th>Description</th>
+          <th>Start price</th>
+          <th>Reserve price</th>
+          <th>Payment</th>
+          <th>Certificate or Contract</th>
+          <th>Images</th> <!-- New Column for Images -->
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.title }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.startPrice }}</td>
+          <td>{{ item.reservePrice }}</td>
+          <td>{{ item.payment }}</td>
+          <td>{{ item.file }}</td>
+          <td>
+            <!-- Small Carousel inside the table -->
+            <div id="carouselExample1" class="carousel slide" data-bs-ride="carousel" style="width: 100px;">
+              <div class="carousel-inner">
+
+                <div class="carousel-item" *ngFor="let image of item.images; let i = index" [class.active]="i === 0">
+                  <img [src]="image.path" class="d-block w-100 img-thumbnail" alt="Image "
+                    (click)="showImage(image.path)">
+                </div>
+
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample1"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample1"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </td>
+
+
+          <td  >
+            <a class="dropdown-item mb-3 mt-3" href="#">
+              <i class="fa-solid fa-check"></i>
+              Accept
+            </a>
+
+            <a class="dropdown-item" href="#">
+              <i class="fa-regular fa-x"></i>
+              Reject
+            </a>
+
+
+
+          </td>
+        </tr>
+        <!-- More rows here... -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- Modal for Full-Size Image -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imageModalLabel">Image Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img [src]="selectedImage" class="d-block w-100" alt="Large Image">
+      </div>
+    </div>
+  </div>
+</div>

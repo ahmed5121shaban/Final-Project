@@ -1,0 +1,81 @@
+<div class="container">
+   <!-- row -->
+   <div class="row mb-8">
+      <div class="col-md-12">
+         <div class="d-md-flex justify-content-between align-items-center">
+            <!-- page header -->
+            <div class="py-5">
+               <h2>Add New Category</h2>
+               <!-- breacrumb -->
+               <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                     <li class="breadcrumb-item"><a routerLink="../" class="text-inherit">Dashboard</a></li>
+                     <li class="breadcrumb-item"><a routerLink="../categories-list" class="text-inherit">Categories</a>
+                     </li>
+                     <li class="breadcrumb-item active" aria-current="page">Add New Category</li>
+                  </ol>
+               </nav>
+            </div>
+            <div>
+               <a routerLink="../categories-list" class="btn btn-light">Back to Categories</a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <form class="row" [formGroup]="CategoryForm" (ngSubmit)="onSubmit()">
+
+      <div class="col-lg-12 col-12">
+         <!-- card -->
+         <div class="card mb-6 shadow border-0">
+            <!-- card body -->
+            <div class="card-body p-5">
+               <label class="form-label">Category Image</label>
+               <div class="mb-4 ">
+                  <div class="file-upload  end-0 top-0 mt-1 me-1">
+                     <input type="file" class="file-input" (change)="onFileSelected($event)">
+                  </div>
+               </div>
+
+               <!-- Image preview -->
+               <div *ngIf="imagePreview">
+                  <img [src]="imagePreview" alt="Selected Image" width="200">
+               </div>
+               <div class="row">
+                  <!-- input -->
+                  <div class="mb-3 col-12">
+                     <label for="name" class="form-label">Category Name</label>
+                     <input type="text" id="name" class="form-control w-100" name="name" id="name"
+                        formControlName="name"
+                        [ngClass]="{'is-invalid':CategoryForm.controls['name'].invalid && CategoryForm.controls['name'].touched}">
+                  </div>
+                  <div
+                     *ngIf="CategoryForm.controls['name'].hasError('required') && CategoryForm.controls['name'].touched"
+                     class="invalid-feedback">
+                     <span>Category name is required</span>
+                  </div>
+                  <div></div>
+                  <!-- input -->
+                  <div class="mb-3">
+                     <label class="form-label"> Description</label>
+                     <textarea class="form-control" name="description" id="description" formControlName="description"
+                        [ngClass]="{'is-invalid':CategoryForm.controls['description'].invalid && CategoryForm.controls['description'].touched}">
+                    </textarea>
+                  </div>
+                  <div
+                     *ngIf="CategoryForm.controls['description'].hasError('required') && CategoryForm.controls['description'].touched"
+                     class="invalid-feedback">
+                     <span>Category description is required</span>
+                  </div>
+               </div>
+
+
+               <div class="col-lg-12">
+                  <button  class="btn btn-secondary "  type="submit" [disabled]="CategoryForm.invalid">Add</button>
+                  <!-- <a href="#" class="btn btn-secondary ms-2">Save</a> -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </form>
+</div>

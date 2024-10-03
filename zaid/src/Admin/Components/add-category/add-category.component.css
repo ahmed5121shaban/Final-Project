@@ -1,0 +1,6 @@
+.invalid-feedback{
+  display: block !important;
+}
+.form-control{
+    border-radius: 0px;
+}

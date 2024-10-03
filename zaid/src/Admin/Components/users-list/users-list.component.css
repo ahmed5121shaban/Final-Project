@@ -1,0 +1,49 @@
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .search-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    flex: 1;
+  }
+  
+  .input-group input, .input-group select {
+    width: 100%;
+  }
+  
+  .table-wrapper {
+    margin-top: 20px;
+  }
+  
+  a.live-auction-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  a.live-auction-link:hover {
+    text-decoration: underline;
+  }
+  
+  .pagination {
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .page-link {
+    cursor: pointer;
+  }
+  
+  .page-item.disabled .page-link {
+    color: #6c757d;
+    cursor: not-allowed;
+  }
+  

@@ -4,13 +4,12 @@
       <!-- Title and Intro -->
       <div class="col-12">
         <h2 class="title mt-5 mb-3" data-aos="fade-up">About Zaid</h2>
-        <p class="caption mb-1" data-aos="fade-up">Within the last 10 years, we have sold over 100,000 admin theme copies that have been successfully deployed by small businesses to global enterprises.</p>
-        <p class="caption  mb-5" data-aos="fade-up">Zaid is a premier auction site where you can buy and sell a variety of items with ease and confidence.</p>
+        <p class="caption mb-1" data-aos="fade-up">Over the past decade, we've sold over 100,000 admin themes, empowering businesses from startups to global enterprises.</p>
+        <p class="caption mb-5" data-aos="fade-up">Zaid is your go-to auction site for effortless buying and selling with utmost confidence.</p>
         <img src="./aboutus.jpg" alt="About Zaid" class="img-fluid large-image" data-aos="fade-up">
-        <p class="description" data-aos="fade-up">Welcome to Zaid, your premier online auction marketplace where history and innovation meet. We connect buyers and sellers from all corners of Europe, offering a vast selection of furniture, art, design pieces, collectibles, and more.</p>
-        <p class="description" data-aos="fade-up">Unlike conventional online marketplaces, our auctions are meticulously curated. Each item is inspected, described, and photographed by experts to ensure you can bid with confidence. Our commitment to quality means you can trust that every item meets our high standards.</p>
-        <p class="description" data-aos="fade-up">Choosing to buy at auction is not just a smart choice for your budget, but also for the environment. Discover unique items that add character to your home while supporting sustainable practices. And if you decide to sell, you’re likely to recoup your investment or even make a profit.</p>
-        <p class="description" data-aos="fade-up">We bring the charm of local auction houses to the global stage. Whether you're bidding on an antique from southern Germany or a vintage piece from northern Sweden, you can do so with ease. Our transparent shipping costs and secure payment options on Zaid.com ensure a seamless experience. For any queries, our multilingual support team is always ready to assist.</p>
+        <p class="description" data-aos="fade-up">Welcome to Zaid, the premier auction marketplace bridging tradition with innovation. We offer a wide range of high-quality items, all carefully curated and inspected to ensure top-notch standards.</p>
+        <p class="description" data-aos="fade-up">Bid smartly and sustainably with our expertly curated auctions. Our transparent practices and secure payment options make every transaction seamless and trustworthy.</p>
+        <p class="description" data-aos="fade-up">Experience the charm of local auctions on a global stage, with clear shipping costs and multilingual support ensuring a smooth experience.</p>
 
         <!-- Quote and Publications Section -->
         <div class="key-figures" data-aos="fade-up">
@@ -37,7 +36,7 @@
           </blockquote>
           <div class="publications">
             <h3 class="sub-title">Publications</h3>
-            <p>Our goal is to provide a complete and robust theme solution to boost all of our customer’s project deployments. At Zaid, we are committed to delivering innovative auction solutions that meet the highest standards of excellence.</p>
+            <p>At Zaid, we deliver cutting-edge auction solutions that meet the highest standards of excellence, driving your projects to success.</p>
           </div>
         </div>
 
@@ -45,8 +44,8 @@
           <div class="col-md-4">
             <div class="article">
               <img src="./Auction Trends.webp" alt="Auction Trends" class="article-image">
-              <h4 class="article-title">The Evolution of Auction Trends</h4>
-              <p class="article-content">From traditional in-person auctions to online platforms, auction trends have evolved significantly. Discover how modern technology is shaping the future of bidding and what it means for collectors and sellers alike.</p>
+              <h4 class="article-title">Evolving Auction Trends</h4>
+              <p class="article-content">Explore how technology is transforming auctions and what it means for collectors and sellers.</p>
               <p class="article-author">By Jane Doe</p>
               <p class="article-date">July 24, 2024</p>
             </div>
@@ -54,8 +53,8 @@
           <div class="col-md-4">
             <div class="article">
               <img src="./auction2.webp" alt="The Benefits of Online Auctions" class="article-image">
-              <h4 class="article-title">The Benefits of Online Auctions</h4>
-              <p class="article-content">Online auctions offer numerous advantages, including accessibility, transparency, and a broader market reach. Learn how these benefits can enhance your auction experience and why more people are choosing online platforms.</p>
+              <h4 class="article-title">Advantages of Online Auctions</h4>
+              <p class="article-content">Learn how online auctions offer greater accessibility, transparency, and market reach.</p>
               <p class="article-author">By John Smith</p>
               <p class="article-date">July 23, 2024</p>
             </div>
@@ -63,8 +62,8 @@
           <div class="col-md-4">
             <div class="article">
               <img src="Tips for Successful Bidding.png" alt="Tips for Successful Bidding" class="article-image">
-              <h4 class="article-title">Tips for Successful Bidding</h4>
-              <p class="article-content">Bidding in auctions can be both exciting and challenging. Discover expert tips and strategies to improve your chances of winning items at auction while staying within your budget.</p>
+              <h4 class="article-title">Successful Bidding Tips</h4>
+              <p class="article-content">Discover expert strategies to enhance your bidding experience and stay within budget.</p>
               <p class="article-author">By Emily Johnson</p>
               <p class="article-date">July 22, 2024</p>
             </div>
@@ -74,31 +73,35 @@
         <!-- Team Section -->
         <div class="team-section" data-aos="fade-up">
           <div class="text-center mb-12">
-            <h3 class="fs-2hx  mb-4">Our Great Team</h3>
+            <h3 class="fs-2hx mb-4">Our Amazing Team</h3>
             <div class="fs-5 fw-semibold mb-5">
-              "In the auction world, it's clear that delays in development lead to increased costs, as additional expenses for integrating and testing each new feature can significantly impact both the user experience and project management."
+              "In the auction world, timely development prevents cost overruns, ensuring a smooth user experience and efficient project management."
             </div>
           </div>
 
           <div id="teamCarousel" class="carousel slide" data-aos="fade-up">
             <div class="carousel-inner">
-              <div class="carousel-item" *ngFor="let slide of slides; let i = index" [class.active]="i ===currentIndex" >
-                <div class="row">
-                  <div class="col-md-4" *ngFor="let member of teamMembers">
-                    <div class="team-member">
-                      <!-- Add any content here if needed -->
-                    </div>
-                    <h4 class="team-member-name">{{ member.name }}</h4>
-                    <p class="team-member-position">{{ member.position }}</p>
+              @for(slide of slides;track $index; let i = $index){
+                <div class="carousel-item" [class.active]="i ===currentIndex">
+                  <div class="row">
+                    @for(member of slide ;track $index){
+                      <div class="col-md-4">
+                        <div class="team-member">
+                          <img src="{{ member.imageUrl }}" alt="{{ member.name }}" class="team-member-img">
+                        </div>
+                        <h4 class="team-member-name">{{ member.name }}</h4>
+                        <p class="team-member-position">{{ member.position }}</p>
+                      </div>
+                    }
                   </div>
                 </div>
-              </div>
+              }
             </div>
-            <a class="carousel-control-prev" href="#teamCarousel" role="button" (click)="prevSlide()">
+            <a class="carousel-control-prev" role="button" (click)="prevSlide()">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#teamCarousel" role="button" (click)="nextSlide()">
+            <a class="carousel-control-next" role="button" (click)="nextSlide()">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
@@ -114,7 +117,6 @@
             <a href="#" class="social-icon linkedin" onclick="event.preventDefault();"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
-
       </div>
     </div>
   </div>

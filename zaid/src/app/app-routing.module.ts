@@ -4,6 +4,7 @@ import { NotFoundComponent } from '../Shared/Components/not-found/not-found.comp
 import { DashboardLayoutComponent } from '../Admin/Components/dashboard-layout/dashboard-layout.component';
 import { UserLayoutComponent } from '../Shared/Components/user-layout/user-layout.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {

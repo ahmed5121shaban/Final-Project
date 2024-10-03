@@ -3,12 +3,28 @@ import { ProfileReviewComponent } from './Components/profile-review/profile-revi
 import { DashboardHomeComponent } from './Components/dashboard-home/dashboard-home.component';
 import { AuctionLiveStreamComponent } from './Components/auction-live-stream/auction-live-stream.component';
 
+import { AddEventComponent } from './Components/add-event/add-event.component';
+import { UsersListComponent } from './Components/users-list/users-list.component';
+import {EventsListComponent} from './Components/events-list/events-list.component';
+import { AuctionsListComponent } from './Components/auctions-list/auctions-list.component';
+import { ComplaintsListComponent } from './Components/complaints-list/complaints-list.component';
+import { ItemsReviewComponent } from './Components/items-review/items-review.component';
+import { AddCategoryComponent } from './Components/add-category/add-category.component'; 
+
 
 const routes: Routes = [
   { path:"home",component:DashboardHomeComponent },
      { path: 'profile-review' , component:ProfileReviewComponent},
      
-     { path: 'auction-live-stream', component: AuctionLiveStreamComponent }
+     { path: 'auction-live-stream', component: AuctionLiveStreamComponent },
+
+     { path: 'add-event' , component:AddEventComponent},
+     { path: 'users-list' , component:UsersListComponent},
+{ path: 'events-list' , component:EventsListComponent},
+     { path: 'auctions-list' , component:AuctionsListComponent},
+ { path: 'complaints-list' , component:ComplaintsListComponent},
+ { path: 'items-review' , component:ItemsReviewComponent},
+ { path: 'add-category', component: AddCategoryComponent }
 
 
 ];

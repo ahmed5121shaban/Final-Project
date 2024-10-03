@@ -19,13 +19,26 @@ section {
   flex: 1 !important;
   overflow-y: scroll !important;
   padding: 1rem !important;
-  border-right: 10px solid #ddd !important;
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
+  border-radius: 15px !important; /* Maintain rounded corners */
+  position: relative !important; /* Ensure proper positioning of the scrollbar */
 }
 
+/* Customize the scrollbar */
 .chat-list::-webkit-scrollbar {
-  display: none !important;
+  width: 6px !important; /* Make scrollbar narrower */
+}
+
+.chat-list::-webkit-scrollbar-track {
+  background: #F8F1F1 !important; /* Match background to container */
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+  background: #ddd !important;
+  border-radius: 10px !important; /* Rounded corners to match the design */
+}
+
+.chat-list::-webkit-scrollbar-thumb:hover {
+  background: #bbb !important; /* Darker color on hover */
 }
 
 /* Chat messages styling */
@@ -34,13 +47,27 @@ section {
   height: calc(100vh - 100px) !important;
   overflow-y: scroll !important;
   padding: 1rem !important;
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
+  border-radius: 15px !important; /* Maintain rounded corners */
 }
 
+/* Customize the scrollbar */
 .chat-messages::-webkit-scrollbar {
-  display: none !important;
+  width: 6px !important; /* Make scrollbar narrower */
 }
+
+.chat-messages::-webkit-scrollbar-track {
+  background: #F8F1F1 !important; /* Match background to container */
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #ddd !important;
+  border-radius: 10px !important; /* Rounded corners to match the design */
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: #bbb !important; /* Darker color on hover */
+}
+
 
 .chat-avatar {
   width: 50px !important;

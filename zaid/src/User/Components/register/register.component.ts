@@ -29,15 +29,14 @@ export class RegisterComponent {
         Validators.required,
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@*%$#])[A-Za-z\d@*%$#]{8,}$/)
       ]],
-      confirmPassword: ["", [
-        Validators.required,
-      ]]
-    }, { validator: this.passwordMatchValidator });
+      confirmPassword: ["", Validators.required]
+    }, { validators: this.passwordMatchValidator }); 
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
-    return formGroup.get('password')?.value === formGroup.get('confirmPassword')?.value
-      ? null : { 'mismatch': true };
+    const password = formGroup.get('password')?.value;
+    const confirmPassword = formGroup.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { mismatch: true };
   }
 
   get firstName() {
