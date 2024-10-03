@@ -16,27 +16,41 @@
                 <div class="row gy-3 overflow-hidden">
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name"   formControlName="name"
+                      <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name"   formControlName="firstName"
                       [ngClass]="{
-                          'is-valid': registerForm.controls['name'].valid, 
-                          'is-invalid': registerForm.controls['name'].invalid && registerForm.controls['name'].touched
+                          'is-valid': registerForm.controls['firstName'].valid,
+                          'is-invalid': registerForm.controls['firstName'].invalid && registerForm.controls['firstName'].touched
                           }">
-                
+
                         <div class="invalid-feedback">
-                           @if(registerForm.controls['name'].hasError("required")){
+                           @if(registerForm.controls['firstName'].hasError("required")){
                                <span>Name is required </span>
                            }
                         </div>
-                      <label for="firstName" class="form-label">Full Name</label>
+                      <label for="firstName" class="form-label">First Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name"   formControlName="lastName"
+                      [ngClass]="{
+                          'is-valid': registerForm.controls['lastName'].valid,
+                          'is-invalid': registerForm.controls['lastName'].invalid && registerForm.controls['lastName'].touched
+                          }">
+
+                        <div class="invalid-feedback">
+                           @if(registerForm.controls['lastName'].hasError("required")){
+                               <span>Name is required </span>
+                           }
+                        </div>
+                      <label for="lastName" class="form-label">Last Name</label>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-floating mb-3">
                       <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com"  formControlName="email" [ngClass]="{
-                        'is-valid': registerForm.controls['email'].valid, 
+                        'is-valid': registerForm.controls['email'].valid,
                         'is-invalid': registerForm.controls['email'].invalid && registerForm.controls['email'].touched
                         }">
-                      
+
                       <div class="invalid-feedback">
                          @if(registerForm.controls['email'].hasError("required")){
                             <span>Your Email is required </span>
@@ -50,7 +64,7 @@
                   <div class="col-12">
                     <div class="form-floating mb-3">
                       <input type="password" class="form-control" name="password" id="password"  placeholder="Password"  formControlName="password"  [ngClass]="{
-                        'is-valid': registerForm.controls['password'].valid, 
+                        'is-valid': registerForm.controls['password'].valid,
                         'is-invalid': registerForm.controls['password'].invalid && registerForm.controls['password'].touched
                         }">
                       <div class="valid-feedback">
@@ -63,7 +77,7 @@
                          } @else if (registerForm.controls['password'].hasError("pattern")) {
                             <span>Password contains at least one lowercase, one uppercase, at least one digit and special character</span>
                          }
-                         
+
                       </div>
                       <label for="password" class="form-label">Password</label>
                     </div>
@@ -71,19 +85,19 @@
                   <div class="col-12">
                     <div class="form-floating mb-3">
                       <input type="password" class="form-control" name="reppassword" id="reppassword"  placeholder="Password"  formControlName="confirmPassword" [ngClass]="{
-                        'is-valid': registerForm.controls['confirmPassword'].valid, 
+                        'is-valid': registerForm.controls['confirmPassword'].valid,
                         'is-invalid':registerForm.controls['confirmPassword'].invalid && registerForm.controls['confirmPassword'].touched
                         }">
                       <div class="valid-feedback">
-                        <span>Password matched</span> 
+                        <span>Password matched</span>
                        </div>
                        <div class="invalid-feedback">
                      @if(registerForm.controls['confirmPassword'].hasError("required")){
-                          <span>Password is required</span> 
+                          <span>Password is required</span>
                        }@else if(registerForm.hasError("mismatch")){
-                        <span>Password must be matched</span> 
+                        <span>Password must be matched</span>
                      }
-                       
+
                        </div>
                       <label for="password" class="form-label">Repeat your password</label>
                     </div>
@@ -106,7 +120,7 @@
               <div class="row">
                 <div class="col-12">
                   <hr class="mt-5 mb-4 border-secondary-subtle">
-                  <p class="m-0 text-secondary text-center">Already have an account? 
+                  <p class="m-0 text-secondary text-center">Already have an account?
                     <a routerLink="/user/login" class="text-primary text-decoration-none">Login</a></p>
                 </div>
               </div>
