@@ -8,6 +8,9 @@ import { UsersListComponent } from './Components/users-list/users-list.component
 import {EventsListComponent} from './Components/events-list/events-list.component';
 import { AuctionsListComponent } from './Components/auctions-list/auctions-list.component';
 import { ComplaintsListComponent } from './Components/complaints-list/complaints-list.component';
+import { ItemsReviewComponent } from './Components/items-review/items-review.component';
+import { AddCategoryComponent } from './Components/add-category/add-category.component'; 
+
 
 const routes: Routes = [
   { path:"home",component:DashboardHomeComponent },
@@ -20,6 +23,9 @@ const routes: Routes = [
 //{ path: 'events-list' , component:EventsListComponent},
   //   { path: 'auctions-list' , component:AuctionsListComponent},
  //{ path: 'complaints-list' , component:ComplaintsListComponent},
+ { path: 'items-review' , component:ItemsReviewComponent},
+ { path: 'add-category', component: AddCategoryComponent }
+
 
 ];
 

@@ -22,27 +22,29 @@ export class RegisterComponent {
     private builder: FormBuilder
   ) {
     this.registerForm = this.builder.group({
-      name: ["", [Validators.required]],
+      firstName: ["", [Validators.required]],
+      lastName: ["", [Validators.required]],
       email: ["", [Validators.required, Validators.email]],
       password: ["", [
         Validators.required,
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@*%$#])[A-Za-z\d@*%$#]{8,}$/)
       ]],
-      confirmPassword: ["", [
-        Validators.required,
-      ]]
-    }, { validator: this.passwordMatchValidator });
+      confirmPassword: ["", Validators.required]
+    }, { validators: this.passwordMatchValidator }); 
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
-    return formGroup.get('password')?.value === formGroup.get('confirmPassword')?.value
-      ? null : { 'mismatch': true };
+    const password = formGroup.get('password')?.value;
+    const confirmPassword = formGroup.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { mismatch: true };
   }
 
-  get fullName() {
-    return this.registerForm.controls['name'];
+  get firstName() {
+    return this.registerForm.controls['firstName'];
   }
-
+  get lastName() {
+    return this.registerForm.controls['lastName'];
+  }
   get email() {
     return this.registerForm.controls['email'];
   }
@@ -60,12 +62,18 @@ export class RegisterComponent {
       this.toastr.error('Please correct the errors in the form.', 'Error');
       return;
     }
+    this.authService.registerUser(this.registerForm.value).subscribe(
+      (res:any)=>{
+        if(res.status == 200){
+          console.log(res);
+        this.toastr.success('Register successfully', 'Success');
+        this.router.navigate(['/user/login']);
+      }else{
+        this.toastr.error('Something went wrong', 'Error');
+      }
 
-    const postData = { ...this.registerForm.value };
-    delete postData.confirmPassword;
-
-    this.authService.registerUser(postData as User).subscribe(
-      response => {
+      }
+      /* response => {
         console.log(response);
         this.toastr.success('Register successfully', 'Success');
         this.router.navigate(['/user/login']);
@@ -73,7 +81,7 @@ export class RegisterComponent {
       error => {
         console.error(error);
         this.toastr.error('Something went wrong', 'Error');
-      }
+      } */
     );
   }
 }

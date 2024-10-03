@@ -17,6 +17,8 @@ import { AuctionsListComponent } from './Components/auctions-list/auctions-list.
 import { ComplaintsListComponent } from './Components/complaints-list/complaints-list.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ItemsReviewComponent } from './Components/items-review/items-review.component';
+import { AddCategoryComponent } from './Components/add-category/add-category.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DashboardHomeComponent,
    DashboardLayoutComponent,AddEventComponent,UsersListComponent,EventsListComponent,AuctionsListComponent,ComplaintsListComponent,
    DashboardLayoutComponent,
-   AuctionLiveStreamComponent]
+   AuctionLiveStreamComponent,
+   ItemsReviewComponent,AddCategoryComponent]
 })
 export class AdminModule { }
