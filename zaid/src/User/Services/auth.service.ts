@@ -8,12 +8,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
-  private localStorageKey = 'users';
+  private localStorageKey = 'token';
+  isLoggedIn:boolean =false
 
   constructor(private http:HttpClient) { }
 
 
   loginUser(value:any){
+    this.isLoggedIn = true
     return this.http.post("http://localhost:63280/api/acount/login",value);
   }
 
@@ -52,5 +54,7 @@ export class AuthService {
   private setUsersToLocalStorage(users: User[]): void {
     localStorage.setItem(this.localStorageKey, JSON.stringify(users));
   }
+
+
 }
 
