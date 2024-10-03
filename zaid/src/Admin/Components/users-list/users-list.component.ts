@@ -80,7 +80,6 @@ export class UsersListComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }
   }
-  
 
   filterUsers(): void {
     const { name, startDate, endDate, status, email, role } = this.searchForm.value;
@@ -96,7 +95,7 @@ export class UsersListComponent implements OnInit, OnDestroy, AfterViewInit {
       return matchesName && matchesStartDate && matchesEndDate && matchesStatus && matchesEmail && matchesRole;
     });
 
-    this.currentPage = 1;
+    this.currentPage = 1; // Reset to the first page on filter
     this.calculatePagination();
   }
 

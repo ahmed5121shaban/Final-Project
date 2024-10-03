@@ -13,13 +13,13 @@ const routes: Routes = [
   { path:"home",component:DashboardHomeComponent },
      { path: 'profile-review' , component:ProfileReviewComponent},
      
-     { path: 'auction-live-stream', component: AuctionLiveStreamComponent }
+     { path: 'auction-live-stream', component: AuctionLiveStreamComponent },
 
      { path: 'add-event' , component:AddEventComponent},
-    //  { path: 'users-list' , component:UsersListComponent},
+     //{ path: 'users-list' , component:UsersListComponent},
 //{ path: 'events-list' , component:EventsListComponent},
-//      { path: 'auctions-list' , component:AuctionsListComponent},
-// { path: 'complaints-list' , component:ComplaintsListComponent},
+  //   { path: 'auctions-list' , component:AuctionsListComponent},
+ //{ path: 'complaints-list' , component:ComplaintsListComponent},
 
 ];
 

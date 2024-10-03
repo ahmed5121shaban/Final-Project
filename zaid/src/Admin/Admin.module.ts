@@ -16,6 +16,7 @@ import {EventsListComponent} from './Components/events-list/events-list.componen
 import { AuctionsListComponent } from './Components/auctions-list/auctions-list.component';
 import { ComplaintsListComponent } from './Components/complaints-list/complaints-list.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   imports: [
     CommonModule,
@@ -25,13 +26,13 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
       showSubtitle:true,
     }),
  CanvasJSAngularChartsModule,
-    CommonModule,AdminRoutes,FormsModule,ReactiveFormsModule,NgxDatatableModule,
+    CommonModule,AdminRoutes,FormsModule,ReactiveFormsModule,NgxDatatableModule,NgxPaginationModule
   ],
   declarations: [
      AdminComponent,
      ProfileReviewComponent,
     DashboardHomeComponent,
-   DashboardLayoutComponent,AddEventComponent,UsersListComponent,EventsListComponent,AuctionsListComponent,ComplaintsListComponent]
+   DashboardLayoutComponent,AddEventComponent,UsersListComponent,EventsListComponent,AuctionsListComponent,ComplaintsListComponent,
    DashboardLayoutComponent,
    AuctionLiveStreamComponent]
 })

@@ -1,6 +1,6 @@
 /* Container for the chat section */
 section {
-  background-color: #F8F1F1 !important;
+  background-color: #ffffff !important;
   padding: 10px !important;
   box-sizing: border-box !important;
 }
@@ -20,7 +20,7 @@ section {
   overflow-y: scroll !important;
   padding: 1rem !important;
   border-radius: 15px !important; /* Maintain rounded corners */
-  position: relative !important; /* Ensure proper positioning of the scrollbar */
+  background-color: #ffffff !important; /* Background color */
 }
 
 /* Customize the scrollbar */
@@ -68,7 +68,6 @@ section {
   background: #bbb !important; /* Darker color on hover */
 }
 
-
 .chat-avatar {
   width: 50px !important;
   height: 50px !important;
@@ -91,12 +90,12 @@ section {
 }
 
 .message-bubble.buyer {
-  background-color: #003285 !important;
+  background-color:rgba(0, 0, 0, 0.65) !important;
   align-self: flex-start !important;
 }
 
 .message-bubble.seller {
-  background-color: #E8AA42 !important;
+  background-color:  rgb(229, 124, 35) !important;
   align-self: flex-end !important;
   margin-left: auto !important;
 }
@@ -126,7 +125,7 @@ section {
   padding: 1rem !important;
   position: absolute !important;
   bottom: 70px !important;
-  background: #fff !important;
+  background: #ffffff !important;
   z-index: 1000 !important;
 }
 
@@ -138,15 +137,15 @@ section {
 
 /* Button styling */
 .btn-primary {
-  background-color: #E57C23 !important;
-  border-color: #E57C23 !important;
+  background-color:  rgb(229, 124, 35) !important;
+  border-color:  rgb(229, 124, 35) !important;
   font-size: 1rem !important;
   padding: 0.5rem 1rem !important;
 }
 
 .btn-light {
-  background-color: #E8AA42 !important;
-  border-color: #E8AA42 !important;
+  background-color:  rgb(229, 124, 35)!important;
+  border-color:  rgb(229, 124, 35) !important;
   font-size: 1rem !important;
   padding: 0.5rem 1rem !important;
 }
@@ -154,7 +153,7 @@ section {
 /* Input field styling */
 input[type="text"].form-control {
   background-color: #F8F1F1 !important;
-  color: #003285 !important;
+  color: rgba(0, 0, 0, 0.65) !important;
   border-radius: 20px !important;
   font-size: 1.2rem !important;
   padding: 0.75rem 1rem !important;
