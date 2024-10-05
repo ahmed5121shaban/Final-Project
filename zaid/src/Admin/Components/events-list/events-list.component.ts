@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SortType } from '@swimlane/ngx-datatable';
+import { PaginationInstance } from 'ngx-pagination'; // إضافة
 
 interface Event {
   id: number;
@@ -11,13 +12,7 @@ interface Event {
   startDate: Date;
   endDate: Date;
   category: string;
-   imageUrl: string;
-}
-
-interface Auction {
-  title: string;
-  status: 'Open' | 'Closed';
-  category: string;
+  imageUrl: string;
 }
 
 @Component({
@@ -31,22 +26,17 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   events: Event[] = [
     { id: 1, name: 'Art Exhibition', description: 'An exhibition showcasing local artwork.', startDate: new Date('2024-09-01'), endDate: new Date('2024-09-05'), category: 'Art', imageUrl: 'assets/images/art_exhibition.jpg' },
-    { id: 2, name: 'Tech Fair', description: 'A fair displaying the latest tech gadgets.', startDate: new Date('2024-10-15'), endDate: new Date('2024-10-20'), category: 'Electronics' , imageUrl: 'assets/images/tech_fair.jpg'},
-    // Added for example
-    { id: 3, name: 'Food Festival', description: 'A festival celebrating various cuisines.', startDate: new Date('2024-11-10'), endDate: new Date('2024-11-12'), category: 'Food' , imageUrl: 'assets/images/food_festival.jpg'},
-  ];
-
-  auctions: Auction[] = [
-    { title: 'Painting Auction', status: 'Open', category: 'Art' },
-    { title: 'Gadget Auction', status: 'Closed', category: 'Electronics' }
-    // Add more auctions here
+    { id: 2, name: 'Tech Fair', description: 'A fair displaying the latest tech gadgets.', startDate: new Date('2024-10-15'), endDate: new Date('2024-10-20'), category: 'Electronics', imageUrl: 'assets/images/tech_fair.jpg' },
+    { id: 3, name: 'Food Festival', description: 'A festival celebrating various cuisines.', startDate: new Date('2024-11-10'), endDate: new Date('2024-11-12'), category: 'Food', imageUrl: 'assets/images/food_festival.jpg' },
+    { id: 4, name: 'Cultural Event', description: 'A celebration of local culture.', startDate: new Date('2024-12-01'), endDate: new Date('2024-12-05'), category: 'Culture', imageUrl: 'assets/images/cultural_event.jpg' },
+    { id: 5, name: 'Sports Day', description: 'An event for sports enthusiasts.', startDate: new Date('2024-12-15'), endDate: new Date('2024-12-17'), category: 'Sports', imageUrl: 'assets/images/sports_day.jpg' },
+    { id: 6, name: 'Music Festival', description: 'A festival for music lovers.', startDate: new Date('2024-12-20'), endDate: new Date('2024-12-22'), category: 'Music', imageUrl: 'assets/images/music_festival.jpg' },
   ];
 
   filteredEvents: Event[] = [];
   currentPageEvents: Event[] = [];
   currentPage = 1;
   pageSize = 3;
-  totalPages = 0;
   searchForm: FormGroup;
   sortType: SortType = SortType.single;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
@@ -126,17 +116,16 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onPage(page: number): void {
-    if (page < 1 || page > this.totalPages) return;
     this.currentPage = page;
     this.calculatePagination();
   }
 
   calculatePagination(): void {
-    this.totalPages = Math.ceil(this.filteredEvents.length / this.pageSize);
     this.currentPageEvents = this.filteredEvents.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize);
   }
-
-  getOpenAuctions(category: string): Auction[] {
-    return this.auctions.filter(auction => auction.category === category && auction.status === 'Open');
+  get totalPages(): number {
+    return Math.ceil(this.filteredEvents.length / this.pageSize);
   }
+  
+  
 }

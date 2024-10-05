@@ -8,37 +8,26 @@ body {
 /* Contact Form Styles */
 .card {
   border-radius: 0.25rem; /* Smaller border-radius */
-  border: 1px solid #F8F1F1; /* Adjusted border color */
-  background-color: #F8F1F1; /* Adjusted background color */
+  border: 1px solid #ffffff; /* Adjusted border color */
+  background-color: #ffffff; /* Adjusted background color */
 }
 
 .card-body {
   padding: 1rem; /* Smaller padding */
 }
 
-.form-control { 
-  color: #5E6278; /* Adjusted border color */
-  border-radius: 0.25rem; /* Smaller border-radius */
-  padding: 0.5rem 0.75rem; /* Smaller padding */
-  background-color: #f4f4f4;
-  border-color: #f4f4f4;
-}
 
-.form-control:focus {
-  border-color: #E57C23; /* Adjusted focus border color */
-  box-shadow: 0 0 0 0.1rem rgba(229, 124, 35, 0.25); /* Smaller focus box shadow */
-}
 
 /* Validation Styles */
 .invalid-feedback {
-  color: #E57C23; /* Adjusted danger color */
+  color: rgb(229, 124, 35); /* Adjusted danger color */
   display: block;
 }
 
 /* Map Styles */
 #kt_contact_map {
   border-radius: 0.25rem; /* Smaller border-radius */
-  border: 1px solid #E8AA42; /* Adjusted border color */
+  border: 1px solid rgb(229, 124, 35);  /* Adjusted border color */
   overflow: hidden;
 }
 
@@ -48,7 +37,7 @@ iframe {
 
 /* Background Color */
 .bg-primary {
-  background-color: #E57C23; /* Choose your desired background color */
+  background-color: rgb(229, 124, 35); /* Choose your desired background color */
   padding: 0.5rem; /* Smaller padding */
   border-radius: 0.25rem; /* Smaller border radius */
 }
@@ -66,10 +55,9 @@ iframe {
   color: #009ef7;
 }
 
-/* Button Styles */
 .btn-secondary {
-  background-color: #E57C23; /* Adjusted background color */
-  border-color: #E57C23; /* Adjusted border color */
+  background-color: rgb(229, 124, 35) ; /* Adjusted background color */
+  border-color: rgb(229, 124, 35); /* Adjusted border color */
   color: #ffffff; /* White text color */
   font-size: 0.875rem; /* Smaller font size */
   padding: 0.5rem 1rem; /* Smaller padding */
@@ -86,7 +74,21 @@ iframe {
 }
 
 .bg-secondary {
-  background-color: #E8AA42; /* Adjusted background color */
+  background-color: rgb(229, 124, 35) ; /* Adjusted background color */
+}
+
+/* Input Styles */
+.form-control {
+  border-radius: 0.25rem; /* Smaller border-radius */
+  padding: 0.25rem 0.5rem; /* Smaller padding */
+  background-color: #f4f4f4; /* Adjusted background color */
+  border-color: #f4f4f4; /* Adjusted border color */
+  font-size: 0.875rem; /* Smaller font size */
+}
+
+.form-control:focus {
+  border-color: rgb(229, 124, 35) ; /* Adjusted focus border color */
+  box-shadow: 0 0 0 0.1rem rgba(229, 124, 35, 0.25); /* Smaller focus box shadow */
 }
 
 .social-icons-container {
@@ -129,7 +131,7 @@ iframe {
 }
 
 .social-icon:hover {
-  background-color: #E57C23;
+  background-color: rgb(229, 124, 35) ;
   color: #F8F1F1;
 }
 

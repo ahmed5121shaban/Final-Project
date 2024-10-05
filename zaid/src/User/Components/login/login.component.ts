@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
   form: FormGroup;
   passwordFieldType: string = 'password';
   passwordInputNotEmpty: boolean = false;
@@ -36,7 +38,6 @@ export class LoginComponent {
   }
 
   loginUser() {
-    // console.log(this.form.value)
     const { email, password } = this.form.value;
     this.authService.getUserByEmail(email).subscribe(
       response => {
@@ -52,6 +53,11 @@ export class LoginComponent {
         this.toastr.error('Something went wrong', 'Error');
       }
     );
+    this.authService.loginUser(this.form.value).subscribe((res:any)=>{
+      if(res.status==200)
+        localStorage.setItem("auth",res.token);
+
+    })
   }
 
   togglePasswordVisibility() {

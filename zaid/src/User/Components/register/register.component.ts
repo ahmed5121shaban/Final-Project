@@ -36,16 +36,15 @@ export class RegisterComponent {
   passwordMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
-
     return password === confirmPassword ? null : { mismatch: true };
   }
+
   get firstName() {
     return this.registerForm.controls['firstName'];
   }
   get lastName() {
     return this.registerForm.controls['lastName'];
   }
-
   get email() {
     return this.registerForm.controls['email'];
   }
@@ -63,12 +62,18 @@ export class RegisterComponent {
       this.toastr.error('Please correct the errors in the form.', 'Error');
       return;
     }
+    this.authService.registerUser(this.registerForm.value).subscribe(
+      (res:any)=>{
+        if(res.status == 200){
+          console.log(res);
+        this.toastr.success('Register successfully', 'Success');
+        this.router.navigate(['/user/login']);
+      }else{
+        this.toastr.error('Something went wrong', 'Error');
+      }
 
-    const postData = { ...this.registerForm.value };
-    delete postData.confirmPassword;
-
-    this.authService.registerUser(postData as User).subscribe(
-      response => {
+      }
+      /* response => {
         console.log(response);
         this.toastr.success('Register successfully', 'Success');
         this.router.navigate(['/user/login']);
@@ -76,7 +81,7 @@ export class RegisterComponent {
       error => {
         console.error(error);
         this.toastr.error('Something went wrong', 'Error');
-      }
+      } */
     );
   }
 }

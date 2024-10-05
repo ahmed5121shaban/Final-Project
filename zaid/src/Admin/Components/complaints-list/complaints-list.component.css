@@ -43,24 +43,35 @@
   
   /* Pagination Styling */
   .pagination {
+    display: flex;
     justify-content: center;
     margin-top: 20px;
   }
   
-  .page-link {
-    cursor: pointer;
-    color: #007bff;
+  .page-item {
+    margin: 0 5px;
   }
   
-  .page-item.disabled .page-link {
-    color: #6c757d;
-    cursor: not-allowed;
+  .page-link {
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .page-link:hover {
+    background-color: #0056b3;
   }
   
   .page-item.active .page-link {
-    background-color: #007bff;
-    border-color: #007bff;
-    color: white;
+    background-color: #0056b3;
+    font-weight: bold;
+  }
+  
+  .page-item.disabled .page-link {
+    pointer-events: none;
+    opacity: 0.5;
   }
   
   /* Adjusting for Responsive Design */
