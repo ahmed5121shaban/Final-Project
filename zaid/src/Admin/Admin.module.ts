@@ -18,10 +18,13 @@ import { ComplaintsListComponent } from './Components/complaints-list/complaints
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ItemsReviewComponent } from './Components/items-review/items-review.component';
 import { AddCategoryComponent } from './Components/add-category/add-category.component';
+import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { LoadingInterceptor } from '../Shared/Interseptors/loader intersptors/loading.interceptor';
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutes,
+    
     NgCircleProgressModule.forRoot({
       showUnits: false,
       showSubtitle:true,
@@ -35,6 +38,13 @@ import { AddCategoryComponent } from './Components/add-category/add-category.com
     DashboardHomeComponent,
    DashboardLayoutComponent,AddEventComponent,UsersListComponent,EventsListComponent,AuctionsListComponent,ComplaintsListComponent,
    AuctionLiveStreamComponent,
-   ItemsReviewComponent,AddCategoryComponent]
+   ItemsReviewComponent,AddCategoryComponent],
+
+   providers:[
+provideHttpClient(
+  withInterceptors
+  ([])
+)
+   ]
 })
 export class AdminModule { }

@@ -1,143 +1,137 @@
 <div class="container my-5">
+    <form [formGroup]="auctionForm" (ngSubmit)="onSubmit()">
     <div class="row">
         <!-- Product Information Section -->
         <div class="col-lg-8">
             <div class="form-section mb-4">
                 <h5 class="mt-3">Add Item</h5>
-                <form [formGroup]="auctionForm" (ngSubmit)="onSubmit()">
+                    <div class="row d-flex justify-content-between">
+                        <div>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="itemTitle" class="form-label">Item Title</label>
-                            <input type="text" class="form-control" name="itemTitle" id="itemTitle"
-                                placeholder="Item Title" formControlName="itemTitle" minlength="4" maxlength="20"
-                                [ngClass]="{
-                                    'is-invalid': auctionForm.controls['itemTitle'].invalid && auctionForm.controls['itemTitle'].touched
-                                    }">
+                            <input type="text" class="form-control" name="Title" id="itemTitle" placeholder="Item Title"
+                                formControlName="Title" minlength="4" maxlength="20" [ngClass]="{
+                                                'is-invalid': auctionForm.controls['Title'].invalid && auctionForm.controls['Title'].touched
+                                                }">
                             <div class="invalid-feedback">
-                                @if(auctionForm.controls['itemTitle'].hasError("required")){
+                                @if(auctionForm.controls['Title'].hasError("required")){
                                 <span>item Title is required </span>
                                 }
+
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="productCategory" class="form-label">Category</label>
-                            <select class="form-select" id="Category" formControlName="category" [ngClass]="{
-                                'is-invalid': auctionForm.controls['category'].invalid && auctionForm.controls['category'].touched
+                            <label for="Category" class="form-label">Category</label>
+                            <select class="form-select" id="Category" style="height: 80px;" formControlName="Category"
+                                [ngClass]="{
+                                    'is-invalid': auctionForm.controls['Category'].invalid && auctionForm.controls['Category'].touched
                                 }">
                                 <option selected disabled>Select category</option>
-                                <option value="electronics">Electronics</option>
-                                <option value="fashion">Fashion</option>
-                                <option value="home">Home & Garden</option>
-                                <option value="sports">Sports</option>
-                                <option value="toys">Toys & Hobbies</option>
+
+                                <!-- Dynamically load categories -->
+                                <option *ngFor="let category of categories" [value]="category.id">{{
+                                    category.name }}</option>
                             </select>
+
                             <div class="invalid-feedback">
-                                @if(auctionForm.controls['category'].hasError("required")){
-                                <span>item category is required </span>
-                                }
+                                <span *ngIf="auctionForm.controls['Category'].hasError('required')">Item
+                                    category is required</span>
                             </div>
+
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="formFileMultiple" class="form-label">Upload multiple Images</label>
-                        <input class="form-control" type="file" (change)="choose($event)" id="formFileMultiple" multiple
-                            formControlName="images" [ngClass]="{
-                        'is-invalid': auctionForm.controls['images'].invalid && auctionForm.controls['images'].touched
-                        }">
+                        <input class="form-control" type="file" (change)="chooseImage($event)"  (change)="onFileSelected($event)" id="formFileMultiple"
+                            multiple formControlName="Images" [ngClass]="{
+                                            'is-invalid': auctionForm.controls['Images'].invalid && auctionForm.controls['Images'].touched
+                                            }">
                         <div class="invalid-feedback">
-                            @if (auctionForm.controls['images'].hasError("required")) {
+                            @if (auctionForm.controls['Images'].hasError("required")) {
                             <span>Item images is required </span>
                             }
                         </div>
                     </div>
+                     <!-- Image preview -->
+                     <div *ngIf="imagePreviews.length > 0" class="image-previews d-flex">
+                        <div *ngFor="let preview of imagePreviews" >
+                          <img [src]="preview" alt="Selected Image" width="200" style="margin-right: 10px;">
+                        </div>
+                      </div>
                     <div class="mb-3">
-                        <label for="itemDescription" class="form-label">Item Description</label>
-                        <textarea class="form-control" id="itemDescription" rows="4" style="height: 160px;"
+                        <label for="Description" class="form-label">Item Description</label>
+                        <textarea class="form-control" id="Description" rows="4" style="height: 160px;"
                             placeholder="Enter detailed description" minlength="10" maxlength="200"
-                            formControlName="itemDescription" [ngClass]="{
-                                'is-invalid': auctionForm.controls['itemDescription'].invalid && auctionForm.controls['itemDescription'].touched
-                                }"></textarea>
+                            formControlName="Description" [ngClass]="{
+                                                'is-invalid': auctionForm.controls['Description'].invalid && auctionForm.controls['Description'].touched
+                                                }"></textarea>
                         <div class="invalid-feedback">
-                            @if(auctionForm.controls['itemDescription'].hasError("required")){
+                            @if(auctionForm.controls['Description'].hasError("required")){
                             <span>Item description is required </span>
                             }
 
                         </div>
                     </div>
-                </form>
+                </div>
+                    <!-- Right Sidebar -->
+                </div>
             </div>
         </div>
-
-        <!-- Right Sidebar -->
         <div class="col-lg-4">
             <div class="form-section mb-4">
                 <h5 class="mt-3">Item Price</h5>
                 <div class="mb-3">
-                    <label for="startingPrice" class="form-label">Starting Price</label>
-                    <input type="text" class="form-control" id="startingPrice" placeholder="Enter starting price"
-                        formControlName="startingPrice" [ngClass]="{
-                        'is-invalid': auctionForm.controls['startingPrice'].invalid && auctionForm.controls['startingPrice'].touched
-                        }">
-                    <div class="invalid-feedback">
-                        @if(auctionForm.controls['startingPrice'].hasError("required")){
-                        <span>starting price is required </span>
-                        }@else if (auctionForm.controls['startingPrice'].hasError("pattern")) {
-                        <span>strarting price must be a number </span>
-                        }@else if(auctionForm.controls['reservePrice'].hasError("min")){
-                        <span>strarting price must be more than 49 L.E</span>
-                        }
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="reservePrice" class="form-label">Sale Price</label>
-                    <input type="text" class="form-control" id="reservePrice" placeholder="Enter sale price (optional)"
-                        formControlName="reservePrice" [ngClass]="{
-                    'is-invalid': auctionForm.controls['reservePrice'].invalid
+                    <label for="startPrice" class="form-label">Starting Price</label>
+                    <input type="number" class="form-control" id="startPrice"
+                    placeholder="Enter starting price" formControlName="startPrice" [ngClass]="{
+                        'is-invalid': auctionForm.controls['startPrice'].invalid && auctionForm.controls['startPrice'].touched
+}">
+                <div class="invalid-feedback">
+                    @if(auctionForm.controls['startPrice'].hasError("required")){
+                    <span>starting price is required </span>
+                    }@else if (auctionForm.controls['startPrice'].hasError("pattern")) {
+                    <span>strarting price must be a number </span>
+                    }@else if(auctionForm.controls['startPrice'].hasError("min")){
+                    <span>strarting price must be more than 49 L.E</span>
+                }
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="sellPrice" class="form-label">Sell Price</label>
+                <input type="number" class="form-control" id="sellPrice"
+                    placeholder="Enter selling price" formControlName="sellPrice" [ngClass]="{
+                        'is-invalid': auctionForm.controls['sellPrice'].invalid
                     }">
-                    <div class="invalid-feedback">
-                        @if (auctionForm.controls['reservePrice'].hasError("pattern")) {
+                <div class="invalid-feedback">
+                    @if (auctionForm.controls['sellPrice'].hasError("pattern")) {
                         <span>reserve price must be a number </span>
-                        }@else if(auctionForm.controls['reservePrice'].hasError("min")){
+                    }@else if(auctionForm.controls['sellPrice'].hasError("min")){
                         <span> reserve price must be more than 49 L.E </span>
-                        }
-                    </div>
+                    }
                 </div>
             </div>
-            <div class="form-section mb-4">
-                <div class="mb-3">
-                    <label class="form-label">Payment Method</label><br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="paymentPaypal" formControlName="paymentMethod"
-                            name="paymentMethod" value="paypal" [ngClass]="{
-                  'is-invalid': auctionForm.controls['paymentMethod'].invalid && auctionForm.controls['paymentMethod'].touched
-              }">
-                        <label class="form-check-label" for="paymentPaypal">PayPal</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="stripe" formControlName="paymentMethod"
-                            name="paymentMethod" value="stripe" [ngClass]="{
-                  'is-invalid': auctionForm.controls['paymentMethod'].invalid && auctionForm.controls['paymentMethod'].touched
-              }">
-                        <label class="form-check-label" for="stripe">Stripe</label>
-                    </div>
-                    <div class="invalid-feedback">
-                        @if(auctionForm.controls['paymentMethod'].hasError("required")){
-                        <span>Payment Method is required</span>
-                        }
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="formFileMultiple" class="form-label">Upload Warranty certificate ,contract (if has)</label>
-                    <input class="form-control" type="file" id="formFileMultiple" multiple>
+        </div>
+        <div class="form-section mb-4">
+            
+            <div class="mb-3">
+                <label for="formFileMultiple" class="form-label">Upload Warranty certificate ,contract
+                    (if
+                    has)</label>
+                    <input class="form-control" type="file" (change)="chooseContract($event)"
+                    id="formFileMultiple" formControlName="Contract" multiple>
                 </div>
             </div>
-
-
+            
+            
             <div class="d-flex justify-content-center align-items-center">
-                <button class="btn btn-secondary me-3 my-4 px-5">Create item</button>
-                <button routerLink="" class="btn btn-outline-primary bg-transparent my-4 px-4">Cancel</button>
+                <button class="btn btn-secondary me-3 my-4 px-5" type="submit" [disabled]="auctionForm.invalid">Add item</button>
+                <button routerLink=""
+                class="btn btn-outline-primary bg-transparent my-4 px-4">Cancel</button>
             </div>
         </div>
     </div>
+    </form>
+    
+    
 </div>
