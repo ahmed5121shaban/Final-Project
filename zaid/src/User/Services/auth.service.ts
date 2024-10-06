@@ -11,17 +11,18 @@ import { Observable } from 'rxjs/internal/Observable';
 export class AuthService {
 
   private localStorageKey = 'token';
-  isloggedUserSubject!: BehaviorSubject<boolean>
+  isLoggedUserSubject!: BehaviorSubject<boolean>
 
   constructor(private http:HttpClient) { }
+
 get isLoggedIn(){
-  if(localStorage.getItem(this.localStorageKey))
-    return true
+  if(localStorage.getItem(this.localStorageKey)){
+    
+    return true}
   return false
   }
 
   loginUser(value:any){
-    this.isloggedUserSubject.next(true)
     return this.http.post("http://localhost:63280/api/acount/login",value);
   }
 
