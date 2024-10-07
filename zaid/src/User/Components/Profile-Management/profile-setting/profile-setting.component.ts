@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { ApiService } from '../../../Services/api.service'; // استيراد خدمة API
 
 @Component({
   selector: 'app-profile-setting',
@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProfileSettingComponent implements OnInit {
   form:FormGroup
-  constructor(private formBuilder:FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
     this.form = this.formBuilder.group({
 
       fname:['',[Validators.required,Validators.minLength(4),Validators.maxLength(20)]],
@@ -39,12 +39,31 @@ export class ProfileSettingComponent implements OnInit {
    get firstPhNum(){return this.form.get('firstPhNum')}
    get secondPhNum(){return this.form.get('secondPhNum')}
 
-  ngOnInit() {
-    this.form.patchValue({/* data-base-value */})
+   ngOnInit() {
+    this.apiService.getProfileData().subscribe({
+      next: (data:any) => {
+        this.form.patchValue(data); // افترض أن الباك إند يعيد كائن يتناسب مع النموذج
+      },
+      error: (error:any) => {
+        console.error('Error fetching profile data:', error);
+      }
+   });
   }
+  
 
-  editProfile(){
-    console.log(this.form.value);
+  editProfile() {
+    if (this.form.valid) {
+      const profileData = this.form.value;
+      this.apiService.updateProfile(profileData).subscribe( {
+       next: (response:any) => {
+          console.log('Profile updated successfully:', response);
+        },
+       error: (error:any) => {
+          console.error('Error updating profile:', error);
+        }
+    });
+    } else {
+      console.log('Form is invalid');
+    }
   }
-
 }
