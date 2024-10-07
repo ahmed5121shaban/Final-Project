@@ -18,7 +18,7 @@
                   <div class="form-floating mb-3">
                     <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com"
                       formControlName="email" [ngClass]="{
-                        'is-valid': form.controls['email'].valid, 
+                        'is-valid': form.controls['email'].valid,
                         'is-invalid': form.controls['email'].invalid && form.controls['email'].touched
                         }">
                     <div class="valid-feedback">
@@ -36,12 +36,12 @@
                 </div>
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    
+
                     <input [type]="passwordFieldType" class="form-control" name="password" id="password" placeholder="Password"
                       formControlName="password" [ngClass]="{
                         'is-invalid': form.controls['password'].invalid && form.controls['password'].touched
                         }">
-            
+
                     <div class="invalid-feedback">
                       @if(form.controls['password'].hasError("required")){
                       <span>Password is required </span>
@@ -54,17 +54,16 @@
                     </span>
                   }
                     <label for="password" class="form-label">Password</label>
-                  
+
                     <p class="m-0 text-secondary text-left"> <a routerLink="/user/reset-password"
                         class="text-primary text-decoration-none">Forget your password?</a></p>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-group form-check mb-3">
-                    <input type="checkbox" class="form-check-input" id="rememberMe" />
+                    <input type="checkbox" class="form-check-input" formControlName="rememberMe" id="rememberMe" />
                     <label class="form-check-label text-secondary" for="rememberMe">Remember me</label>
                 </div>
-                
                 </div>
                 <div class="col-12">
                   <div class="d-grid ">
