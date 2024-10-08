@@ -1,36 +1,33 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interface/auth';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { of } from 'rxjs/internal/observable/of';
-import { Observable } from 'rxjs/internal/Observable';
+import { BehaviorSubject, of, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private localStorageKey = 'token';
-  isloggedUserSubject!: BehaviorSubject<boolean>
+  private localStorageKey = 'token'; // Key for storing the auth token
+  private userKey = 'users'; // Separate key for storing user data
+  isloggedUserSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isLoggedIn);
 
-  constructor(private http:HttpClient) { }
-get isLoggedIn(){
-  if(localStorage.getItem(this.localStorageKey))
-    return true
-  return false
+  constructor(private http: HttpClient) { }
+
+  get isLoggedIn(): boolean {
+    if(localStorage.getItem(this.localStorageKey)){
+    
+      return true;
+    }  
+    return false;
+    }
+
+  loginUser(value: any) {
+    return this.http.post("http://localhost:5204/api/acount/login", value);
   }
 
-  loginUser(value:any){
-    this.isloggedUserSubject.next(true)
-    return this.http.post("http://localhost:63280/api/acount/login",value);
-  }
-
-  registerUser(userDetails: any){
-    /* const users = this.getUsersFromLocalStorage();
-    users.push(userDetails);
-    this.setUsersToLocalStorage(users);
-    return of(userDetails); */
-    return this.http.post("http://localhost:63280/api/Acount/register",userDetails);
+  registerUser(userDetails: any) {
+    return this.http.post("http://localhost:5204/api/Acount/register", userDetails);
   }
 
   updateUserPassword(email: string, newPassword: string): Observable<boolean> {
@@ -53,14 +50,11 @@ get isLoggedIn(){
   }
 
   private getUsersFromLocalStorage(): User[] {
-    const usersJson = localStorage.getItem(this.localStorageKey);
+    const usersJson = localStorage.getItem(this.userKey); // Changed to `userKey`
     return usersJson ? JSON.parse(usersJson) : [];
   }
 
   private setUsersToLocalStorage(users: User[]): void {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(users));
+    localStorage.setItem(this.userKey, JSON.stringify(users)); // Changed to `userKey`
   }
-
-
 }
-

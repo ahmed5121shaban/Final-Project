@@ -1,25 +1,25 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuctionService {
-  private localStorageKey = 'auctionData';
+  private apiUrl="http://localhost:5204/api/Auction"
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
-  saveAuctionData(data: any): void {
-    const auctionData = JSON.stringify(data);
-    localStorage.setItem(this.localStorageKey, auctionData);
+  createAuction(auction:Auction): Observable<any> {
+    return this.http.post(this.apiUrl,auction)
   }
 
-  getAuctionData(): any {
-    const auctionData = localStorage.getItem(this.localStorageKey);
-    return auctionData ? JSON.parse(auctionData) : null;
-  }
-
-  clearAuctionData(): void {
-    localStorage.removeItem(this.localStorageKey);
+  getAll():any{
+    return this.http.get<any>(`${this.apiUrl}/getall`)
   }
 }
-
+export interface Auction{
+  ItemId:number;
+  Duration:number;
+  StartDate:Date;
+}

@@ -83,7 +83,7 @@
                 <h5 class="mt-3">Item Price</h5>
                 <div class="mb-3">
                     <label for="startPrice" class="form-label">Starting Price</label>
-                    <input type="number" class="form-control" id="startPrice"
+                    <input type="text" class="form-control" id="startPrice"
                     placeholder="Enter starting price" formControlName="startPrice" [ngClass]="{
                         'is-invalid': auctionForm.controls['startPrice'].invalid && auctionForm.controls['startPrice'].touched
 }">
@@ -99,7 +99,7 @@
         </div>
         <div class="mb-3">
             <label for="sellPrice" class="form-label">Sell Price</label>
-                <input type="number" class="form-control" id="sellPrice"
+                <input type="text" class="form-control" id="sellPrice"
                     placeholder="Enter selling price" formControlName="sellPrice" [ngClass]="{
                         'is-invalid': auctionForm.controls['sellPrice'].invalid
                     }">

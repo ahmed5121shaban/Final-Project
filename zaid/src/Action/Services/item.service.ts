@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ItemService {
 
-private apiUrl="https://localhost:49777/api/Item"
+private apiUrl="http://localhost:5204/api/Item"
 
   constructor(private http:HttpClient) { }
 
@@ -15,10 +15,28 @@ private apiUrl="https://localhost:49777/api/Item"
 addItem(formData:FormData):Observable<any>{
  return this.http.post(this.apiUrl,formData);
 }
+
+getPendingItems(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/Pending`);
+}
+getAcceptedItems(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/Accepted`);
+}
+getRejectedItems(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/Rejected`);
+}
+
+
+getItemById(id:number):Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/${id}`);
+
+}
+
+
+
 deleteItem(itemId:number):Observable<any>{
   return this.http.delete(`${this.apiUrl}/delete/${itemId}`);
  }
-
 
 }
 

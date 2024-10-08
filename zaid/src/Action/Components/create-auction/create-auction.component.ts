@@ -29,13 +29,13 @@ export class CreateAuctionComponent {
       startPrice: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(50)]],
       sellPrice: ['', [Validators.pattern('^[0-9]*$'), Validators.min(50)]],
       Images: ['', Validators.required],
-      Contract: [''],
+      Contract: ['']
     });
 
 
     this.categoryService.getCategories().subscribe(
       data => {
-      this.categories = data;
+      this.categories = data.result;
     });
   }
   onFileSelected(event: Event): void {
@@ -106,7 +106,7 @@ export class CreateAuctionComponent {
           // Reset the form or navigate after submission
         },
         error: (error) => {
-          console.error('Error adding Item:', error);
+          console.error('Error adding Item:', error.error);
         }
 
       });

@@ -55,7 +55,8 @@ export class LoginComponent {
     );
     this.authService.loginUser(this.form.value).subscribe((res:any)=>{
       if(res.status==200)
-        localStorage.setItem("auth",res.token);
+        localStorage.setItem("token",res.token);
+      this.router.navigate(['home']);
 
     })
   }

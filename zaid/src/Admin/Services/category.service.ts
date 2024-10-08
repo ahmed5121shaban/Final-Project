@@ -7,16 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class CategoryService {
 
-private apiUrl="https://localhost:49777/api/Category"
+private apiUrl="http://localhost:5204/api/Category"
 
   constructor(private http:HttpClient) { }
 
   //call api to get categories
   getCategories(): Observable<any> {
-    return this.http.get<any>(this.apiUrl)
+    return this.http.get<any>(`${this.apiUrl}/getall`)
   }
 addCategory(formData:FormData):Observable<any>{
- return this.http.post(this.apiUrl,formData);
+ return this.http.post(`${this.apiUrl}/Add`,formData);
 }
 
 deleteCategory(categoryId:number):Observable<any>{

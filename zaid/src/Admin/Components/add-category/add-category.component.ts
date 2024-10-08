@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-//import { Category, CategoryService } from '../../../../Action/Services/category.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CategoryService } from '../../Services/category.service';
 @Component({
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',
@@ -19,7 +19,7 @@ export class AddCategoryComponent {
   imagePreview: string | ArrayBuffer | null = null;
 
   constructor(
-    //private categoryService: CategoryService,
+    private categoryService: CategoryService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {
@@ -74,15 +74,15 @@ export class AddCategoryComponent {
       }
 
       console.log(formData);
-      //this.categoryService.addCategory(formData).subscribe({
-      //next: (response) => {
-      //console.log('Category added successfully:', response);
-      this.router.navigate(['admin/categories-list']);
-      //},
-      //error: (error) => {
-      //  console.error('Error adding category:', error);
-      // }
-      // });
+      this.categoryService.addCategory(formData).subscribe({
+      next: (response:any) => {
+      console.log('Category added successfully:', response);
+      //this.router.navigate(['admin/categories-list']);
+      },
+      error: (error:any) => {
+       console.error('Error adding category:', error);
+      }
+      });
     }
     else {
       console.log('Form is invalid');
