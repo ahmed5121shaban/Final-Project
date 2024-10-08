@@ -11,21 +11,26 @@ export class AuthService {
   private localStorageKey = 'token';
   isLoggedUserSubject!: BehaviorSubject<boolean>
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-get isLoggedIn(){
-  if(localStorage.getItem(this.localStorageKey)){
-    
-    return true}
-  return false
+  get isLoggedIn() {
+    if (localStorage.getItem(this.localStorageKey)) {
+
+      return true
+    }
+    return false
   }
 
-  loginUser(value:any){
-    return this.http.post("http://localhost:63280/api/acount/login",value);
+  loginUser(value: any) {
+    return this.http.post("http://localhost:63280/api/acount/login", value);
   }
 
   registerUser(userDetails: any) {
-    return this.http.post("http://localhost:5204/api/Acount/register", userDetails);
+    /* const users = this.getUsersFromLocalStorage();
+    users.push(userDetails);
+    this.setUsersToLocalStorage(users);
+    return of(userDetails); */
+    return this.http.post("http://localhost:63280/api/Acount/register", userDetails);
   }
 
   updateUserPassword(email: string, newPassword: string): Observable<boolean> {
@@ -48,11 +53,11 @@ get isLoggedIn(){
   }
 
   private getUsersFromLocalStorage(): User[] {
-    const usersJson = localStorage.getItem(this.userKey); // Changed to `userKey`
+    const usersJson = localStorage.getItem(this.localStorageKey); // Changed to `userKey`
     return usersJson ? JSON.parse(usersJson) : [];
   }
 
   private setUsersToLocalStorage(users: User[]): void {
-    localStorage.setItem(this.userKey, JSON.stringify(users)); // Changed to `userKey`
+    localStorage.setItem(this.localStorageKey, JSON.stringify(users)); // Changed to `userKey`
   }
 }
