@@ -8,22 +8,20 @@ import { BehaviorSubject, of, Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private localStorageKey = 'token'; // Key for storing the auth token
-  private userKey = 'users'; // Separate key for storing user data
-  isloggedUserSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isLoggedIn);
+  private localStorageKey = 'token';
+  isLoggedUserSubject!: BehaviorSubject<boolean>
 
-  constructor(private http: HttpClient) { }
+  constructor(private http:HttpClient) { }
 
-  get isLoggedIn(): boolean {
-    if(localStorage.getItem(this.localStorageKey)){
+get isLoggedIn(){
+  if(localStorage.getItem(this.localStorageKey)){
     
-      return true;
-    }  
-    return false;
-    }
+    return true}
+  return false
+  }
 
-  loginUser(value: any) {
-    return this.http.post("http://localhost:5204/api/acount/login", value);
+  loginUser(value:any){
+    return this.http.post("http://localhost:63280/api/acount/login",value);
   }
 
   registerUser(userDetails: any) {
