@@ -17,6 +17,12 @@ export class AuctionService {
   getAll():any{
     return this.http.get<any>(`${this.apiUrl}/getall`)
   }
+  getAllActive(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Active`);
+  }
+  getAllEnded(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Ended`);
+  }
 }
 export interface Auction{
   ItemId:number;

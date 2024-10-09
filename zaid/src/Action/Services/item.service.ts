@@ -32,8 +32,6 @@ getItemById(id:number):Observable<any> {
 
 }
 
-
-
 deleteItem(itemId:number):Observable<any>{
   return this.http.delete(`${this.apiUrl}/delete/${itemId}`);
  }
