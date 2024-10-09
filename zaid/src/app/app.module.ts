@@ -14,6 +14,7 @@ import { ItemsModule } from '../Items/Items.module';
 import { SharedModule } from '../Shared/Shared.module';
 import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { headerInterceptor } from '../Shared/Interseptors/header intersptor/header.interceptor';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { headerInterceptor } from '../Shared/Interseptors/header intersptor/head
     SharedModule,
   ],
   providers: [
-    provideHttpClient(withFetch(),withInterceptors([headerInterceptor]))
+    provideHttpClient(withFetch(),withInterceptors([headerInterceptor])),CookieService
   ],
   bootstrap: [AppComponent],
 })
