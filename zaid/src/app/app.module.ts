@@ -14,6 +14,7 @@ import { ItemsModule } from '../Items/Items.module';
 import { SharedModule } from '../Shared/Shared.module';
 import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { headerInterceptor } from '../Shared/Interseptors/header intersptor/header.interceptor';
+import { LoaderInterceptor } from '../Shared/Interseptors/loader intersptors/loading.interceptor';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { headerInterceptor } from '../Shared/Interseptors/header intersptor/head
 
   ],
   providers: [
-    provideHttpClient(withFetch(),withInterceptors([headerInterceptor]))
+    provideHttpClient(withFetch(),withInterceptors([headerInterceptor,LoaderInterceptor]))
   ],
   bootstrap: [AppComponent],
 })

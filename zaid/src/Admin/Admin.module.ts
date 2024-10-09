@@ -20,7 +20,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ItemsReviewComponent } from './Components/items-review/items-review.component';
 import { AddCategoryComponent } from './Components/add-category/add-category.component';
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
-import { LoadingInterceptor } from '../Shared/Interseptors/loader intersptors/loading.interceptor';
 @NgModule({
   imports: [
     CommonModule,
@@ -43,10 +42,7 @@ import { LoadingInterceptor } from '../Shared/Interseptors/loader intersptors/lo
    ItemsReviewComponent,AddCategoryComponent],
 
    providers:[
-provideHttpClient(
-  withInterceptors
-  ([])
-)
+
    ]
 })
 export class AdminModule { }
