@@ -174,13 +174,6 @@
               </a>
             </div>
 
-
-
-
-
-
-
-
           </nav>
         </div>
 
@@ -240,12 +233,6 @@
             </div>
 
 
-
-
-
-
-
-
           </nav>
         </div>
       </div>
@@ -264,332 +251,58 @@
           <div class="tab-pane fade show active" id="ActiveAuctions" role="tabpanel">
             <div class="d-flex flex-sm-row flex-column justify-content-between align-items-center ">
               <form class="d-flex flex-sm-row flex-column justify-content-start align-items-center w-50">
-                <label class=" me-2 fw-normal">Sort by</label>
-                <select class=" form-select w-75 form-select rounded rounded-0" aria-label="select example">
-                  <option selected class="">Ending Soonest</option>
-                  <option value="1" class="">Most bids</option>
-                  <option value="2" class="">Highest bid</option>
-                  <option value="3" class="">Lowest bid</option>
+                <label class="me-2 fw-normal">Sort by</label>
+                <select class="form-select w-75 form-select rounded rounded-0" aria-label="select example">
+                  <option selected>Ending Soonest</option>
+                  <option value="1">Most bids</option>
+                  <option value="2">Highest bid</option>
+                  <option value="3">Lowest bid</option>
                 </select>
               </form>
               <nav aria-label="Page navigation example" class="mb-0 mt-3 rounded rounded-0">
-                <ul class="pagination text-dark  ">
-                  <li class="page-item ">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true" class="text-dark ">&laquo;</span>
-
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link text-dark " href="#">1</a></li>
-                  <li class="page-item"><a class="page-link text-dark " href="#">2</a></li>
-                  <li class="page-item"><a class="page-link text-dark " href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true" class="text-dark ">&raquo;</span>
-
-                    </a>
-                  </li>
+                <ul class="pagination text-dark">
+                  <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true" class="text-dark">&laquo;</span></a></li>
+                  <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true" class="text-dark">&raquo;</span></a></li>
                 </ul>
               </nav>
-
             </div>
-            <div class="row ">
-              <div class="col-lg-4 col-md-6 col-12 mt-5"> 
-                <div class="custom-product-card mt-5 me-2 border border-1  ">
-                  <div class=" position-relative">
-                  <div id="first" class="carousel slide" data-bs-ride="true">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
+            <div class="row">
+              <div *ngFor="let auction of activeAuctions let i=index" class="col-lg-4 col-md-6 col-12 mt-5">
+                <div class="custom-product-card mt-5 me-2 border border-1">
+                  <div class="position-relative">
+                    <div id="carousel{{ auction.item.id }}" class="carousel slide" data-bs-ride="true">
+                      <div class="carousel-inner">
+                        <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0" class="carousel-item" style="height: 30vh;">
+                          <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 card-img-top" alt="Auction item image">
+                        </div>
                       </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
+                      <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#first" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#first" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
+                    <div class="card-icon bg-dark">
+                      <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
+                    </div>
                   </div>
-                  <div class=" card-icon bg-dark">
-                    <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
+                  <div class="card-body p-3">
+                    <a class="card-title text-decoration-none fw-bold">{{ auction.item.name }}</a>
+                    <p class="mb-1"><small class="text-muted">{{ auction.item.seller.user.name }}</small></p>
+                    <p class="bids">{{ auction.bids.length }} bids</p>
+                    <p class="price">{{ auction.item.startPrice }} EUR</p>
                   </div>
-                </div>
-                <div class="card-body p-3">
-                  <a class="card-title text-decoration-none fw-bold">anyyyy <br>MARK SELIGER. PRINT</a>
-                  <p class="mb-1"><small class="text-muted">nermen</small></p>
-                  <p class="bids">53 bids</p>
-                  <p class="price">20 EUR</p>
-                </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-12 mt-5"> 
-                <div class="custom-product-card mt-5 me-2 border border-1  ">
-                  <div class=" position-relative">
-                  <div id="second" class="carousel slide" data-bs-ride="true">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#second" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#second" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <div class=" card-icon bg-dark">
-                    <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
-                  </div>
-                </div>
-                <div class="card-body p-3">
-                  <a class="card-title text-decoration-none fw-bold">anyyyy <br>MARK SELIGER. PRINT</a>
-                  <p class="mb-1"><small class="text-muted">nermen</small></p>
-                  <p class="bids">53 bids</p>
-                  <p class="price">20 EUR</p>
-                </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-12 mt-5"> 
-                <div class="custom-product-card mt-5 me-2 border border-1  ">
-                  <div class=" position-relative">
-                  <div id="third" class="carousel slide" data-bs-ride="true">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#third" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#third" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <div class=" card-icon bg-dark">
-                    <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
-                  </div>
-                </div>
-                <div class="card-body p-3">
-                  <a class="card-title text-decoration-none fw-bold">anyyyy <br>MARK SELIGER. PRINT</a>
-                  <p class="mb-1"><small class="text-muted">nermen</small></p>
-                  <p class="bids">53 bids</p>
-                  <p class="price">20 EUR</p>
-                </div>
-                </div>
-              </div>
-                <!-- <div class="col-lg-4 col-md-6 col-12 mt-5"> 
-                <div class="card">
-                  <div id="second" class="carousel slide" data-bs-ride="true">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#second" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#second" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">cute cat</h5>
-                    <p class="card-text text-secondary fs-6 fw-medium mb-1">1 day</p>
-                    <p class="card-text text-secondary fs-6 fw-medium">Estimate</p>
-                    <h5 class="card-title">100 EUR</h5>
-
-                  </div>
-                </div>
-              </div> -->
-              <!-- <div class="col-lg-4 col-md-6 col-12 mt-5">
-                <div class="card">
-                  <div id="third" class="carousel slide " data-bs-ride="true">
-                    <div class="carousel-inner ">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#third" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#third" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">cute cat</h5>
-                    <p class="card-text text-secondary fs-6 fw-medium mb-1">1 day</p>
-                    <p class="card-text text-secondary fs-6 fw-medium">Estimate</p>
-                    <h5 class="card-title">100 EUR</h5>
-
-                  </div>
-                </div>
-              </div> -->
-              <!-- <div class="col-lg-4 col-md-6 col-12 mt-5">
-                <div class="card">
-                  <div id="fourth" class="carousel slide " data-bs-ride="true">
-                    <div class="carousel-inner ">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#fourth" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#fourth" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">cute cat</h5>
-                    <p class="card-text text-secondary fs-6 fw-medium mb-1">1 day</p>
-                    <p class="card-text text-secondary fs-6 fw-medium">Estimate</p>
-                    <h5 class="card-title">100 EUR</h5>
-
-                  </div>
-                </div>
-              </div> -->
-              <!-- <div class="col-lg-4 col-md-6 col-12 mt-5">
-                <div class="card">
-                  <div id="fifth" class="carousel slide " data-bs-ride="true">
-                    <div class="carousel-inner ">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#fifth" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#fifth" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">cute cat</h5>
-                    <p class="card-text text-secondary fs-6 fw-medium mb-1">1 day</p>
-                    <p class="card-text text-secondary fs-6 fw-medium">Estimate</p>
-                    <h5 class="card-title">100 EUR</h5>
-
-                  </div>
-                </div>
-              </div> -->
-              <!-- <div class="col-lg-4 col-md-6 col-12 mt-5">
-                <div class="card">
-                  <div id="sixth" class="carousel slide " data-bs-ride="true">
-                    <div class="carousel-inner ">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#sixth" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#sixth" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">cute cat</h5>
-                    <p class="card-text text-secondary fs-6 fw-medium mb-1">1 day</p>
-                    <p class="card-text text-secondary fs-6 fw-medium">Estimate</p>
-                    <h5 class="card-title">100 EUR</h5>
-
-                  </div>
-                </div>
-              </div>   -->
             </div>
-
-
           </div>
+          
 
           <div class="tab-pane fade  " id="EndedAuctions" role="tabpanel">
             <div class="d-flex flex-sm-row flex-column justify-content-between align-items-center">
@@ -624,229 +337,36 @@
 
             </div>
             <div class="row">
-              <div class="col-lg-4 col-md-6 col-12 mt-5"> 
-                <div class="custom-product-card mt-5 me-2 border border-1 ">
-                  <div class=" position-relative">
-                  <div id="forth" class="carousel slide" data-bs-ride="true">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
+              <div *ngFor="let auction of endedAuctions let i=index" class="col-lg-4 col-md-6 col-12 mt-5"> 
+                <div class="custom-product-card mt-5 me-2 border border-1">
+                  <div class="position-relative">
+                    <div id="carousel{{ auction.item.id }}" class="carousel slide" data-bs-ride="true">
+                      <div class="carousel-inner">
+                        <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0" class="carousel-item" style="height: 30vh;">
+                          <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 card-img-top" alt="Auction item image">
+                        </div>
                       </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
+                      <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#forth" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#forth" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
+                    <div class="card-icon bg-dark">
+                      <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
+                    </div>
                   </div>
-                  <div class=" card-icon bg-dark">
-                    <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
+                  <div class="card-body p-3">
+                    <a class="card-title text-decoration-none fw-bold">{{ auction.item.name }}</a>
+                    <p class="mb-1"><small class="text-muted">{{ auction.item.seller.user.name }}</small></p>
+                    <p class="bids">{{ auction.bids.length }} bids</p>
+                    <p class="price">{{ auction.item.startPrice }} EUR</p>
                   </div>
-                </div>
-                <div class="card-body p-3">
-                  <a class="card-title text-decoration-none fw-bold">anyyyy <br>MARK SELIGER. PRINT</a>
-                  <p class="mb-1"><small class="text-muted">nermen</small></p>
-                  <p class="bids">53 bids</p>
-                  <p class="price">20 EUR</p>
-                </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-12 mt-5"> 
-                <div class="custom-product-card mt-5 me-2 border border-1 ">
-                  <div class=" position-relative">
-                  <div id="fifth" class="carousel slide" data-bs-ride="true">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#fifth" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#fifth" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <div class=" card-icon bg-dark">
-                    <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
-                  </div>
-                </div>
-                <div class="card-body p-3">
-                  <a class="card-title text-decoration-none fw-bold">anyyyy <br>MARK SELIGER. PRINT</a>
-                  <p class="mb-1"><small class="text-muted">nermen</small></p>
-                  <p class="bids">53 bids</p>
-                  <p class="price">20 EUR</p>
-                </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-12 mt-5"> 
-                <div class="custom-product-card mt-5 me-2 border border-1 ">
-                  <div class=" position-relative">
-                  <div id="sixth" class="carousel slide" data-bs-ride="true">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_1ea4dba1d5.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#sixth" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#sixth" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <div class=" card-icon bg-dark">
-                    <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
-                  </div>
-                </div>
-                <div class="card-body p-3">
-                  <a class="card-title text-decoration-none fw-bold">anyyyy <br>MARK SELIGER. PRINT</a>
-                  <p class="mb-1"><small class="text-muted">nermen</small></p>
-                  <p class="bids">53 bids</p>
-                  <p class="price">20 EUR</p>
-                </div>
-                </div>
-              </div>
-
-              <!-- <div class="col-lg-4 col-md-6 col-12 mt-5">
-                <div class="card">
-                  <div id="first2" class="carousel slide " data-bs-ride="true">
-                    <div class="carousel-inner ">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/large_item_3556143_dda3254431.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#first2" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#first2" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">cute cat</h5>
-                    <p class="card-text text-secondary fs-6 fw-medium mb-1">1 day</p>
-                    <p class="card-text text-secondary fs-6 fw-medium">Estimate</p>
-                    <h5 class="card-title">100 EUR</h5>
-
-                  </div>
-                </div>
-              </div> -->
-              <!-- <div class="col-lg-4 col-md-6 col-12 mt-5">
-                <div class="card">
-                  <div id="second2" class="carousel slide " data-bs-ride="true">
-                    <div class="carousel-inner ">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#second2" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#second2" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">cute cat</h5>
-                    <p class="card-text text-secondary fs-6 fw-medium mb-1">1 day</p>
-                    <p class="card-text text-secondary fs-6 fw-medium">Estimate</p>
-                    <h5 class="card-title">100 EUR</h5>
-
-                  </div>
-                </div>
-              </div> -->
-              <!-- <div class="col-lg-4 col-md-6 col-12 mt-5">
-                <div class="card">
-                  <div id="third2" class="carousel slide " data-bs-ride="true">
-                    <div class="carousel-inner ">
-                      <div class="carousel-item active" style="height: 30vh;">
-                        <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 30vh;">
-                        <img src="Images/medium_item_3613318_ca53e53d15.jpg" class="d-block w-100 card-img-top"
-                          alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#third2" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#third2" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">cute cat</h5>
-                    <p class="card-text text-secondary fs-6 fw-medium mb-1">1 day</p>
-                    <p class="card-text text-secondary fs-6 fw-medium">Estimate</p>
-                    <h5 class="card-title">100 EUR</h5>
-
-                  </div>
-                </div>
-              </div> -->
             </div>
             
 
