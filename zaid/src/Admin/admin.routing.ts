@@ -19,10 +19,10 @@ const routes: Routes = [
      { path: 'auction-live-stream', component: AuctionLiveStreamComponent },
 
      { path: 'add-event' , component:AddEventComponent},
-     { path: 'users-list' , component:UsersListComponent},
-{ path: 'events-list' , component:EventsListComponent},
-     { path: 'auctions-list' , component:AuctionsListComponent},
- { path: 'complaints-list' , component:ComplaintsListComponent},
+     //{ path: 'users-list' , component:UsersListComponent},
+//{ path: 'events-list' , component:EventsListComponent},
+  //   { path: 'auctions-list' , component:AuctionsListComponent},
+ //{ path: 'complaints-list' , component:ComplaintsListComponent},
  { path: 'items-review' , component:ItemsReviewComponent},
  { path: 'add-category', component: AddCategoryComponent }
 

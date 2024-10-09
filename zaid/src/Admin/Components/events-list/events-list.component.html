@@ -12,7 +12,7 @@
     <div class="input-group mb-2">
       <select class="form-control" formControlName="category">
         <option value="">Select Category</option>
-        <option *ngFor="let category of ['Art', 'Electronics']" [value]="category">{{ category }}</option>
+        <option *ngFor="let category of ['Art', 'Electronics', 'Food']" [value]="category">{{ category }}</option>
       </select>
     </div>
   </form>
@@ -33,41 +33,33 @@
       <ngx-datatable-column name="Start Date" prop="startDate" [width]="190" [cellTemplate]="dateTemplate"></ngx-datatable-column>
       <ngx-datatable-column name="End Date" prop="endDate" [width]="190" [cellTemplate]="dateTemplate"></ngx-datatable-column>
       <ngx-datatable-column name="Category" prop="category" [width]="160"></ngx-datatable-column>
-      <ngx-datatable-column name="Open Auctions" [width]="170" [cellTemplate]="openAuctionsTemplate"></ngx-datatable-column>
       <ngx-datatable-column name="Event Image" [width]="190" [cellTemplate]="imageTemplate"></ngx-datatable-column>
-
     </ngx-datatable>
 
     <ng-template #dateTemplate let-value="value">
       {{ value ? (value | date:'yyyy-MM-dd') : '' }}
     </ng-template>
 
-    <ng-template #openAuctionsTemplate let-row="row">
-      <ul>
-        <li *ngFor="let auction of getOpenAuctions(row.category)">
-          {{ auction.title }} - {{ auction.status }}
-        </li>
-      </ul>
-    </ng-template>
     <ng-template #imageTemplate let-row="row">
       <img [src]="row.imageUrl" alt="{{ row.name }}" class="event-image" />
     </ng-template>
   </div>
 
-  <nav *ngIf="totalPages > 1" aria-label="Page navigation">
-    <ul class="pagination">
-      <li class="page-item" [class.disabled]="currentPage === 1">
-        <a class="page-link" (click)="onPage(currentPage - 1)" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
+
+  
+
+  <!-- Pagination Control -->
+  <nav>
+    <ul class="pagination pagination-controls">
+      <li class="page-item" [class.disabled]="currentPage === 1" (click)="onPage(currentPage - 1)">
+        <a class="page-link" href="javascript:void(0)">Previous</a>
       </li>
-      <li *ngFor="let page of [].constructor(totalPages); let i = index" class="page-item" [class.active]="currentPage === i + 1">
-        <a class="page-link" (click)="onPage(i + 1)">{{ i + 1 }}</a>
+      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" 
+          [class.active]="i + 1 === currentPage" (click)="onPage(i + 1)">
+        <a class="page-link">{{ i + 1 }}</a>
       </li>
-      <li class="page-item" [class.disabled]="currentPage === totalPages">
-        <a class="page-link" (click)="onPage(currentPage + 1)" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
+      <li class="page-item" [class.disabled]="currentPage === totalPages" (click)="onPage(currentPage + 1)">
+        <a class="page-link" href="javascript:void(0)">Next</a>
       </li>
     </ul>
   </nav>

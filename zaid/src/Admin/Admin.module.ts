@@ -16,25 +16,33 @@ import {EventsListComponent} from './Components/events-list/events-list.componen
 import { AuctionsListComponent } from './Components/auctions-list/auctions-list.component';
 import { ComplaintsListComponent } from './Components/complaints-list/complaints-list.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ItemsReviewComponent } from './Components/items-review/items-review.component';
 import { AddCategoryComponent } from './Components/add-category/add-category.component';
+import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutes,
+    
     NgCircleProgressModule.forRoot({
       showUnits: false,
       showSubtitle:true,
     }),
  CanvasJSAngularChartsModule,
-    CommonModule,AdminRoutes,FormsModule,ReactiveFormsModule,NgxDatatableModule,
+    CommonModule,AdminRoutes,FormsModule,ReactiveFormsModule,NgxDatatableModule,NgxPaginationModule
   ],
   declarations: [
      AdminComponent,
      ProfileReviewComponent,
     DashboardHomeComponent,
    DashboardLayoutComponent,AddEventComponent,UsersListComponent,EventsListComponent,AuctionsListComponent,ComplaintsListComponent,
+   DashboardLayoutComponent,
    AuctionLiveStreamComponent,
-   ItemsReviewComponent,AddCategoryComponent]
+   ItemsReviewComponent,AddCategoryComponent],
+
+   providers:[
+
+   ]
 })
 export class AdminModule { }

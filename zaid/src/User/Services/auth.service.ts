@@ -6,6 +6,7 @@ import { of } from 'rxjs/internal/observable/of';
 import { Observable } from 'rxjs/internal/Observable';
 import { CookieService } from 'ngx-cookie-service';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +15,7 @@ export class AuthService {
   private localStorageKey = 'token';
   isLoggedUserSubject!: BehaviorSubject<boolean>
 
+
   constructor(private http:HttpClient,private cookieService: CookieService) { }
 
 get isLoggedIn(){
@@ -21,18 +23,19 @@ get isLoggedIn(){
 
     return true}
   return false
+
   }
 
-  loginUser(value:any){
-    return this.http.post("http://localhost:63280/api/acount/login",value);
+  loginUser(value: any) {
+    return this.http.post("http://localhost:63280/api/acount/login", value);
   }
 
-  registerUser(userDetails: any){
+  registerUser(userDetails: any) {
     /* const users = this.getUsersFromLocalStorage();
     users.push(userDetails);
     this.setUsersToLocalStorage(users);
     return of(userDetails); */
-    return this.http.post("http://localhost:63280/api/Acount/register",userDetails);
+    return this.http.post("http://localhost:63280/api/Acount/register", userDetails);
   }
 
   updateUserPassword(email: string, newPassword: string): Observable<boolean> {
@@ -61,8 +64,6 @@ get isLoggedIn(){
 
   private setUsersToCookie(users: User[]): void {
     this.cookieService.set(this.localStorageKey, JSON.stringify(users));
+
   }
-
-
 }
-

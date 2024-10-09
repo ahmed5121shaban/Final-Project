@@ -1,13 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuctionService {
-  private localStorageKey = 'auctionData';
+  private apiUrl="http://localhost:5204/api/Auction"
 
-  constructor(private cookieService: CookieService) {}
+
+  constructor(private cookieService: CookieService,private http:HttpClient) {}
 
   saveAuctionData(data: any): void {
     const auctionData = JSON.stringify(data);
@@ -25,5 +30,19 @@ export class AuctionService {
   clearAuctionData(): void {
     localStorage.removeItem(this.localStorageKey);
   }
-}
 
+
+  createAuction(auction:Auction): Observable<any> {
+    return this.http.post(this.apiUrl,auction)
+  }
+
+  getAll():any{
+    return this.http.get<any>(`${this.apiUrl}/getall`)
+
+  }
+}
+export interface Auction{
+  ItemId:number;
+  Duration:number;
+  StartDate:Date;
+}

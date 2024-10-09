@@ -1,30 +1,20 @@
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { inject } from '@angular/core';
+import {  HttpInterceptorFn } from '@angular/common/http';
 import { LoaderService } from '../loader intersptors/loader.service';
-import { Observable } from 'rxjs/internal/Observable';
-import { tap } from 'rxjs/internal/operators/tap';
+import { finalize } from 'rxjs/internal/operators/finalize';
 
-@Injectable()
-export class LoadingInterceptor implements HttpInterceptor {
 
-  constructor(private loadingService: LoaderService) {}
+export const LoaderInterceptor: HttpInterceptorFn = (req, next) => {
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // إظهار الـ loader عند بدء الطلب
-    this.loadingService.show();
+  let service = inject(LoaderService)
 
-    return next.handle(req).pipe(
-      tap(
-        (event: HttpEvent<any>) => {},
-        (error: any) => {
-          // إخفاء الـ loader إذا كان هناك خطأ
-          this.loadingService.hide();
-        },
-        () => {
-          // إخفاء الـ loader عند انتهاء الطلب بنجاح
-          this.loadingService.hide();
-        }
-      )
-    );
-  }
+
+  service.show();
+
+  return next(req).pipe(
+    finalize(() => {
+      service.hide();
+    })
+  );
+
 }

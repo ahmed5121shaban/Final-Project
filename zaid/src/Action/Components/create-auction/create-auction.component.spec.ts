@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CreateAuctionComponent } from './create-auction.component';
+
 
 describe('CreateAuctionComponent', () => {
   let component: CreateAuctionComponent;
@@ -10,7 +10,7 @@ describe('CreateAuctionComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [CreateAuctionComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CreateAuctionComponent);
     component = fixture.componentInstance;
