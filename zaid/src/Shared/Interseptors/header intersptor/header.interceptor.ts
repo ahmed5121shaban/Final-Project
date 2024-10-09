@@ -3,13 +3,16 @@ import { inject } from '@angular/core';
 import { AuthService } from '../../../User/Services/auth.service';
 
 export const headerInterceptor: HttpInterceptorFn = (req, next) => {
-  let isLoggedIn = inject(AuthService)
 
-  const token= localStorage.getItem("token")
-  if(token)
-    isLoggedIn.isLoggedUserSubject.next(true)
-  const headers = req.headers.set('Authorization', `Bearer ${token}`);
-  const authReq = req.clone({ headers });
-
-  return next(authReq);
+  const token = localStorage.getItem("token")
+  console.log("tooken",token);
+  
+  if (token) {
+    const headers = req.headers.set('Authorization', `Bearer ${token}`);
+    const authReq = req.clone({ headers });
+    console.log("auth", authReq);
+    
+    return next(authReq);
+  }
+  return next(req);
 };

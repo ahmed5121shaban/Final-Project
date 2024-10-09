@@ -41,8 +41,8 @@ export class LoginComponent {
   }
 
   loginUser() {
-    this.authService.loginUser(this.form.value).subscribe(
-      (response:any) => {
+    this.authService.loginUser(this.form.value).subscribe({ 
+      next: (response:any) => {
         if (response.status == 200) {
           localStorage.setItem('token', response.token);
           localStorage.setItem("auth",response.token);
@@ -51,7 +51,11 @@ export class LoginComponent {
         } else {
           this.toastr.error('Email or password is wrong', 'Error');
         }
-      }
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }}
     );
 
   }
