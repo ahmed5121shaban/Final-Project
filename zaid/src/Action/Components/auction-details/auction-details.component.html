@@ -72,7 +72,7 @@
         </div>
 
         <div class="bid col-xl-5  justify-content-center  p-md-0 mt-5 mt-md-0">
-            <div class="bid-info-place  mb-3 ">
+            <div class="bid-info-place  mb-3">
                 <div class="bid-info row bg-light  mb-3">
                     <div class="heighest-bid col-6">
                         <p>Heighest bid:</p>
@@ -85,12 +85,43 @@
                         <p class="end-date">25 Jul 2024 at 17:30 EEST</p>
                     </div>
                 </div>
-                <div class="place-bid text-center ">
+                @if ( (paymentCount?.payment??"pay")=='paypal'){
+                  <div class="place-bid text-center ">
+                    <input type="number" name="" disabled id="" class="form-control">
+                    <a routerLink="" class=" btn btn-primary w-100 mt-3 mb-1">
+                      <i class="fa-brands fa-paypal"></i>
+
+                    </a>
+                    <p class="bid-limits ">Check if You have Payment Email in your Profile.</p>
+                </div>
+                } @else if ((paymentCount?.payment??"st")=="stripe"){
+                  <div class="place-bid text-center">
+                    <input type="number" name="" disabled id="" class="form-control">
+                    <a routerLink="" class=" btn btn-primary w-50 mt-3 mb-1">
+                      <i class="fa-brands fa-stripe-s"></i>
+                    </a>
+                    <a routerLink="" class=" btn btn-primary w-50 mt-3 mb-1">
+                      <i class="fa-brands fs-5 fa-paypal"></i>
+                    </a>
+                    <p class="bid-limits ">Check if You have Payment Email in your Profile.</p>
+                </div>
+                }@else if ((paymentCount?.count??0) == 0){
+                  <div class="place-bid text-center">
+                    <input type="number" name="" disabled id="" class="form-control">
+                    <a routerLink="/user/payment" class=" btn btn-danger w-100 mt-3 mb-1">
+                      You Haven't Payment Method
+                    </a>
+                    <p class="bid-limits">Check if You have Payment Email in your Profile.</p>
+                </div>
+                }@else {
+                  <div class="place-bid text-center ">
                     <input type="number" name="" id="" class="form-control">
                     <a href="" class=" btn btn-secondary w-100 mt-3 mb-1">Place A Bid</a>
                     <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
                         converted into SEK.</p>
                 </div>
+                }
+
                 <!-- roles accordion  -->
                 <div id="accordion">
                     <div class="card">

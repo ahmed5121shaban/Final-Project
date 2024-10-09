@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { PaymentService } from '../../Services/payment.service';
 interface Reply {
   id: number;
   text: string;
@@ -16,15 +17,30 @@ interface Comment {
   templateUrl: './auction-details.component.html',
   styleUrl: './auction-details.component.css'
 })
-export class AuctionDetailsComponent {
+export class AuctionDetailsComponent implements OnChanges {
+  paymentCount !: {count : number, payment : string};
   currentSlide = 0;
+
+  constructor(private paymentService:PaymentService) {}
+
+  ngOnChanges(): void {
+    this.paymentService.userHavePayment().subscribe(
+      (res:any)=>{
+        console.log(res.message)
+        this.paymentCount.count=res.count;
+        this.paymentCount.payment=res.payment;
+
+      }
+    )
+  }
+
   itemImages = [
     { src: 'hd_item_3649360_e2ceb54174.jpg'},
     { src: 'hd_item_3649360_e2ceb54174.jpg'},
     { src: 'hd_item_3649360_e2ceb54174.jpg'},
     { src: 'hd_item_3649360_e2ceb54174.jpg'}
-  
-   
+
+
 
     // Add more slides as needed
   ];
@@ -47,7 +63,7 @@ export class AuctionDetailsComponent {
     for (let i = 0; i < this.similarAuctions.length; i += 3) {
       this.groupedItems.push(this.similarAuctions.slice(i, i + 3));
     }
-  }  
+  }
 
 
 
@@ -59,6 +75,6 @@ export class AuctionDetailsComponent {
     // Add more comments if needed
   ];
 
-  
-  
+
+
 }

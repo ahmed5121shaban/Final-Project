@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+
 import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +11,26 @@ import { Observable } from 'rxjs';
 export class AuctionService {
   private apiUrl="http://localhost:5204/api/Auction"
 
-  constructor(private http:HttpClient) { }
+
+  constructor(private cookieService: CookieService,private http:HttpClient) {}
+
+  saveAuctionData(data: any): void {
+    const auctionData = JSON.stringify(data);
+    this.cookieService.set(this.localStorageKey,auctionData)
+    /* localStorage.setItem(this.localStorageKey, auctionData); */
+  }
+
+  getAuctionData(): any {
+    const auctionData = this.cookieService.get(this.localStorageKey);
+    /* const auctionData = localStorage.getItem(this.localStorageKey); */
+
+    return auctionData ? JSON.parse(auctionData) : null;
+  }
+
+  clearAuctionData(): void {
+    localStorage.removeItem(this.localStorageKey);
+  }
+
 
   createAuction(auction:Auction): Observable<any> {
     return this.http.post(this.apiUrl,auction)
@@ -16,6 +38,7 @@ export class AuctionService {
 
   getAll():any{
     return this.http.get<any>(`${this.apiUrl}/getall`)
+
   }
 }
 export interface Auction{
