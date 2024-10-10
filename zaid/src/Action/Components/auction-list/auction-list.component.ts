@@ -2,16 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { AuctionService } from '../../Services/auction.service';
 import { CategoryService } from '../../../Admin/Services/category.service';
 
-
 @Component({
   selector: 'app-auction-list',
   templateUrl: './auction-list.component.html',
   styleUrls: ['./auction-list.component.css']
 })
 export class AuctionListComponent implements OnInit {
-  activeAuctions: any[] = []; 
-  endedAuctions: any[] = []; 
+  activeAuctions: any[] = [];
+  endedAuctions: any[] = [];
   categories: any[] = [];
+
+  // Pagination properties
+  page: number = 1; // current page number
+  itemsPerPage: number = 6; // items per page for active auctions
+  endedItemsPerPage: number = 6; // items per page for ended auctions
 
   constructor(
     private auctionService: AuctionService,
@@ -21,7 +25,7 @@ export class AuctionListComponent implements OnInit {
   ngOnInit(): void {
     this.loadActiveAuctions(); 
     this.loadEndedAuctions();
-    // this.loadCategories();
+    this.loadCategories();
   }
 
   loadActiveAuctions(): void {
@@ -35,6 +39,7 @@ export class AuctionListComponent implements OnInit {
       }
     });
   }
+
   loadEndedAuctions(): void {
     this.auctionService.getAllEnded().subscribe({
       next: (data) => {
@@ -42,21 +47,20 @@ export class AuctionListComponent implements OnInit {
         console.log(this.endedAuctions);
       },
       error: (err) => {
-        console.error('Error fetching active auctions', err); 
+        console.error('Error fetching ended auctions', err); 
       }
     });
   }
-  // loadCategories(): void {
-  //   this.categoryService.getCategories().subscribe({
-  //     next: (data) => {
-  //       this.categories = data; 
-  //       console.log(this.categories);
-  //     },
-  //     error: (err) => {
-  //       console.error('Error fetching categories', err); 
-  //     }
-  //   });
-  // }
+
+  loadCategories(): void {
+    this.categoryService.getCategories().subscribe({
+      next: (data) => {
+        this.categories = data.result; 
+        console.log(this.categories);
+      },
+      error: (err) => {
+        console.error('Error fetching categories', err); 
+      }
+    });
+  }
 }
-
-

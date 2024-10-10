@@ -19,93 +19,10 @@
           <div class="collapse" id="Categories">
             <nav class="category bg-light pb-2 pt-2">
               <ul class="list-unstyled ">
-                <li>
+                <li *ngFor="let category of categories">
                   <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
-                    <span class="ms-2 link-underline-opacity-10-hover">Any Category</span>
-                    <span class="me-2">(2,000)</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
-                    <span class="ms-2">Art</span>
-                    <span class="me-2">(500)</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
-                    <span class="ms-2">Furniture</span>
-                    <span class="me-2">(200)</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
-                    <span class="ms-2">Jewellery</span>
-                    <span class="me-2">(100)</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
-                    <span class="ms-2">Silver & metals</span>
-                    <span class="me-2">(500)</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
-                    <span class="ms-2">Photo,Cameras & lenses</span>
-                    <span class="me-2">(200)</span>
-                  </a>
-                </li>
-              </ul>
-
-            </nav>
-          </div>
-        </div>
-        <div class="mb-3">
-          <a class="text-decoration-none text-dark btn btn bg-secondary-subtle  w-100 d-flex justify-content-between fw-medium align-items-center"
-            data-bs-toggle="collapse" href="#Countries" aria-controls="Countries" aria-expanded="true"
-            role="button"><span>Countries</span><svg class="feather feather-chevron-down" fill="none" height="24"
-              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-              width="24" xmlns="http://www.w3.org/2000/svg">
-              <polyline points="6 9 12 15 18 9" />
-            </svg></a>
-          <div class="collapse" id="Countries">
-            <nav class="category bg-light pb-2 pt-2">
-
-              <ul class="list-unstyled ">
-                <li>
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
-                    <span class="ms-2 link-underline-opacity-10-hover">All Countries</span>
-                    <span class="me-2">(100)</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
-                    <span class="ms-2">Egypt</span>
-                    <span class="me-2">(60)</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
-                    <span class="ms-2">spain</span>
-                    <span class="me-2">(10)</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
-                    <span class="ms-2">france</span>
-                    <span class="me-2">(15)</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
-                    <span class="ms-2">Saudi Arabia</span>
-                    <span class="me-2">(20)</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
-                    <span class="ms-2">Germany</span>
-                    <span class="me-2">(5)</span>
+                    <span class="ms-2 link-underline-opacity-10-hover">{{category.name}}</span>
+                    <span class="me-2">({{ category.items.length}})</span>
                   </a>
                 </li>
               </ul>
@@ -116,225 +33,151 @@
       </div>
     </div>
     <div class="container d-flex justify-content-between p-0">
-    <section class="row column-gap-5">
- 
-      <div class="col-3 d-lg-block d-none">
-        <div id="sidebar" class="d-flex flex-column ">
-          <div class=" ps-3 pt-2 m-0  border-bottom border-light-subtle">
-            <p class="text-dark fw-bold pt-2">Categories</p>
+      <section class="row column-gap-5">
+
+        <div class="col-3 d-lg-block d-none">
+          <div id="sidebar" class="d-flex flex-column mt-5">
+            <div class=" ps-3 pt-2 m-0  border-bottom border-light-subtle" style="background-color: #f0f0f3;">
+              <p class="text-dark fw-bold pt-2">Categories</p>
+            </div>
+
+            <nav class="nav flex-column">
+              <div *ngFor="let category of categories" class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle"
+                style="background-color: #f6f6f8">
+                <a href="#"
+                  class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
+                  <span class="ms-0 link-underline-opacity-10-hover">{{ category.name }}</span>
+                  <span class="me-2">({{ category.items.length}})</span>
+                </a>
+              </div>
+            </nav>
           </div>
-
-          <nav class="nav flex-column">
-            <div *ngFor="let category of categories let i=index" class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
-              <a href="#"
-                 class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">{{ category.name }}</span>
-                <span class="me-2">({{ category.itemCount }})</span>
-              </a>
-            </div>
-          </nav>
         </div>
+        <div class="col-lg-8 col-12">
+          <h5 class="fw-semibold mb-3">All items</h5>
 
-        <div id="sidebar" class="d-flex flex-column  mt-3">
-          <div class=" ps-3 pt-2 m-0  border-bottom border-light-subtle"
-            style="background-color: #f0f0f3;">
-            <p class="text-dark fw-bold pt-2">Countries</p>
-          </div>
-
-          <nav class="nav flex-column">
-            <div class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
-              <a href="#"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">All Countries</span>
-                <span class="me-2">(100)</span>
-              </a>
-            </div>
-
-            <div class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
-              <a href="#"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">Egypt</span>
-                <span class="me-2">(60)</span>
-              </a>
-            </div>
-
-            <div class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
-              <a href="#"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">spain</span>
-                <span class="me-2">(10)</span>
-              </a>
-            </div>
-            <div class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
-              <a href="#"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">france</span>
-                <span class="me-2">(15)</span>
-              </a>
-            </div>
-
-            <div class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
-              <a href="#"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">Saudi Arabia</span>
-                <span class="me-2">(20)</span>
-              </a>
-            </div>
-
-
-            <div class="ps-2 pb-1 pt-1 m-0 " style="background-color: #f6f6f8">
-              <a href="#"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">Germany</span>
-                <span class="me-2">(5)</span>
-              </a>
-            </div>
-
-
-          </nav>
-        </div>
-      </div>
-      <div class="col-lg-8 col-12">
-        <h5 class="fw-semibold mb-3">All items</h5>
-
-        <ul class="nav nav-pills d-flex gap-5 ms-0" id="myTab" role="tablist" style="list-style: none;">
-          <li class=" nav-item ">
-            <a class=" nav-link active " data-bs-toggle="pill" href="#ActiveAuctions">Active Auctions</a>
-          </li>
-          <li class="nav-item">
-            <a class=" nav-link   " data-bs-toggle="pill" href="#EndedAuctions">Ended Auctions</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane fade show active" id="ActiveAuctions" role="tabpanel">
-            <div class="d-flex flex-sm-row flex-column justify-content-between align-items-center ">
-              <form class="d-flex flex-sm-row flex-column justify-content-start align-items-center w-50">
-                <label class="me-2 fw-normal">Sort by</label>
-                <select class="form-select w-75 form-select rounded rounded-0" aria-label="select example">
-                  <option selected>Ending Soonest</option>
-                  <option value="1">Most bids</option>
-                  <option value="2">Highest bid</option>
-                  <option value="3">Lowest bid</option>
-                </select>
-              </form>
-              <nav aria-label="Page navigation example" class="mb-0 mt-3 rounded rounded-0">
-                <ul class="pagination text-dark">
-                  <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true" class="text-dark">&laquo;</span></a></li>
-                  <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true" class="text-dark">&raquo;</span></a></li>
-                </ul>
-              </nav>
-            </div>
-            <div class="row">
-              <div *ngFor="let auction of activeAuctions let i=index" class="col-lg-4 col-md-6 col-12 mt-5">
-                <div class="custom-product-card mt-5 me-2 border border-1">
-                  <div class="position-relative">
-                    <div id="carousel{{ auction.item.id }}" class="carousel slide" data-bs-ride="true">
-                      <div class="carousel-inner">
-                        <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0" class="carousel-item" style="height: 30vh;">
-                          <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 card-img-top" alt="Auction item image">
+          <ul class="nav nav-pills d-flex gap-5 ms-0" id="myTab" role="tablist" style="list-style: none;">
+            <li class=" nav-item ">
+              <a class=" nav-link active " data-bs-toggle="pill" href="#ActiveAuctions">Active Auctions</a>
+            </li>
+            <li class="nav-item">
+              <a class=" nav-link   " data-bs-toggle="pill" href="#EndedAuctions">Ended Auctions</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="ActiveAuctions" role="tabpanel">
+              <div class="d-flex flex-sm-row flex-column justify-content-between align-items-center ">
+                <form class="d-flex flex-sm-row flex-column justify-content-start align-items-center w-50">
+                  <label class="me-2 fw-normal">Sort by</label>
+                  <select class="form-select w-75 form-select rounded rounded-0" aria-label="select example">
+                    <option selected>Ending Soonest</option>
+                    <option value="1">Most bids</option>
+                    <option value="2">Highest bid</option>
+                    <option value="3">Lowest bid</option>
+                  </select>
+                </form>
+              </div>
+              <div class="row">
+                <div *ngFor="let auction of activeAuctions | paginate: { itemsPerPage: itemsPerPage, currentPage: page }" class="col-lg-4 col-md-6 col-12 mt-5">
+                  <!-- Wrap the entire card with a routerLink to make it clickable -->
+                  <a [routerLink]="['/auction-details', auction.item.id]" class="text-decoration-none">
+                    <div class="custom-product-card mt-3 me-2 border border-1">
+                      <div class="position-relative">
+                        <div id="carousel{{ auction.item.id }}" class="carousel slide" data-bs-ride="true">
+                          <div class="carousel-inner">
+                            <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
+                                 class="carousel-item" style="height: 30vh;">
+                              <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 card-img-top"
+                                   alt="Auction item image">
+                            </div>
+                          </div>
+                          <button class="carousel-control-prev" type="button"
+                                  [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button"
+                                  [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                        </div>
+                        <div class="card-icon bg-dark">
+                          <i class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></i>
                         </div>
                       </div>
-                      <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                      </button>
-                      <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                      </button>
-                    </div>
-                    <div class="card-icon bg-dark">
-                      <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
-                    </div>
-                  </div>
-                  <div class="card-body p-3">
-                    <a class="card-title text-decoration-none fw-bold">{{ auction.item.name }}</a>
-                    <p class="mb-1"><small class="text-muted">{{ auction.item.seller.user.name }}</small></p>
-                    <p class="bids">{{ auction.bids.length }} bids</p>
-                    <p class="price">{{ auction.item.startPrice }} EUR</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-
-          <div class="tab-pane fade  " id="EndedAuctions" role="tabpanel">
-            <div class="d-flex flex-sm-row flex-column justify-content-between align-items-center">
-              <form class="d-flex  flex-sm-row flex-column justify-content-start align-items-center w-50">
-                <label class=" me-2  fw-normal ">Sort by</label>
-                <select class="form-select w-75 form-select rounded rounded-0" aria-label=" select example">
-                  <option selected class="">ended recently</option>
-                  <option value="1" class="">Most bids</option>
-                  <option value="2" class="">Highest bid</option>
-                  <option value="3" class="">Lowest bid</option>
-                </select>
-              </form>
-              <nav aria-label="Page navigation example" class="mb-0 mt-3 rounded rounded-0">
-                <ul class="pagination text-dark ">
-                  <li class="page-item ">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true" class=" text-dark">&laquo;</span>
-
-                    </a>
-                  </li>
-                  <li class="page-item "><a class="page-link  text-dark" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link  text-dark" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link  text-dark" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true" class=" text-dark">&raquo;</span>
-
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-
-            </div>
-            <div class="row">
-              <div *ngFor="let auction of endedAuctions let i=index" class="col-lg-4 col-md-6 col-12 mt-5"> 
-                <div class="custom-product-card mt-5 me-2 border border-1">
-                  <div class="position-relative">
-                    <div id="carousel{{ auction.item.id }}" class="carousel slide" data-bs-ride="true">
-                      <div class="carousel-inner">
-                        <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0" class="carousel-item" style="height: 30vh;">
-                          <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 card-img-top" alt="Auction item image">
-                        </div>
+                      <div class="card-body p-3">
+                        <p class="card-title fw-bold">{{ auction.item.name }}</p>
+                        <p class="mb-1"><small class="text-muted">{{ auction.item.seller.user.name }}</small></p>
+                        <p class="bids">{{ auction.bids.length }} bids</p>
+                        <p class="price">{{ auction.item.startPrice }} EUR</p>
                       </div>
-                      <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                      </button>
-                      <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                      </button>
                     </div>
-                    <div class="card-icon bg-dark">
-                      <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
-                    </div>
-                  </div>
-                  <div class="card-body p-3">
-                    <a class="card-title text-decoration-none fw-bold">{{ auction.item.name }}</a>
-                    <p class="mb-1"><small class="text-muted">{{ auction.item.seller.user.name }}</small></p>
-                    <p class="bids">{{ auction.bids.length }} bids</p>
-                    <p class="price">{{ auction.item.startPrice }} EUR</p>
-                  </div>
+                  </a>
                 </div>
+                
               </div>
+              <div class="text-center mt-5">
+                <pagination-controls (pageChange)="page = $event"></pagination-controls>
+              </div>
+              
             </div>
             
-
-
+            <div class="tab-pane fade" id="EndedAuctions" role="tabpanel">
+              <div class="d-flex flex-sm-row flex-column justify-content-between align-items-center ">
+                <form class="d-flex flex-sm-row flex-column justify-content-start align-items-center w-50">
+                  <label class="me-2 fw-normal">Sort by</label>
+                  <select class="form-select w-75 form-select rounded rounded-0" aria-label="select example">
+                    <option selected>Ending Soonest</option>
+                    <option value="1">Most bids</option>
+                    <option value="2">Highest bid</option>
+                    <option value="3">Lowest bid</option>
+                  </select>
+                </form>
+              </div>
+              <div class="row">
+                <div *ngFor="let auction of endedAuctions | paginate: { itemsPerPage: endedItemsPerPage, currentPage: page }" class="col-lg-4 col-md-6 col-12 mt-5">
+                  <a [routerLink]="['/auction-details', auction.item.id]" class="text-decoration-none">
+                    <div class="custom-product-card mt-3 me-2 border border-1">
+                      <div class="position-relative">
+                        <div id="carousel{{ auction.item.id }}" class="carousel slide" data-bs-ride="true">
+                          <div class="carousel-inner">
+                            <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
+                                 class="carousel-item" style="height: 30vh;">
+                              <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 card-img-top"
+                                   alt="Auction item image">
+                            </div>
+                          </div>
+                          <button class="carousel-control-prev" type="button"
+                                  [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button"
+                                  [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                        </div>
+                        <div class="card-icon bg-dark">
+                          <i class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></i>
+                        </div>
+                      </div>
+                      <div class="card-body p-3">
+                        <p class="card-title fw-bold">{{ auction.item.name }}</p>
+                        <p class="mb-1"><small class="text-muted">{{ auction.item.seller.user.name }}</small></p>
+                        <p class="bids">{{ auction.bids.length }} bids</p>
+                        <p class="price">{{ auction.item.startPrice }} EUR</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <pagination-controls (pageChange)="page = $event"></pagination-controls>
+            </div>
           </div>
         </div>
-
-
-      </div>
-    </section>
-  </div>
+      </section>
+    </div>
   </div>
 </div>
