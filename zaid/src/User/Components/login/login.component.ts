@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +19,7 @@ export class LoginComponent {
     private builder: FormBuilder,
     private authService: AuthService,
     private toastr: ToastrService,
+    private cookieService: CookieService
   ) {
     this.form = this.builder.group({
       email: ["", [Validators.required, Validators.email]],
@@ -41,21 +42,17 @@ export class LoginComponent {
   }
 
   loginUser() {
-    this.authService.loginUser(this.form.value).subscribe({ 
-      next: (response:any) => {
+    this.authService.loginUser(this.form.value).subscribe(
+      (response:any) => {
         if (response.status == 200) {
-          localStorage.setItem('token', response.token);
-          localStorage.setItem("auth",response.token);
+          this.cookieService.set('token', response.token);
+          this.cookieService.set("auth",response.token);
           this.router.navigate(['/user/my/profile']);
           this.toastr.success('Logged in successfully', 'Success');
         } else {
           this.toastr.error('Email or password is wrong', 'Error');
         }
-      },
-      error:(err)=>{
-        console.log(err);
-        
-      }}
+      }
     );
 
   }

@@ -20,6 +20,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ItemsReviewComponent } from './Components/items-review/items-review.component';
 import { AddCategoryComponent } from './Components/add-category/add-category.component';
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { CategoryListComponent } from './Components/category-list/category-list.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -39,7 +40,8 @@ import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common
    DashboardLayoutComponent,AddEventComponent,UsersListComponent,EventsListComponent,AuctionsListComponent,ComplaintsListComponent,
    DashboardLayoutComponent,
    AuctionLiveStreamComponent,
-   ItemsReviewComponent,AddCategoryComponent],
+   ItemsReviewComponent,AddCategoryComponent,
+  CategoryListComponent],
 
    providers:[
 
