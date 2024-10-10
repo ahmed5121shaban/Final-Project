@@ -9,33 +9,57 @@
         </svg> Filter</a>
       <div class="collapse" id="filter">
         <div class="mb-3">
-          <!-- Collapsible button -->
-          <a class="text-decoration-none border-0 text-dark btn bg-secondary-subtle w-100 d-flex justify-content-between fw-medium align-items-center"
-             data-bs-toggle="collapse" href="#Categories" aria-controls="Categories" aria-expanded="false" role="button">
-            <span>Categories</span>
-            <svg class="feather feather-chevron-down" fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <a class="text-decoration-none border-0 text-dark btn btn bg-secondary-subtle  w-100  d-flex justify-content-between fw-medium align-items-center"
+            data-bs-toggle="collapse" href="#Categories" aria-controls="Categories" aria-expanded="true"
+            role="button"><span>Categories</span><svg class="feather feather-chevron-down" fill="none" height="24"
+              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+              width="24" xmlns="http://www.w3.org/2000/svg">
               <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </a>
-        
-          <!-- Collapsible content -->
+            </svg></a>
           <div class="collapse" id="Categories">
             <nav class="category bg-light pb-2 pt-2">
-              <ul class="list-unstyled">
-                <li *ngFor="let category of categories" [value]="category.id">
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark mb-2">
-                    <!-- Category name -->
-                    <span class="ms-2">{{ category.name }}</span>
-                    <!-- Dynamically display item count -->
-                    <span class="me-2">({{ category.itemCount }})</span>
+              <ul class="list-unstyled ">
+                <li>
+                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
+                    <span class="ms-2 link-underline-opacity-10-hover">Any Category</span>
+                    <span class="me-2">(2,000)</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
+                    <span class="ms-2">Art</span>
+                    <span class="me-2">(500)</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
+                    <span class="ms-2">Furniture</span>
+                    <span class="me-2">(200)</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
+                    <span class="ms-2">Jewellery</span>
+                    <span class="me-2">(100)</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
+                    <span class="ms-2">Silver & metals</span>
+                    <span class="me-2">(500)</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
+                    <span class="ms-2">Photo,Cameras & lenses</span>
+                    <span class="me-2">(200)</span>
                   </a>
                 </li>
               </ul>
+
             </nav>
           </div>
         </div>
-        
         <div class="mb-3">
           <a class="text-decoration-none text-dark btn btn bg-secondary-subtle  w-100 d-flex justify-content-between fw-medium align-items-center"
             data-bs-toggle="collapse" href="#Countries" aria-controls="Countries" aria-expanded="true"
@@ -96,60 +120,18 @@
  
       <div class="col-3 d-lg-block d-none">
         <div id="sidebar" class="d-flex flex-column ">
-          <div class=" ps-3 pt-2 m-0  border-bottom border-light-subtle"
-            style="background-color: #f0f0f3;">
+          <div class=" ps-3 pt-2 m-0  border-bottom border-light-subtle">
             <p class="text-dark fw-bold pt-2">Categories</p>
           </div>
 
           <nav class="nav flex-column">
-            <div class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
+            <div *ngFor="let category of categories let i=index" class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
               <a href="#"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">Any Category</span>
-                <span class="me-2">(2,000)</span>
+                 class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
+                <span class="ms-0 link-underline-opacity-10-hover">{{ category.name }}</span>
+                <span class="me-2">({{ category.itemCount }})</span>
               </a>
             </div>
-
-            <div class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
-              <a href="#"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">Art</span>
-                <span class="me-2">(500)</span>
-              </a>
-            </div>
-
-            <div class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
-              <a href="#"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">Furniture</span>
-                <span class="me-2">(200)</span>
-              </a>
-            </div>
-            <div class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
-              <a href="#"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">Jewellery</span>
-                <span class="me-2">(100)</span>
-              </a>
-            </div>
-
-            <div class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
-              <a href="#"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">Silver & metals</span>
-                <span class="me-2">(500)</span>
-              </a>
-            </div>
-
-
-            <div class="ps-2 pb-1 pt-1 m-0 " style="background-color: #f6f6f8">
-              <a href="#"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                <span class="ms-0 link-underline-opacity-10-hover">Photo,Cameras & lenses</span>
-                <span class="me-2">(200)</span>
-              </a>
-            </div>
-
           </nav>
         </div>
 

@@ -21,7 +21,7 @@ export class AuctionListComponent implements OnInit {
   ngOnInit(): void {
     this.loadActiveAuctions(); 
     this.loadEndedAuctions();
-    this.loadCategories();
+    // this.loadCategories();
   }
 
   loadActiveAuctions(): void {
@@ -46,17 +46,17 @@ export class AuctionListComponent implements OnInit {
       }
     });
   }
-  loadCategories(): void {
-    this.categoryService.getCategories().subscribe({
-      next: (data) => {
-        this.categories = data; 
-        console.log(this.categories);
-      },
-      error: (err) => {
-        console.error('Error fetching categories', err); 
-      }
-    });
-  }
+  // loadCategories(): void {
+  //   this.categoryService.getCategories().subscribe({
+  //     next: (data) => {
+  //       this.categories = data; 
+  //       console.log(this.categories);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching categories', err); 
+  //     }
+  //   });
+  // }
 }
 
 
