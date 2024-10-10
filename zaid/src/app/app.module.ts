@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import {
   BrowserModule,
   provideClientHydration,
@@ -16,6 +16,7 @@ import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@ang
 import { headerInterceptor } from '../Shared/Interseptors/header intersptor/header.interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { LoaderInterceptor } from '../Shared/Interseptors/loader intersptors/loading.interceptor';
+import { NgModule } from '@angular/core';
 
 
 

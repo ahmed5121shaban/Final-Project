@@ -1,6 +1,7 @@
+<button class="btn" (click)="get()">get</button>
 <div class="container mt-5">
   <h2 class=" mb-4">Review Items</h2>
-
+ 
   <!-- Search Bar -->
   <div class="row mb-3">
     <div class="col-md-6">
@@ -17,7 +18,6 @@
           <th>Description</th>
           <th>Start price</th>
           <th>Reserve price</th>
-          <th>Payment</th>
           <th>Certificate or Contract</th>
           <th>Images</th> <!-- New Column for Images -->
           <th>Action</th>
@@ -28,17 +28,16 @@
           <td>{{ item.title }}</td>
           <td>{{ item.description }}</td>
           <td>{{ item.startPrice }}</td>
-          <td>{{ item.reservePrice }}</td>
-          <td>{{ item.payment }}</td>
-          <td>{{ item.file }}</td>
+          <td>{{ item.sellPrice }}</td>
+          <td class="text-wrap">{{ item.contract }}</td>
           <td>
             <!-- Small Carousel inside the table -->
             <div id="carouselExample1" class="carousel slide" data-bs-ride="carousel" style="width: 100px;">
               <div class="carousel-inner">
 
                 <div class="carousel-item" *ngFor="let image of item.images; let i = index" [class.active]="i === 0">
-                  <img [src]="image.path" class="d-block w-100 img-thumbnail" alt="Image "
-                    (click)="showImage(image.path)">
+                  <img [src]="image.src" class="d-block w-100 img-thumbnail" alt="Image "
+                    (click)="showImage(image.src)">
                 </div>
 
               </div>
@@ -57,15 +56,21 @@
 
 
           <td  >
-            <a class="dropdown-item mb-3 mt-3" href="#">
+            <!-- <a class="dropdown-item mb-3 mt-3" (click)="acceptItem(item.id)">
               <i class="fa-solid fa-check"></i>
               Accept
-            </a>
+            </a> -->
+            <button class="btn btn-info"(click)="acceptItem(item.id)">
+              Accept
+            </button>
+            <button class="btn btn-danger">
+              Reject
+            </button>
 
-            <a class="dropdown-item" href="#">
+            <!-- <a class="dropdown-item" href="#">
               <i class="fa-regular fa-x"></i>
               Reject
-            </a>
+            </a> -->
 
 
 
@@ -74,6 +79,7 @@
         <!-- More rows here... -->
       </tbody>
     </table>
+
   </div>
 </div>
 

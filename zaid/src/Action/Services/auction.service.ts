@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class AuctionService {
   private apiUrl="http://localhost:5204/api/Auction"
 
-
+ localStorageKey="auctionData";
   constructor(private cookieService: CookieService,private http:HttpClient) {}
 
   saveAuctionData(data: any): void {

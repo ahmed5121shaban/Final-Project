@@ -1,46 +1,57 @@
-import { Component } from "@angular/core";
+import { Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
+import { ItemService } from "../../../Action/Services/item.service";
+import { response } from "express";
+import { error } from "console";
 declare var bootstrap: any; 
 
 
-
-interface Item{
-  id: number;
-      title: string;
-      description:string;
-      images:  { path: string }[]; 
-      startPrice:number;
-      reservePrice:number;
-      payment:"PayPal"|"Stripe";
-      file: string[];
-}
 @Component({
   selector: 'app-items-review',
   templateUrl: './items-review.component.html',
   styleUrls: ['./items-review.component.css']
 })
-
-export class ItemsReviewComponent {
+export class ItemsReviewComponent  implements OnInit {
 
   selectedImage: string | null = null;
 
   // List of items with images
-  items :Item[]= [
-    {
-      id: 1,
-      title: 'Coin',
-      description: 'Old Coin',
-      images: [
-        { path: '300-1.jpg' },
-        { path: '300-2.jpg' }
-    
-      ],
-      startPrice:1000,
-      reservePrice:10,
-      payment:"PayPal",
-      file:["https://trello.com/b/QPDw2t12/zied"]
-    }
-  ];
+  items :any[]= [];
+ constructor( private itemService: ItemService){
 
+ this.get();
+ }   
+  // ngOnChanges(changes: SimpleChanges): void {
+  //    this.get();
+  //  }
+
+get():void{
+  this.itemService.getPendingItems().subscribe({
+        next: (data) => {
+          this.items = data;
+         console.log('Fetched items:', this.items);
+        },
+             error: (error) => {
+               console.error('Failed to fetch items:', error);
+              // You might want to show a user-friendly message here
+             }
+           });
+ }
+ ngOnInit(): void {
+  // this.get();
+}
+acceptItem(itemId:number):void{
+  console.log(itemId);
+  this.itemService.AcceptItem(itemId).subscribe({
+next:(response)=>{
+  console.log("updated successfully",response)
+},
+error:(error)=>{
+  console.log("",error)
+}
+  });
+}
+
+ 
   // Method to open the modal and set the selected image
   showImage(imageUrl: string) {
     

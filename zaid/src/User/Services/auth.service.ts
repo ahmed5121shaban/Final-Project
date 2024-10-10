@@ -27,7 +27,7 @@ get isLoggedIn(){
   }
 
   loginUser(value: any) {
-    return this.http.post("http://localhost:63280/api/acount/login", value);
+    return this.http.post("http://localhost:5204/api/acount/login", value);
   }
 
   registerUser(userDetails: any) {
@@ -35,7 +35,7 @@ get isLoggedIn(){
     users.push(userDetails);
     this.setUsersToLocalStorage(users);
     return of(userDetails); */
-    return this.http.post("http://localhost:63280/api/Acount/register", userDetails);
+    return this.http.post("http://localhost:5204/api/Acount/register", userDetails);
   }
 
   updateUserPassword(email: string, newPassword: string): Observable<boolean> {
