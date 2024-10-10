@@ -29,7 +29,7 @@
           <td>{{ item.description }}</td>
           <td>{{ item.startPrice }}</td>
           <td>{{ item.sellPrice }}</td>
-          <td class="text-wrap">{{ item.contract }}</td>
+          <td>{{ item.contract }}</td>
           <td>
             <!-- Small Carousel inside the table -->
             <div id="carouselExample1" class="carousel slide" data-bs-ride="carousel" style="width: 100px;">
@@ -55,17 +55,9 @@
           </td>
 
 
-          <td  >
-            <!-- <a class="dropdown-item mb-3 mt-3" (click)="acceptItem(item.id)">
-              <i class="fa-solid fa-check"></i>
-              Accept
-            </a> -->
-            <button class="btn btn-info"(click)="acceptItem(item.id)">
-              Accept
-            </button>
-            <button class="btn btn-danger">
-              Reject
-            </button>
+          <td>
+            <button class="btn btn-info"(click)="acceptItem(item.id)">Accept</button>
+            <button class="btn btn-danger" (click)="openRejectModal(item.id)">Reject</button>
 
             <!-- <a class="dropdown-item" href="#">
               <i class="fa-regular fa-x"></i>
@@ -94,6 +86,29 @@
       </div>
       <div class="modal-body">
         <img [src]="selectedImage" class="d-block w-100" alt="Large Image">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for Rejection -->
+<div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="rejectModalLabel">Reject Item</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="rejectionReason" class="form-label">Reason for Rejection</label>
+            <input type="text" class="form-control" id="rejectionReason" [(ngModel)]="rejectionReason">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="rejectItem(itemIdToReject, rejectionReason)">Submit</button>
       </div>
     </div>
   </div>

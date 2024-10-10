@@ -18,13 +18,13 @@ export class ItemsReviewComponent  implements OnInit {
   items :any[]= [];
  constructor( private itemService: ItemService){
 
- this.get();
+//  this.get();
  }   
-  // ngOnChanges(changes: SimpleChanges): void {
-  //    this.get();
-  //  }
+ 
+  rejectionReason: string = ''; 
+  itemIdToReject: number | null = null;
 
-get():void{
+  get():void{
   this.itemService.getPendingItems().subscribe({
         next: (data) => {
           this.items = data;
@@ -37,8 +37,9 @@ get():void{
            });
  }
  ngOnInit(): void {
-  // this.get();
+   this.get();
 }
+ // Function to Accept Item 
 acceptItem(itemId:number):void{
   console.log(itemId);
   this.itemService.AcceptItem(itemId).subscribe({
@@ -49,8 +50,43 @@ error:(error)=>{
   console.log("",error)
 }
   });
-}
+} 
 
+// Function to open the reject modal and set the itemId
+  openRejectModal(itemId: number): void {
+    this.itemIdToReject = itemId;
+    this.rejectionReason = ''; // Reset the input field
+    const modalElement = document.getElementById('rejectModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
+ // Function to handle rejection 
+  rejectItem(itemId: number | null, reason: string): void {
+    if (itemId !== null && reason.trim()) {
+     console.log(`Rejecting item ${itemId} with reason: ${reason}`);
+      this.itemService.RejecttItem(itemId,reason).subscribe({
+      next:(response)=>{
+       console.log("updated successfully",response)
+    },
+   error:(error)=>{
+    console.log("",error)
+  }
+  });
+     
+      // Close the modal after rejection
+      const modalElement = document.getElementById('rejectModal');
+      if (modalElement) {
+        const modal = bootstrap.Modal.getInstance(modalElement);
+        if (modal) {
+          modal.hide();
+        }
+      }
+    } else {
+      alert('Please provide a reason for rejection.');
+    }
+  }
  
   // Method to open the modal and set the selected image
   showImage(imageUrl: string) {
@@ -75,4 +111,6 @@ error:(error)=>{
       }
     }
   }
+
+
 }
