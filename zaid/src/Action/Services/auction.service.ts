@@ -11,25 +11,28 @@ import { Observable } from 'rxjs';
 export class AuctionService {
   private apiUrl="http://localhost:5204/api/Auction"
 
- localStorageKey="auctionData";
-  constructor(private cookieService: CookieService,private http:HttpClient) {}
-
-  saveAuctionData(data: any): void {
-    const auctionData = JSON.stringify(data);
-    this.cookieService.set(this.localStorageKey,auctionData)
-    /* localStorage.setItem(this.localStorageKey, auctionData); */
+  // private localStorageKey = 'auctionData';
+  constructor(private cookieService: CookieService,private http:HttpClient) {
+    // const auctionData = this.cookieService.get("key");
+    // this.cookieService.set("key","value")
   }
 
-  getAuctionData(): any {
-    const auctionData = this.cookieService.get(this.localStorageKey);
-    /* const auctionData = localStorage.getItem(this.localStorageKey); */
+  // saveAuctionData(data: any): void {
+  //   const auctionData = JSON.stringify(data);
+  //   this.cookieService.set(this.localStorageKey,auctionData)
+  //   /* localStorage.setItem(this.localStorageKey, auctionData); */
+  // }
 
-    return auctionData ? JSON.parse(auctionData) : null;
-  }
+  // getAuctionData(): any {
+  //   const auctionData = this.cookieService.get(this.localStorageKey);
+  //   /* const auctionData = localStorage.getItem(this.localStorageKey); */
 
-  clearAuctionData(): void {
-    localStorage.removeItem(this.localStorageKey);
-  }
+  //   return auctionData ? JSON.parse(auctionData) : null;
+  // }
+
+  // clearAuctionData(): void {
+  //   localStorage.removeItem(this.localStorageKey);
+  // }
 
 
   createAuction(auction:Auction): Observable<any> {
