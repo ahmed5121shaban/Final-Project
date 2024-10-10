@@ -1,7 +1,8 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpInterceptorFn } from '@angular/common/http';
-import { finalize, Observable, tap } from 'rxjs';
+import { inject } from '@angular/core';
+import {  HttpInterceptorFn } from '@angular/common/http';
 import { LoaderService } from '../loader intersptors/loader.service';
+import { finalize } from 'rxjs/internal/operators/finalize';
+
 
 export const LoaderInterceptor: HttpInterceptorFn = (req, next) => {
 
