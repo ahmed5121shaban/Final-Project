@@ -17,16 +17,16 @@ export class ItemService {
    return this.http.post(this.apiUrl,formData);
   }
 
-  // getPendingItems(): Observable<any> {
-  //   return this.http.get<any>(`${this.apiUrl}/Pending`);
-  // }
-  // getAcceptedItems(): Observable<any> {
-  //   return this.http.get<any>(`${this.apiUrl}/Accepted`);
-  // }
-  // getRejectedItems(): Observable<any> {
-  //   return this.http.get<any>(`${this.apiUrl}/Rejected`);
-  // }
-
+  
+  getPendingItems(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Pending`);
+  }
+  getAcceptedItems(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Accepted`);
+  }
+  getRejectedItems(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Rejected`);
+  }
 
   getItemById(id:number):Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
@@ -44,15 +44,10 @@ export class ItemService {
   getItem(itemId: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${itemId}`);
   }
-  getPendingItems():Observable<any[]>{
+  getUnreviewdItems():Observable<any[]>{
     return this.http.get<any[]>(`${this.apiUrl}/Unreviewed`)
   }
-  getAcceptedItems():Observable<any>{
-    return this.http.get(`${this.apiUrl}/getAccepted`)
-  }
-  getRejectedItems():Observable<any>{
-    return this.http.get(`${this.apiUrl}/getRejected`)
-  }
+
   AcceptItem(itemId:number):Observable<any>{
     return this.http.get(`${this.apiUrl}/Accept/${itemId}`)
   }
