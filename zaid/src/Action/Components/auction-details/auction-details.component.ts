@@ -31,7 +31,7 @@ export class AuctionDetailsComponent implements OnChanges {
 
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
-    private route: ActivatedRoute,private location:Location
+    private route: ActivatedRoute
   ) {}
 
 
@@ -121,7 +121,7 @@ export class AuctionDetailsComponent implements OnChanges {
 // import { Component, OnInit } from '@angular/core';
 // import { ActivatedRoute } from '@angular/router'; // To get the auction ID from the route
 // import { AuctionService } from '../../Services/auction.service'; // Service to fetch auction details
-// import { PaymentService } from '../../Services/payment.service'; 
+// import { PaymentService } from '../../Services/payment.service';
 
 // @Component({
 //   selector: 'app-auction-details',
