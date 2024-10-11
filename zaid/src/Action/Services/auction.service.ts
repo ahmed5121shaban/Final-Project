@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 
 import { Observable } from 'rxjs';
+import { Pagination } from '../Models/models/pagination.model';
 
 
 @Injectable({
@@ -11,29 +12,8 @@ import { Observable } from 'rxjs';
 export class AuctionService {
   private apiUrl="http://localhost:5204/api/Auction"
 
-  // private localStorageKey = 'auctionData';
-  constructor(private cookieService: CookieService,private http:HttpClient) {
-    // const auctionData = this.cookieService.get("key");
-    // this.cookieService.set("key","value")
-  }
 
-  // saveAuctionData(data: any): void {
-  //   const auctionData = JSON.stringify(data);
-  //   this.cookieService.set(this.localStorageKey,auctionData)
-  //   /* localStorage.setItem(this.localStorageKey, auctionData); */
-  // }
-
-  // getAuctionData(): any {
-  //   const auctionData = this.cookieService.get(this.localStorageKey);
-  //   /* const auctionData = localStorage.getItem(this.localStorageKey); */
-
-  //   return auctionData ? JSON.parse(auctionData) : null;
-  // }
-
-  // clearAuctionData(): void {
-  //   localStorage.removeItem(this.localStorageKey);
-  // }
-
+  constructor(private cookieService: CookieService,private http:HttpClient) {}
 
   createAuction(auction:Auction): Observable<any> {
     return this.http.post(this.apiUrl,auction)
@@ -41,14 +21,40 @@ export class AuctionService {
 
   getAll():any{
     return this.http.get<any>(`${this.apiUrl}/getall`)
-
   }
+
+  getAuctionById(auctionId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/GetById/${auctionId}`);
+  }
+
   getAllActive(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/Active`);
   }
+
   getAllEnded(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/Ended`);
   }
+  
+    // Fetch paginated auctions from the API
+    getPaginatedAuctions(
+      searchtxt: string = '', 
+      columnName: string = 'Id', 
+      isAscending: boolean = false, 
+      pageSize: number = 2, 
+      pageNumber: number = 1
+    ): Observable<Pagination<any[]>> {
+      // Build query parameters
+      let params = new HttpParams()
+        .set('searchtxt', searchtxt)
+        .set('columnName', columnName)
+        .set('isAscending', isAscending.toString())
+        .set('pageSize', pageSize.toString())
+        .set('pageNumber', pageNumber.toString());
+  
+      // Make HTTP GET request
+      return this.http.get<Pagination<any[]>>(`${this.apiUrl}/GetAuctions`, { params });
+    }
+  
 }
 export interface Auction{
   ItemId:number;

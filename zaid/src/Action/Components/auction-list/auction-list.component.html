@@ -80,10 +80,10 @@
               <div class="row">
                 <div *ngFor="let auction of activeAuctions | paginate: { itemsPerPage: itemsPerPage, currentPage: page }" class="col-lg-4 col-md-6 col-12 mt-5">
                   <!-- Wrap the entire card with a routerLink to make it clickable -->
-                  <a [routerLink]="['/auction-details', auction.item.id]" class="text-decoration-none">
+                  <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
                     <div class="custom-product-card mt-3 me-2 border border-1">
                       <div class="position-relative">
-                        <div id="carousel{{ auction.item.id }}" class="carousel slide" data-bs-ride="true">
+                        <div id="carousel{{ auction.id }}" class="carousel slide" data-bs-ride="true">
                           <div class="carousel-inner">
                             <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
                                  class="carousel-item" style="height: 30vh;">
@@ -137,7 +137,7 @@
               </div>
               <div class="row">
                 <div *ngFor="let auction of endedAuctions | paginate: { itemsPerPage: endedItemsPerPage, currentPage: page }" class="col-lg-4 col-md-6 col-12 mt-5">
-                  <a [routerLink]="['/auction-details', auction.item.id]" class="text-decoration-none">
+                  <a [routerLink]="['/action/auction-details', auction.item.id]" class="text-decoration-none">
                     <div class="custom-product-card mt-3 me-2 border border-1">
                       <div class="position-relative">
                         <div id="carousel{{ auction.item.id }}" class="carousel slide" data-bs-ride="true">
