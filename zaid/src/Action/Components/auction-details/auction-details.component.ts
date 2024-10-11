@@ -1,7 +1,11 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from '../../Services/payment.service';
+
+import { Location } from '@angular/common';
+
 import { AuctionService } from '../../Services/auction.service';
+
 interface Reply {
   id: number;
   text: string;
@@ -24,10 +28,12 @@ export class AuctionDetailsComponent implements OnChanges {
   currentSlide = 0;
   auctionId!: number;
   auctionDetails: any;
+
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,private location:Location
   ) {}
+
 
   ngOnChanges(): void {
     this.paymentService.userHavePayment().subscribe(
@@ -98,7 +104,18 @@ export class AuctionDetailsComponent implements OnChanges {
     // Add more comments if needed
   ];
 
-
+  payment(){
+    this.paymentService.firstPaymentAuction().subscribe({
+      next:(res:any)=>{
+        console.log(res.status);
+        console.log(res.urlCheckOut);
+        window.location.href = res.urlCheckOut;
+      },
+      error:(err)=>{
+        console.error("error", err);
+      }
+    })
+  }
 
 }
 // import { Component, OnInit } from '@angular/core';
