@@ -62,3 +62,24 @@
   border-radius: 0px;
   color:#007bff;
 } */
+
+.custom-product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-product-card:hover {
+  transform: translateY(-10px); /* Moves the card slightly upward */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+}
+
+.custom-product-card:hover img {
+  filter: brightness(1.1); /* Slightly brightens the image on hover */
+}
+
+.custom-product-card:hover .card-body {
+  background-color: #f8f9fa; /* Optional: Change background color on hover */
+}
+
+.card-icon i:hover {
+  color: #ff5252; /* Change icon color when hovered */
+}
