@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuctionService {
-  private apiUrl="http://localhost:5204/api/Auction"
+  private apiUrl=`${environment.apiUrl}api/Auction`
 
   // private localStorageKey = 'auctionData';
   constructor(private cookieService: CookieService,private http:HttpClient) {

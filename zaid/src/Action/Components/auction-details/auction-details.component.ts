@@ -1,5 +1,6 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { PaymentService } from '../../Services/payment.service';
+import { Location } from '@angular/common';
 interface Reply {
   id: number;
   text: string;
@@ -21,7 +22,8 @@ export class AuctionDetailsComponent implements OnChanges {
   paymentCount !: {count : number, payment : string};
   currentSlide = 0;
 
-  constructor(private paymentService:PaymentService) {}
+
+  constructor(private paymentService:PaymentService,private location:Location) {}
 
   ngOnChanges(): void {
     this.paymentService.userHavePayment().subscribe(
@@ -75,6 +77,17 @@ export class AuctionDetailsComponent implements OnChanges {
     // Add more comments if needed
   ];
 
-
+  payment(){
+    this.paymentService.firstPaymentAuction().subscribe({
+      next:(res:any)=>{
+        console.log(res.status);
+        console.log(res.urlCheckOut);
+        window.location.href = res.urlCheckOut;
+      },
+      error:(err)=>{
+        console.error("error", err);
+      }
+    })
+  }
 
 }
