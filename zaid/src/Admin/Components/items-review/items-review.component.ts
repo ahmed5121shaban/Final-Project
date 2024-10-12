@@ -18,7 +18,7 @@ export class ItemsReviewComponent  implements OnInit  {
  constructor( private itemService: ItemService){}  
 
  get():void{
-  this.itemService.getPendingItems().subscribe({
+  this.itemService.getUnreviewdItems().subscribe({
         next: (data) => {
           this.items = data;
          console.log('Fetched items:', this.items);
@@ -31,7 +31,16 @@ export class ItemsReviewComponent  implements OnInit  {
  }
 
  ngOnInit(): void {
-  this.get();
+  this.itemService.getUnreviewdItems().subscribe({
+    next: (data) => {
+      this.items = data;
+     console.log('Fetched items:', this.items);
+    },
+         error: (error) => {
+           console.error('Failed to fetch items:', error);
+          // You might want to show a user-friendly message here
+         }
+       });
 }
 
   rejectionReason: string = ''; 
@@ -47,6 +56,7 @@ acceptItem(itemId:number):void{
   console.log(itemId);
   this.itemService.AcceptItem(itemId).subscribe({
 next:(response)=>{
+  this.get();
   console.log("updated successfully",response)
 },
 error:(error)=>{
@@ -70,17 +80,16 @@ error:(error)=>{
  // Function to handle rejection 
   rejectItem(itemId: number | null, reason: string): void {
     console.log(reason,itemId);
-    if (itemId !== null && reason.trim()) {
+    if (itemId !== null && reason!== null) {
      
-      this.itemService.RejecttItem(itemId,reason).subscribe({
-      next:(response)=>{
-       console.log("updated successfully",response)
-       console.log(`Rejecting item ${itemId} with reason: ${reason}`);
-    },
-   error:(error)=>{
-    console.log("",error)
-  }
-  });
+      this.itemService.rejectItem(itemId, reason).subscribe(
+        (response) => {
+          console.log('Item rejected successfully:', response);
+        },
+        error => {
+          console.error('Error:', error);
+        }
+    );
    // Close the modal after rejection
    const modalElement = document.getElementById('rejectModal');
    if (modalElement) {

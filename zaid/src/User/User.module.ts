@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './User.component';
 import { ProfileManagementComponent } from './Components/Profile-Management/Profile-Management.component';
@@ -54,6 +54,7 @@ SellerwithdrawComponent,
     MyReviewsComponent,
     UserProfileComponent,
     
-  ]
+  ],
+ 
 })
 export class UserModule { }

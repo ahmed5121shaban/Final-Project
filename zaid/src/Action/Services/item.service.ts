@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class ItemService {
 
-  private apiUrl=`${environment.apiUrl}api/Item"`
+  private apiUrl=`${environment.apiUrl}api/Item`
 
     constructor(private http:HttpClient) { }
 
@@ -16,8 +16,6 @@ export class ItemService {
   addItem(formData:FormData):Observable<any>{
    return this.http.post(this.apiUrl,formData);
   }
-
-  
   getPendingItems(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/Pending`);
   }
@@ -44,20 +42,34 @@ export class ItemService {
   getItem(itemId: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${itemId}`);
   }
-  getUnreviewdItems():Observable<any[]>{
-    return this.http.get<any[]>(`${this.apiUrl}/Unreviewed`)
+  getUnreviewdItems():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/Unreviewed`)
   }
 
   AcceptItem(itemId:number):Observable<any>{
     return this.http.get(`${this.apiUrl}/Accept/${itemId}`)
   }
-  RejecttItem(itemId:number,message:string):Observable<any>{
+  // RejecttItem(itemId:number,message:string):Observable<any>{
     
-    // const headers = new HttpHeaders({
-    //   'Content-Type': 'application/json'
-    // });
-    return this.http.put(`${this.apiUrl}/Reject/${itemId}`,message)
-  }
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/json'
+  //   });
+  //   return this.http.put(`${this.apiUrl}/Reject/${itemId}`,message,{headers})
+  // }
+
+  rejectItem(itemId: number, rejectReason: string): Observable<any> {
+    const url = `${this.apiUrl}/Reject/${itemId}`;
+    const payload = {
+        rejectReason: rejectReason // Send the reason for rejection
+    };
+
+    return this.http.put(url, payload).pipe(
+        catchError((error: HttpErrorResponse) => {
+            console.error('Error details:', error.error);
+            return throwError('Something went wrong, please try again.');
+        })
+    );
+}
 
   }
 
