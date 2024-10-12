@@ -55,6 +55,11 @@ export class AuctionService {
       // Make HTTP GET request
       return this.http.get<Pagination<any[]>>(`${this.apiUrl}/GetAuctions`, { params });
     }
+
+      // Fetch similar active auctions by category
+  getSimilarActiveAuctions(auctionId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/SimilarActiveAuctions/${auctionId}`);
+  }
   //get live Auctions for Seller
   getSellerAllLive():Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/SellerLive`)

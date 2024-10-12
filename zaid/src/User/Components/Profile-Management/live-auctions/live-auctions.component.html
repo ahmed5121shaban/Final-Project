@@ -9,7 +9,7 @@
 @else{
 <div class="container container-custom" >
   <div *ngFor="let auction of LiveAuctions; let i = index">
-    <a [routerLink]="['/admin/', auction.id]" class="text-decoration-none">
+    <!-- <a [routerLink]="['/admin/', auction.id]" class="text-decoration-none"> -->
       <div class="card card-custom shadow">
       <div class="card-body d-flex h-25">
           <div class="col-6">
@@ -53,7 +53,7 @@
           </div>
       </div>
       </div>
-    </a>
+    <!-- </a> -->
   </div>
 </div>
 }
