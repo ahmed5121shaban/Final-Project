@@ -17,6 +17,7 @@ import { headerInterceptor } from '../Shared/Interseptors/header intersptor/head
 import { CookieService } from 'ngx-cookie-service';
 import { LoaderInterceptor } from '../Shared/Interseptors/loader intersptors/loading.interceptor';
 import { NgModule } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -32,7 +33,8 @@ import { NgModule } from '@angular/core';
     ActionModule,
     ItemsModule,
     SharedModule,
-    AdminModule
+    AdminModule,
+    NgxPaginationModule,
     
 
 

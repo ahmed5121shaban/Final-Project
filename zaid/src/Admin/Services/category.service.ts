@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CategoryService {
 
-private apiUrl="http://localhost:5204/api/Category"
+private apiUrl="http://localhost:63280/api/Category"
 
   constructor(private http:HttpClient) { }
 
@@ -21,6 +21,6 @@ addCategory(formData:FormData):Observable<any>{
 
 deleteCategory(categoryId:number):Observable<any>{
   return this.http.delete(`${this.apiUrl}/${categoryId}`)
-  
+
 }
 }

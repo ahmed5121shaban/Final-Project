@@ -1,75 +1,41 @@
-
 <div class="container">
 <div class="main  p-xl-5 p-3">
     <div class="row justify-content-between ">
         <div class="item-title">
-            <h1>item title</h1>
+            <h1>{{ auctionDetails.item.name }}</h1>
         </div>
-
-        <div class="col-xl-7 row mb-5 ">
-            <div id="itemimages" class="carousel slide col-12 mb-5">
+        <div class="col-xl-7 row mb-5">
+            <div id="itemimages" class="carousel slide col-12 mb-5" data-bs-ride="carousel">
                 <div class="carousel-inner mb-5">
-                    @for(image of itemImages; track $index ; let i=$index){
-                    <div class="carousel-item" [class.active]="i === 0">
-                        <img [src]="image.src" class="d-block w-100">
-                    </div>
-                    }
-
-                </div>
-
-                <a class="carousel-control-prev" href="#itemimages" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="false"></span>
-                </a>
-                <a class="carousel-control-next" href="#itemimages" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="false"></span>
-                </a>
-
-                <div class="carousel-indicators">
-                    @for( image of itemImages;track $index ;let i=$index){
-                    <button class="w-25" type="button" [attr.data-bs-target]="'#itemimages'" [attr.data-bs-slide-to]="i"
-                        [class.active]="i === 0">
-                        <img [src]="image.src" class="d-block w-100">
-                    </button>
-                    }
-
-                </div>
-            </div>
-
-            <br>
-
-            <!-- <div id="item-slider" class="carousel slide col-12" >
-                <div class="carousel-inner">
-                        @for( slide of itemImages; track $index; let i= $index ){
-                            <div class="carousel-item" [ngClass]="(i === currentSlide) ? 'active' : ''">
-                            <img [src]="slide.src" class="d-block w-100" [alt]="slide.alt">
+                    <ng-container *ngFor="let image of auctionDetails.item.images; let i = index">
+                        <div class="carousel-item" [class.active]="i === 0">
+                            <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100" alt="Auction Image {{ i + 1 }}">
                         </div>
-                        }
-
+                    </ng-container>
                 </div>
-                <a class="carousel-control-prev" href="#item-slider" role="button" data-bs-slide="prev">
+        
+                <a class="carousel-control-prev" href="#itemimages" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#item-slider" role="button" data-bs-slide="next">
+                <a class="carousel-control-next" href="#itemimages" role="button" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </a>
-            </div> -->
-            <!---------------------------- item thumbnail list ----------------------->
-            <!-- <div class=" thumb-list-images d-none d-md-block mt-3 d-none d-md-block col-12 mb-md-5">
-                <div class="thumb-list ">
-                    <div class="row" (click)="selectSlide($event)">
-
-                    @for(thumb of itemImages  ; track $index){
-                    <div class="thumb">
-                        <img [src]="thumb.src" [alt]="thumb.alt">
-                    </div>
-                    }
+        
+                <div class="carousel-indicators">
+                    <ng-container *ngFor="let image of auctionDetails.item.images; let i = index">
+                        <button type="button" [attr.data-bs-target]="'#itemimages'" [attr.data-bs-slide-to]="i"
+                                [class.active]="i === 0" aria-current="true" [attr.aria-label]="'Slide ' + (i + 1)">
+                            <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100" alt="Thumbnail Image {{ i + 1 }}">
+                        </button>
+                    </ng-container>
                 </div>
-
-                </div>
-            </div> -->
+            </div>
+        
+            <br>
         </div>
+        
 
         <div class="bid col-xl-5  justify-content-center  p-md-0 mt-5 mt-md-0">
             <div class="bid-info-place  mb-3">
@@ -81,8 +47,8 @@
                     </div>
                     <div class="bid-ends-in col-6">
                         <p>Ends in:</p>
-                        <h5 id="end-time">13hours</h5>
-                        <p class="end-date">25 Jul 2024 at 17:30 EEST</p>
+                        <h5 id="end-time">{{ auctionDetails.endDate | date: 'shortTime' }}</h5>
+                        <p class="end-date">{{ auctionDetails.endDate | date: 'mediumDate' }}</p>
                     </div>
                 </div>
                 @if ( (paymentCount?.payment??"pay")=='paypal'){
@@ -105,7 +71,7 @@
                     </a>
                     <p class="bid-limits ">Check if You have Payment Email in your Profile.</p>
                 </div>
-                }@else if ((paymentCount?.count??0) == 0){
+                }@else if ((paymentCount?.count??0) == 1){
                   <div class="place-bid text-center">
                     <input type="number" name="" disabled id="" class="form-control">
                     <a routerLink="/user/payment" class=" btn btn-danger w-100 mt-3 mb-1">
@@ -116,7 +82,7 @@
                 }@else {
                   <div class="place-bid text-center ">
                     <input type="number" name="" id="" class="form-control">
-                    <a href="" class=" btn btn-secondary w-100 mt-3 mb-1">Place A Bid</a>
+                    <a role="button" class=" btn btn-secondary w-100 mt-3 mb-1" (click)="payment()">Place A Bid</a>
                     <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
                         converted into SEK.</p>
                 </div>
@@ -187,7 +153,7 @@
     <div class="row mt-5 mt-md-2">
         <div class="item-desc mb-4">
             <p class="title">Description</p>
-            <p>item description</p>
+            <p>{{auctionDetails.item.description}}</p>
         </div>
 
         <p class="title">Seller Information</p>
@@ -195,7 +161,7 @@
             <div class="row">
                 <div class="">
                     <h5>
-                        <a href="#profile" class="text-decoration-none">Seller Name</a>
+                        <a href="#profile" class="text-decoration-none">Seller :{{ auctionDetails.item.seller.user.name }}</a>
                     </h5>
                 </div>
                 <div class=" text-right">
@@ -218,7 +184,7 @@
         </div>
     </div>
     <h3 class="text-center">Similar Auctions</h3>
-    <div id="cardCarousel" class="carousel slide justify-content-center mb-3">
+    <!-- <div id="cardCarousel" class="carousel slide justify-content-center mb-3">
         <div class="carousel-inner">
             @for(group of groupedItems ; track $index; let i = $index){
             <div class="carousel-item" [class.active]="i === 0">
@@ -245,7 +211,7 @@
         <a class="carousel-control-next" href="#cardCarousel" role="button" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="false"></span>
         </a>
-    </div>
+    </div> -->
     <!-- ask question -->
     <p class="title">Ask a Question</p>
     <form id="questionForm" onsubmit="submitQuestion(event)">
@@ -281,8 +247,5 @@
     </div>
 
     }
-
-
-
 </div>
 </div>

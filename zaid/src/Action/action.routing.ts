@@ -13,7 +13,7 @@ import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-
 
 const routes: Routes = [
   { path: 'create-auction' , component: CreateAuctionComponent},
-  { path: 'auction-details' , component: AuctionDetailsComponent},
+  { path: 'auction-details/:id' , component: AuctionDetailsComponent},
   { path: 'auction-list' , component: AuctionListComponent},
   { path: 'auction-edit' , component: EditAuctionComponent},
   { path: 'delete-confirm' , component: DeleteConfirmationComponent},

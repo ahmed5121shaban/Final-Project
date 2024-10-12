@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { of } from 'rxjs/internal/observable/of';
 import { Observable } from 'rxjs/internal/Observable';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class AuthService {
 
   private localStorageKey = 'token';
   isLoggedUserSubject!: BehaviorSubject<boolean>
-
+  apiUrl=environment.apiUrl;
 
   constructor(private http:HttpClient,private cookieService: CookieService) { }
 
@@ -27,7 +28,7 @@ get isLoggedIn(){
   }
 
   loginUser(value: any) {
-    return this.http.post("http://localhost:5204/api/acount/login", value);
+    return this.http.post(`${this.apiUrl}api/acount/login`, value);
   }
 
   registerUser(userDetails: any) {
@@ -35,7 +36,7 @@ get isLoggedIn(){
     users.push(userDetails);
     this.setUsersToLocalStorage(users);
     return of(userDetails); */
-    return this.http.post("http://localhost:5204/api/Acount/register", userDetails);
+    return this.http.post(`${this.apiUrl}api/Acount/register`, userDetails);
   }
 
   updateUserPassword(email: string, newPassword: string): Observable<boolean> {
