@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -56,7 +56,11 @@ export class ItemService {
     return this.http.get(`${this.apiUrl}/Accept/${itemId}`)
   }
   RejecttItem(itemId:number,message:string):Observable<any>{
-    return this.http.put(`${this.apiUrl}/Accept/${itemId}`,message)
+    
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json'
+    // });
+    return this.http.put(`${this.apiUrl}/Reject/${itemId}`,message)
   }
   
   }

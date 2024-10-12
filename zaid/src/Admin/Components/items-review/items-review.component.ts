@@ -4,27 +4,20 @@ import { response } from "express";
 import { error } from "console";
 declare var bootstrap: any; 
 
-
 @Component({
   selector: 'app-items-review',
   templateUrl: './items-review.component.html',
   styleUrls: ['./items-review.component.css']
 })
-export class ItemsReviewComponent  implements OnInit {
+export class ItemsReviewComponent  implements OnInit  {
 
   selectedImage: string | null = null;
 
   // List of items with images
   items :any[]= [];
- constructor( private itemService: ItemService){
+ constructor( private itemService: ItemService){}  
 
-//  this.get();
- }   
- 
-  rejectionReason: string = ''; 
-  itemIdToReject: number | null = null;
-
-  get():void{
+ get():void{
   this.itemService.getPendingItems().subscribe({
         next: (data) => {
           this.items = data;
@@ -36,9 +29,19 @@ export class ItemsReviewComponent  implements OnInit {
              }
            });
  }
+
  ngOnInit(): void {
-   this.get();
+  this.get();
 }
+
+  rejectionReason: string = ''; 
+  itemIdToReject: number | null = null;
+ changetext(event:any){
+  console.log("event", event.target.value)
+  console.log("ngmodel", this.rejectionReason)
+  
+ }
+
  // Function to Accept Item 
 acceptItem(itemId:number):void{
   console.log(itemId);
@@ -62,32 +65,36 @@ error:(error)=>{
       modal.show();
     }
   }
+
+
  // Function to handle rejection 
   rejectItem(itemId: number | null, reason: string): void {
+    console.log(reason,itemId);
     if (itemId !== null && reason.trim()) {
-     console.log(`Rejecting item ${itemId} with reason: ${reason}`);
+     
       this.itemService.RejecttItem(itemId,reason).subscribe({
       next:(response)=>{
        console.log("updated successfully",response)
+       console.log(`Rejecting item ${itemId} with reason: ${reason}`);
     },
    error:(error)=>{
     console.log("",error)
   }
   });
-     
-      // Close the modal after rejection
-      const modalElement = document.getElementById('rejectModal');
-      if (modalElement) {
-        const modal = bootstrap.Modal.getInstance(modalElement);
-        if (modal) {
-          modal.hide();
-        }
-      }
-    } else {
-      alert('Please provide a reason for rejection.');
-    }
-  }
- 
+   // Close the modal after rejection
+   const modalElement = document.getElementById('rejectModal');
+   if (modalElement) {
+     const modal = bootstrap.Modal.getInstance(modalElement);
+     if (modal) {
+       modal.hide();
+     }
+   }
+ } else {
+   alert('Please provide a reason for rejection.');
+ }
+}
+  
+
   // Method to open the modal and set the selected image
   showImage(imageUrl: string) {
     

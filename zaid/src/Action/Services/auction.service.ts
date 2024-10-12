@@ -49,6 +49,9 @@ export class AuctionService {
   getAllEnded(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/Ended`);
   }
+  getSellerAllLive():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/SellerLive`)
+  }
 }
 export interface Auction{
   ItemId:number;
