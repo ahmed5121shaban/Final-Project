@@ -22,7 +22,7 @@
                 <li >
                   <a [routerLink]="['/action/auction-list']" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
                     <span class="ms-2 link-underline-opacity-10-hover">All</span>
-                    <span class="me-2">({{totalItems}})</span>
+                    <!-- <span class="me-2">({{totalItemsActive}})</span> -->
                   </a>
                 </li>
                 <li *ngFor="let category of categories">
@@ -53,7 +53,7 @@
               <a [routerLink]="['/action/auction-list']"
                 class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
                 <span class="ms-0 link-underline-opacity-10-hover">All</span>
-                <span class="me-2">({{ totalItems }})</span>
+                <!-- <span class="me-2">({{ totalItemsActive }})</span> -->
               </a>
             </div>
               <div *ngFor="let category of categories" class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle"
@@ -92,7 +92,7 @@
                 </form>
               </div>
               <div class="row">
-                <div *ngFor="let auction of activeAuctions | paginate: { itemsPerPage: itemsPerPage, currentPage: page ,totalItems: totalItems }"
+                <div *ngFor="let auction of activeAuctions | paginate: { itemsPerPage: itemsPerPage, currentPage: pageActive ,totalItems: totalItemsActive }"
                   class="col-lg-4 col-md-6 col-12 mt-5">
                   <!-- Wrap the entire card with a routerLink to make it clickable -->
                   <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
@@ -134,7 +134,7 @@
               </div>
               <div class="text-center mt-5">
                 <pagination-controls
-                (pageChange)="onPageChange($event)" 
+                (pageChange)="onActivePageChange($event)" 
                 ></pagination-controls>
               </div>
 
@@ -154,7 +154,7 @@
               </div>
               <div class="row">
                 <div
-                  *ngFor="let auction of endedAuctions | paginate: { itemsPerPage: endedItemsPerPage, currentPage: page }"
+                  *ngFor="let auction of endedAuctions | paginate: { itemsPerPage: endedItemsPerPage, currentPage: pageEnded ,totalItems: totalItemsEnded}"
                   class="col-lg-4 col-md-6 col-12 mt-5">
                   <a [routerLink]="['/action/auction-details', auction.item.id]" class="text-decoration-none">
                     <div class="custom-product-card mt-3 me-2 border border-1">
@@ -192,7 +192,7 @@
                   </a>
                 </div>
               </div>
-              <pagination-controls (pageChange)="page = $event"></pagination-controls>
+              <pagination-controls (pageChange)="onEndedPageChange($event)" ></pagination-controls>
             </div>
           </div>
         </div>
