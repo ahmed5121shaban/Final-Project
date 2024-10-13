@@ -1,9 +1,7 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from '../../Services/payment.service';
-
 import { Location } from '@angular/common';
-
 import { AuctionService } from '../../Services/auction.service';
 
 interface Reply {
@@ -33,7 +31,8 @@ export class AuctionDetailsComponent implements OnChanges {
 
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
-    private route: ActivatedRoute,private location:Location
+    private route: ActivatedRoute,
+    private location:Location
   ) {}
 
 
