@@ -11,18 +11,19 @@ import { Observable } from 'rxjs/internal/Observable';
 export class AuthService {
 
   private localStorageKey = 'token';
-  isloggedUserSubject!: BehaviorSubject<boolean>
+  isLoggedUserSubject!: BehaviorSubject<boolean>
 
   constructor(private http:HttpClient) { }
+
 get isLoggedIn(){
-  if(localStorage.getItem(this.localStorageKey))
-    return true
+  if(localStorage.getItem(this.localStorageKey)){
+    
+    return true}
   return false
   }
 
   loginUser(value:any){
-    this.isloggedUserSubject.next(true)
-    return this.http.post("http://localhost:63280/api/acount/login",value);
+    return this.http.post("http://localhost:5204/api/acount/login",value);
   }
 
   registerUser(userDetails: any){
@@ -30,7 +31,7 @@ get isLoggedIn(){
     users.push(userDetails);
     this.setUsersToLocalStorage(users);
     return of(userDetails); */
-    return this.http.post("http://localhost:63280/api/Acount/register",userDetails);
+    return this.http.post("http://localhost:5204/api/Acount/register",userDetails);
   }
 
   updateUserPassword(email: string, newPassword: string): Observable<boolean> {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +11,20 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   // إرسال بيانات الملف الشخصي
-  updateProfile(data: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/profile`, data);
+  updateProfile(data: FormData): Observable<any> {
+    return this.http.put(`${this.baseUrl}/profile`, data, { responseType: 'text' })
   }
 
   // إرسال بيانات التحقق من الهوية
   verifyIdentity(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/verify-identity`, data);
+    return this.http.post(`${this.baseUrl}/VerifyIdentity`, data)
   }
+
   getProfileData(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/profile`); // تأكد من أن هذا هو الـ endpoint الصحيح
+    return this.http.get(`${this.baseUrl}/profile`)
   }
+
+ 
+  
+  
 }

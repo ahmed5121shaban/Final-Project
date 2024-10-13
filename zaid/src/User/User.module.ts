@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from "@angular/common/http";
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './User.component';
 import { ProfileManagementComponent } from './Components/Profile-Management/Profile-Management.component';
@@ -30,7 +31,7 @@ import { SellerwithdrawComponent } from './Components/Profile-Management/sellerw
     UserRoutes,
     FormsModule,
     CarouselModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,HttpClientModule
   ],
   declarations: [
     RegisterComponent,
