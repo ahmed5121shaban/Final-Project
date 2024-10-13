@@ -7,13 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class CategoryService {
-<<<<<<< HEAD
-
-private apiUrl="https://localhost:5204/api/Category"
-
-=======
  private apiUrl=`${environment.apiUrl}api/Category`
->>>>>>> f7b69d48523f3afa25338e493777eddf024ceb74
   constructor(private http:HttpClient) { }
 
   //call api to get categories

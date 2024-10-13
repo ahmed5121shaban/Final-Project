@@ -8,11 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class ItemService {
 
-<<<<<<< HEAD
-private apiUrl="https://localhost:5204/api/Item"
-=======
   private apiUrl=`${environment.apiUrl}api/Item`
->>>>>>> f7b69d48523f3afa25338e493777eddf024ceb74
 
     constructor(private http:HttpClient) { }
 
