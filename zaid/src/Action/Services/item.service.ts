@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class ItemService {
 
-  private apiUrl=`${environment.apiUrl}api/Item"`
+  private apiUrl=`${environment.apiUrl}api/Item`
 
     constructor(private http:HttpClient) { }
 
@@ -17,7 +17,7 @@ export class ItemService {
    return this.http.post(this.apiUrl,formData);
   }
 
-  
+
   getPendingItems(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/Pending`);
   }
