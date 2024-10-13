@@ -20,6 +20,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ModifyActionComponent } from './Components/Profile-Management/modify-action/modify-action.component';
 import { SellerEarningsComponent } from './Components/Profile-Management/seller-earnings/seller-earnings.component';
 import { SellerwithdrawComponent } from './Components/Profile-Management/sellerwithdraw/sellerwithdraw.component';
+import { WonAuctionComponent } from './Components/Profile-Management/won-auction/won-auction.component';
+import { LostAuctionComponent } from './Components/Profile-Management/lost-auction/lost-auction.component';
 
 
 
@@ -53,6 +55,8 @@ SellerwithdrawComponent,
     AddReviewComponent,
     MyReviewsComponent,
     UserProfileComponent,
+    WonAuctionComponent,
+    LostAuctionComponent
     
   ]
 })
