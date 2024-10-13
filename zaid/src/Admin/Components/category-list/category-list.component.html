@@ -1,0 +1,399 @@
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4">
+                <!-- pageheader -->
+                <div>
+                    <h2>Categories</h2>
+                    <!-- breacrumb -->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a routerLink="./home" class="text-inherit">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                        </ol>
+                    </nav>
+                </div>
+                <!-- button -->
+                <div>
+                    <a routerLink="./add-Category" class="btn btn-primary">Add New Category</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-12 mb-5">
+            <!-- card -->
+            <div class="card h-100 card-lg">
+                <div class=" my-4 mx-4 ">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-4 col-md-6 col-12 mb-2 mb-md-0">
+                            <!-- form -->
+                            <form class="d-flex" role="search">
+                                <input class="form-control" type="search" placeholder="Search Category" aria-label="Search">
+                            </form>
+                        </div>
+                        <!-- select option -->
+                        <div class="col-xl-2 col-md-4 col-12">
+                            <select class="form-select">
+                                <option selected="">Status</option>
+                                <option value="Published">Published</option>
+                                <option value="Unpublished">Unpublished</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- card body -->
+                <div class="card-body p-0 align-items-center justify-content-center">
+                    <!-- table -->
+                    <div class="table-responsive">
+                        <table class="table   table-centered table-hover mb-0 text-nowrap table-borderless table-with-checkbox ">
+                            <thead class="bg-info">
+                                <tr>
+                                    <th class="">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                                            <label class="form-check-label" for="checkAll"></label>
+                                        </div>
+                                    </th>
+                                    <th>Icon</th>
+                                    <th>Name</th>
+                                    <th>items</th>
+                                    <th>Action</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="categoryOne">
+                                            <label class="form-check-label" for="categoryOne"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#!"><img src="300-5.jpg" alt="" class="icon-shape icon-sm" style="height: 30px;width:40px ;"></a>
+                                    </td>
+                                    <td><a href="#" class="text-reset text-decoration-none">Snack &amp; Munchies</a></td>
+                                    <td>12</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-ellipsis-vertical "></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-trash me-3"></i>
+                                                        Delete
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-pencil-square me-3"></i>
+                                                        Edit
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="categoryTwo">
+                                            <label class="form-check-label" for="categoryTwo"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#!"><img src="../assets/images/icons/bakery.svg" alt="" class="icon-shape icon-sm"></a>
+                                    </td>
+                                    <td><a href="#" class="text-reset text-decoration-none">Bakery &amp; Biscuits</a></td>
+                                    <td>8</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-ellipsis-vertical "></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-trash me-3"></i>
+                                                        Delete
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-pencil-square me-3"></i>
+                                                        Edit
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="categoryThree">
+                                            <label class="form-check-label" for="categoryThree"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#!"><img src="../assets/images/icons/baby-food.svg" alt="" class="icon-shape icon-sm"></a>
+                                    </td>
+                                    <td><a href="#" class="text-reset text-decoration-none">Baby Care</a></td>
+                                    <td>32</td>
+
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-ellipsis-vertical "></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-trash me-3"></i>
+                                                        Delete
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-pencil-square me-3"></i>
+                                                        Edit
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="categoryFour">
+                                            <label class="form-check-label" for="categoryFour"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#!"><img src="../assets/images/icons/wine.svg" alt="" class="icon-shape icon-sm"></a>
+                                    </td>
+                                    <td><a href="#" class="text-reset text-decoration-none">Cold Drinks &amp; Juices</a></td>
+                                    <td>34</td>
+
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-ellipsis-vertical "></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-trash me-3"></i>
+                                                        Delete
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-pencil-square me-3"></i>
+                                                        Edit
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="categoryFive">
+                                            <label class="form-check-label" for="categoryFive"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#!"><img src="../assets/images/icons/toiletries.svg" alt="" class="icon-shape icon-sm"></a>
+                                    </td>
+                                    <td><a href="#" class="text-reset text-decoration-none">Toiletries</a></td>
+                                    <td>23</td>
+
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-ellipsis-vertical "></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-trash me-3"></i>
+                                                        Delete
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-pencil-square me-3"></i>
+                                                        Edit
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="categorySeven">
+                                            <label class="form-check-label" for="categorySeven"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#!"><img src="../assets/images/icons/dairy.svg" alt="" class="icon-shape icon-sm"></a>
+                                    </td>
+                                    <td><a href="#" class="text-reset text-decoration-none">Dairy, Bread &amp; Eggs</a></td>
+                                    <td>16</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="text-reset " data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-ellipsis-vertical "></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-trash me-3"></i>
+                                                        Delete
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-pencil-square me-3"></i>
+                                                        Edit
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="categoryEight">
+                                            <label class="form-check-label" for="categoryEight"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#!"><img src="../assets/images/icons/fish.svg" alt="" class="icon-shape icon-sm"></a>
+                                    </td>
+                                    <td><a href="#" class="text-reset text-decoration-none">Chicken, Meat &amp; Fish</a></td>
+                                    <td>14</td>
+
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-ellipsis-vertical "></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-trash me-3"></i>
+                                                        Delete
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-pencil-square me-3"></i>
+                                                        Edit
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="categoryNine">
+                                            <label class="form-check-label" for="categoryNine"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#!"><img src="../assets/images/icons/fruit.svg" alt="" class="icon-shape icon-sm"></a>
+                                    </td>
+                                    <td><a href="#" class="text-reset text-decoration-none">Fruits &amp; Vegetables</a></td>
+                                    <td>32</td>
+
+
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-ellipsis-vertical "></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-trash me-3"></i>
+                                                        Delete
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-pencil-square me-3"></i>
+                                                        Edit
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="categoryTen">
+                                            <label class="form-check-label" for="categoryTen"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#!"><img src="../assets/images/icons/petfoods.svg" alt="" class="icon-shape icon-sm"></a>
+                                    </td>
+                                    <td><a href="#" class="text-reset text-decoration-none">Pet Food</a></td>
+                                    <td>25</td>
+
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-ellipsis-vertical "></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-trash me-3"></i>
+                                                        Delete
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="bi bi-pencil-square me-3"></i>
+                                                        Edit
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="border-top d-flex justify-content-between align-items-md-center mb-4 mx-3 flex-md-row flex-column gap-4">
+                    <span class="mt-4">Showing 1 to 8 of 12 entries</span>
+                    <nav>
+                        <ul class="pagination mb-0 mt-4">
+                            <li class="page-item disabled"><a class="page-link" href="#!">Previous</a></li>
+                            <li class="page-item"><a class="page-link active" href="#!">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

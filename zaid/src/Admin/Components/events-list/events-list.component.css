@@ -3,32 +3,32 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-  
+
   .search-container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 20px;
   }
-  
+
   .input-group {
     flex: 1;
   }
-  
+
   .input-group input, .input-group select {
     width: 100%;
   }
-  
+
   .table-wrapper {
     margin-top: 20px;
   }
-  
+
   .header-cell {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  
+
   .sort-icon {
     display: inline-block;
     width: 10px;
@@ -38,23 +38,23 @@
     transform: rotate(45deg);
     margin-left: 5px;
   }
-  
+
   .sort-icon.asc {
     border-color: green;
   }
-  
+
   .sort-icon.desc {
     border-color: red;
   }
-  
+
   .pagination {
     justify-content: center;
   }
-  
+
   .page-item.disabled .page-link {
     pointer-events: none;
   }
-  
+
   .page-item.active .page-link {
     font-weight: bold;
   }
@@ -64,28 +64,29 @@
     border-radius: 5px;
     margin: 10px 0; /* إضافة مسافة حول الصورة */
   }
-  
+
   ul {
     padding-left: 20px; /* مسافة داخلية للقائمة */
     margin-top: 5px;
   }
-  
+
   li {
     margin-bottom: 5px; /* المسافة بين العناصر داخل القائمة */
   }
   ngx-datatable /deep/ .datatable-body-row {
     margin-bottom: 15px; /* المسافة بين كل صف وصف */
   }
-  
+
   ngx-datatable /deep/ .datatable-row-group {
     padding: 2px 0; /* إضافة مسافات داخل الصف */
   }
-  
+
   ngx-datatable /deep/ .datatable-body-cell {
     padding: 15px 10px; /* التحكم في المسافات داخل الخلايا */
   }
   .search-container .input-group {
     margin-bottom: 20px; /* زيادة المسافة بين حقول الإدخال */
+
   } 
   .pagination-controls {
     display: flex;
@@ -114,6 +115,7 @@
   .page-item.disabled .page-link {
     pointer-events: none;
     opacity: 0.5;
+
   }
 
   

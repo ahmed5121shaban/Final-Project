@@ -1,25 +1,80 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
 
+<<<<<<< HEAD
 private apiUrl="https://localhost:5204/api/Item"
+=======
+  private apiUrl=`${environment.apiUrl}api/Item`
+>>>>>>> f7b69d48523f3afa25338e493777eddf024ceb74
 
-  constructor(private http:HttpClient) { }
+    constructor(private http:HttpClient) { }
 
-  
-addItem(formData:FormData):Observable<any>{
- return this.http.post(this.apiUrl,formData);
+
+  addItem(formData:FormData):Observable<any>{
+   return this.http.post(this.apiUrl,formData);
+  }
+  getPendingItems(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Pending`);
+  }
+  getAcceptedItems(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Accepted`);
+  }
+  getRejectedItems(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Rejected`);
+  }
+
+  getItemById(id:number):Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+
+  }
+
+
+
+  deleteItem(itemId:number):Observable<any>{
+    return this.http.delete(`${this.apiUrl}/delete/${itemId}`);
+   }
+   editItem(itemId: number, updatedData: FormData): Observable<any> {
+    return this.http.put(`${this.apiUrl}/edit/${itemId}`, updatedData);
+  }
+  getItem(itemId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${itemId}`);
+  }
+  getUnreviewdItems():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/Unreviewed`)
+  }
+
+  AcceptItem(itemId:number):Observable<any>{
+    return this.http.get(`${this.apiUrl}/Accept/${itemId}`)
+  }
+  // RejecttItem(itemId:number,message:string):Observable<any>{
+    
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/json'
+  //   });
+  //   return this.http.put(`${this.apiUrl}/Reject/${itemId}`,message,{headers})
+  // }
+
+  rejectItem(itemId: number, rejectReason: string): Observable<any> {
+    const url = `${this.apiUrl}/Reject/${itemId}`;
+    const payload = {
+        rejectReason: rejectReason // Send the reason for rejection
+    };
+
+    return this.http.put(url, payload).pipe(
+        catchError((error: HttpErrorResponse) => {
+            console.error('Error details:', error.error);
+            return throwError('Something went wrong, please try again.');
+        })
+    );
 }
-deleteItem(itemId:number):Observable<any>{
-  return this.http.delete(`${this.apiUrl}/delete/${itemId}`);
- }
 
-
-}
+  }
 
 

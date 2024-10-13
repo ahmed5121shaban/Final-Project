@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import {
   BrowserModule,
   provideClientHydration,
@@ -14,6 +14,11 @@ import { ItemsModule } from '../Items/Items.module';
 import { SharedModule } from '../Shared/Shared.module';
 import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { headerInterceptor } from '../Shared/Interseptors/header intersptor/header.interceptor';
+import { CookieService } from 'ngx-cookie-service';
+import { LoaderInterceptor } from '../Shared/Interseptors/loader intersptors/loading.interceptor';
+import { NgModule } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 @NgModule({
@@ -28,13 +33,15 @@ import { headerInterceptor } from '../Shared/Interseptors/header intersptor/head
     ActionModule,
     ItemsModule,
     SharedModule,
-    AdminModule
+    AdminModule,
+    NgxPaginationModule,
     
 
 
   ],
   providers: [
-    provideHttpClient(withFetch(),withInterceptors([headerInterceptor]))
+
+    provideHttpClient(withFetch(),withInterceptors([headerInterceptor,LoaderInterceptor])),CookieService
   ],
   bootstrap: [AppComponent],
 })

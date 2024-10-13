@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './User.component';
 import { ProfileManagementComponent } from './Components/Profile-Management/Profile-Management.component';
@@ -21,6 +21,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ModifyActionComponent } from './Components/Profile-Management/modify-action/modify-action.component';
 import { SellerEarningsComponent } from './Components/Profile-Management/seller-earnings/seller-earnings.component';
 import { SellerwithdrawComponent } from './Components/Profile-Management/sellerwithdraw/sellerwithdraw.component';
+import { WonAuctionComponent } from './Components/Profile-Management/won-auction/won-auction.component';
+import { LostAuctionComponent } from './Components/Profile-Management/lost-auction/lost-auction.component';
+import { LiveAuctionsComponent } from './Components/Profile-Management/live-auctions/live-auctions.component';
 
 
 
@@ -54,7 +57,11 @@ SellerwithdrawComponent,
     AddReviewComponent,
     MyReviewsComponent,
     UserProfileComponent,
+    LiveAuctionsComponent,
+    WonAuctionComponent,
+    LostAuctionComponent
     
-  ]
+  ],
+ 
 })
 export class UserModule { }

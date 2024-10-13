@@ -7,8 +7,7 @@
                 <h5 class="mt-3">Add Item</h5>
                     <div class="row d-flex justify-content-between">
                         <div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="mb-3">
                             <label for="itemTitle" class="form-label">Item Title</label>
                             <input type="text" class="form-control" name="Title" id="itemTitle" placeholder="Item Title"
                                 formControlName="Title" minlength="4" maxlength="20" [ngClass]="{
@@ -21,9 +20,9 @@
 
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="mb-3">
                             <label for="Category" class="form-label">Category</label>
-                            <select class="form-select" id="Category" style="height: 80px;" formControlName="Category"
+                            <select class="form-select" id="Category" formControlName="Category"
                                 [ngClass]="{
                                     'is-invalid': auctionForm.controls['Category'].invalid && auctionForm.controls['Category'].touched
                                 }">
@@ -40,7 +39,7 @@
                             </div>
 
                         </div>
-                    </div>
+               
                     <div class="mb-3">
                         <label for="formFileMultiple" class="form-label">Upload multiple Images</label>
                         <input class="form-control" type="file" (change)="chooseImage($event)"  (change)="onFileSelected($event)" id="formFileMultiple"
@@ -83,7 +82,7 @@
                 <h5 class="mt-3">Item Price</h5>
                 <div class="mb-3">
                     <label for="startPrice" class="form-label">Starting Price</label>
-                    <input type="number" class="form-control" id="startPrice"
+                    <input type="text" class="form-control" id="startPrice"
                     placeholder="Enter starting price" formControlName="startPrice" [ngClass]="{
                         'is-invalid': auctionForm.controls['startPrice'].invalid && auctionForm.controls['startPrice'].touched
 }">
@@ -99,7 +98,7 @@
         </div>
         <div class="mb-3">
             <label for="sellPrice" class="form-label">Sell Price</label>
-                <input type="number" class="form-control" id="sellPrice"
+                <input type="text" class="form-control" id="sellPrice"
                     placeholder="Enter selling price" formControlName="sellPrice" [ngClass]="{
                         'is-invalid': auctionForm.controls['sellPrice'].invalid
                     }">

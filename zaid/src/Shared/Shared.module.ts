@@ -10,7 +10,6 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { FaqRulesComponent } from './Components/faq-rules/faq-rules.component';
 import { LoaderComponent } from './Components/loader/loader.component';
 import { LoaderService } from './Interseptors/loader intersptors/loader.service';
-import { LoadingInterceptor } from './Interseptors/loader intersptors/loading.interceptor';
 import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient } from '@angular/common/http';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { NotificationsComponent } from './Components/notifications/notifications.component';
@@ -58,15 +57,10 @@ import { UserLayoutComponent } from './Components/user-layout/user-layout.compon
     ChatComponent,
   
     UserLayoutComponent,
-    
 
 
   ],
-  providers: [
 
-    LoaderService,
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
-  ],
   exports: [
     NavComponent,
     FooterComponent,

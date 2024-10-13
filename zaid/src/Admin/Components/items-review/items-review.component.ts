@@ -1,45 +1,108 @@
-import { Component } from "@angular/core";
+import { Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
+import { ItemService } from "../../../Action/Services/item.service";
+import { response } from "express";
+import { error } from "console";
 declare var bootstrap: any; 
 
-
-
-interface Item{
-  id: number;
-      title: string;
-      description:string;
-      images:  { path: string }[]; 
-      startPrice:number;
-      reservePrice:number;
-      payment:"PayPal"|"Stripe";
-      file: string[];
-}
 @Component({
   selector: 'app-items-review',
   templateUrl: './items-review.component.html',
   styleUrls: ['./items-review.component.css']
 })
-
-export class ItemsReviewComponent {
+export class ItemsReviewComponent  implements OnInit  {
 
   selectedImage: string | null = null;
 
   // List of items with images
-  items :Item[]= [
-    {
-      id: 1,
-      title: 'Coin',
-      description: 'Old Coin',
-      images: [
-        { path: '300-1.jpg' },
-        { path: '300-2.jpg' }
-    
-      ],
-      startPrice:1000,
-      reservePrice:10,
-      payment:"PayPal",
-      file:["https://trello.com/b/QPDw2t12/zied"]
+  items :any[]= [];
+ constructor( private itemService: ItemService){}  
+
+ get():void{
+  this.itemService.getUnreviewdItems().subscribe({
+        next: (data) => {
+          this.items = data;
+         console.log('Fetched items:', this.items);
+        },
+             error: (error) => {
+               console.error('Failed to fetch items:', error);
+              // You might want to show a user-friendly message here
+             }
+           });
+ }
+
+ ngOnInit(): void {
+  this.itemService.getUnreviewdItems().subscribe({
+    next: (data) => {
+      this.items = data;
+     console.log('Fetched items:', this.items);
+    },
+         error: (error) => {
+           console.error('Failed to fetch items:', error);
+          // You might want to show a user-friendly message here
+         }
+       });
+}
+
+  rejectionReason: string = ''; 
+  itemIdToReject: number | null = null;
+ changetext(event:any){
+  console.log("event", event.target.value)
+  console.log("ngmodel", this.rejectionReason)
+  
+ }
+
+ // Function to Accept Item 
+acceptItem(itemId:number):void{
+  console.log(itemId);
+  this.itemService.AcceptItem(itemId).subscribe({
+next:(response)=>{
+  this.get();
+  console.log("updated successfully",response)
+},
+error:(error)=>{
+  console.log("",error)
+}
+  });
+} 
+
+// Function to open the reject modal and set the itemId
+  openRejectModal(itemId: number): void {
+    this.itemIdToReject = itemId;
+    this.rejectionReason = ''; // Reset the input field
+    const modalElement = document.getElementById('rejectModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
     }
-  ];
+  }
+
+
+ // Function to handle rejection 
+  rejectItem(itemId: number | null, reason: string): void {
+    console.log(reason,itemId);
+    if (itemId !== null && reason!== null) {
+     
+      this.itemService.rejectItem(itemId, reason).subscribe(
+        (response) => {
+          console.log('Item rejected successfully:', response);
+        },
+        error => {
+          console.error('Error:', error);
+        }
+    );
+   // Close the modal after rejection
+   const modalElement = document.getElementById('rejectModal');
+   if (modalElement) {
+     const modal = bootstrap.Modal.getInstance(modalElement);
+     if (modal) {
+       modal.hide();
+     }
+   }
+ } else {
+   alert('Please provide a reason for rejection.');
+ }
+}
+  
 
   // Method to open the modal and set the selected image
   showImage(imageUrl: string) {
@@ -64,4 +127,6 @@ export class ItemsReviewComponent {
       }
     }
   }
+
+
 }
