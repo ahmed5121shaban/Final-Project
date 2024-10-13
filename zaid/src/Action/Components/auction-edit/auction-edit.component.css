@@ -1,0 +1,36 @@
+.form-check-input:checked {
+    background-color: #E57C23 !important; 
+    border-color: #E57C23 !important;
+}
+        body {
+            background-color: #f8f9fa!important;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .form-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(112, 112, 112, 0.1);
+        }
+
+        .form-section h5 {
+            margin-bottom: 20px;
+        }
+
+        .btn-toggle-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn-create-product {
+            margin-top: 20px;
+        }
+
+        .form-description {
+            height: 150px;
+        }
