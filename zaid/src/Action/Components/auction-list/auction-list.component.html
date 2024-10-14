@@ -19,8 +19,14 @@
           <div class="collapse" id="Categories">
             <nav class="category bg-light pb-2 pt-2">
               <ul class="list-unstyled ">
+                <li >
+                  <a [routerLink]="['/action/auction-list']" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
+                    <span class="ms-2 link-underline-opacity-10-hover">All</span>
+                    <!-- <span class="me-2">({{totalItemsActive}})</span> -->
+                  </a>
+                </li>
                 <li *ngFor="let category of categories">
-                  <a href="#" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
+                  <a [routerLink]="['/action/auction-list', category.name]" class="text-decoration-none d-flex flex-row justify-content-between text-dark  mb-2">
                     <span class="ms-2 link-underline-opacity-10-hover">{{category.name}}</span>
                     <span class="me-2">({{ category.items.length}})</span>
                   </a>
@@ -42,9 +48,17 @@
             </div>
 
             <nav class="nav flex-column">
+              <!-- "All" Option -->
+              <div  class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle"   style="background-color: #f6f6f8">
+              <a [routerLink]="['/action/auction-list']"
+                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
+                <span class="ms-0 link-underline-opacity-10-hover">All</span>
+                <!-- <span class="me-2">({{ totalItemsActive }})</span> -->
+              </a>
+            </div>
               <div *ngFor="let category of categories" class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle"
                 style="background-color: #f6f6f8">
-                <a href="#"
+                <a [routerLink]="['/action/auction-list', category.name]"
                   class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
                   <span class="ms-0 link-underline-opacity-10-hover">{{ category.name }}</span>
                   <span class="me-2">({{ category.items.length}})</span>
@@ -78,7 +92,8 @@
                 </form>
               </div>
               <div class="row">
-                <div *ngFor="let auction of activeAuctions | paginate: { itemsPerPage: itemsPerPage, currentPage: page }" class="col-lg-4 col-md-6 col-12 mt-5">
+                <div *ngFor="let auction of activeAuctions | paginate: { itemsPerPage: itemsPerPage, currentPage: pageActive ,totalItems: totalItemsActive }"
+                  class="col-lg-4 col-md-6 col-12 mt-5">
                   <!-- Wrap the entire card with a routerLink to make it clickable -->
                   <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
                     <div class="custom-product-card mt-3 me-2 border border-1">
@@ -86,18 +101,18 @@
                         <div id="carousel{{ auction.id }}" class="carousel slide" data-bs-ride="true">
                           <div class="carousel-inner">
                             <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
-                                 class="carousel-item" style="height: 30vh;">
+                              class="carousel-item" style="height: 30vh;">
                               <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 card-img-top"
-                                   alt="Auction item image">
+                                alt="Auction item image">
                             </div>
                           </div>
                           <button class="carousel-control-prev" type="button"
-                                  [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="prev">
+                            [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                           </button>
                           <button class="carousel-control-next" type="button"
-                                  [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="next">
+                            [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                           </button>
@@ -110,19 +125,21 @@
                         <p class="card-title fw-bold">{{ auction.item.name }}</p>
                         <p class="mb-1"><small class="text-muted">{{ auction.item.seller.user.name }}</small></p>
                         <p class="bids">{{ auction.bids.length }} bids</p>
-                        <p class="price">{{ auction.item.startPrice }} EUR</p>
+                        <p class="price">{{ auction.item.startPrice | number }} EGP</p>
                       </div>
                     </div>
                   </a>
                 </div>
-                
+
               </div>
               <div class="text-center mt-5">
-                <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                <pagination-controls
+                (pageChange)="onActivePageChange($event)" 
+                ></pagination-controls>
               </div>
-              
+
             </div>
-            
+
             <div class="tab-pane fade" id="EndedAuctions" role="tabpanel">
               <div class="d-flex flex-sm-row flex-column justify-content-between align-items-center ">
                 <form class="d-flex flex-sm-row flex-column justify-content-start align-items-center w-50">
@@ -136,25 +153,27 @@
                 </form>
               </div>
               <div class="row">
-                <div *ngFor="let auction of endedAuctions | paginate: { itemsPerPage: endedItemsPerPage, currentPage: page }" class="col-lg-4 col-md-6 col-12 mt-5">
+                <div
+                  *ngFor="let auction of endedAuctions | paginate: { itemsPerPage: endedItemsPerPage, currentPage: pageEnded ,totalItems: totalItemsEnded}"
+                  class="col-lg-4 col-md-6 col-12 mt-5">
                   <a [routerLink]="['/action/auction-details', auction.item.id]" class="text-decoration-none">
                     <div class="custom-product-card mt-3 me-2 border border-1">
                       <div class="position-relative">
                         <div id="carousel{{ auction.item.id }}" class="carousel slide" data-bs-ride="true">
                           <div class="carousel-inner">
                             <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
-                                 class="carousel-item" style="height: 30vh;">
+                              class="carousel-item" style="height: 30vh;">
                               <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 card-img-top"
-                                   alt="Auction item image">
+                                alt="Auction item image">
                             </div>
                           </div>
                           <button class="carousel-control-prev" type="button"
-                                  [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="prev">
+                            [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                           </button>
                           <button class="carousel-control-next" type="button"
-                                  [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="next">
+                            [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                           </button>
@@ -173,7 +192,7 @@
                   </a>
                 </div>
               </div>
-              <pagination-controls (pageChange)="page = $event"></pagination-controls>
+              <pagination-controls (pageChange)="onEndedPageChange($event)" ></pagination-controls>
             </div>
           </div>
         </div>
