@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from '../../Services/payment.service';
 import { AuctionService } from '../../Services/auction.service';
 import { ToastrService } from 'ngx-toastr';
-declare var Stripe: any;
 
 interface Reply {
   id: number;
@@ -26,16 +25,14 @@ export class AuctionDetailsComponent implements OnChanges {
   paymentCount!: number;
   auctionId!: number;
   auctionDetails: any;
+ similarAuctions: any[] = [];
+  groupedSimilarAuctions: any[][] = []; // Grouped auctions for the carouses
   successesPayment!: boolean;
   paymentDetail!: any;
   secretKey!: string
   highestBid!: any;
   allBidsINAuction: any;
-  stripe: any;
-  card: any;
-  clientSecret!: string;
-  showPaymentForm!:boolean;
-
+  
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
     private toastr: ToastrService,
@@ -58,10 +55,12 @@ export class AuctionDetailsComponent implements OnChanges {
   }
 
 
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.auctionId = +params['id']; // Get auction ID from route
       this.getAuctionDetails(); // Fetch auction details by ID
+      this.loadSimilarAuctions();
     });
     // this.groupItems();
     this.paymentService.getPaymentForBuyer().subscribe({
@@ -90,6 +89,7 @@ export class AuctionDetailsComponent implements OnChanges {
 
     });
 
+
   }
 
     // Fetch auction details from service by ID
@@ -104,6 +104,35 @@ export class AuctionDetailsComponent implements OnChanges {
         }
       });
     }
+
+
+ // Fetch similar auctions from the service
+  loadSimilarAuctions(): void {
+    this.auctionService.getSimilarActiveAuctions(this.auctionId).subscribe({
+      next: (response) => {
+        this.similarAuctions = response;
+        this.groupedSimilarAuctions = this.groupItems(this.similarAuctions, 3); // Group auctions into sets of 3 for carousel
+        console.log(this.groupedSimilarAuctions)
+      },
+      error: (error) => {
+        console.error('Error fetching similar auctions', error);
+      },
+      complete: () => {
+        console.log('Completed fetching similar auctions');
+      }
+    });
+  }
+
+  // Utility function to group items into sets of a specific size
+  groupItems(items: any[], groupSize: number): any[][] {
+    let groups: any[][] = [];
+    for (let i = 0; i < items.length; i += groupSize) {
+      groups.push(items.slice(i, i + groupSize));
+    }
+    return groups;
+  }
+
+
 
   // comments
   comments: Comment[] = [
@@ -144,33 +173,5 @@ export class AuctionDetailsComponent implements OnChanges {
   }
 
 
-  confirmPaymentWithStripe() {
-    this.stripe.confirmCardPayment("sk_test_51Q7StDIrAruRO4wHt88JtzHnOuRRg94eiizvvTXQ9fuZ8LbWTvI3VnTAfvb5KSRiCTB30skTXT2IvujWSo3p5q2G001DMa9Koj", {
-      payment_method: {
-        card: this.card,
-      }
-    }).then((result: any) => {
-      if (result.error) {
-        // Show error to the user
-        this.toastr.error(result.error.message, "Payment Error");
-        console.error(result.error.message);
-      } else {
-        if (result.paymentIntent.status === 'succeeded') {
-          // Payment was successful
-          this.toastr.success("Payment successful!", "Success");
-          console.log("Payment successful!");
-        }
-      }
-    }).catch((error: any) => {
-      console.error("Stripe confirmation error:", error);
-      this.toastr.error("Payment failed, please try again.", "Error");
-    });
-  }
-  ngAfterViewInit(): void {
-    if (!this.card && this.showPaymentForm) {
-      const elements = this.stripe.elements();
-      this.card = elements.create('card'); // Create a card element
-      this.card.mount('#card-element'); // Mount it to the div with id 'card-element'
-    }
-  }
+  
 }

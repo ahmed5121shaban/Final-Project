@@ -4,28 +4,21 @@ import { response } from "express";
 import { error } from "console";
 declare var bootstrap: any; 
 
-
 @Component({
   selector: 'app-items-review',
   templateUrl: './items-review.component.html',
   styleUrls: ['./items-review.component.css']
 })
-export class ItemsReviewComponent  implements OnInit {
+export class ItemsReviewComponent  implements OnInit  {
 
   selectedImage: string | null = null;
 
   // List of items with images
   items :any[]= [];
- constructor( private itemService: ItemService){
+ constructor( private itemService: ItemService){}  
 
-//  this.get();
- }   
- 
-  rejectionReason: string = ''; 
-  itemIdToReject: number | null = null;
-
-  get():void{
-  this.itemService.getPendingItems().subscribe({
+ get():void{
+  this.itemService.getUnreviewdItems().subscribe({
         next: (data) => {
           this.items = data;
          console.log('Fetched items:', this.items);
@@ -36,14 +29,34 @@ export class ItemsReviewComponent  implements OnInit {
              }
            });
  }
+
  ngOnInit(): void {
-   this.get();
+  this.itemService.getUnreviewdItems().subscribe({
+    next: (data) => {
+      this.items = data;
+     console.log('Fetched items:', this.items);
+    },
+         error: (error) => {
+           console.error('Failed to fetch items:', error);
+          // You might want to show a user-friendly message here
+         }
+       });
 }
+
+  rejectionReason: string = ''; 
+  itemIdToReject: number | null = null;
+ changetext(event:any){
+  console.log("event", event.target.value)
+  console.log("ngmodel", this.rejectionReason)
+  
+ }
+
  // Function to Accept Item 
 acceptItem(itemId:number):void{
   console.log(itemId);
   this.itemService.AcceptItem(itemId).subscribe({
 next:(response)=>{
+  this.get();
   console.log("updated successfully",response)
 },
 error:(error)=>{
@@ -62,32 +75,35 @@ error:(error)=>{
       modal.show();
     }
   }
+
+
  // Function to handle rejection 
   rejectItem(itemId: number | null, reason: string): void {
-    if (itemId !== null && reason.trim()) {
-     console.log(`Rejecting item ${itemId} with reason: ${reason}`);
-      this.itemService.RejecttItem(itemId,reason).subscribe({
-      next:(response)=>{
-       console.log("updated successfully",response)
-    },
-   error:(error)=>{
-    console.log("",error)
-  }
-  });
+    console.log(reason,itemId);
+    if (itemId !== null && reason!== null) {
      
-      // Close the modal after rejection
-      const modalElement = document.getElementById('rejectModal');
-      if (modalElement) {
-        const modal = bootstrap.Modal.getInstance(modalElement);
-        if (modal) {
-          modal.hide();
+      this.itemService.rejectItem(itemId, reason).subscribe(
+        (response) => {
+          console.log('Item rejected successfully:', response);
+        },
+        error => {
+          console.error('Error:', error);
         }
-      }
-    } else {
-      alert('Please provide a reason for rejection.');
-    }
-  }
- 
+    );
+   // Close the modal after rejection
+   const modalElement = document.getElementById('rejectModal');
+   if (modalElement) {
+     const modal = bootstrap.Modal.getInstance(modalElement);
+     if (modal) {
+       modal.hide();
+     }
+   }
+ } else {
+   alert('Please provide a reason for rejection.');
+ }
+}
+  
+
   // Method to open the modal and set the selected image
   showImage(imageUrl: string) {
     

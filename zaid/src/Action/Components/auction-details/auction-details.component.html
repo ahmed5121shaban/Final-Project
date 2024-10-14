@@ -189,7 +189,7 @@
             <div class="row">
                 <div class="">
                     <h5>
-                        <a href="#profile" class="text-decoration-none">Seller :{{ auctionDetails.item.seller.user.name }}</a>
+                        <a href="#profile" class="text-decoration-none">Name :{{ auctionDetails.item.seller.user.name }}</a>
                     </h5>
                 </div>
                 <div class=" text-right">
@@ -211,35 +211,42 @@
             </div>
         </div>
     </div>
-    <h3 class="text-center">Similar Auctions</h3>
-    <!-- <div id="cardCarousel" class="carousel slide justify-content-center mb-3">
-        <div class="carousel-inner">
-            @for(group of groupedItems ; track $index; let i = $index){
-            <div class="carousel-item" [class.active]="i === 0">
-                <div class="row">
-                    @for(item of group; track $index){
-                    <div class="col-md-4">
-                        <div class="card">
-                          <a routerLink="../auction-details"><img [src]="item.img" class="card-img-top" [alt]="item.title"></a>
-                            <div class="card-body">
-                                <h5 class="card-title">{{item.title}}</h5>
-                                <p class="card-text start-price">starting price: {{item.price}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    }
+    <h3 class="text-center mb-5">Similar Auctions</h3>
+    <div id="cardCarousel" class="carousel slide justify-content-center mb-3" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <!-- Outer loop to iterate over groups of similar auctions -->
+        <div *ngFor="let group of groupedSimilarAuctions; let i = index" class="carousel-item" [class.active]="i === 0">
+          <div class="row">
+            <!-- Inner loop to iterate over each auction in the group -->
+            <div *ngFor="let auction of group" class="col-md-4">
+              <div class="card">
+                <a [routerLink]="['/auction-details', auction.id]">
+                    <img [src]="'http://localhost:5204/' + auction.item.images[0].src" 
+                    class="card-img-top" [alt]="auction.item.name">
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title text-center">{{ auction.item.name }}</h5>
+                  <p class="card-text start-price text-center">Starting price: {{ auction.item.startPrice |number}} EGP</p>
                 </div>
+              </div>
             </div>
-            }
-
+          </div>
         </div>
-        <a class="carousel-control-prev" href="#cardCarousel" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="false"></span>
-        </a>
-        <a class="carousel-control-next" href="#cardCarousel" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="false"></span>
-        </a>
-    </div> -->
+      </div>
+    
+      <!-- Carousel controls -->
+      <a class="carousel-control-prev" href="#cardCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#cardCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+    
+    
+    
     <!-- ask question -->
     <p class="title">Ask a Question</p>
     <form id="questionForm" onsubmit="submitQuestion(event)">

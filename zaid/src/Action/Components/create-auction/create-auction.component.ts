@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryService } from '../../../Admin/Services/category.service';
 import { ItemService } from '../../Services/item.service';
+import { ToastrService } from 'ngx-toastr';
 // import { ItemService } from '../../Services/item.service';
 @Component({
   selector: 'app-create-auction',
@@ -20,7 +21,8 @@ export class CreateAuctionComponent {
     private builder: FormBuilder,
     private itemService :ItemService,
     private categoryService: CategoryService,
-    private router: Router
+    private router: Router,
+    private toastr:ToastrService
   ) {
     this.auctionForm = this.builder.group({
       Title: ['', Validators.required],
@@ -102,10 +104,15 @@ export class CreateAuctionComponent {
 
       this.itemService.addItem(formData).subscribe({
         next: (response) => {
+          this.toastr.success("Item Added Successfully");
+          this.router.navigate(['user/modify-action'])
           console.log('Item added successfully:', response);
+          
           // Reset the form or navigate after submission
         },
         error: (error) => {
+          this.toastr.error("Can't Add Item");
+
           console.error('Error adding Item:', error.error);
         }
 

@@ -102,7 +102,7 @@
         <form>
           <div class="mb-3">
             <label for="rejectionReason" class="form-label">Reason for Rejection</label>
-            <input type="text" class="form-control" id="rejectionReason" [(ngModel)]="rejectionReason">
+            <input type="text" class="form-control" name="rejectionReason" id="rejectionReason" [(ngModel)]="rejectionReason" (keyup)="changetext($event)">
           </div>
         </form>
       </div>
