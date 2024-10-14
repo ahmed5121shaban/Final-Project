@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from '../../Services/payment.service';
 import { AuctionService } from '../../Services/auction.service';
 import { ToastrService } from 'ngx-toastr';
-import { log } from 'node:console';
+declare var Stripe: any;
 
 interface Reply {
   id: number;
@@ -24,15 +24,17 @@ interface Comment {
 })
 export class AuctionDetailsComponent implements OnChanges {
   paymentCount!: number;
-  paymentMethod!:number;
-  currentSlide = 0;
   auctionId!: number;
   auctionDetails: any;
-  successesPayment!:boolean;
-  paymentDetail!:any;
-  secretKey!:string;
-  highestBid!:any;
+  successesPayment!: boolean;
+  paymentDetail!: any;
+  secretKey!: string
+  highestBid!: any;
   allBidsINAuction: any;
+  stripe: any;
+  card: any;
+  clientSecret!: string;
+  showPaymentForm!:boolean;
 
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
@@ -41,26 +43,15 @@ export class AuctionDetailsComponent implements OnChanges {
   {
      this.paymentService.userHavePayment().subscribe({
        next:(res:any)=>{
-         console.log(res)
+         console.log(res,"paymentCount")
           this.paymentCount=res.count;
         }
-    })
-
-  }
-  ngOnChanges(): void {
-    this.paymentService.getHighestBid(this.auctionId).subscribe({
-      next:(res:any)=>{this.highestBid=res;
-      },
-      error:(err)=>console.log(err)
     });
-    this.paymentService.getAllBidsInAuction(this.auctionId).subscribe({
-      next:(res:any)=>{
-         this.allBidsINAuction=res
-        },
-      error:(err)=>console.log(err)
 
-    })
+    this.stripe = Stripe('pk_test_51Q7StDIrAruRO4wHiVE3HWQFcSb3kga4AcTBtj5YiUCY65vQK46kvWlSXJzBfxcXtocZPB3gMfE9VYDFt2y9ES6n00sovijgpI');
+
   }
+  ngOnChanges(): void {}
 
   notAllowed(){
     this.toastr.warning("you can't place bid in your auction")
@@ -97,7 +88,8 @@ export class AuctionDetailsComponent implements OnChanges {
         },
       error:(err)=>console.log(err)
 
-    })
+    });
+
   }
 
     // Fetch auction details from service by ID
@@ -129,9 +121,9 @@ export class AuctionDetailsComponent implements OnChanges {
     }).subscribe({
       next:(res:any)=>{
         if(paymentMethod==0)
-          window.location.href = res.urlCheckOut;
+          window.location.href = res.result;
         else
-          this.secretKey = res;
+          window.location.href  = res.result;
       },
       error:(err)=>{
         console.error("error", err);
@@ -152,4 +144,33 @@ export class AuctionDetailsComponent implements OnChanges {
   }
 
 
+  confirmPaymentWithStripe() {
+    this.stripe.confirmCardPayment("sk_test_51Q7StDIrAruRO4wHt88JtzHnOuRRg94eiizvvTXQ9fuZ8LbWTvI3VnTAfvb5KSRiCTB30skTXT2IvujWSo3p5q2G001DMa9Koj", {
+      payment_method: {
+        card: this.card,
+      }
+    }).then((result: any) => {
+      if (result.error) {
+        // Show error to the user
+        this.toastr.error(result.error.message, "Payment Error");
+        console.error(result.error.message);
+      } else {
+        if (result.paymentIntent.status === 'succeeded') {
+          // Payment was successful
+          this.toastr.success("Payment successful!", "Success");
+          console.log("Payment successful!");
+        }
+      }
+    }).catch((error: any) => {
+      console.error("Stripe confirmation error:", error);
+      this.toastr.error("Payment failed, please try again.", "Error");
+    });
+  }
+  ngAfterViewInit(): void {
+    if (!this.card && this.showPaymentForm) {
+      const elements = this.stripe.elements();
+      this.card = elements.create('card'); // Create a card element
+      this.card.mount('#card-element'); // Mount it to the div with id 'card-element'
+    }
+  }
 }

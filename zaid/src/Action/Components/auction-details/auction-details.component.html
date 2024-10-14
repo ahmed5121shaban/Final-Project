@@ -36,7 +36,6 @@
             <br>
         </div>
 
-
         <div class="bid col-xl-5  justify-content-center  p-md-0 mt-5 mt-md-0">
             <div class="bid-info-place  mb-3">
                 <div class="bid-info row bg-light  mb-3">
@@ -67,7 +66,7 @@
                 </div>
                 } @else if (paymentCount == 2 && paymentDetail.auctionID!=auctionId){
                   <div class="place-bid text-center">
-                    <input type="number" placeholder="Choose one to Bid The First Price {{auctionDetails.startPrice}}" name="" disabled id="" class="form-control">
+                    <input type="number" placeholder="Choose one to Bid The First Price :{{auctionDetails.item.startPrice}}$" name="" disabled id="" class="form-control">
                     <a (click)="firstPayment(1)" class=" btn btn-primary w-50 mt-3 mb-1">
                       <i class="fa-brands fa-stripe-s"></i>
                     </a>
@@ -100,10 +99,17 @@
                 }@else if(paymentCount == 4) {
                   <div class="place-bid text-center ">
                     <input type="number" disabled name="" id="" class="form-control">
-                    <a class=" btn btn-dark w-100 mt-3 mb-1">Login Before bid in Auction</a>
+                    <a routerLink="/user/login" class=" btn btn-dark w-100 mt-3 mb-1">Login Before bid in Auction</a>
                     <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
                         converted into SEK.</p>
                 </div>
+                }@if (showPaymentForm) {
+                  <div>
+                    <h3>Enter Payment Details</h3>
+                    <div id="card-element"></div>
+                    <div id="card-errors" role="alert"></div>
+                    <button (click)="confirmPaymentWithStripe()">Pay with Card</button>
+                  </div>
                 }
 
                 <!-- roles accordion  -->
