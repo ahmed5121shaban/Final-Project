@@ -62,7 +62,7 @@
                     <a role="button" (click)="notAllowed()" class=" btn btn-primary w-100 mt-3 mb-1">
                       you can't add bid
                     </a>
-                    <p class="bid-limits ">Check if You have Payment Email in your Profile.</p>
+                    <p class="bid-limits ">You can't Add Bid because This Your Auction.</p>
                 </div>
                 } @else if (paymentCount == 2 && paymentDetail.auctionID!=auctionId){
                   <div class="place-bid text-center">
@@ -77,8 +77,8 @@
                 </div>
                 }@else if (paymentCount == 3 && paymentDetail.auctionID!=auctionId){
                   <div class="place-bid text-center ">
-                    <input #bid type="number" name="" id="" class="form-control">
-                    <a role="button" class=" btn btn-secondary w-100 mt-3 mb-1">Bid The First Price {{auctionDetails.startPrice}}</a>
+                    <input type="number" disabled name="" id="" class="form-control">
+                    <a role="button" (click)="firstPayment(method)" class=" btn btn-dark w-100 mt-3 mb-1">Bid The First Price {{auctionDetails.item.startPrice}}$</a>
                     <p class="bid-limits ">You must Bid the First Amount to Continue in this Auction.</p>
                 </div>
                 }@else if (paymentCount == 1){
