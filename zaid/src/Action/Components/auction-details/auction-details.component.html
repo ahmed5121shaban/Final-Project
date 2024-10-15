@@ -9,7 +9,7 @@
                 <div class="carousel-inner mb-5">
                     <ng-container *ngFor="let image of auctionDetails.item.images; let i = index">
                         <div class="carousel-item" [class.active]="i === 0">
-                            <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100" alt="Auction Image {{ i + 1 }}">
+                            <img [src]="'http://localhost:5204/' + image" class="d-block w-100" alt="Auction Image {{ i + 1 }}">
                         </div>
                     </ng-container>
                 </div>
@@ -27,7 +27,7 @@
                     <ng-container *ngFor="let image of auctionDetails.item.images; let i = index">
                         <button type="button" [attr.data-bs-target]="'#itemimages'" [attr.data-bs-slide-to]="i"
                                 [class.active]="i === 0" aria-current="true" [attr.aria-label]="'Slide ' + (i + 1)">
-                            <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100" alt="Thumbnail Image {{ i + 1 }}">
+                            <img [src]="'http://localhost:5204/' + image" class="d-block w-100" alt="Thumbnail Image {{ i + 1 }}">
                         </button>
                     </ng-container>
                 </div>
@@ -62,7 +62,7 @@
                     <a role="button" (click)="notAllowed()" class=" btn btn-primary w-100 mt-3 mb-1">
                       you can't add bid
                     </a>
-                    <p class="bid-limits ">Check if You have Payment Email in your Profile.</p>
+                    <p class="bid-limits ">You can't Add Bid because This Your Auction.</p>
                 </div>
                 } @else if (paymentCount == 2 && paymentDetail.auctionID!=auctionId){
                   <div class="place-bid text-center">
@@ -77,8 +77,8 @@
                 </div>
                 }@else if (paymentCount == 3 && paymentDetail.auctionID!=auctionId){
                   <div class="place-bid text-center ">
-                    <input #bid type="number" name="" id="" class="form-control">
-                    <a role="button" class=" btn btn-secondary w-100 mt-3 mb-1">Bid The First Price {{auctionDetails.startPrice}}</a>
+                    <input type="number" disabled name="" id="" class="form-control">
+                    <a role="button" (click)="firstPayment(method)" class=" btn btn-dark w-100 mt-3 mb-1">Bid The First Price {{auctionDetails.item.startPrice}}$</a>
                     <p class="bid-limits ">You must Bid the First Amount to Continue in this Auction.</p>
                 </div>
                 }@else if (paymentCount == 1){
@@ -182,7 +182,7 @@
             <div class="row">
                 <div class="">
                     <h5>
-                        <a href="#profile" class="text-decoration-none">Name :{{ auctionDetails.item.seller.user.name }}</a>
+                        <a href="#profile" class="text-decoration-none">Name : {{ auctionDetails.item.sellerName }}</a>
                     </h5>
                 </div>
                 <div class=" text-right">
@@ -240,8 +240,9 @@
 
 
 
-    <!-- ask question -->
-    <p class="title">Ask a Question</p>
+
+    <!-- <p class="title">Ask a Question</p>
+
     <form id="questionForm" onsubmit="submitQuestion(event)">
 
         <div class="form-group mb-3">
@@ -252,7 +253,7 @@
         <button type="submit" class="btn btn-primary ">Submit Question</button>
     </form>
 
-    <!-- comments  -->
+
     @for( comment of comments;track $index){
     <div class="media g-mb-30 media-comment">
         <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15"
@@ -274,6 +275,6 @@
         </div>
     </div>
 
-    }
+    } -->
 </div>
 </div>

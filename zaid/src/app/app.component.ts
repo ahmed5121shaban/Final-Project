@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoaderService } from '../Shared/Interseptors/loader intersptors/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'zaid';
+  isloading:boolean=false;
+  constructor(private  loaderService:LoaderService) {
+    this.loaderService.loading$.subscribe((loading)=>{
+      this.isloading=loading
+    })
+  }
+
 }
