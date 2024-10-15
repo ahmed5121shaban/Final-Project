@@ -74,29 +74,30 @@
           <div class="d-flex flex-sm-row flex-column justify-content-between align-items-center">
             <form class="d-flex flex-sm-row flex-column justify-content-start align-items-center w-50">
               <label class="me-2 fw-normal">Sort by</label>
-              <select class="form-select w-75 form-select rounded rounded-0" name="filterOption" (change)="updateSortOption($event)" aria-label="select example">
+              <select class="form-select w-75 form-select rounded rounded-0" name="filterOption"
+                (change)="updateSortOption($event)" aria-label="select example">
                 <option value="EndDate">Ending Soonest</option>
                 <option value="mostBids">Most Bids</option>
                 <option value="highestBid">Highest Bid</option>
                 <option value="lowestBid">Lowest Bid</option>
-               
+
                 <!-- <option value="endedAuctions">Ended Auctions</option> -->
               </select>
             </form>
-            
-            
-            
-            
-    
+
+
+
+
+
             <!-- Add sort buttons for Ascending and Descending -->
             <div class="sort-button d-flex">
               <button class="btn btn-outline-secondary ms-3" (click)="toggleSortOrder()">
                 <i [ngClass]="isAscending ? 'fas fa-sort-amount-up' : 'fas fa-sort-amount-down'"></i>
               </button>
             </div>
-            
+
           </div>
-          
+
           <div class="row">
             <div
               *ngFor="let auction of activeAuctions | paginate: { itemsPerPage: itemsPerPage, currentPage: pageActive ,totalItems: totalItemsActive }"

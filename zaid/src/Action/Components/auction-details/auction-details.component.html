@@ -103,13 +103,6 @@
                     <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
                         converted into SEK.</p>
                 </div>
-                }@if (showPaymentForm) {
-                  <div>
-                    <h3>Enter Payment Details</h3>
-                    <div id="card-element"></div>
-                    <div id="card-errors" role="alert"></div>
-                    <button (click)="confirmPaymentWithStripe()">Pay with Card</button>
-                  </div>
                 }
 
                 <!-- roles accordion  -->
@@ -221,7 +214,7 @@
             <div *ngFor="let auction of group" class="col-md-4">
               <div class="card">
                 <a [routerLink]="['/auction-details', auction.id]">
-                    <img [src]="'http://localhost:5204/' + auction.item.images[0].src" 
+                    <img [src]="'http://localhost:5204/' + auction.item.images[0].src"
                     class="card-img-top" [alt]="auction.item.name">
                 </a>
                 <div class="card-body">
@@ -233,7 +226,7 @@
           </div>
         </div>
       </div>
-    
+
       <!-- Carousel controls -->
       <a class="carousel-control-prev" href="#cardCarousel" role="button" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -244,11 +237,11 @@
         <span class="visually-hidden">Next</span>
       </a>
     </div>
-    
-    
-    
-    <!-- ask question -->
-    <p class="title">Ask a Question</p>
+
+
+
+
+    <!-- <p class="title">Ask a Question</p>
     <form id="questionForm" onsubmit="submitQuestion(event)">
 
         <div class="form-group mb-3">
@@ -259,7 +252,7 @@
         <button type="submit" class="btn btn-primary ">Submit Question</button>
     </form>
 
-    <!-- comments  -->
+
     @for( comment of comments;track $index){
     <div class="media g-mb-30 media-comment">
         <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15"
@@ -281,6 +274,6 @@
         </div>
     </div>
 
-    }
+    } -->
 </div>
 </div>
