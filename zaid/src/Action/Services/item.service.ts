@@ -31,7 +31,7 @@ export class ItemService {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
 
   }
-
+ 
 
 
   deleteItem(itemId:number):Observable<any>{

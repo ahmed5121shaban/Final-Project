@@ -24,6 +24,7 @@ import { SellerwithdrawComponent } from './Components/Profile-Management/sellerw
 import { WonAuctionComponent } from './Components/Profile-Management/won-auction/won-auction.component';
 import { LostAuctionComponent } from './Components/Profile-Management/lost-auction/lost-auction.component';
 import { LiveAuctionsComponent } from './Components/Profile-Management/live-auctions/live-auctions.component';
+import { MyLiveAuctionsComponent } from './Components/Profile-Management/my-live-auctions/my-live-auctions.component';
 
 
 
@@ -59,7 +60,8 @@ SellerwithdrawComponent,
     UserProfileComponent,
     LiveAuctionsComponent,
     WonAuctionComponent,
-    LostAuctionComponent
+    LostAuctionComponent,
+    MyLiveAuctionsComponent
     
   ],
  
