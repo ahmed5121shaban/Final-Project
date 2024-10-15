@@ -36,7 +36,7 @@ import { AdminModule } from '../Admin/Admin.module';
     UserRoutes,
     FormsModule,
     CarouselModule,
-    ReactiveFormsModule,HttpClientModule
+    ReactiveFormsModule,HttpClientModule,
     ReactiveFormsModule,
     AdminModule
   ],
@@ -64,7 +64,7 @@ SellerwithdrawComponent,
     LiveAuctionsComponent,
     WonAuctionComponent,
     LostAuctionComponent,
-    MyLiveAuctionsComponent
+    MyLiveAuctionsComponent,
     LiveAuctionsComponent
     
     
