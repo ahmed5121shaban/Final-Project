@@ -35,6 +35,7 @@ export class AuctionDetailsComponent implements OnChanges {
 
   method!:number
 
+
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
     private toastr: ToastrService,
