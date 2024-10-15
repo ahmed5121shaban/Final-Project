@@ -1,10 +1,8 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from '../../Services/payment.service';
-
-import { Location } from '@angular/common';
-
 import { AuctionService } from '../../Services/auction.service';
+import { ToastrService } from 'ngx-toastr';
 
 interface Reply {
   id: number;
@@ -24,29 +22,44 @@ interface Comment {
   styleUrl: './auction-details.component.css'
 })
 export class AuctionDetailsComponent implements OnChanges {
-  paymentCount !: {count : number, payment : string};
-  currentSlide = 0;
+  paymentCount!: number;
   auctionId!: number;
   auctionDetails: any;
-  similarAuctions: any[] = [];
-  groupedSimilarAuctions: any[][] = []; // Grouped auctions for the carousel
+ similarAuctions: any[] = [];
+  groupedSimilarAuctions: any[][] = []; // Grouped auctions for the carouses
+  successesPayment!: boolean;
+  paymentDetail!: any;
+  secretKey!: string
+  highestBid!: any;
+  allBidsINAuction: any;
+
+  method!:number
+
 
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
-    private route: ActivatedRoute,private location:Location
-  ) {}
+    private toastr: ToastrService,
+    private route: ActivatedRoute)
+  {
+     this.paymentService.userHavePayment().subscribe({
+       next:(res:any)=>{
+         console.log(res,"paymentCount")
+          this.paymentCount=res.count;
+          if(res.count==3)
+            this.method=res.method[0]
+          console.log(this.method);
 
+        }
+    });
 
-  ngOnChanges(): void {
-    this.paymentService.userHavePayment().subscribe(
-      (res:any)=>{
-        console.log(res.message)
-        this.paymentCount.count=res.count;
-        this.paymentCount.payment=res.payment;
-
-      }
-    )
   }
+  ngOnChanges(): void {}
+
+  notAllowed(){
+    this.toastr.warning("you can't place bid in your auction")
+  }
+
+
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -54,20 +67,49 @@ export class AuctionDetailsComponent implements OnChanges {
       this.getAuctionDetails(); // Fetch auction details by ID
       this.loadSimilarAuctions();
     });
+    // this.groupItems();
+    this.paymentService.getPaymentForBuyer().subscribe({
+      next:(res)=>{
+        this.successesPayment = true;
+        this.paymentDetail = res;
+        console.log(res)
+      },
+      error:(err)=>{
+        this.successesPayment = false;
+        console.log(err);
+      }
+    });
+    this.paymentService.getHighestBid(this.auctionId).subscribe({
+      next:(res:any)=>{this.highestBid=res
+        ;console.log(res,'highestBid');
+      },
+      error:(err)=>console.log(err)
+    });
+    this.paymentService.getAllBidsInAuction(this.auctionId).subscribe({
+      next:(res:any)=>{
+        console.log(res);
+         this.allBidsINAuction=res
+        },
+      error:(err)=>console.log(err)
+
+    });
+
+
   }
 
     // Fetch auction details from service by ID
     getAuctionDetails(): void {
-      this.auctionService.getAuctionById(this.auctionId).subscribe(
-        (res: any) => {
+      this.auctionService.getAuctionById(this.auctionId).subscribe({
+        next:(res: any) => {
           this.auctionDetails = res;
           console.log('Auction details:', this.auctionDetails);
         },
-        (error) => {
+        error:(error) => {
           console.error('Error fetching auction details:', error);
         }
-      );
+      });
     }
+
 
  // Fetch similar auctions from the service
   loadSimilarAuctions(): void {
@@ -96,6 +138,7 @@ export class AuctionDetailsComponent implements OnChanges {
   }
 
 
+
   // comments
   comments: Comment[] = [
     { id: 1, text: 'This is a comment from a sara.',author:"sara", replies: [{id:2,text:"This is a reply from a buyer."}] },
@@ -104,12 +147,17 @@ export class AuctionDetailsComponent implements OnChanges {
     // Add more comments if needed
   ];
 
-  payment(){
-    this.paymentService.firstPaymentAuction().subscribe({
+  firstPayment(paymentMethod:number){
+    this.paymentService.firstPaymentAuction({
+      auctionID:this.auctionDetails.id,
+      amount:this.auctionDetails.item.startPrice,
+      method:paymentMethod,
+    }).subscribe({
       next:(res:any)=>{
-        console.log(res.status);
-        console.log(res.urlCheckOut);
-        window.location.href = res.urlCheckOut;
+        if(paymentMethod==0)
+          window.location.href = res.result;
+        else
+          window.location.href  = res.result;
       },
       error:(err)=>{
         console.error("error", err);
@@ -117,87 +165,18 @@ export class AuctionDetailsComponent implements OnChanges {
     })
   }
 
+  placeBid(bidAmount:string){
+    this.paymentService.placeBid({
+      auctionID:this.auctionDetails.id,
+      amount:parseFloat(bidAmount),
+    }
+  ).subscribe(
+      {
+      next:(res)=>{console.log(res);},
+      error:(err)=>{console.log(err);}
+    })
+  }
+
+
+
 }
-// import { Component, OnInit } from '@angular/core';
-// import { ActivatedRoute } from '@angular/router'; // To get the auction ID from the route
-// import { AuctionService } from '../../Services/auction.service'; // Service to fetch auction details
-// import { PaymentService } from '../../Services/payment.service'; 
-
-// @Component({
-//   selector: 'app-auction-details',
-//   templateUrl: './auction-details.component.html',
-//   styleUrl: './auction-details.component.css'
-// })
-// export class AuctionDetailsComponent implements OnInit {
-//   paymentCount!: { count: number, payment: string };
-//   currentSlide = 0;
-//   auctionId!: number;
-//   auctionDetails: any; // To hold the fetched auction details
-
-//   constructor(
-//     private paymentService: PaymentService,
-//     private auctionService: AuctionService,
-//     private route: ActivatedRoute // To access route parameters
-//   ) {}
-
-//   ngOnInit(): void {
-//     this.route.params.subscribe(params => {
-//       this.auctionId = +params['id']; // Get auction ID from route
-//       this.getAuctionDetails(); // Fetch auction details by ID
-//     });
-//     this.groupItems();
-//     this.loadPaymentData();
-//   }
-
-//   // Fetch auction details from service by ID
-//   getAuctionDetails(): void {
-//     this.auctionService.getAuctionById(this.auctionId).subscribe(
-//       (res: any) => {
-//         this.auctionDetails = res;
-//         console.log('Auction details:', this.auctionDetails);
-//       },
-//       (error) => {
-//         console.error('Error fetching auction details:', error);
-//       }
-//     );
-//   }
-
-//   // Fetch user payment details
-//   loadPaymentData(): void {
-//     this.paymentService.userHavePayment().subscribe(
-//       (res: any) => {
-//         this.paymentCount = { count: res.count, payment: res.payment };
-//       },
-//       (error) => {
-//         console.error('Error fetching payment data:', error);
-//       }
-//     );
-//   }
-
-//   // Items and slides logic (same as before)
-//   itemImages = [
-//     { src: 'hd_item_3649360_e2ceb54174.jpg' },
-//     { src: 'hd_item_3649360_e2ceb54174.jpg' },
-//     { src: 'hd_item_3649360_e2ceb54174.jpg' },
-//     { src: 'hd_item_3649360_e2ceb54174.jpg' }
-//   ];
-
-//   similarAuctions = [
-//     { title: 'Item Title 1', img: 'large_item_3649360_bbb8f93d91.jpg', price: '$10.00' },
-//     { title: 'Item Title 2', img: 'large_item_3649360_bbb8f93d91.jpg', price: '$20.00' },
-//     { title: 'Item Title 3', img: 'hd_item_3649360_e2ceb54174.jpg', price: '$30.00' },
-//     { title: 'Item Title 4', img: 'large_item_3649360_bbb8f93d91.jpg', price: '$40.00' },
-//     { title: 'Item Title 5', img: 'large_item_3649360_bbb8f93d91.jpg', price: '$50.00' },
-//     { title: 'Item Title 6', img: 'large_item_3649360_bbb8f93d91.jpg', price: '$60.00' }
-//   ];
-
-//   groupedItems: Array<any> = [];
-
-//   groupItems(): void {
-//     for (let i = 0; i < this.similarAuctions.length; i += 3) {
-//       this.groupedItems.push(this.similarAuctions.slice(i, i + 3));
-//     }
-//   }
-
-//   // Add more functionality as needed
-// }

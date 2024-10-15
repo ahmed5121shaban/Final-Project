@@ -11,13 +11,13 @@ import { Pagination } from '../Models/models/pagination.model';
   providedIn: 'root'
 })
 export class AuctionService {
-  private apiUrl=`${environment.apiUrl}api/Auction`
+  private apiUrl = `${environment.apiUrl}api/Auction`
 
 
-  constructor(private cookieService: CookieService,private http:HttpClient) {}
+  constructor(private cookieService: CookieService, private http: HttpClient) { }
 
-  createAuction(auction:Auction): Observable<any> {
-    return this.http.post(this.apiUrl,auction)
+  createAuction(auction: Auction): Observable<any> {
+    return this.http.post(this.apiUrl, auction)
   }
   getWon():Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/won`)
@@ -34,7 +34,7 @@ export class AuctionService {
 
   }
 
-  getAll():any{
+  getAll(): any {
     return this.http.get<any>(`${this.apiUrl}/getall`)
   }
 
@@ -49,38 +49,40 @@ export class AuctionService {
   getAllEnded(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/Ended`);
   }
-  
-    // Fetch paginated auctions from the API
-    getPaginatedAuctions(
-      searchtxt: string = '', 
-      columnName: string = 'Id', 
-      isAscending: boolean = false, 
-      pageSize: number = 2, 
-      pageNumber: number = 1
-    ): Observable<Pagination<any[]>> {
-      // Build query parameters
-      let params = new HttpParams()
-        .set('searchtxt', searchtxt)
-        .set('columnName', columnName)
-        .set('isAscending', isAscending.toString())
-        .set('pageSize', pageSize.toString())
-        .set('pageNumber', pageNumber.toString());
-  
-      // Make HTTP GET request
-      return this.http.get<Pagination<any[]>>(`${this.apiUrl}/GetAuctions`, { params });
-    }
 
-      // Fetch similar active auctions by category
+  getPaginatedAuctions(
+    searchText: string = '',
+    columnName: string = 'Id',
+    isAscending: boolean = true,
+    pageSize: number = 2,
+    pageNumber: number = 1,
+    categoryName: string | null = null,
+    filterOption:string | null = null
+  
+  ): Observable<Pagination<Auction[]>> {
+    const params = new HttpParams()
+      .set('searchtxt', searchText)
+      .set('columnName', columnName)
+      .set('isAscending', isAscending.toString())
+      .set('pageSize', pageSize.toString())
+      .set('pageNumber', pageNumber.toString())
+      .set('categoryName', categoryName || '')
+      .set('filterOption', filterOption || '') 
+  
+      return this.http.get<Pagination<Auction[]>>(`${this.apiUrl}/GetAuctions`, { params });
+  }
+  
+  // Fetch similar active auctions by category
   getSimilarActiveAuctions(auctionId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/SimilarActiveAuctions/${auctionId}`);
   }
   //get live Auctions for Seller
-  getSellerAllLive():Observable<any>{
+  getSellerAllLive(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/SellerLive`)
   }
 }
-export interface Auction{
-  ItemId:number;
-  Duration:number;
-  StartDate:Date;
+export interface Auction {
+  ItemId: number;
+  Duration: number;
+  StartDate: Date;
 }

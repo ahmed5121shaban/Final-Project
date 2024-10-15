@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PaymentService } from '../../../../Action/Services/payment.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-payment',
@@ -8,8 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PaymentComponent implements OnInit {
   paypalForm:FormGroup;
-  stripeForm :FormGroup
-  constructor(private formBuilder:FormBuilder) {
+  stripeForm :FormGroup;
+  stripe!:string
+  paypal!:string
+  constructor(private formBuilder:FormBuilder,private paymentService:PaymentService,private toastr:ToastrService) {
 
     this.paypalForm = this.formBuilder.group({
       paypalEmail:['',[Validators.required,Validators.email]],
@@ -17,10 +21,30 @@ export class PaymentComponent implements OnInit {
 
     this.stripeForm = this.formBuilder.group({
       stripeEmail:['',[Validators.required,Validators.email]],
-      stripeAPIKey:['',[Validators.required]]
     })
 
+
   }
+
+  ngOnInit() {
+    this.paymentService.getPaymentEmail().subscribe({
+      next:(res:any)=>{
+        console.log(res);
+        if(res[0].paypalEmail!=null)
+          this.paypal = res[0].paypalEmail
+        if(res[0].stripeEmail!=null)
+          this.stripe = res[0].stripeEmail
+        console.log(this.stripe,this.paypal);
+        console.log(res[0].paypalEmail,res[0].stripeEmail);
+      },
+      error:(err)=>{
+        console.log(err);
+
+      }
+    })
+  }
+
+
 
   get paypalEmail(){
     return this.paypalForm.get('paypalEmail')
@@ -30,15 +54,25 @@ export class PaymentComponent implements OnInit {
     return this.stripeForm.get('stripeEmail')
   }
 
-  get stripeAPIKey(){
-    return this.stripeForm.get('stripeAPIKey')
+  stripeSubmit(){
+    this.paymentService.addPaymentEmail({stripeEmail:this.stripeEmail?.value,Method:1}).subscribe(
+      {
+        next:(res)=>{console.log(res);this.toastr.success("The Email Added Successfully")},
+        error:(err)=>{console.error(err);this.toastr.error("The Email Not Added")}
+      }
+    )
   }
 
-  stripeSubmit(){}
-
-  paypalSubmit(){}
-
-  ngOnInit() {
+  paypalSubmit(){
+    this.paymentService.addPaymentEmail({paypalEmail:this.paypalEmail?.value,Method:0})
+    .subscribe(
+      {
+        next:(res)=>{console.log(res);this.toastr.success("The Email Added Successfully")},
+        error:(err)=>{console.error(err);this.toastr.error("The Email Not Added")}
+      }
+    )
   }
+
+
 
 }

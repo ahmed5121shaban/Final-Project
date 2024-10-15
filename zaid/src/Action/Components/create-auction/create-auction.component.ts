@@ -66,7 +66,7 @@ export class CreateAuctionComponent {
   }
 
 
-  
+
   chooseImage(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files) {
@@ -98,7 +98,7 @@ export class CreateAuctionComponent {
       this.Images.forEach((image, index) => {
         formData.append('Images', image, image.name);
       });
-      
+
 
       console.log('FormData before submission:', formData);
 
@@ -107,12 +107,11 @@ export class CreateAuctionComponent {
           this.toastr.success("Item Added Successfully");
           this.router.navigate(['user/modify-action'])
           console.log('Item added successfully:', response);
-          
+
           // Reset the form or navigate after submission
         },
         error: (error) => {
           this.toastr.error("Can't Add Item");
-
           console.error('Error adding Item:', error.error);
         }
 

@@ -9,7 +9,6 @@ import { EditAuctionComponent } from './Components/auction-edit/auction-edit.com
 import { CreateAuctionComponent } from './Components/create-auction/create-auction.component';
 import { ActionRoutes } from './action.routing';
 import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-feedback.component';
-
 import { WonAuctionComponent } from './Components/won-auction/won-auction.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 

@@ -1,3 +1,4 @@
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './User.component';
@@ -34,7 +35,7 @@ import { MyLiveAuctionsComponent } from './Components/Profile-Management/my-live
     UserRoutes,
     FormsModule,
     CarouselModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,HttpClientModule
   ],
   declarations: [
     RegisterComponent,
