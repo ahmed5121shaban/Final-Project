@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PaymentService } from '../../../../Action/Services/payment.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-payment',
@@ -12,7 +13,7 @@ export class PaymentComponent implements OnInit {
   stripeForm :FormGroup;
   stripe!:string
   paypal!:string
-  constructor(private formBuilder:FormBuilder,private paymentService:PaymentService) {
+  constructor(private formBuilder:FormBuilder,private paymentService:PaymentService,private toastr:ToastrService) {
 
     this.paypalForm = this.formBuilder.group({
       paypalEmail:['',[Validators.required,Validators.email]],
@@ -56,8 +57,8 @@ export class PaymentComponent implements OnInit {
   stripeSubmit(){
     this.paymentService.addPaymentEmail({stripeEmail:this.stripeEmail?.value,Method:1}).subscribe(
       {
-        next:(res)=>{console.log(res)},
-        error:(err)=>{console.error(err)}
+        next:(res)=>{console.log(res);this.toastr.success("The Email Added Successfully")},
+        error:(err)=>{console.error(err);this.toastr.error("The Email Not Added")}
       }
     )
   }
@@ -66,8 +67,8 @@ export class PaymentComponent implements OnInit {
     this.paymentService.addPaymentEmail({paypalEmail:this.paypalEmail?.value,Method:0})
     .subscribe(
       {
-        next:(res)=>{console.log(res)},
-        error:(err)=>{console.error(err)}
+        next:(res)=>{console.log(res);this.toastr.success("The Email Added Successfully")},
+        error:(err)=>{console.error(err);this.toastr.error("The Email Not Added")}
       }
     )
   }
