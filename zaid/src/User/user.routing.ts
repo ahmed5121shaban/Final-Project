@@ -21,6 +21,7 @@ import { LostAuctionComponent } from './Components/Profile-Management/lost-aucti
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { SellerEarningsComponent } from './Components/Profile-Management/seller-earnings/seller-earnings.component';
 import { SellerwithdrawComponent } from './Components/Profile-Management/sellerwithdraw/sellerwithdraw.component';
+import { ComplainAddComponent } from './Components/Profile-Management/complain-add/complain-add.component';
 import { MyLiveAuctionsComponent } from './Components/Profile-Management/my-live-auctions/my-live-auctions.component';
 import { AuctionLiveStreamComponent } from '../Admin/Components/auction-live-stream/auction-live-stream.component';
 
@@ -49,6 +50,7 @@ const routes: Routes = [
       {path:'lost-auction',component:LostAuctionComponent},
       { path: 'seller-earnings', component: SellerEarningsComponent },
       { path: 'seller-withdraw', component: SellerwithdrawComponent },
+{ path: 'complain-add', component:ComplainAddComponent },
       { path: 'buyer-live-auctions', component:MyLiveAuctionsComponent },
       { path: 'auction-live-stream/:id', component: AuctionLiveStreamComponent },
 

@@ -1,0 +1,20 @@
+.container {
+    margin-top: 4rem; /* تعديل المسافة العلوية */
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem; /* تعديل المسافة بين الحقول */
+  }
+  
+  label {
+    font-weight: bold; /* جعل النص بالوزن العريض */
+  }
+  
+  textarea.form-control {
+    resize: vertical; /* تعديل قابلية التغيير للأسفل فقط لحقل النص */
+  }
+  
+  button[type="submit"] {
+    margin-top: 1rem; /* تعديل المسافة العلوية للزر */
+  }
+  
