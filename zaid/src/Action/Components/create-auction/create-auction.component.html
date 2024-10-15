@@ -42,7 +42,7 @@
                
                     <div class="mb-3">
                         <label for="formFileMultiple" class="form-label">Upload multiple Images</label>
-                        <input class="form-control" type="file" (change)="chooseImage($event)"  (change)="onFileSelected($event)" id="formFileMultiple"
+                        <input value={{Images}} class="form-control" type="file" (change)="chooseImage($event)"  (change)="onFileSelected($event)" id="formFileMultiple"
                             multiple formControlName="Images" [ngClass]="{
                                             'is-invalid': auctionForm.controls['Images'].invalid && auctionForm.controls['Images'].touched
                                             }">

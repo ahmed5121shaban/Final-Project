@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'create-auction' , component: CreateAuctionComponent},
   { path: 'auction-details/:id' , component: AuctionDetailsComponent},
   { path: 'auction-list' , component: AuctionListComponent},
-  { path: 'auction-edit' , component: EditAuctionComponent},
+  { path: 'auction-edit/:id' , component: EditAuctionComponent},
   { path: 'delete-confirm' , component: DeleteConfirmationComponent},
    { path: 'won-auction' , component: WonAuctionComponent},
   { path: 'auction-feedback' , component: AuctionFeedbackComponent},

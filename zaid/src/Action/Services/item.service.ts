@@ -59,17 +59,13 @@ export class ItemService {
 
   rejectItem(itemId: number, rejectReason: string): Observable<any> {
     const url = `${this.apiUrl}/Reject/${itemId}`;
-    const payload = {
-        rejectReason: rejectReason // Send the reason for rejection
-    };
-
-    return this.http.put(url, payload).pipe(
-        catchError((error: HttpErrorResponse) => {
-            console.error('Error details:', error.error);
-            return throwError('Something went wrong, please try again.');
+    return this.http.post(url, JSON.stringify(rejectReason), {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json'
         })
-    );
+    });
 }
+
 
   }
 
