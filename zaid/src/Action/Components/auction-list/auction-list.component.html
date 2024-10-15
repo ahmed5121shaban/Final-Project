@@ -51,21 +51,21 @@
 
             <nav class="nav flex-column">
               <!-- "All" Option -->
-              <div class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
+              <div class="category-item ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle">
                 <a [routerLink]="['/action/auction-list']"
-                  class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
+                  class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between category-link">
                   <span class="ms-0 link-underline-opacity-10-hover">All</span>
                   <!-- <span class="me-2">({{ totalItemsActive }})</span> -->
                 </a>
               </div>
-              <div *ngFor="let category of categories" class="ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle"
-                style="background-color: #f6f6f8">
-                <a [routerLink]="['/action/auction-list', category.name]"
-                  class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between">
-                  <span class="ms-0 link-underline-opacity-10-hover">{{ category.name }}</span>
-                  <!-- <span class="me-2">({{CategoryAuctionCount(category.name)}})</span> -->
-                </a>
-              </div>
+              <div *ngFor="let category of categories" class="category-item ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle">
+             <a [routerLink]="['/action/auction-list', category.name]"
+                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between category-link">
+                 <span class="ms-0 link-underline-opacity-10-hover">{{ category.name }}</span>
+                 <!-- <span class="me-2">({{CategoryAuctionCount(category.name)}})</span> -->
+             </a>
+         </div>
+         
             </nav>
           </div>
         </div>

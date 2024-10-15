@@ -33,6 +33,9 @@ export class AuctionDetailsComponent implements OnChanges {
   highestBid!: any;
   allBidsINAuction: any;
 
+  method!:number
+
+
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
     private toastr: ToastrService,
@@ -42,6 +45,10 @@ export class AuctionDetailsComponent implements OnChanges {
        next:(res:any)=>{
          console.log(res,"paymentCount")
           this.paymentCount=res.count;
+          if(res.count==3)
+            this.method=res.method[0]
+          console.log(this.method);
+
         }
     });
 

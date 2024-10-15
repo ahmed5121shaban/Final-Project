@@ -83,3 +83,15 @@
 .card-icon i:hover {
   color: #ff5252; /* Change icon color when hovered */
 }
+.category-item{
+  background-color: #f6f6f8;
+}
+.category-item:hover {
+  background-color: #d9d8d8; /* Change background color on hover */
+}
+
+.category-link:hover {
+  opacity: 1; /* Make text fully opaque on hover */
+  text-decoration: underline; /* Optional: add underline on hover */
+  transition: opacity 0.3s ease, background-color 0.3s ease; /* Smooth transition for opacity and background color */
+}

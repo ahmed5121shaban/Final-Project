@@ -1,40 +1,16 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Pagination } from '../Models/models/pagination.model';
-
-
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Pagination } from '../../Action/Models/models/pagination.model';
+import { Auction } from '../../Action/Services/auction.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuctionService {
+export class AdminAuctionsService {
   private apiUrl = `${environment.apiUrl}api/Auction`
-
-
   constructor(private http: HttpClient) { }
-
-  createAuction(auction: Auction): Observable<any> {
-    return this.http.post(this.apiUrl, auction)
-  }
-  getWon():Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/won`)
-
-  }
-  getLost():Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/lost`)
-
-  }
-
-  getAll(): any {
-    return this.http.get<any>(`${this.apiUrl}/getall`)
-  }
-
-  getAuctionById(auctionId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/GetById/${auctionId}`);
-  }
 
   getAllActive(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/Active`);
@@ -65,18 +41,4 @@ export class AuctionService {
   
       return this.http.get<Pagination<Auction[]>>(`${this.apiUrl}/GetAuctions`, { params });
   }
-  
-  // Fetch similar active auctions by category
-  getSimilarActiveAuctions(auctionId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/SimilarActiveAuctions/${auctionId}`);
-  }
-  //get live Auctions for Seller
-  getSellerAllLive(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/SellerLive`)
-  }
-}
-export interface Auction {
-  ItemId: number;
-  Duration: number;
-  StartDate: Date;
 }
