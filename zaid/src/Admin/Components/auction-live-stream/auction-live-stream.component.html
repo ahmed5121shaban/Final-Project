@@ -3,32 +3,32 @@
     <div class="main  p-md-5 p-3">
         <div class="row justify-content-between ">
             <div class="item-title">
-                <h1>item title</h1>
+                <h1>{{auction.item.title}}</h1>
             </div>
     
             <div class="col-xl-7  row mb-5 ">
-                <div id="itemimages" class="carousel slide col-12 mb-5">
+                <div id="carousel{{auction.item.id}}" class="carousel slide col-12 mb-5">
                     <div class="carousel-inner mb-5">
-                        @for(image of itemImages; track $index ; let i=$index){
+                        @for(image of auction.item.images; track $index ; let i=$index){
                         <div class="carousel-item" [class.active]="i === 0">
-                            <img [src]="image.src" class="d-block w-100">
+                            <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100">
                         </div>
                         }
     
                     </div>
     
-                    <a class="carousel-control-prev" href="#itemimages" role="button" data-bs-slide="prev">
+                    <a class="carousel-control-prev"  [attr.data-bs-target]="'#carousel' + auction.item.id" role="button" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="false"></span>
                     </a>
-                    <a class="carousel-control-next" href="#itemimages" role="button" data-bs-slide="next">
+                    <a class="carousel-control-next"  [attr.data-bs-target]="'#carousel' + auction.item.id" role="button" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="false"></span>
                     </a>
     
                     <div class="carousel-indicators">
-                        @for( image of itemImages;track $index ;let i=$index){
-                        <button class="w-25" type="button" [attr.data-bs-target]="'#itemimages'" [attr.data-bs-slide-to]="i"
+                        @for( image of auction.item.images;track $index ;let i=$index){
+                        <button class="w-25" type="button" [attr.data-bs-target]="'#carousel' + auction.item.id" [attr.data-bs-slide-to]="i"
                             [class.active]="i === 0">
-                            <img [src]="image.src" class="d-block w-100">
+                            <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100">
                         </button>
                         }
     
@@ -44,7 +44,7 @@
                     <div class="bid-info row bg-light  mb-3">
                         <div class="heighest-bid col-6">
                             <p>Heighest bid:</p>
-                            <h5>300$</h5>
+                            <h5>{{highestBid}}</h5>
                             <p class="estimate-price">Estimate: 257 EUR</p>
                         </div>
                         <div class="bid-ends-in col-6">
@@ -119,10 +119,6 @@
                
             </div>
         </div>
-        
-      
-    
-    
     </div>
     </div>
     
