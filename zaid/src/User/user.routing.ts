@@ -21,7 +21,7 @@ import { LostAuctionComponent } from './Components/Profile-Management/lost-aucti
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { SellerEarningsComponent } from './Components/Profile-Management/seller-earnings/seller-earnings.component';
 import { SellerwithdrawComponent } from './Components/Profile-Management/sellerwithdraw/sellerwithdraw.component';
-
+import { ComplainAddComponent } from './Components/Profile-Management/complain-add/complain-add.component';
 
 const routes: Routes = [
   { path: 'register' , component: RegisterComponent},
@@ -47,7 +47,7 @@ const routes: Routes = [
       {path:'lost-auction',component:LostAuctionComponent},
       { path: 'seller-earnings', component: SellerEarningsComponent },
       { path: 'seller-withdraw', component: SellerwithdrawComponent },
-
+{ path: 'complain-add', component:ComplainAddComponent },
     ] },
 
  

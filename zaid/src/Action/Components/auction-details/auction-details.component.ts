@@ -32,7 +32,7 @@ export class AuctionDetailsComponent implements OnChanges {
   secretKey!: string
   highestBid!: any;
   allBidsINAuction: any;
-  
+
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
     private toastr: ToastrService,
@@ -44,8 +44,6 @@ export class AuctionDetailsComponent implements OnChanges {
           this.paymentCount=res.count;
         }
     });
-
-    this.stripe = Stripe('pk_test_51Q7StDIrAruRO4wHiVE3HWQFcSb3kga4AcTBtj5YiUCY65vQK46kvWlSXJzBfxcXtocZPB3gMfE9VYDFt2y9ES6n00sovijgpI');
 
   }
   ngOnChanges(): void {}
@@ -173,5 +171,5 @@ export class AuctionDetailsComponent implements OnChanges {
   }
 
 
-  
+
 }

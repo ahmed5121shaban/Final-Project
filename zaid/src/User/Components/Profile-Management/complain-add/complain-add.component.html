@@ -1,1 +1,19 @@
-<p>complain-add works!</p>
+<div class="container mt-4">
+    <form [formGroup]="complainForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="seller">Select Seller</label>
+        <select class="form-control" formControlName="sellerId" (change)="onSellerChange($event)">
+          <option value="">Select Seller</option>
+          <option *ngFor="let seller of sellers" [value]="seller.id">{{ seller.name }}</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="reason">Reason</label>
+        <textarea class="form-control" formControlName="reason" rows="3" placeholder="Enter your complaint reason"></textarea>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Submit Complaint</button>
+    </form>
+  </div>
+  
