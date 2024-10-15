@@ -360,3 +360,10 @@ border-bottom: 1px solid #999; */
 .why-choose-us .finix-text{
   position: relative;
 }
+.btn-hover-opacity {
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+.btn-hover-opacity:hover {
+  opacity: 0.5; /* Set opacity to 0.5 on hover */
+}
