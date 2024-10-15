@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuctionService } from '../../Services/auction.service';
 import { CategoryService } from '../../../Admin/Services/category.service';
 import { Pagination } from '../../Models/models/pagination.model';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-auction-list',
@@ -13,26 +14,22 @@ export class AuctionListComponent implements OnInit {
   activeAuctions: any[] = [];
   endedAuctions: any[] = [];
   categories: any[] = [];
+  sortedAuctions:any[] =[];
 
   // Pagination properties
-  // page: number = 1; 
-  // itemsPerPage: number = 6; 
-  // endedItemsPerPage: number = 6; // items per page for ended auctions
-  // totalItemsActive: number = 0;
-  // totalItemsended: number = 0;
-  // searchtxt:string ='';
-  // selectedCategory: string = ''; 
-  // sortOption: string = 'Id'; 
-
   pageActive: number = 1; 
   pageEnded: number = 1; 
-  itemsPerPage: number = 6; 
+  itemsPerPage: number = 4; 
   endedItemsPerPage: number = 6;
   totalItemsActive: number = 0;
   totalItemsEnded: number = 0;
+    // Filter properties
   searchtxt: string = '';
   selectedCategory: string = ''; 
   sortOption: string = 'Id'; 
+  isAscending: boolean = true;
+  filterOption: string =''; 
+  // sortCriteria: string = 'endingSoonest'
 
   constructor(
     private auctionService: AuctionService,
@@ -43,85 +40,91 @@ export class AuctionListComponent implements OnInit {
   ngOnInit(): void {
     // Get category from URL if available
     this.route.params.subscribe(params => {
-      this.selectedCategory = params['category'] || ''; 
-      this.loadActiveAuctions(); 
+      this.selectedCategory = params['category'] || '';
+      this.loadActiveAuctions();
       this.loadEndedAuctions();
       this.loadCategories();
     });
   }
-  
-  loadActiveAuctions(): void {
-    console.log("Current Page:", this.pageActive);
-    console.log("Items per Page:", this.itemsPerPage);
-    this.auctionService.getPaginatedAuctions(
-      this.searchtxt,
-      this.sortOption,
-      false,
-      this.itemsPerPage,
-      this.pageActive,
-      this.selectedCategory 
-    ).subscribe({
-      next: (pagination: Pagination<any[]>) => {
-        this.activeAuctions = pagination.list || [];
-        this.totalItemsActive = pagination.totalCount || 0;
-      },
-      error: (err) => {
-        console.error('Error fetching active auctions', err);
-      }
-    });
+  toggleSortOrder(): void {
+    this.isAscending = !this.isAscending; // Toggle the sort order
+    this.loadActiveAuctions(); // Reload active auctions with new sort order
+  }
+  // Handle sort option changes
+  updateSortOption(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement; // Cast the target to HTMLSelectElement
+    this.sortOption = selectElement.value; // Access the value property safely
+    this.loadActiveAuctions(); // Reload active auctions with updated sort option
   }
   
-  // Load ended auctions
-  loadEndedAuctions(): void {
-    // this.auctionService.getPaginatedEndedAuctions().subscribe({
-    //   next: (data) => {
-    //     this.endedAuctions = data; 
-    //   },
-    //   error: (err) => {
-    //     console.error('Error fetching ended auctions', err); 
-    //   }
-    // });
+    loadActiveAuctions(): void {
+      this.auctionService.getPaginatedAuctions(
+        this.searchtxt,
+        this.sortOption,      // Sort by the selected field
+        this.isAscending,     // Pass ascending/descending order
+        this.itemsPerPage,
+        this.pageActive,
+        this.selectedCategory,
+       this.filterOption
+      ).subscribe({
+        next: (pagination: Pagination<any[]>) => {
+          this.activeAuctions = pagination.list || [];
+          this.totalItemsActive = pagination.totalCount || 0;
+          console.log(this.activeAuctions);
+        },
+        error: (err) => {
+          console.error('Error fetching active auctions', err);
+        }
+      });
+    }
 
-    console.log("Current Page:", this.pageEnded);
-    console.log("Items per Page:", this.itemsPerPage);
+  
+
+  // Load ended auctions with sorting and pagination
+  loadEndedAuctions(): void {
     this.auctionService.getPaginatedEndedAuctions(
       this.searchtxt,
       this.sortOption,
-      false,
+      this.isAscending,
       this.itemsPerPage,
       this.pageEnded,
-      this.selectedCategory 
+      this.selectedCategory
     ).subscribe({
       next: (pagination: Pagination<any[]>) => {
         this.endedAuctions = pagination.list || [];
         this.totalItemsEnded = pagination.totalCount || 0;
+        
+        
       },
       error: (err) => {
-        console.error('Error fetching active auctions', err);
+        console.error('Error fetching ended auctions', err);
       }
     });
   }
 
-  // Load categories
+  // Load categories for filtering
   loadCategories(): void {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
-        this.categories = data.result; 
+        this.categories = data.result;
       },
       error: (err) => {
-        console.error('Error fetching categories', err); 
+        console.error('Error fetching categories', err);
       }
     });
   }
 
-  totalPagesActive(): number {
+  // Handle category selection changes (if needed)
+  onCategorySelect(category: string): void {
+    this.selectedCategory = category;
+    this.pageActive = 1;  // Reset to first page when category changes
+    this.pageEnded = 1;
+    this.loadActiveAuctions();
+    this.loadEndedAuctions();
+  }
+      totalPagesActive(): number {
     return Math.ceil(this.totalItemsActive / this.itemsPerPage);
   }
-  
-  totalPagesEnded(): number {
-    return Math.ceil(this.totalItemsEnded / this.endedItemsPerPage);
-  }
-  
   onActivePageChange(newPageActive: number): void {
     console.log('Active Page changed to:', newPageActive);
     if (newPageActive > 0 && newPageActive <= this.totalPagesActive()) {
@@ -130,28 +133,8 @@ export class AuctionListComponent implements OnInit {
     }
   }
 
-  onEndedPageChange(newPageEnded: number): void {
-    console.log('Ended Page changed to:', newPageEnded);
-    if (newPageEnded > 0 && newPageEnded <= this.totalPagesEnded()) {
-      this.pageEnded = newPageEnded;
-      this.loadEndedAuctions();
-    }
-  }
-    // Handle Category Selection changes
-  onCategorySelect(category: string): void {
-    this.selectedCategory = category;
-    this.pageActive = 1; 
-    this.pageEnded = 1; // Reset both pages to 1 when category changes
-    this.loadActiveAuctions(); 
-    this.loadEndedAuctions();
-  }
-  
-  // Handle sorting option changes
-  onSortOptionChange(option: string): void {
-    this.sortOption = option;
-    this.pageActive = 1; // Reset to first page when sorting
-    this.pageEnded = 1; // Reset to first page when sorting
-    this.loadActiveAuctions();
-    this.loadEndedAuctions();
-  }
+  // CategoryAuctionCount(category:string):number{
+
+// return this.activeAuctions.filter(i=>i.c=category).length
+// }
 }
