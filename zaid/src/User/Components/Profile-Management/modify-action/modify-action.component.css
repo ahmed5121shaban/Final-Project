@@ -1,5 +1,7 @@
 .card-custom {
   border-radius: 15px;
+  position: relative ;
+
 }
 .card-custom:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -123,3 +125,24 @@
   background-color: rgb(44, 40, 36);
   border-color: rgb(44, 40, 36);
 }
+
+.hover-buttons {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  display: none !important;
+  z-index: 10 !important;
+  background-color: transparent !important;
+}
+.hover-buttons i{
+color: rgb(229, 124, 35) ;
+}
+
+ .accepted:hover .hover-buttons {
+  display: block !important;
+}
+.rejected:hover .hover-buttons {
+  display: block !important;
+}
+

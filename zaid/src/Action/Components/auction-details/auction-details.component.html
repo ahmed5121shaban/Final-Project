@@ -13,7 +13,7 @@
                         </div>
                     </ng-container>
                 </div>
-        
+
                 <a class="carousel-control-prev" href="#itemimages" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -22,7 +22,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </a>
-        
+
                 <div class="carousel-indicators">
                     <ng-container *ngFor="let image of auctionDetails.item.images; let i = index">
                         <button type="button" [attr.data-bs-target]="'#itemimages'" [attr.data-bs-slide-to]="i"
@@ -32,18 +32,22 @@
                     </ng-container>
                 </div>
             </div>
-        
+
             <br>
         </div>
-        
 
         <div class="bid col-xl-5  justify-content-center  p-md-0 mt-5 mt-md-0">
             <div class="bid-info-place  mb-3">
                 <div class="bid-info row bg-light  mb-3">
                     <div class="heighest-bid col-6">
-                        <p>Heighest bid:</p>
-                        <h5>300$</h5>
-                        <p class="estimate-price">Estimate: 257 EUR</p>
+                        <p>Highest bid:</p>
+                        @if (highestBid.result.amount) {
+                          <h5>{{highestBid.result.amount}}$</h5>
+                        }@else {
+                          <h5>No Bids Here $</h5>
+                        }
+
+                        <p class="estimate-price">Start Price: {{auctionDetails.item.startPrice}}$</p>
                     </div>
                     <div class="bid-ends-in col-6">
                         <p>Ends in:</p>
@@ -51,27 +55,33 @@
                         <p class="end-date">{{ auctionDetails.endDate | date: 'mediumDate' }}</p>
                     </div>
                 </div>
-                @if ( (paymentCount?.payment??"pay")=='paypal'){
-                  <div class="place-bid text-center ">
-                    <input type="number" name="" disabled id="" class="form-control">
-                    <a routerLink="" class=" btn btn-primary w-100 mt-3 mb-1">
-                      <i class="fa-brands fa-paypal"></i>
 
+                @if ( paymentCount == 0){
+                  <div class="place-bid text-center ">
+                    <input type="number" [disabled]="true" name="" disabled id="" class="form-control">
+                    <a role="button" (click)="notAllowed()" class=" btn btn-primary w-100 mt-3 mb-1">
+                      you can't add bid
                     </a>
-                    <p class="bid-limits ">Check if You have Payment Email in your Profile.</p>
+                    <p class="bid-limits ">You can't Add Bid because This Your Auction.</p>
                 </div>
-                } @else if ((paymentCount?.payment??"st")=="stripe"){
+                } @else if (paymentCount == 2 && paymentDetail.auctionID!=auctionId){
                   <div class="place-bid text-center">
-                    <input type="number" name="" disabled id="" class="form-control">
-                    <a routerLink="" class=" btn btn-primary w-50 mt-3 mb-1">
+                    <input type="number" placeholder="Choose one to Bid The First Price :{{auctionDetails.item.startPrice}}$" name="" disabled id="" class="form-control">
+                    <a (click)="firstPayment(1)" class=" btn btn-primary w-50 mt-3 mb-1">
                       <i class="fa-brands fa-stripe-s"></i>
                     </a>
-                    <a routerLink="" class=" btn btn-primary w-50 mt-3 mb-1">
+                    <a (click)="firstPayment(0)" class=" btn btn-primary w-50 mt-3 mb-1">
                       <i class="fa-brands fs-5 fa-paypal"></i>
                     </a>
-                    <p class="bid-limits ">Check if You have Payment Email in your Profile.</p>
+                    <p class="bid-limits ">You must Bid the First Amount to Continue in this Auction.</p>
                 </div>
-                }@else if ((paymentCount?.count??0) == 1){
+                }@else if (paymentCount == 3 && paymentDetail.auctionID!=auctionId){
+                  <div class="place-bid text-center ">
+                    <input type="number" disabled name="" id="" class="form-control">
+                    <a role="button" (click)="firstPayment(method)" class=" btn btn-dark w-100 mt-3 mb-1">Bid The First Price {{auctionDetails.item.startPrice}}$</a>
+                    <p class="bid-limits ">You must Bid the First Amount to Continue in this Auction.</p>
+                </div>
+                }@else if (paymentCount == 1){
                   <div class="place-bid text-center">
                     <input type="number" name="" disabled id="" class="form-control">
                     <a routerLink="/user/payment" class=" btn btn-danger w-100 mt-3 mb-1">
@@ -79,10 +89,17 @@
                     </a>
                     <p class="bid-limits">Check if You have Payment Email in your Profile.</p>
                 </div>
-                }@else {
+                }@else if(successesPayment&&paymentDetail.auctionID==auctionId) {
                   <div class="place-bid text-center ">
-                    <input type="number" name="" id="" class="form-control">
-                    <a role="button" class=" btn btn-secondary w-100 mt-3 mb-1" (click)="payment()">Place A Bid</a>
+                    <input #bid type="number" name="" id="" class="form-control">
+                    <a role="button" class=" btn btn-secondary w-100 mt-3 mb-1" (click)="placeBid(bid.value)">Place A Bid</a>
+                    <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
+                        converted into SEK.</p>
+                </div>
+                }@else if(paymentCount == 4) {
+                  <div class="place-bid text-center ">
+                    <input type="number" disabled name="" id="" class="form-control">
+                    <a routerLink="/user/login" class=" btn btn-dark w-100 mt-3 mb-1">Login Before bid in Auction</a>
                     <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
                         converted into SEK.</p>
                 </div>
@@ -111,15 +128,19 @@
                 </div>
             </div>
 
-            <div class="bid-history mt-0 mb-5">
+            <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
                 <p class="title">Bid history</p>
-                <div class="row single-bid">
-                    <div class="col-4 bidder">bidder</div>
-                    <div class="col-4 bid-date">24 Jul, 04:29</div>
-                    <div class="col-4 bid-amount">250 EUR</div>
+                @for (bid of allBidsINAuction; track $index) {
+                <div class="row single-bid mb-1">
+
+                    <div class="col-4 bidder">{{bid.buyer.user.name}}</div>
+                    <div class="col-4 bid-date">{{bid.time|date:'mediumTime'}}</div>
+                    <div class="col-4 bid-amount">{{bid.amount}} {{bid.buyer.user.currency}}</div>
+
                 </div>
+              }
             </div>
-            <div class="payment">
+            <div class="payment mb-5">
                 <p class="title">Payment options for this item</p>
                 <svg viewBox="0 0 3311 72" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_135_54)">
@@ -161,7 +182,7 @@
             <div class="row">
                 <div class="">
                     <h5>
-                        <a href="#profile" class="text-decoration-none">Seller :{{ auctionDetails.item.seller.user.name }}</a>
+                        <a href="#profile" class="text-decoration-none">Name :{{ auctionDetails.item.seller.user.name }}</a>
                     </h5>
                 </div>
                 <div class=" text-right">
@@ -183,37 +204,45 @@
             </div>
         </div>
     </div>
-    <h3 class="text-center">Similar Auctions</h3>
-    <!-- <div id="cardCarousel" class="carousel slide justify-content-center mb-3">
-        <div class="carousel-inner">
-            @for(group of groupedItems ; track $index; let i = $index){
-            <div class="carousel-item" [class.active]="i === 0">
-                <div class="row">
-                    @for(item of group; track $index){
-                    <div class="col-md-4">
-                        <div class="card">
-                          <a routerLink="../auction-details"><img [src]="item.img" class="card-img-top" [alt]="item.title"></a>
-                            <div class="card-body">
-                                <h5 class="card-title">{{item.title}}</h5>
-                                <p class="card-text start-price">starting price: {{item.price}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    }
+    <h3 class="text-center mb-5">Similar Auctions</h3>
+    <div id="cardCarousel" class="carousel slide justify-content-center mb-3" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <!-- Outer loop to iterate over groups of similar auctions -->
+        <div *ngFor="let group of groupedSimilarAuctions; let i = index" class="carousel-item" [class.active]="i === 0">
+          <div class="row">
+            <!-- Inner loop to iterate over each auction in the group -->
+            <div *ngFor="let auction of group" class="col-md-4">
+              <div class="card">
+                <a [routerLink]="['/auction-details', auction.id]">
+                    <img [src]="'http://localhost:5204/' + auction.item.images[0].src"
+                    class="card-img-top" [alt]="auction.item.name">
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title text-center">{{ auction.item.name }}</h5>
+                  <p class="card-text start-price text-center">Starting price: {{ auction.item.startPrice |number}} EGP</p>
                 </div>
+              </div>
             </div>
-            }
-
+          </div>
         </div>
-        <a class="carousel-control-prev" href="#cardCarousel" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="false"></span>
-        </a>
-        <a class="carousel-control-next" href="#cardCarousel" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="false"></span>
-        </a>
-    </div> -->
-    <!-- ask question -->
-    <p class="title">Ask a Question</p>
+      </div>
+
+      <!-- Carousel controls -->
+      <a class="carousel-control-prev" href="#cardCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#cardCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+
+
+
+
+    <!-- <p class="title">Ask a Question</p>
+
     <form id="questionForm" onsubmit="submitQuestion(event)">
 
         <div class="form-group mb-3">
@@ -224,7 +253,7 @@
         <button type="submit" class="btn btn-primary ">Submit Question</button>
     </form>
 
-    <!-- comments  -->
+
     @for( comment of comments;track $index){
     <div class="media g-mb-30 media-comment">
         <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15"
@@ -246,6 +275,6 @@
         </div>
     </div>
 
-    }
+    } -->
 </div>
 </div>

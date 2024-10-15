@@ -1,5 +1,5 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { Inject, inject } from '@angular/core';
 import { AuthService } from '../../../User/Services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 

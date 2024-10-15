@@ -14,7 +14,10 @@ import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-
 const routes: Routes = [
   { path: 'create-auction' , component: CreateAuctionComponent},
   { path: 'auction-details/:id' , component: AuctionDetailsComponent},
-  { path: 'auction-list' , component: AuctionListComponent},
+  { path: 'auction-list/:category', component: AuctionListComponent }, // With category
+  { path: 'auction-list', component: AuctionListComponent }, // Without category
+
+
   { path: 'auction-edit/:id' , component: EditAuctionComponent},
   { path: 'delete-confirm' , component: DeleteConfirmationComponent},
    { path: 'won-auction' , component: WonAuctionComponent},

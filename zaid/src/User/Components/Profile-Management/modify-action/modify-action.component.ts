@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ItemService } from "../../../../Action/Services/item.service";
 import { AuctionService } from "../../../../Action/Services/auction.service";
 import { response } from 'express';
-import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { log } from 'node:console';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -12,28 +13,29 @@ import { log } from 'node:console';
   styleUrls: ['./modify-action.component.css']
 })
 export class ModifyActionComponent {
-  auctionForm: FormGroup ;
+  auctionForms: FormArray;
   acceptedItems :any[]=[];
   pendingItems :any[]=[];
   rejectedItems :any[]=[];
   auction!:any;
+  selectedItemId:any;
+  today:string;
   constructor(    
   private itemService: ItemService,
   private auctionService: AuctionService,
-  private formbuilder: FormBuilder
+  private formbuilder: FormBuilder,
+  private toaster:ToastrService
   ) { 
 
-    this.auctionForm=this.formbuilder.group({
-      itemId: [''],
-      startDate: ['', Validators.required],
-      duration: ['', Validators.required]
-    })
-  }
 
-  ngOnInit(): void {
-    
-    // get pending items
-    this.itemService.getPendingItems().subscribe({
+    const today = new Date();
+    this.today = today.toISOString().split('T')[0];
+       this.auctionForms = this.formbuilder.array([]);
+
+
+
+     // get pending items
+     this.itemService.getPendingItems().subscribe({
       next: (data) => {
         this.pendingItems = data;
       },
@@ -47,7 +49,8 @@ export class ModifyActionComponent {
     
     // get accepted items
     this.itemService.getAcceptedItems().subscribe(data => {
-      this.acceptedItems = data;     
+      this.acceptedItems = data;
+      this.initForms();     
       console.log(this.acceptedItems);
     });
     // get rejected items
@@ -56,11 +59,29 @@ export class ModifyActionComponent {
       console.log(this.rejectedItems);
     });
   }
-  onSubmit(itemId:number):void{
-    if (this.auctionForm.valid) {
+
+//separate form created for each accepted item
+
+initForms() {
+    this.acceptedItems.forEach(item => {
+      this.auctionForms.push(this.formbuilder.group({
+        duration: ['', Validators.required],
+        startDate: ['', Validators.required]
+      }));
+    });
+  }
+  getAuctionForm(index: number): FormGroup {
+    return this.auctionForms.at(index) as FormGroup;
+  }
+
+  onSubmit(itemId:number,index:number):void{
+
+const auctionForm=this.getAuctionForm(index);
+
+    if (auctionForm.valid) {
      this.auction = {
-        Duration: this.auctionForm.get('duration')?.value,
-        StartDate: this.auctionForm.get('startDate')?.value,
+        Duration: auctionForm.get('duration')?.value,
+        StartDate: auctionForm.get('startDate')?.value,
         ItemId: itemId  // Send itemId as a number
       };
       console.log(this.auction);
@@ -68,21 +89,32 @@ export class ModifyActionComponent {
     this.auctionService.createAuction(this.auction).subscribe({
 
       next:(response)=>{
-        console.log(response);
+        this.toaster.success("Auction Added Successfully");
+        this.acceptedItems = this.acceptedItems.filter(item => item.id !== itemId);
       },
       error: (error) => {
+        this.toaster.error("Failed to add auction");
+
         console.error('Error creating auction:', error);
       }
     });
 
   }
+  }
+
+
+setSelectedItemId(id:number){
+  this.selectedItemId=id;
 }
 
-deleteItem(itemId:number){
-this.itemService.deleteItem(itemId).subscribe({
+deleteItem(){
+  if(this.selectedItemId != null)
+this.itemService.deleteItem(this.selectedItemId).subscribe({
 next:(response)=>{
   console.log("deleted successfully");
-window.location.reload();
+  this.toaster.success("Item deleted successfully")
+  this.acceptedItems = this.acceptedItems.filter(item => item.id !== this.selectedItemId);
+  this.rejectedItems = this.rejectedItems.filter(item => item.id !== this.selectedItemId);
 },
 error:(error)=>{
   console.log(`failed to delete,${error}`)
