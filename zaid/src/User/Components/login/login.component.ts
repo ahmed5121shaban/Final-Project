@@ -47,7 +47,7 @@ export class LoginComponent {
         if (response.status == 200) {
           this.cookieService.set('token', response.token);
           this.cookieService.set("auth",response.token);
-          this.router.navigate(['/user/my/profile']);
+          this.router.navigate(['/user/profile']);
           this.toastr.success('Logged in successfully', 'Success');
         } else {
           this.toastr.error('Email or password is wrong', 'Error');

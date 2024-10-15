@@ -12,9 +12,9 @@
               <h6 class="card-title card-title-custom opacity-75">{{auction.item.seller.user.name}}</h6>
               <p class="card-text card-text-custom">
                   <strong class="fw-bold opacity-75">Start Date: </strong>
-                  <span class="fw-semibold opacity-75" id="startDate">{{auction.startDate}}</span><br>
+                  <span class="fw-semibold opacity-75" id="startDate">{{auction.startDate|date}}</span><br>
                   <strong class="fw-bold opacity-75">End Date: </strong>
-                  <span class="fw-semibold opacity-75" id="endDate">{{auction.endDate}}</span><br>
+                  <span class="fw-semibold opacity-75" id="endDate">{{auction.endDate|date}}</span><br>
               </p>
               <div class="d-flex align-items-center">
                   <div><img src="/small-image/achivement-mission-sport-svgrepo-com.svg" width="50px" alt=""></div>
@@ -37,5 +37,7 @@
             </div>
           </div>
       </div>
+      <button class="hover-button btn btn-secondary" [routerLink]="['/user/payment']">Complete Payment</button>
+
   </div>
 </div>

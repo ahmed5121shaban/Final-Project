@@ -23,6 +23,12 @@ export class AuctionService {
     return this.http.get<any>(`${this.apiUrl}/won`)
 
   }
+  getBuyerLiveAuctions():Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/buyerAuctions`);
+
+  }
+
+
   getLost():Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/lost`)
 
