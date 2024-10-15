@@ -52,6 +52,10 @@
                         <h4 class="mb-3">PayPal Details</h4>
                     </div>
                     <div class="mt-4">
+<!--                       @if (paypal!=null) {
+                        <h3>{{paypal}}</h3>
+                        <h3>ooleh</h3>
+                      } -->
                         <form [formGroup]="paypalForm" (submit)="paypalSubmit()">
                             <div class="form-floating mb-3">
                                 <input type="email" id="floatingInput" class="form-control" formControlName="paypalEmail"
@@ -68,7 +72,7 @@
 
                             </div>
 
-                            <button type="submit" [disabled]="paypalForm.invalid" class="btn btn-dark w-25">Submit PayPal Details</button>
+                            <button type="submit" [disabled]="paypalForm.invalid" class="btn btn-dark">Submit PayPal Details</button>
                         </form>
                     </div>
                 </div>
@@ -81,6 +85,10 @@
                         <h4 class="mb-3">Stripe Details</h4>
                     </div>
                     <div class="mt-4">
+<!--                       @if (stripe!=null) {
+                        <h3>{{stripe}}</h3>
+                        <h3>helloo</h3>
+                      } -->
                         <form [formGroup]="stripeForm" (submit)="stripeSubmit()">
                             <div class="form-floating mb-3">
                                 <input type="email" id="floatingInput" class="form-control" formControlName="stripeEmail"
@@ -96,7 +104,9 @@
                                  }
 
                             </div>
-                            <div class="form-floating mb-3">
+                            <!-- secret key input for stripe -->
+                             
+                          <!--   <div class="form-floating mb-3">
                                 <input type="text" id="floatingInput" class="form-control" formControlName="stripeAPIKey"
                                 [class]="{'is-valid':stripeAPIKey?.valid&&stripeAPIKey?.dirty,
                                           'is-invalid':stripeAPIKey?.invalid&&stripeAPIKey?.dirty}"
@@ -106,8 +116,8 @@
                                        @if (stripeAPIKey?.errors?.['required']) {
                                         <div class="invalid-feedback">this input is required!</div>
                                        }
-                            </div>
-                            <button type="submit" [disabled]="stripeForm.invalid" class="btn btn-dark w-25">Submit Stripe Details</button>
+                            </div> -->
+                            <button type="submit" [disabled]="stripeForm.invalid" class="btn btn-dark">Submit Stripe Details</button>
                         </form>
                     </div>
                 </div>

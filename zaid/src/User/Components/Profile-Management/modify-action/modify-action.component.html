@@ -97,7 +97,7 @@
 
                     <button type="submit" class="btn btn-secondary" [disabled]="auctionForm.invalid" >Create Auction</button>
                       <a [routerLink]="['../../action/auction-edit', item.id]" class="">Edit</a>    
-                      <a  (click)="deleteItem(item.id)">Delete</a>
+                      <a class="" href=""  (click)="setSelectedItemId(item.id)" data-bs-target="#myModal" data-bs-toggle="modal">Delete</a>
                   </div>
               </div>
               <div class="col-6 d-flex justify-content-end">
@@ -138,7 +138,7 @@
                   <div class="row d-flex justify-content-around">
 
                       <a [routerLink]="['../../action/auction-edit', item.id]" class="">Edit</a>    
-                      <a class="" (click)="deleteItem(item.id)">Delete</a>
+                      <a class="" href=""  (click)="setSelectedItemId(item.id)" data-bs-target="#myModal" data-bs-toggle="modal">Delete</a>
                   </div>
     
               </div>
@@ -165,7 +165,25 @@
   </div>
 
 
-
+     <!-- deletoin modal -->
+     <div id="myModal" class="modal fade">
+         <div class="modal-dialog modal-confirm">
+           <div class="modal-content">
+             <div class="modal-header">
+              
+               <h4 class="modal-title">Are you sure?</h4>
+               <button type="button" class="close btn-close" data-dismiss="modal" aria-hidden="true"></button>
+             </div>
+             <div class="modal-body">
+               <p>Do you really want to delete these records? This process cannot be undone.</p>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+               <button type="button" class="btn btn-secondary" (click)="deleteItem()" data-dismiss="modal">Yes, Delete</button>
+              </div>
+           </div>
+         </div>
+       </div>
 
 
 

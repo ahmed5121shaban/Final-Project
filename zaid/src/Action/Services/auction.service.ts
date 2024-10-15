@@ -19,6 +19,14 @@ export class AuctionService {
   createAuction(auction: Auction): Observable<any> {
     return this.http.post(this.apiUrl, auction)
   }
+  getWon():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/won`)
+
+  }
+  getLost():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/lost`)
+
+  }
 
   getAll(): any {
     return this.http.get<any>(`${this.apiUrl}/getall`)

@@ -88,5 +88,4 @@ export class UserProfileComponent {
     },
     nav: true
   }
-
 }
