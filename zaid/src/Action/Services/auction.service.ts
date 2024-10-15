@@ -14,7 +14,7 @@ export class AuctionService {
   private apiUrl = `${environment.apiUrl}api/Auction`
 
 
-  constructor(private cookieService: CookieService, private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   createAuction(auction: Auction): Observable<any> {
     return this.http.post(this.apiUrl, auction)
