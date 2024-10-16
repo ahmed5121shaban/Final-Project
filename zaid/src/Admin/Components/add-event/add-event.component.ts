@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CategoryService } from '../../Services/category.service';
+import { EventService } from '../../Services/event.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-event',
@@ -8,10 +11,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddEventComponent implements OnInit {
   eventForm: FormGroup;
-  categories = ['Art', 'Collectibles', 'Electronics', 'Fashion', 'Furniture'];
+  categories:any;
   inactiveItems: any[] = [];
-  selectedItems: any[] = [];
-  uploadedImage: File | null = null;
+  selectedItems: number[]=[];
+  uploadedImage!: File;
   fileName: string = ''; // لحفظ اسم الملف المختار
 
   allInactiveItems: { [key: string]: any[] } = {
@@ -37,31 +40,37 @@ export class AddEventComponent implements OnInit {
     ]
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private categoryService:CategoryService,private eventService:EventService
+    ,private toaster:ToastrService
+  ) {
     this.eventForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
       category: ['', Validators.required],
+      image: ['', Validators.required],
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllCategory();
+  }
 
   onCategoryChange(event: Event): void {
     const target = event.target as HTMLSelectElement;
     const category = target.value;
-    this.inactiveItems = this.allInactiveItems[category] || [];
+    this.inactiveItems = this.categories.result[parseInt(category)-1].items || [];
+    console.log(this.categories.result[parseInt(category)-1].items);
     this.selectedItems = [];
   }
 
-  onItemSelect(event: Event, item: any): void {
+  onItemSelect(event: Event, itemID: number): void {
     const target = event.target as HTMLInputElement;
     if (target.checked) {
-      this.selectedItems.push(item);
+      this.selectedItems.push(itemID);
     } else {
-      this.selectedItems = this.selectedItems.filter(i => i !== item);
+      this.selectedItems = this.selectedItems.filter(i => i !== itemID);
     }
   }
 
@@ -81,12 +90,41 @@ export class AddEventComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.eventForm.valid) {
-      console.log('Form Data:', this.eventForm.value);
-      console.log('Selected Items:', this.selectedItems);
-      console.log('Uploaded Image:', this.uploadedImage);
-    } else {
-      console.log('Form is invalid');
-    }
+    const formData = new FormData();
+
+    formData.append("Title",this.eventForm.controls['name']?.value)
+    formData.append("Description",this.eventForm.controls['description']?.value)
+    formData.append("Type",this.eventForm.controls['category']?.value)
+    formData.append("startDate",this.eventForm.controls['startDate']?.value)
+    formData.append("EndDate",this.eventForm.controls['endDate']?.value)
+    formData.append("Image",this.uploadedImage,this.uploadedImage.name);
+    formData.append("itemsID",this.selectedItems.join("-"));
+    console.log(formData);
+
+    this.eventService.AddEvent(formData).subscribe({
+      next:(res)=>{this.toaster.success("The Event Added");console.log(this.eventForm.controls['name']?.value,
+        this.eventForm.controls['description']?.value,
+        this.eventForm.controls['category']?.value,
+        this.eventForm.controls['startDate']?.value,
+        this.eventForm.controls['endDate']?.value,
+        this.uploadedImage,
+        this.selectedItems
+      );
+      },
+      error:(err)=>{this.toaster.error("The Event Not Added");console.log(this.eventForm.controls['name']?.value,
+        this.eventForm.controls['description']?.value,
+        this.eventForm.controls['category']?.value,
+        this.eventForm.controls['startDate']?.value,
+        this.eventForm.controls['endDate']?.value,
+        this.uploadedImage,
+        this.selectedItems)}
+    })
+  }
+
+  getAllCategory(){
+    this.categoryService.getCategories().subscribe({
+      next:(res:any)=>{this.categories=res;console.log(res);
+      }
+    })
   }
 }
