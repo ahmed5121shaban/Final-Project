@@ -6,12 +6,12 @@ import { finalize } from 'rxjs/operators';
 export const LoaderInterceptor: HttpInterceptorFn = (req, next) => {
   const service = inject(LoaderService);
 
-  // عرض اللودر قبل إرسال الطلب
+  console.log("the loader start hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
   service.show();
 
   return next(req).pipe(
     finalize(() => {
-      // إخفاء اللودر بعد انتهاء الطلب
+      console.log("the loader ended hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
       service.hide();
     })
   );

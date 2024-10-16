@@ -40,9 +40,9 @@
             <div class="bid-info-place  mb-3">
                 <div class="bid-info row bg-light  mb-3">
                     <div class="heighest-bid col-6">
-                        <p>Highest bid:</p>
-                        @if (highestBid.result.amount) {
-                          <h5>{{highestBid.result.amount}}$</h5>
+                        <p>Last bid:</p>
+                        @if (auctionDetails.bids[0]!=null) {
+                          <h5>{{auctionDetails.bids[auctionDetails.bids.length-1].amount}}$</h5>
                         }@else {
                           <h5>No Bids Here $</h5>
                         }
@@ -130,12 +130,12 @@
 
             <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
                 <p class="title">Bid history</p>
-                @for (bid of allBidsINAuction; track $index) {
+                @for (bid of auctionDetails.bids; track $index) {
                 <div class="row single-bid mb-1">
 
-                    <div class="col-4 bidder">{{bid.buyer.user.name}}</div>
+                    <div class="col-4 bidder">{{bid.buyerName}}</div>
                     <div class="col-4 bid-date">{{bid.time|date:'mediumTime'}}</div>
-                    <div class="col-4 bid-amount">{{bid.amount}} {{bid.buyer.user.currency}}</div>
+                    <div class="col-4 bid-amount">{{bid.amount}}</div>
 
                 </div>
               }
