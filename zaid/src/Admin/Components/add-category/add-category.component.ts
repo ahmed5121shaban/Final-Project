@@ -88,7 +88,5 @@ export class AddCategoryComponent {
       console.log('Form is invalid');
     }
   }
-  addCategory() {
-
-  }
+ 
 }

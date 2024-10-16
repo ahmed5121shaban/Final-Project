@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CategoryService } from '../../../Admin/Services/category.service';
 
 
 
@@ -11,8 +12,9 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class HomeComponent implements OnInit {
 
   items:any[]
+  Categories:any[]= [];
 
-  constructor() {
+  constructor(private categoryService:CategoryService) {
 
     this.items=[{
       title:'Classic Car Auction 1',
@@ -66,6 +68,7 @@ export class HomeComponent implements OnInit {
       text2:'$10,000',
       image:'https://picsum.photos/500/520'
     }]
+    
 
   }
 
@@ -223,4 +226,14 @@ export class HomeComponent implements OnInit {
     prev?.append(prev1.item(0) as HTMLElement)
   }
 
+  getAllCategories():void{
+    this.categoryService.getCategories().subscribe({
+      next: res=>{
+        this.Categories=res.result;
+      },
+      error:err=>{
+        console.log("faild",err);  
+      }
+    });
+  }
 }

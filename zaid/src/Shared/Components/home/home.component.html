@@ -335,7 +335,7 @@
 </section>
 
 <!-- Category Section-->
-<section class="py-5 bg-light position-relative">
+<!-- <section class="py-5 bg-light position-relative">
   <div class="container my-5">
     <a routerLink="../action/auction-list" class="mb-5 fs-2 fw-bold text-decoration-none">Popular searches</a>
   </div>
@@ -394,8 +394,27 @@
       </div>
     </a>
   </div>
-</section>
+</section> -->
 
+<section class="py-5 bg-light ">
+  <div class="container"><h2 class="fw-bold py-5">Categories</h2></div>
+  <owl-carousel-o [options]="CategoriesCarousel" class="d-flex flex-nowrap ">
+    <ng-template carouselSlide *ngFor="let category of Categories ; let i = index">
+      <div class="shadow rounded-4 p-3 bg-dark" style="width: 96%; height: 300px;">
+        <div class=" position-relative">
+          <img [src]="'http://localhost:5204/' + {{category.image.src}}" class="card-img-top" alt="Mark Seliger Print">
+          <div class=" card-icon bg-dark">
+            <a routerLink="" class="fa-regular fa-heart text-decoration-none" style="color: #ffffff;"></a>
+          </div>
+        </div>
+     </div>
+    </ng-template>
+ 
+      
+    
+  </owl-carousel-o>
+</section>
+ 
 <!-- How It Works Section -->
 <section class="py-5 bg-dark text-white">
   <section class="why-choose-us py-5">
