@@ -106,41 +106,39 @@
                                 formControlName="sellPrice" [ngClass]="{
                         'is-invalid': auctionForm.controls['sellPrice'].invalid
                     }">
-                            <div class="invalid-feedback">
-                                @if (auctionForm.controls['sellPrice'].hasError("pattern")) {
-                                <span>reserve price must be a number </span>
-                                }@else if(auctionForm.controls['sellPrice'].hasError("min")){
-                                <span> reserve price must be more than 49 L.E </span>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-section mb-4">
-
-                        <div class="mb-3">
-                            <label for="formFileMultiple" class="form-label">Upload Warranty certificate ,contract
-                                (if
-                                has)</label>
-                            <input class="form-control" type="file" (change)="chooseContract($event)"
-                                id="formFileMultiple" formControlName="Contract" multiple>
-                        </div>
-                    </div>
-                    <div *ngIf="Contract" class="image-previews d-flex">
-                        <div>
-                            <img [src]="'http://localhost:5204/' + Contract" alt="Selected Image" width="200"
-                                style="margin-right: 10px;">
-                        </div>
-                    </div>
-
-
-                    <div class="d-flex justify-content-center align-items-center">
-                        <button class="btn btn-secondary me-3 my-4 px-5" type="submit">Add item</button>
-                        <button routerLink="" class="btn btn-outline-primary bg-transparent my-4 px-4">Cancel</button>
-                    </div>
+                <div class="invalid-feedback">
+                    @if (auctionForm.controls['sellPrice'].hasError("pattern")) {
+                        <span>reserve price must be a number </span>
+                    }@else if(auctionForm.controls['sellPrice'].hasError("min")){
+                        <span> reserve price must be more than 49 L.E </span>
+                    }
                 </div>
             </div>
         </div>
-    </form>
-
-
+        <div class="form-section mb-4">
+            
+            <div class="mb-3">
+                <label for="formFileMultiple" class="form-label">Upload Warranty certificate ,contract
+                    (if
+                    has)</label>
+                    <input class="form-control" type="file" (change)="chooseContract($event)"
+                    id="formFileMultiple" formControlName="Contract" multiple>
+                </div>
+            </div>
+            <div *ngIf="Contract" class="image-previews d-flex">
+                <div>
+                  <img [src]="'http://localhost:5204/' + Contract" alt="Selected Image" width="200" style="margin-right: 10px;">
+                </div>
+            </div>
+            
+            
+            <div class="d-flex justify-content-center align-items-center">
+                <button class="btn btn-secondary me-3 my-4 px-5" type="submit" >Add item</button>
+                <button routerLink=""
+                class="btn btn-outline-primary bg-transparent my-4 px-4">Cancel</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
 </div>
