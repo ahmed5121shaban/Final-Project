@@ -23,11 +23,11 @@
   margin-top: 20px;
 }
 
-img.auction-image {
-  border-radius: 8px;
-  width: 100px;
-  height: auto;
+.auction-image {
+  max-width: 100%;  /* Ensures the image fits within its container */
+  height: auto;     /* Maintains aspect ratio */
 }
+
 
 a.live-auction-link {
   color: #007bff;
