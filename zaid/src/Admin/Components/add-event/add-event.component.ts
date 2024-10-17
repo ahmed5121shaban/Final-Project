@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from '../../Services/category.service';
 import { EventService } from '../../Services/event.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-event',
@@ -41,7 +42,7 @@ export class AddEventComponent implements OnInit {
   };
 
   constructor(private fb: FormBuilder,private categoryService:CategoryService,private eventService:EventService
-    ,private toaster:ToastrService
+    ,private toaster:ToastrService,private router:Router
   ) {
     this.eventForm = this.fb.group({
       name: ['', Validators.required],
@@ -102,22 +103,8 @@ export class AddEventComponent implements OnInit {
     console.log(formData);
 
     this.eventService.AddEvent(formData).subscribe({
-      next:(res)=>{this.toaster.success("The Event Added");console.log(this.eventForm.controls['name']?.value,
-        this.eventForm.controls['description']?.value,
-        this.eventForm.controls['category']?.value,
-        this.eventForm.controls['startDate']?.value,
-        this.eventForm.controls['endDate']?.value,
-        this.uploadedImage,
-        this.selectedItems
-      );
-      },
-      error:(err)=>{this.toaster.error("The Event Not Added");console.log(this.eventForm.controls['name']?.value,
-        this.eventForm.controls['description']?.value,
-        this.eventForm.controls['category']?.value,
-        this.eventForm.controls['startDate']?.value,
-        this.eventForm.controls['endDate']?.value,
-        this.uploadedImage,
-        this.selectedItems)}
+      next:(res)=>{this.toaster.success("The Event Added");this.router.navigateByUrl('/admin/events-list')},
+      error:(err)=>{this.toaster.error("The Event Not Added");}
     })
   }
 

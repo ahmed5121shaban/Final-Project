@@ -6,15 +6,17 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class EventService {
-
+  getAllEventUrl="api/Event"
   addEventUrl="api/Event"
   apiUrl=environment.apiUrl
 constructor(private http:HttpClient) { }
 
 AddEvent(formData:any){
-  console.log(formData);
-  console.log(`${this.apiUrl}${this.addEventUrl}`);
   return this.http.post(`${this.apiUrl}${this.addEventUrl}`,formData)
+}
+
+GetAllEvent(){
+  return this.http.get(`${this.apiUrl}${this.getAllEventUrl}`);
 }
 
 }
