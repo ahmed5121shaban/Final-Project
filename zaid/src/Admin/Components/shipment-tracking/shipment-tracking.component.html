@@ -1,0 +1,77 @@
+<div class="container">
+    <!-- Shipment Details -->
+    <div class="shipment-detail mt-5">
+        <h4>Shipment #123456789</h4>
+        <p><strong>From:</strong> New York, USA</p>
+        <p><strong>To:</strong> Los Angeles, USA</p>
+        <p><strong>Estimated Delivery:</strong> 2024-10-20</p>
+    </div>
+
+    <!-- Dropdown to Change Shipment Status -->
+    <div class="form-group mt-4">
+        <label for="shipmentStatus">Change Shipment Status:</label>
+        <select id="shipmentStatus" class="form-control" (change)="onStatusChange($event)">
+            <option value="Shipped">Shipped</option>
+            <option value="In Transit">In Transit</option>
+            <option value="Out for Delivery">Out for Delivery</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
+        <button class="btn btn-primary mt-2" (click)="updateStatus()">Update Status</button>
+    </div>
+
+    <!-- Shipment Tracking Progress -->
+    <div class="progress mb-4">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 50%;"
+            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">In Transit</div>
+    </div>
+
+    <!-- Tracking Status Timeline -->
+    <div class="tracking-status">
+        <div class="tracking-step">
+            <div class="circle bg-success"></div>
+            <p>Shipped</p>
+        </div>
+        <div class="tracking-step">
+            <div class="circle bg-secondary"></div>
+            <p>In Transit</p>
+        </div>
+        <div class="tracking-step">
+            <div class="circle bg-secondary"></div>
+            <p>Out for Delivery</p>
+        </div>
+        <div class="tracking-step">
+            <div class="circle bg-secondary"></div>
+            <p>Delivered</p>
+        </div>
+    </div>
+
+    <!-- Shipment Events -->
+    <h4 class="mt-5">Shipment Events</h4>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2024-10-15</td>
+                <td>New York, USA</td>
+                <td>Shipped</td>
+            </tr>
+            <tr>
+                <td>2024-10-16</td>
+                <td>Chicago, USA</td>
+                <td>In Transit</td>
+            </tr>
+            <tr>
+                <td>2024-10-17</td>
+                <td>Los Angeles, USA</td>
+                <td>Out for Delivery</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

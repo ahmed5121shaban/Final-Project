@@ -1,0 +1,25 @@
+.container {
+    width: 100%;
+    padding: 20px;
+    background-color:white;
+  }
+.tracking-status {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+
+  .tracking-step {
+    text-align: center;
+  }
+
+  .progress-bar {
+    height: 20px;
+  }
+
+  .shipment-detail {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    margin-bottom: 20px;
+  }

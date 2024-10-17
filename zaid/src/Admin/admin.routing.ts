@@ -10,6 +10,7 @@ import { AuctionsListComponent } from './Components/auctions-list/auctions-list.
 import { ComplaintsListComponent } from './Components/complaints-list/complaints-list.component';
 import { ItemsReviewComponent } from './Components/items-review/items-review.component';
 import { AddCategoryComponent } from './Components/add-category/add-category.component';
+import { ShipmentTrackingComponent } from './Components/shipment-tracking/shipment-tracking.component';
 
 
 const routes: Routes = [
@@ -19,11 +20,11 @@ const routes: Routes = [
   { path: 'add-event', component: AddEventComponent },
   { path: 'events-list', component: EventsListComponent },
   { path: 'auctions-list', component: AuctionsListComponent },
-  { path: 'auction-live-stream', component: AuctionLiveStreamComponent },
+  { path: 'auction-live-stream/:id', component: AuctionLiveStreamComponent },
+  { path: 'Shipment-Tracking', component: ShipmentTrackingComponent },
   { path: 'complaints-list', component: ComplaintsListComponent },
   { path: 'items-review', component: ItemsReviewComponent },
-  { path: 'add-category', component: AddCategoryComponent }
-
+  { path: 'add-category', component: AddCategoryComponent },
 
 ];
 
