@@ -16,13 +16,13 @@ export class AuctionListComponent implements OnInit {
 
   // Pagination properties
   pageActive: number = 1; 
-  itemsPerPage: number = 4; 
+  itemsPerPage: number = 6; 
   totalItemsActive: number = 0;
     // Filter properties
   searchtxt: string = '';
   selectedCategory: string = ''; 
   sortOption: string = 'Id'; 
-  isAscending: boolean = true;
+  isAscending: boolean = false;
   filterOption: string =''; 
 
   constructor(

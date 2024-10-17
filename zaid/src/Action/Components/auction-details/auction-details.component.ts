@@ -25,14 +25,11 @@ export class AuctionDetailsComponent implements OnChanges {
   paymentCount!: number;
   auctionId!: number;
   auctionDetails: any;
- similarAuctions: any[] = [];
+  similarAuctions: any[] = [];
   groupedSimilarAuctions: any[][] = []; // Grouped auctions for the carouses
   successesPayment!: boolean;
   paymentDetail!: any;
   secretKey!: string
-  highestBid!: any;
-  allBidsINAuction: any;
-
   method!:number
 
 
@@ -79,21 +76,6 @@ export class AuctionDetailsComponent implements OnChanges {
         console.log(err);
       }
     });
-    this.paymentService.getHighestBid(this.auctionId).subscribe({
-      next:(res:any)=>{this.highestBid=res
-        ;console.log(res,'highestBid');
-      },
-      error:(err)=>console.log(err)
-    });
-    this.paymentService.getAllBidsInAuction(this.auctionId).subscribe({
-      next:(res:any)=>{
-        console.log(res);
-         this.allBidsINAuction=res
-        },
-      error:(err)=>console.log(err)
-
-    });
-
 
   }
 

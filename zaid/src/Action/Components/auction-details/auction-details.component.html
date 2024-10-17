@@ -9,7 +9,7 @@
                 <div class="carousel-inner mb-5">
                     <ng-container *ngFor="let image of auctionDetails.item.images; let i = index">
                         <div class="carousel-item" [class.active]="i === 0">
-                            <img src="http://localhost:5204//{{image}}" class="d-block w-100" alt="Auction Image {{ i + 1 }}">
+                            <img [src]="'http://localhost:5204/' + image" class="d-block w-100" alt="Auction Image {{ i + 1 }}">
                         </div>
                     </ng-container>
                 </div>
@@ -27,7 +27,7 @@
                     <ng-container *ngFor="let image of auctionDetails.item.images; let i = index">
                         <button type="button" [attr.data-bs-target]="'#itemimages'" [attr.data-bs-slide-to]="i"
                                 [class.active]="i === 0" aria-current="true" [attr.aria-label]="'Slide ' + (i + 1)">
-                            <img [src]="'http://localhost:5204//' + image" class="d-block w-100" alt="Thumbnail Image {{ i + 1 }}">
+                            <img [src]="'http://localhost:5204/' + image" class="d-block w-100" alt="Thumbnail Image {{ i + 1 }}">
                         </button>
                     </ng-container>
                 </div>
@@ -40,9 +40,9 @@
             <div class="bid-info-place  mb-3">
                 <div class="bid-info row bg-light  mb-3">
                     <div class="heighest-bid col-6">
-                        <p>Highest bid:</p>
-                        @if (highestBid.result.amount) {
-                          <h5>{{highestBid.result.amount}}$</h5>
+                        <p>Last bid:</p>
+                        @if (auctionDetails.bids[0]!=null) {
+                          <h5>{{auctionDetails.bids[auctionDetails.bids.length-1].amount}}$</h5>
                         }@else {
                           <h5>No Bids Here $</h5>
                         }
@@ -130,12 +130,12 @@
 
             <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
                 <p class="title">Bid history</p>
-                @for (bid of allBidsINAuction; track $index) {
+                @for (bid of auctionDetails.bids; track $index) {
                 <div class="row single-bid mb-1">
 
-                    <div class="col-4 bidder">{{bid.buyer.user.name}}</div>
+                    <div class="col-4 bidder">{{bid.buyerName}}</div>
                     <div class="col-4 bid-date">{{bid.time|date:'mediumTime'}}</div>
-                    <div class="col-4 bid-amount">{{bid.amount}} {{bid.buyer.user.currency}}</div>
+                    <div class="col-4 bid-amount">{{bid.amount}}</div>
 
                 </div>
               }
@@ -182,7 +182,7 @@
             <div class="row">
                 <div class="">
                     <h5>
-                        <a href="#profile" class="text-decoration-none">Name :{{ auctionDetails.item.seller.user.name }}</a>
+                        <a href="#profile" class="text-decoration-none">Name : {{ auctionDetails.item.sellerName }}</a>
                     </h5>
                 </div>
                 <div class=" text-right">

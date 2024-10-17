@@ -24,6 +24,9 @@ import { SellerwithdrawComponent } from './Components/Profile-Management/sellerw
 import { WonAuctionComponent } from './Components/Profile-Management/won-auction/won-auction.component';
 import { LostAuctionComponent } from './Components/Profile-Management/lost-auction/lost-auction.component';
 import { LiveAuctionsComponent } from './Components/Profile-Management/live-auctions/live-auctions.component';
+import { ComplainAddComponent } from './Components/Profile-Management/complain-add/complain-add.component';
+import { MyLiveAuctionsComponent } from './Components/Profile-Management/my-live-auctions/my-live-auctions.component';
+import { AdminModule } from '../Admin/Admin.module';
 
 
 
@@ -34,7 +37,8 @@ import { LiveAuctionsComponent } from './Components/Profile-Management/live-auct
     UserRoutes,
     FormsModule,
     CarouselModule,
-    ReactiveFormsModule,HttpClientModule
+    ReactiveFormsModule,
+    AdminModule
   ],
   declarations: [
     RegisterComponent,
@@ -59,7 +63,10 @@ SellerwithdrawComponent,
     UserProfileComponent,
     LiveAuctionsComponent,
     WonAuctionComponent,
-    LostAuctionComponent
+    LostAuctionComponent,
+    ComplainAddComponent,
+    MyLiveAuctionsComponent,
+    
     
   ],
  

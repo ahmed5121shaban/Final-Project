@@ -1,4 +1,3 @@
-<button class="btn" (click)="get()">get</button>
 <div class="container mt-5">
   <h2 class=" mb-4">Review Items</h2>
  
@@ -24,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of items">
+        <tr *ngFor="let item of items ; let i = index">
           <td>{{ item.title }}</td>
           <td>{{ item.description }}</td>
           <td>{{ item.startPrice }}</td>
@@ -32,21 +31,21 @@
           <td>{{ item.contract }}</td>
           <td>
             <!-- Small Carousel inside the table -->
-            <div id="carouselExample1" class="carousel slide" data-bs-ride="carousel" style="width: 100px;">
+            <div id="carousel{{i}}" class="carousel slide" data-bs-ride="carousel" style="width: 100px;">
               <div class="carousel-inner">
 
                 <div class="carousel-item" *ngFor="let image of item.images; let i = index" [class.active]="i === 0">
-                  <img [src]="image.src" class="d-block w-100 img-thumbnail" alt="Image "
-                    (click)="showImage(image.src)">
+                  <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 img-thumbnail" alt="Image "
+                    (click)="showImage('http://localhost:5204/' + image.src)">
                 </div>
 
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample1"
+              <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + i"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample1"
+              <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + i"
                 data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
@@ -56,8 +55,8 @@
 
 
           <td>
-            <button class="btn btn-info"(click)="acceptItem(item.id)">Accept</button>
-            <button class="btn btn-danger" (click)="openRejectModal(item.id)">Reject</button>
+            <button class="btn btn-secondary me-lg-2 mb-lg-0 mb-2 "(click)="acceptItem(item.id)">Accept</button>
+            <button class="btn btn-primary" (click)="openRejectModal(item.id)">Reject</button>
 
             <!-- <a class="dropdown-item" href="#">
               <i class="fa-regular fa-x"></i>
@@ -107,8 +106,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" (click)="rejectItem(itemIdToReject, rejectionReason)">Submit</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" (click)="rejectItem(itemIdToReject, rejectionReason)">Submit</button>
       </div>
     </div>
   </div>
