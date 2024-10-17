@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CategoryService } from '../../../Admin/Services/category.service';
+import { FavCategoryService } from '../../Services/fav/fav-category.service';
 
 
 
@@ -12,9 +14,12 @@ import { CategoryService } from '../../../Admin/Services/category.service';
 export class HomeComponent implements OnInit {
 
   items:any[]
-  Categories:any[]= [];
+  Categories:any[]=[]
+  favCategories:any[]=[]
+  isFav: { [key: number]: boolean } = {};
+  
 
-  constructor(private categoryService:CategoryService) {
+  constructor(private cookieService:CookieService,private categoryService:CategoryService,private FavcategoryService:FavCategoryService) {
 
     this.items=[{
       title:'Classic Car Auction 1',
@@ -68,11 +73,67 @@ export class HomeComponent implements OnInit {
       text2:'$10,000',
       image:'https://picsum.photos/500/520'
     }]
-    
 
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  this.getAllFavCatIds();
+  this.getAllCategories();
+
+  }
+
+  getAllCategories():void{
+    this.categoryService.getCategories().subscribe({
+      next: res=>{
+        this.Categories=res.result;
+        console.log(this.Categories);
+        this.UpdateCategoris();
+        
+      },
+      error:err=>{
+        console.log("faild",err);  
+      }
+    });
+  }
+  addToFav(categoryId:number){
+this.FavcategoryService.AddToFav(categoryId).subscribe({
+  next:res=>{
+    if(res.result =="added"){
+      this.isFav[categoryId]=true;
+    }
+    if(res.result=="removed"){
+      this.isFav[categoryId]=false;
+    }
+  console.log(res.result); 
+  },
+  error:err=>{
+    console.log("addtofaverror ",err); 
+  }
+})
+  
+  
+
+
+  }
+  getAllFavCatIds(){
+    this.FavcategoryService.getFavCatIds().subscribe({
+      next:res=>{
+      
+        res.forEach((catId:any)=>
+          this.isFav[catId]=true 
+        )
+      },
+      error:err=>{
+        console.log("errorr",err)
+      }
+    })
+  }
+  UpdateCategoris(){
+    this.Categories.forEach(category=>
+      this.isFav[category.id]=this.isFav[category.id]||false
+    )
+  }
+
 
 
   customOptions: OwlOptions = {
@@ -216,6 +277,37 @@ export class HomeComponent implements OnInit {
     autoplaySpeed: 1000,
   }
 
+  categoriesCarousel: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 300,
+    navText: ['<',
+              '>'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 2
+      },
+      940: {
+        items: 3
+      }
+    },
+    slideBy: 5,
+    nav: false,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+    autoplaySpeed: 1000,
+  }
+
   toNext(next:HTMLElement){
     let next1 = next?.children
     next?.prepend(next1?.item(next1.length - 1) as HTMLElement)
@@ -226,14 +318,5 @@ export class HomeComponent implements OnInit {
     prev?.append(prev1.item(0) as HTMLElement)
   }
 
-  getAllCategories():void{
-    this.categoryService.getCategories().subscribe({
-      next: res=>{
-        this.Categories=res.result;
-      },
-      error:err=>{
-        console.log("faild",err);  
-      }
-    });
-  }
+
 }
