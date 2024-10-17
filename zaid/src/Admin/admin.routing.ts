@@ -13,6 +13,7 @@ import { AddCategoryComponent } from './Components/add-category/add-category.com
 
 
 const routes: Routes = [
+
   { path: "home", component: DashboardHomeComponent },
   { path: 'users-list', component: UsersListComponent },
   { path: 'profile-review', component: ProfileReviewComponent },
