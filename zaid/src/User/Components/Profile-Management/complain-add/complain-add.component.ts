@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ComplaintService } from '../../../Services/complaint.service'; 
 import { Seller } from '../../../interface/seller'; 
@@ -12,7 +12,11 @@ export class ComplainAddComponent implements OnInit {
   complainForm: FormGroup;
   sellers: Seller[] = [];
 
-  constructor(private fb: FormBuilder, private complaintService: ComplaintService) {
+  constructor(
+    private fb: FormBuilder, 
+    private complaintService: ComplaintService,
+    private cdr: ChangeDetectorRef
+  ) {
     this.complainForm = this.fb.group({
       sellerId: ['', Validators.required],
       reason: ['', Validators.required]
@@ -23,27 +27,36 @@ export class ComplainAddComponent implements OnInit {
     this.loadSellers();
   }
 
-  // تحميل قائمة البائعين
   loadSellers(): void {
-    this.complaintService.getSellers().subscribe(sellers => {
-      this.sellers = sellers;
+    this.complaintService.getSellers().subscribe({
+      next: (sellers) => {
+        this.sellers = sellers;
+        this.cdr.detectChanges(); // إعادة التحقق من التغييرات
+      },
+      error: (err) => {
+        if (err.status === 401) {
+          console.error('Unauthorized access. Please login.');
+          // عرض رسالة أو إعادة توجيه المستخدم
+        } else {
+          console.error('Error loading sellers', err);
+        }
+      }
     });
   }
 
-  // معالجة تغيير البائع
   onSellerChange(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement; // تحويل EventTarget إلى HTMLSelectElement
-    const sellerId = selectElement.value; // الحصول على sellerId
+    const selectElement = event.target as HTMLSelectElement;
+    const sellerId = selectElement.value;
     this.complainForm.patchValue({ sellerId });
   }
 
-  // إرسال الشكوى
   onSubmit(): void {
     if (this.complainForm.valid) {
       const complaintData = this.complainForm.value;
       this.complaintService.addComplaint(complaintData).subscribe(response => {
-        // التعامل مع الاستجابة بعد إضافة الشكوى
         console.log('Complaint submitted:', response);
+      }, error => {
+        console.error('Error submitting complaint', error);
       });
     }
   }
