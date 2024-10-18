@@ -25,6 +25,7 @@ import { WonAuctionComponent } from './Components/Profile-Management/won-auction
 import { LostAuctionComponent } from './Components/Profile-Management/lost-auction/lost-auction.component';
 import { LiveAuctionsComponent } from './Components/Profile-Management/live-auctions/live-auctions.component';
 import { MyLiveAuctionsComponent } from './Components/Profile-Management/my-live-auctions/my-live-auctions.component';
+import { WatchlistComponent } from "./Components/Profile-Management/watchlist/watchlist.component";
 
 
 
@@ -61,7 +62,8 @@ SellerwithdrawComponent,
     LiveAuctionsComponent,
     WonAuctionComponent,
     LostAuctionComponent,
-    MyLiveAuctionsComponent
+    MyLiveAuctionsComponent,
+    WatchlistComponent
     
   ],
  

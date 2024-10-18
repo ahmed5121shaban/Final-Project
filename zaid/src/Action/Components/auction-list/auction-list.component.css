@@ -83,3 +83,10 @@
 .card-icon i:hover {
   color: #ff5252; /* Change icon color when hovered */
 }
+.text-danger{
+  color: #ff5252;
+}
+
+.card-icon{
+  z-index: 1200 !important;
+}

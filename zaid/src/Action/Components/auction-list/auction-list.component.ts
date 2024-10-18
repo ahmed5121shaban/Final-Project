@@ -4,6 +4,7 @@ import { AuctionService } from '../../Services/auction.service';
 import { CategoryService } from '../../../Admin/Services/category.service';
 import { Pagination } from '../../Models/models/pagination.model';
 import { Console } from 'console';
+import { FavouriteService } from '../../Services/favourite.service';
 
 @Component({
   selector: 'app-auction-list',
@@ -11,9 +12,11 @@ import { Console } from 'console';
   styleUrls: ['./auction-list.component.css']
 })
 export class AuctionListComponent implements OnInit {
+
+  isFav:{[key:number]:boolean}={};
   activeAuctions: any[] = [];
   categories: any[] = [];
-
+  favAuctionIds:any[]=[]
   // Pagination properties
   pageActive: number = 1; 
   itemsPerPage: number = 4; 
@@ -28,7 +31,8 @@ export class AuctionListComponent implements OnInit {
   constructor(
     private auctionService: AuctionService,
     private categoryService: CategoryService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private favauctionService:FavouriteService
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +40,7 @@ export class AuctionListComponent implements OnInit {
       this.selectedCategory = params['category'] || '';
       this.loadActiveAuctions();
       this.loadCategories();
+      this.loadFavAuctions();
     });
   }
 
@@ -64,6 +69,7 @@ export class AuctionListComponent implements OnInit {
         next: (pagination: Pagination<any[]>) => {
           this.activeAuctions = pagination.list || [];
           this.totalItemsActive = pagination.totalCount || 0;
+          this.updateFavState();
           console.log(this.activeAuctions);
         },
         error: (err) => {
@@ -101,5 +107,45 @@ export class AuctionListComponent implements OnInit {
       this.loadActiveAuctions();
     }
   }
+
+
+  addToFav(id:number){
+this.favauctionService.addAuctionToFav(id).subscribe({
+  next:(response)=>{
+if(response==="added"){
+    console.log(response);
+this.isFav[id]=true;}
+if(response==="remove")
+  this.isFav[id]=false;
+    
+  },
+  error:(error)=>{
+    console.log(error)
+
+  }
+});
+
+
+}
+
+loadFavAuctions(){
+  this.favauctionService.getAllFavIds().subscribe({
+next:(response) =>{
+  //loop foreach auctionId in the fav list and mark it as favorite
+  response.favAuctionIds.forEach((favauctionId: any)=>{
+this.isFav[favauctionId]=true;
+  });
+},
+error:(error) =>{
+  console.log(error); 
+},
+});
+}
+
+updateFavState(){
+  this.activeAuctions.forEach(auction=>{
+    this.isFav[auction.id]=this.isFav[auction.id]|| false
+  });
+}
 
 }
