@@ -220,6 +220,13 @@ border-bottom: 1px solid #999; */
 
 }
 
+.category-icon{
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  padding: 4px 7px;
+  border-radius: 20px;
+}
 .card-icon{
   position: absolute;
   top: 10%;
@@ -359,4 +366,11 @@ border-bottom: 1px solid #999; */
 }
 .why-choose-us .finix-text{
   position: relative;
+}
+.btn-hover-opacity {
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+.btn-hover-opacity:hover {
+  opacity: 0.5; /* Set opacity to 0.5 on hover */
 }

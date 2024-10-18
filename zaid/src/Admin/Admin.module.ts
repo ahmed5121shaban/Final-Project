@@ -21,11 +21,13 @@ import { ItemsReviewComponent } from './Components/items-review/items-review.com
 import { AddCategoryComponent } from './Components/add-category/add-category.component';
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { CategoryListComponent } from './Components/category-list/category-list.component';
+import { ShortTextPipe } from '../Shared/Pipes/short-text.pipe';
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutes,
     
+
     NgCircleProgressModule.forRoot({
       showUnits: false,
       showSubtitle:true,
@@ -41,6 +43,7 @@ import { CategoryListComponent } from './Components/category-list/category-list.
    DashboardLayoutComponent,
    AuctionLiveStreamComponent,
    ItemsReviewComponent,AddCategoryComponent,
+   ShortTextPipe,
   CategoryListComponent],
 
    providers:[

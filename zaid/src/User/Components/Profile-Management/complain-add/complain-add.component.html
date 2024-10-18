@@ -1,0 +1,19 @@
+<div class="complaint-container">
+  <form [formGroup]="complainForm" (ngSubmit)="onSubmit()" class="complaint-form">
+    <h2 class="form-title">Submit a Complaint</h2>
+    <div class="form-group">
+      <label for="seller">Select Seller</label>
+      <select class="form-control form-select" formControlName="sellerId" (change)="onSellerChange($event)">
+        <option value="" disabled>Select Seller</option>
+        <option *ngFor="let seller of sellers" [value]="seller.id">{{ seller.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="reason">Reason</label>
+      <textarea class="form-control" formControlName="reason" rows="4" placeholder="Enter your complaint reason"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-submit">Submit Complaint</button>
+  </form>
+</div>

@@ -1,13 +1,10 @@
 import { inject } from '@angular/core';
-import {  HttpInterceptorFn } from '@angular/common/http';
+import { HttpInterceptorFn } from '@angular/common/http';
 import { LoaderService } from '../loader intersptors/loader.service';
 import { finalize } from 'rxjs/internal/operators/finalize';
 
-
 export const LoaderInterceptor: HttpInterceptorFn = (req, next) => {
-
-  let service = inject(LoaderService)
-
+  const service = inject(LoaderService);
 
   service.show();
 
@@ -16,5 +13,4 @@ export const LoaderInterceptor: HttpInterceptorFn = (req, next) => {
       service.hide();
     })
   );
-
 }

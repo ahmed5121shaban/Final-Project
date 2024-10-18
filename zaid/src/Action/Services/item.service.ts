@@ -41,10 +41,10 @@ export class ItemService {
     return this.http.put(`${this.apiUrl}/edit/${itemId}`, updatedData);
   }
   getItem(itemId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${itemId}`);
+    return this.http.get<any>(`${this.apiUrl}/${itemId}`);
   }
   getUnreviewdItems():Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/Unreviewed`)
+    return this.http.get<any>(`${this.apiUrl}/Unreviewed`);
   }
 
   AcceptItem(itemId:number):Observable<any>{
@@ -60,17 +60,13 @@ export class ItemService {
 
   rejectItem(itemId: number, rejectReason: string): Observable<any> {
     const url = `${this.apiUrl}/Reject/${itemId}`;
-    const payload = {
-        rejectReason: rejectReason // Send the reason for rejection
-    };
-
-    return this.http.put(url, payload).pipe(
-        catchError((error: HttpErrorResponse) => {
-            console.error('Error details:', error.error);
-            return throwError('Something went wrong, please try again.');
+    return this.http.post(url, JSON.stringify(rejectReason), {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json'
         })
-    );
+    });
 }
+
 
   }
 

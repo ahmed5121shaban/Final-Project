@@ -1,0 +1,69 @@
+.complaint-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f9fc; /* خلفية خفيفة */
+  padding: 2rem;
+}
+
+.complaint-form {
+  background-color: #ffffff; /* خلفية للنموذج */
+  border-radius: 10px; /* زوايا دائرية */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); /* ظل أكثر وضوحًا */
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 500px; /* أقصى عرض للنموذج */
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem; /* مسافة بين العنوان والنموذج */
+  color: #343a40; /* لون العنوان */
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-weight: 600;
+  color: #495057; /* لون أغمق للنص */
+}
+
+.form-select, textarea.form-control {
+  border-radius: 8px; /* زوايا دائرية */
+  padding: 0.75rem;
+  border: 1px solid #ced4da; /* حد رمادي خفيف */
+  transition: border-color 0.3s; /* تأثير عند التركيز */
+}
+
+.form-select:focus, textarea.form-control:focus {
+  border-color: #007bff; /* تغيير اللون عند التركيز */
+  outline: none;
+}
+
+.btn-submit {
+  background-color: #000; /* لون الزر */
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* تأثير عند تمرير الفأرة */
+  width: 100%;
+  font-weight: 600;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3; /* لون داكن عند التمرير */
+  transform: translateY(-2px); /* تأثير التحرك عند التمرير */
+}
+
+@media (max-width: 768px) {
+  .complaint-form {
+    padding: 1rem; /* تقليل الحشو للشاشات الصغيرة */
+  }
+}

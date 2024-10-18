@@ -32,8 +32,8 @@
     <!-- Category -->
     <div class="form-floating mb-3">
       <select id="category" class="form-select" formControlName="category" (change)="onCategoryChange($event)" required>
-        <option value="">Select Category</option>
-        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        <option value="0">Select Category</option>
+        <option *ngFor="let category of categories.result" [value]="category.id">{{ category.name }}</option>
       </select>
       <label for="category" class="form-label">Category</label>
     </div>
@@ -46,18 +46,18 @@
             <th>Image</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Price</th>
+            <th>Start Price</th>
             <th>Select</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of inactiveItems">
-            <td><img [src]="item.imageUrl" alt="{{ item.name }}" class="item-image"></td>
+            <td><img src="http://localhost:5204/{{item.images[0].src}}" alt="{{ item.name }}" class="item-image"></td>
             <td>{{ item.name }}</td>
-            <td>{{ item.description }}</td>
-            <td>${{ item.price }}</td>
+            <td>{{ item.description|shortText }}</td>
+            <td>${{ item.startPrice }}</td>
             <td>
-              <input type="checkbox" (change)="onItemSelect($event, item)">
+              <input type="checkbox" (change)="onItemSelect($event, item.id)">
             </td>
           </tr>
         </tbody>
@@ -65,7 +65,7 @@
     </div>
 
     <!-- Selected Items -->
-<!-- Selected Items -->
+<!-- Selected Items 
 <div *ngIf="selectedItems.length > 0" class="mt-4 selected-items-wrapper">
   <h4>Selected Items</h4>
   <ul class="list-group">
@@ -79,14 +79,14 @@
   </ul>
 </div>
 
-
+ -->
     <!-- Image Upload -->
     <div class="form-floating mb-3 file-upload-wrapper">
-      <input type="file" id="auctionImage" (change)="onFileChange($event)" class="form-control file-input" required />
+      <input type="file" id="auctionImage" formControlName="image" (change)="onFileChange($event)" class="form-control file-input" required />
       <span class="file-name">{{ fileName || 'No image chosen' }}</span>
       <button type="button" class="btn btn-secondary custom-file-btn" (click)="triggerFileInput()">Choose event image</button>
     </div>
 
-    <button type="submit" class="btn btn-primary">Add Event</button>
+    <button type="submit" class="btn btn-primary" [disabled]="(eventForm.invalid)||(selectedItems.length<1)">Add Event</button>
   </form>
 </div>

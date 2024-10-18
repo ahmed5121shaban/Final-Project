@@ -10,15 +10,14 @@ export class PaymentService {
   firstAuctionPaymentUrl = "api/bid/first-auction-payment";
   addPaymentEmailUrl = "api/Payment/add-payment-email";
   getPaymentEmailUrl = "api/Payment/get-payment-email";
-  getHighestBidUrl = "api/bid/get-highest-bid";
-  getAllBidsInAuctionUrl = "api/bid/all-bids-auction";
-  userHavePaymentUrl= "api/bid/user-have-payment";
+  userHavePaymentUrl= "api/Bid/user-have-payment/";
   PaymentForBuyerUrl= "api/payment/payment-for-buyer";
   apiUrl = environment.apiUrl
   constructor(private http:HttpClient) {}
 
-  userHavePayment(){
-    return this.http.get(`${this.apiUrl}${this.userHavePaymentUrl}`);
+  userHavePayment(itemID:number){
+    console.log(itemID,"user have buyer apiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+    return this.http.get(`${this.apiUrl}${this.userHavePaymentUrl}${itemID}`);
   }
 
   firstPaymentAuction(payment:any){
@@ -41,12 +40,5 @@ export class PaymentService {
     return this.http.post(`${this.apiUrl}${this.addBidUrl}`,bid)
   }
 
-  getHighestBid(auctionID:number){
-    return this.http.get(`${this.apiUrl}${this.getHighestBidUrl}/${auctionID}`)
-  }
-
-  getAllBidsInAuction(auctionID:number){
-    return this.http.get(`${this.apiUrl}${this.getAllBidsInAuctionUrl}${auctionID}`);
-  }
 
 }

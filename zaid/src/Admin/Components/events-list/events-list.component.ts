@@ -4,6 +4,9 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SortType } from '@swimlane/ngx-datatable';
 import { PaginationInstance } from 'ngx-pagination'; // إضافة
+import { EventService } from '../../Services/event.service';
+import { ToastrService } from 'ngx-toastr';
+import { CategoryService } from '../../Services/category.service';
 
 interface Event {
   id: number;
@@ -24,14 +27,7 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('datatable', { static: false }) datatable: ElementRef | undefined;
 
-  events: Event[] = [
-    { id: 1, name: 'Art Exhibition', description: 'An exhibition showcasing local artwork.', startDate: new Date('2024-09-01'), endDate: new Date('2024-09-05'), category: 'Art', imageUrl: 'assets/images/art_exhibition.jpg' },
-    { id: 2, name: 'Tech Fair', description: 'A fair displaying the latest tech gadgets.', startDate: new Date('2024-10-15'), endDate: new Date('2024-10-20'), category: 'Electronics', imageUrl: 'assets/images/tech_fair.jpg' },
-    { id: 3, name: 'Food Festival', description: 'A festival celebrating various cuisines.', startDate: new Date('2024-11-10'), endDate: new Date('2024-11-12'), category: 'Food', imageUrl: 'assets/images/food_festival.jpg' },
-    { id: 4, name: 'Cultural Event', description: 'A celebration of local culture.', startDate: new Date('2024-12-01'), endDate: new Date('2024-12-05'), category: 'Culture', imageUrl: 'assets/images/cultural_event.jpg' },
-    { id: 5, name: 'Sports Day', description: 'An event for sports enthusiasts.', startDate: new Date('2024-12-15'), endDate: new Date('2024-12-17'), category: 'Sports', imageUrl: 'assets/images/sports_day.jpg' },
-    { id: 6, name: 'Music Festival', description: 'A festival for music lovers.', startDate: new Date('2024-12-20'), endDate: new Date('2024-12-22'), category: 'Music', imageUrl: 'assets/images/music_festival.jpg' },
-  ];
+  events: Event[] = [];
 
   filteredEvents: Event[] = [];
   currentPageEvents: Event[] = [];
@@ -40,8 +36,10 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
   searchForm: FormGroup;
   sortType: SortType = SortType.single;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
+  categories:any
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private eventService:EventService,private toaster:ToastrService,
+    private categoryService:CategoryService) {
     this.searchForm = this.fb.group({
       name: [''],
       startDate: [''],
@@ -53,7 +51,8 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit(): void {
     this.filteredEvents = [...this.events];
     this.calculatePagination();
-
+    this.getAllEvent();
+    this.getAllCategory();
     this.searchForm.valueChanges
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(() => {
@@ -70,6 +69,7 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     if (this.datatable && this.datatable.nativeElement) {
       const element = this.datatable.nativeElement as HTMLElement;
+      //هنا السطريين دول بيضربو ايرورر
       if (element.getBoundingClientRect) {
         const rect = element.getBoundingClientRect();
         console.log('Element dimensions:', rect);
@@ -126,6 +126,35 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
   get totalPages(): number {
     return Math.ceil(this.filteredEvents.length / this.pageSize);
   }
-  
-  
+
+  getAllEvent(){
+    this.eventService.GetAllEvent().subscribe({
+      next:(res:any)=>{
+        res.result.forEach((element:any) => {
+          this.events.push({
+            id: element.id,
+            name: element.title,
+            description: element.description,
+            startDate: element.startDate,
+            endDate: element.endDate,
+            category: element.type,
+            imageUrl: element.image
+          })
+        });
+        console.log(this.events);
+
+      },
+      error:(err)=>{
+        this.toaster.warning(err,"not event add")
+      }
+    })
+  }
+
+  getAllCategory(){
+    this.categoryService.getCategories().subscribe({
+      next:(res:any)=>{this.categories=res;console.log(res);
+      }
+    })
+  }
+
 }

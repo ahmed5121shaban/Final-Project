@@ -16,16 +16,19 @@ export class AuctionListComponent implements OnInit {
   isFav:{[key:number]:boolean}={};
   activeAuctions: any[] = [];
   categories: any[] = [];
+  categorysearch:any={};
+  
+
   favAuctionIds:any[]=[]
   // Pagination properties
   pageActive: number = 1; 
-  itemsPerPage: number = 4; 
+  itemsPerPage: number = 6; 
   totalItemsActive: number = 0;
     // Filter properties
   searchtxt: string = '';
   selectedCategory: string = ''; 
   sortOption: string = 'Id'; 
-  isAscending: boolean = true;
+  isAscending: boolean = false;
   filterOption: string =''; 
 
   constructor(
@@ -40,6 +43,11 @@ export class AuctionListComponent implements OnInit {
       this.selectedCategory = params['category'] || '';
       this.loadActiveAuctions();
       this.loadCategories();
+      //console.log(this.selectedCategory);
+     // console.log(this.categories);
+     // this.categorysearch=this.categories.filter(category=>category.name==this.selectedCategory);
+     //console.log(this.categorysearch);
+      
       this.loadFavAuctions();
     });
   }
@@ -56,7 +64,7 @@ export class AuctionListComponent implements OnInit {
     this.loadActiveAuctions(); 
   }
   
-    loadActiveAuctions(): void {
+  loadActiveAuctions(): void {
       this.auctionService.getPaginatedAuctions(
         this.searchtxt,
         this.sortOption,     
@@ -76,13 +84,16 @@ export class AuctionListComponent implements OnInit {
           console.error('Error fetching active auctions', err);
         }
       });
-    }
-
+  }
 
   loadCategories(): void {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
         this.categories = data.result;
+        console.log(this.selectedCategory);
+        this.categorysearch=this.categories.filter(category=>category.name==this.selectedCategory);
+        console.log(this.categorysearch);
+        
       },
       error: (err) => {
         console.error('Error fetching categories', err);
