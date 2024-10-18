@@ -30,7 +30,7 @@ export class AuctionDetailsComponent implements OnChanges {
   successesPayment!: boolean;
   paymentDetail!: any;
   secretKey!: string
-  method!:number
+  method!:number;
 
 
   constructor(private paymentService:PaymentService ,
@@ -38,15 +38,10 @@ export class AuctionDetailsComponent implements OnChanges {
     private toastr: ToastrService,
     private route: ActivatedRoute)
   {
-     this.paymentService.userHavePayment().subscribe({
-       next:(res:any)=>{
-         console.log(res,"paymentCount")
-          this.paymentCount=res.count;
-          if(res.count==3)
-            this.method=res.method[0]
-          console.log(this.method);
-
-        }
+    this.route.params.subscribe(params => {
+      this.auctionId = +params['id']; // Get auction ID from route
+      this.getAuctionDetails(); // Fetch auction details by ID
+      this.loadSimilarAuctions();
     });
 
   }
@@ -59,37 +54,53 @@ export class AuctionDetailsComponent implements OnChanges {
 
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.auctionId = +params['id']; // Get auction ID from route
-      this.getAuctionDetails(); // Fetch auction details by ID
-      this.loadSimilarAuctions();
-    });
-    // this.groupItems();
-    this.paymentService.getPaymentForBuyer().subscribe({
-      next:(res)=>{
-        this.successesPayment = true;
-        this.paymentDetail = res;
-        console.log(res)
-      },
-      error:(err)=>{
-        this.successesPayment = false;
-        console.log(err);
-      }
-    });
+    this.getPaymentForBuyer();
 
+  }
+
+  getPaymentForBuyer(){
+  this.paymentService.getPaymentForBuyer().subscribe({
+    next:(res)=>{
+      this.successesPayment = true;
+      this.paymentDetail = res;
+      console.log(res)
+    },
+    error:(err)=>{
+      this.successesPayment = false;
+      console.log(err);
+    }
+  });
+  }
+  userHavePayment(itemID:number){
+    //error in this.auctionDetails.item.id/////
+
+    this.paymentService.userHavePayment(itemID).subscribe({
+      next:(res:any)=>{
+         this.paymentCount=res.count;
+         if(res.count==3)
+           this.method=res.method[0]
+
+       },error:(err)=>{console.log(err)}
+   });
   }
 
     // Fetch auction details from service by ID
     getAuctionDetails(): void {
+
       this.auctionService.getAuctionById(this.auctionId).subscribe({
         next:(res: any) => {
           this.auctionDetails = res;
           console.log('Auction details:', this.auctionDetails);
+          this.userHavePayment(res.item.id);
         },
         error:(error) => {
           console.error('Error fetching auction details:', error);
         }
       });
+
+
+
+
     }
 
 
