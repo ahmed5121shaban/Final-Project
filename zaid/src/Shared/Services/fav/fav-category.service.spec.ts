@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CategoryService } from './category.service';
+import { FavCategoryService } from './fav-category.service';
 
-describe('CategoryService', () => {
-  let service: CategoryService;
+describe('FavCategoryService', () => {
+  let service: FavCategoryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CategoryService);
+    service = TestBed.inject(FavCategoryService);
   });
 
   it('should be created', () => {

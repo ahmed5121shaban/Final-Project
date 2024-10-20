@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './shipment-tracking.component.css'
 })
 export class ShipmentTrackingComponent {
+  updateStatus(){
 
+  }
+  onStatusChange(event:Event){
+
+  }
 }

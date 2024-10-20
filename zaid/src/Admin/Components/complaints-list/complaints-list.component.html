@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <form [formGroup]="searchForm" class="search-container mb-4">
     <div class="input-group mb-2">
-      <input type="text" class="form-control" placeholder="Search by title ..." formControlName="title">
+      <input type="text" class="form-control" placeholder="Search by reason ..." formControlName="reason">
     </div>
     <div class="input-group mb-2">
       <input type="date" class="form-control" placeholder="Start Date" formControlName="startDate">
@@ -10,23 +10,10 @@
       <input type="date" class="form-control" placeholder="End Date" formControlName="endDate">
     </div>
     <div class="input-group mb-2">
-      <select class="form-control" formControlName="status">
-        <option value="">Select Status</option>
-        <option value="Open">Open</option>
-        <option value="Resolved">Resolved</option>
-        <option value="Closed">Closed</option>
-      </select>
+      <input type="text" class="form-control" placeholder="Seller Name" formControlName="sellerName">
     </div>
     <div class="input-group mb-2">
-      <input type="text" class="form-control" placeholder="Email" formControlName="email">
-    </div>
-    <div class="input-group mb-2">
-      <select class="form-control" formControlName="priority">
-        <option value="">Select Priority</option>
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-      </select>
+      <input type="text" class="form-control" placeholder="Buyer Name" formControlName="buyerName">
     </div>
   </form>
 
@@ -43,34 +30,27 @@
       (page)="onPage($event)"
       [sortType]="sortType"
     >
-      <ngx-datatable-column name="Title" prop="title" [width]="200"></ngx-datatable-column>
-      <ngx-datatable-column name="ID" prop="id" [width]="80"></ngx-datatable-column>
-      <ngx-datatable-column name="Description" prop="description" [width]="300"></ngx-datatable-column>
-      <ngx-datatable-column name="Status" prop="status" [width]="100"></ngx-datatable-column>
-      <ngx-datatable-column name="Priority" prop="priority" [width]="100"></ngx-datatable-column>
+      <ngx-datatable-column name="Reason" prop="reason" [width]="300"></ngx-datatable-column>
+      <ngx-datatable-column name="Seller Name" prop="sellerName" [width]="200"></ngx-datatable-column>
+      <ngx-datatable-column name="Buyer Name" prop="buyerName" [width]="200"></ngx-datatable-column>
       <ngx-datatable-column name="Date Submitted" [cellTemplate]="dateSubmittedTemplate" [width]="150"></ngx-datatable-column>
-      <ngx-datatable-column name="Last Updated" [cellTemplate]="lastUpdatedTemplate" [width]="150"></ngx-datatable-column>
     </ngx-datatable>
 
     <ng-template #dateSubmittedTemplate let-value="value">
-      {{ value ? (value | date:'yyyy-MM-dd') : '' }}
-    </ng-template>
-    <ng-template #lastUpdatedTemplate let-value="value">
       {{ value ? (value | date:'yyyy-MM-dd') : '' }}
     </ng-template>
   </div>
 
   <nav>
     <ul class="pagination">
-      <li class="page-item" [class.disabled]="currentPage === 1" (click)="onPage(currentPage - 1)">
-        <a class="page-link">Previous</a>
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" href="#" (click)="goToPage(currentPage - 1)">Previous</a>
       </li>
-      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" 
-          [class.active]="i + 1 === currentPage" (click)="onPage(i + 1)">
-        <a class="page-link">{{ i + 1 }}</a>
+      <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+        <a class="page-link" href="#" (click)="goToPage(page)">{{ page }}</a>
       </li>
-      <li class="page-item" [class.disabled]="currentPage === totalPages" (click)="onPage(currentPage + 1)">
-        <a class="page-link">Next</a>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" href="#" (click)="goToPage(currentPage + 1)">Next</a>
       </li>
     </ul>
   </nav>
