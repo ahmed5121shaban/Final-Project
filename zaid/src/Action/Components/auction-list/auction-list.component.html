@@ -90,6 +90,8 @@
                 (change)="updateSortOption($event)" aria-label="select example">
                 <option value="EndDate">Ending Soonest</option>
                 <option value="mostBids">Most Bids</option>
+                <option value="noBids">No Bids</option>
+                <option value="newArrivals">New Arrivals</option>
                 <option value="highestBid">Highest Bid</option>
                 <option value="lowestBid">Lowest Bid</option>
 
@@ -116,7 +118,7 @@
             class="col-lg-4 col-md-6 col-12 mt-5">
             <div class="custom-product-card mt-3 me-2 border border-1">
               <div class="position-relative">
-                <div id="carousel{{ auction.id }}" class="carousel slide" data-bs-ride="true">
+                <div id="carousel{{auction.id}}" class="carousel slide" data-bs-ride="true">
                   <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
                     <div class="carousel-inner">
                       <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
@@ -127,12 +129,12 @@
                   </div>
                 </a>
                       <button class="carousel-control-prev" type="button"
-                        [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="prev">
+                        [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                       </button>
                       <button class="carousel-control-next" type="button"
-                        [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="next">
+                        [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                       </button>
@@ -148,7 +150,8 @@
                     <p class="mb-1"><small class="text-muted">{{ auction.item.seller.user.name }}</small></p>
                     <p class="bids">{{ auction.bids.length }} bids</p>
                     <p class="price">{{ auction.item.startPrice | number }} EGP</p>
-                    <p class="date">{{ auction.endDate | date:'mediumDate' }} </p>
+                    <p class="date">From:{{ auction.startDate | date:'mediumDate' }} </p>
+                    <p class="date">To:{{ auction.endDate | date:'mediumDate' }} </p>
                   </div>
                 </div>
             </div>

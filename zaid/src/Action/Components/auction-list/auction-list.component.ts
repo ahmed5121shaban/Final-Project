@@ -36,12 +36,39 @@ export class AuctionListComponent implements OnInit {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private favauctionService:FavouriteService
-  ) {}
+  ) {
 
-  ngOnInit(): void {
+
     this.route.params.subscribe(params => {
       this.selectedCategory = params['category'] || '';
+      if(this.selectedCategory==="mostBids"){
+        this.filterOption="mostBids";
+        this.selectedCategory="";
+        this.loadActiveAuctions();
+
+      }
+      
+      if(this.selectedCategory==="newArrivals"){
+        this.filterOption="newArrivals";
+        this.selectedCategory="";
+        this.loadActiveAuctions();
+
+      }
+      if(this.selectedCategory==="noBids"){
+        this.filterOption="noBids";
+        this.selectedCategory="";
+        this.loadActiveAuctions();
+
+      }
+      if(this.selectedCategory==="endingSoon"){
+        this.filterOption="EndDate";
+        this.selectedCategory="";
+        this.loadActiveAuctions();
+
+      }
+      else{
       this.loadActiveAuctions();
+      }
       this.loadCategories();
       //console.log(this.selectedCategory);
      // console.log(this.categories);
@@ -50,6 +77,12 @@ export class AuctionListComponent implements OnInit {
       
       this.loadFavAuctions();
     });
+  
+
+  }
+
+  ngOnInit(): void {
+   
   }
 
   toggleSortOrder(): void {
