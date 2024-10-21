@@ -28,10 +28,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AuctionDetailsComponent,
     DeleteConfirmationComponent,
     AuctionFeedbackComponent,
+    WonAuctionComponent
 
   //exports:[AuctionListComponent,AuctionEditComponent]
-
-    WonAuctionComponent
   ]
 })
 export class ActionModule { }
