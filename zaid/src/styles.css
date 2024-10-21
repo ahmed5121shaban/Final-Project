@@ -57,7 +57,7 @@
 /* Home Category Carousel button start*/
 
 .categoryCarousel .owl-next{
-  background-color: #212121 !important;
+  background-color: #eeeeee !important;
   border-radius: 20Px !important;
   width: 30px !important;
   height: 30px !important;
@@ -70,7 +70,7 @@
 
 
 .categoryCarousel .owl-prev{
-  background-color: #212121 !important;
+  background-color: #eeeeee !important;
   border-radius: 20Px !important;
   width: 30px !important;
   height: 30px !important;

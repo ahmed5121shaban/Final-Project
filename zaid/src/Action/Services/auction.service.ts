@@ -96,6 +96,24 @@ export class AuctionService {
 
 
 
+  getPopularAuctions():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/popularAuctions`);
+  }
+  getNewArrivals():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/newArrivalsAuctions`);
+  }
+  getEndingSoon():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/endingSoon`);
+  }
+  getNoBids():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/noBids`);
+  }
+
+ getreviews():Observable<any>{
+  return this.http.get<any>(`http://localhost:5204/api/review/getall`);
+ }
+
+
 }
 export interface Auction {
   ItemId: number;

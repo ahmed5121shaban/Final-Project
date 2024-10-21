@@ -28,6 +28,8 @@ import { CommonModule } from '@angular/common';
 import { WonAuctionComponent } from './Components/Profile-Management/won-auction/won-auction.component';
 import { RouterModule } from '@angular/router';
 import { WaitingAuctionComponent } from './Components/Profile-Management/waiting-auction/waiting-auction.component';
+import { WatchlistComponent } from "./Components/Profile-Management/watchlist/watchlist.component";
+
 
 
 
@@ -70,7 +72,6 @@ import { WaitingAuctionComponent } from './Components/Profile-Management/waiting
     ComplainAddComponent,
     MyLiveAuctionsComponent,
     WaitingAuctionComponent
-
 
   ],
 

@@ -41,10 +41,10 @@ export class ItemService {
     return this.http.put(`${this.apiUrl}/edit/${itemId}`, updatedData);
   }
   getItem(itemId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${itemId}`);
+    return this.http.get<any>(`${this.apiUrl}/${itemId}`);
   }
   getUnreviewdItems():Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/Unreviewed`)
+    return this.http.get<any>(`${this.apiUrl}/Unreviewed`);
   }
 
   AcceptItem(itemId:number):Observable<any>{
