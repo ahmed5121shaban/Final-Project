@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   items:any[]
   Categories:any[]=[]
   favCategories:any[]=[]
-  isFav: { [key: number]: boolean } = {};
+  isFavCat: { [key: number]: boolean } = {};
   
 
   constructor(private cookieService:CookieService,private categoryService:CategoryService,private FavcategoryService:FavCategoryService) {
@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
   this.getAllCategories();
 
   }
-
+// handling fav categories
   getAllCategories():void{
     this.categoryService.getCategories().subscribe({
       next: res=>{
@@ -96,13 +96,13 @@ export class HomeComponent implements OnInit {
     });
   }
   addToFav(categoryId:number){
-this.FavcategoryService.AddToFav(categoryId).subscribe({
+  this.FavcategoryService.AddToFav(categoryId).subscribe({
   next:res=>{
     if(res.result =="added"){
-      this.isFav[categoryId]=true;
+      this.isFavCat[categoryId]=true;
     }
     if(res.result=="removed"){
-      this.isFav[categoryId]=false;
+      this.isFavCat[categoryId]=false;
     }
   console.log(res.result); 
   },
@@ -120,7 +120,7 @@ this.FavcategoryService.AddToFav(categoryId).subscribe({
       next:res=>{
       
         res.forEach((catId:any)=>
-          this.isFav[catId]=true 
+          this.isFavCat[catId]=true 
         )
       },
       error:err=>{
@@ -130,7 +130,7 @@ this.FavcategoryService.AddToFav(categoryId).subscribe({
   }
   UpdateCategoris(){
     this.Categories.forEach(category=>
-      this.isFav[category.id]=this.isFav[category.id]||false
+      this.isFavCat[category.id]=this.isFavCat[category.id]||false
     )
   }
 

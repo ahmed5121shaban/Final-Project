@@ -27,6 +27,7 @@ import { LiveAuctionsComponent } from './Components/Profile-Management/live-auct
 import { ComplainAddComponent } from './Components/Profile-Management/complain-add/complain-add.component';
 import { MyLiveAuctionsComponent } from './Components/Profile-Management/my-live-auctions/my-live-auctions.component';
 import { AdminModule } from '../Admin/Admin.module';
+import { WatchlistComponent } from "./Components/Profile-Management/watchlist/watchlist.component";
 
 
 
@@ -66,6 +67,7 @@ SellerwithdrawComponent,
     LostAuctionComponent,
     ComplainAddComponent,
     MyLiveAuctionsComponent,
+    WatchlistComponent
     
     
   ],

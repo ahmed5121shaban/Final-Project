@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'reset-password' , component: PasswordResetComponent},
   { path: 'new-password' , component: NewPasswordComponent},
   { path: 'add-review' , component: AddReviewComponent},
-  { path: 'user-profile' , component: UserProfileComponent},
+  { path: 'user-profile/:id' , component: UserProfileComponent},
 
       { path: '', component: ProfileManagementComponent, children: [
       { path: 'profile', component: MyProfileComponent },
@@ -50,7 +50,7 @@ const routes: Routes = [
       {path:'lost-auction',component:LostAuctionComponent},
       { path: 'seller-earnings', component: SellerEarningsComponent },
       { path: 'seller-withdraw', component: SellerwithdrawComponent },
-{ path: 'complain-add', component:ComplainAddComponent },
+      { path: 'complain-add', component:ComplainAddComponent },
       { path: 'buyer-live-auctions', component:MyLiveAuctionsComponent },
       { path: 'auction-live-stream/:id', component: AuctionLiveStreamComponent },
 

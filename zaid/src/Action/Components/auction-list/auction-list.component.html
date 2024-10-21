@@ -58,31 +58,38 @@
                   <!-- <span class="me-2">({{ totalItemsActive }})</span> -->
                 </a>
               </div>
-              <div *ngFor="let category of categories" class="category-item ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle">
-             <a [routerLink]="['/action/auction-list', category.name]"
-                class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between category-link">
-                 <span class="ms-0 link-underline-opacity-10-hover">{{ category.name }}</span>
-                 <!-- <span class="me-2">({{CategoryAuctionCount(category.name)}})</span> -->
-             </a>
-         </div>
-         
+              <div *ngFor="let category of categories"
+                class="category-item ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle">
+                <a [routerLink]="['/action/auction-list', category.name]"
+                  class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between category-link">
+                  <span class="ms-0 link-underline-opacity-10-hover">{{ category.name }}</span>
+                  <!-- <span class="me-2">({{CategoryAuctionCount(category.name)}})</span> -->
+                </a>
+              </div>
+
             </nav>
           </div>
         </div>
         <div class="col-lg-8 col-12">
-          <!-- @if(selectedCategory !=''){  
-            <div class="position-relative mb-3">
-                <img [src]="'http://localhost:5204/' + categorysearch[0].image" class="card-img-top" alt="Mark Seliger Print" style="width: 96%; height: 300px;" >
-                <div class="card-custum card">
-                  <h6>{{categorysearch[0].name}}</h6>
-                  <p>{{categorysearch[0].description}}</p>
-                </div>
-             
+          @if(selectedCategory !=''){
+          <div class="position-relative mb-3 mt-5">
+           <img [src]="'http://localhost:5204/' + categorysearch[0].image" class="card-img-top" alt="Mark Seliger Print" style="width: 100%; height: 300px;" >
+            <div class="card position-absolute" style="width: 15rem; top: 10%; left: 8%;">
+              <div class="card-body">
+                <h5 class="card-title">{{categorysearch[0].name}}</h5>
+                <p class="card-text">{{categorysearch[0].description}}.</p>
+              </div>
+            </div>
+            <a style="cursor: pointer;" (click)="addCatToFav(categorysearch[0].id)">
+              <div class="card-icon bg-light">
+                <i class="fa-heart" [ngClass]="isFavCat[categorysearch[0].id] ? 'fas' : 'far'" [style.color]="isFavCat[categorysearch[0].id] ? 'red' : 'black'" ></i>
+              </div>
+            </a>
             </div>
           }
           @else{
-            <h5 class="fw-semibold mb-3">All items</h5>
-          } -->
+          <h5 class="fw-semibold mb-3">All items</h5>
+          }
           <div class="d-flex flex-sm-row flex-column justify-content-between align-items-center">
             <form class="d-flex flex-sm-row flex-column justify-content-start align-items-center w-50">
               <label class="me-2 fw-normal">Sort by</label>

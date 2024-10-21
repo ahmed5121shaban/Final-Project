@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AuctionService } from '../../Services/auction.service';
 import { CategoryService } from '../../../Admin/Services/category.service';
 import { Pagination } from '../../Models/models/pagination.model';
-import { Console } from 'console';
+import { Console, log } from 'console';
+import { FavCategoryService } from '../../../Shared/Services/fav/fav-category.service';
 
 @Component({
   selector: 'app-auction-list',
@@ -14,6 +15,8 @@ export class AuctionListComponent implements OnInit {
   activeAuctions: any[] = [];
   categories: any[] = [];
   categorysearch:any={};
+  isFavCat:{[key:number]:boolean}={};
+  favCatIds:any[]=[];
   
 
   // Pagination properties
@@ -30,18 +33,18 @@ export class AuctionListComponent implements OnInit {
   constructor(
     private auctionService: AuctionService,
     private categoryService: CategoryService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private favcatService:FavCategoryService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.selectedCategory = params['category'] || '';
       this.loadActiveAuctions();
+      this.getFavCatIds();
       this.loadCategories();
-      //console.log(this.selectedCategory);
-     // console.log(this.categories);
-     // this.categorysearch=this.categories.filter(category=>category.name==this.selectedCategory);
-     //console.log(this.categorysearch);
+     
+    
       
     });
   }
@@ -83,10 +86,9 @@ export class AuctionListComponent implements OnInit {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
         this.categories = data.result;
-        console.log(this.selectedCategory);
+        this.UpdateCategoris();
         this.categorysearch=this.categories.filter(category=>category.name==this.selectedCategory);
-        console.log(this.categorysearch);
-        
+
       },
       error: (err) => {
         console.error('Error fetching categories', err);
@@ -96,11 +98,13 @@ export class AuctionListComponent implements OnInit {
 
   onCategorySelect(category: string): void {
     this.selectedCategory = category;
-    this.pageActive = 1; 
+    this.pageActive = 1;
+    this.loadCategories();
     this.loadActiveAuctions();
+    
   }
 
-      totalPagesActive(): number {
+  totalPagesActive(): number {
     return Math.ceil(this.totalItemsActive / this.itemsPerPage);
   }
 
@@ -110,6 +114,46 @@ export class AuctionListComponent implements OnInit {
       this.pageActive = newPageActive;
       this.loadActiveAuctions();
     }
+  }
+
+ // handel fav categories 
+  getFavCatIds():void{
+    this.favcatService.getFavCatIds().subscribe({
+      next:data=>{
+        // data=data.filter(data==this.categorysearch.id);
+        // if(data.length>0){
+        //   this.categorysearch[0].isFavCat[this.categorysearch.id]=true;
+        // }
+        data.forEach((cat:any) => this.isFavCat[cat]=true); 
+        console.log(data);
+        
+      },
+      error:err=>{
+        console.log("my error is :",err);
+      }
+    })
+  }
+  UpdateCategoris(){
+    this.categories.forEach(category=>
+      this.isFavCat[category.id]=this.isFavCat[category.id]||false
+    )
+  }
+  addCatToFav(id:number){
+    this.favcatService.AddToFav(id).subscribe({
+      next:res=>{
+        if(res.result == "added"){
+          this.categorysearch[0].isFavCat[id]=true ;
+        }
+        if(res.result == "removed"){
+          this.categorysearch[0].isFavCat[id]=false;
+        }
+      },
+      error:err=>{
+        console.log("my err is :",err);
+        
+      }
+
+    })
   }
 
 }

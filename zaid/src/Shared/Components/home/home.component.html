@@ -404,11 +404,11 @@
     @for (category of Categories; track $index) {
     <ng-template carouselSlide>
      <h6>{{category.name}}</h6>
-     <div class="position-relative" [routerLink]= "['../action/auction-list',category.name]" >
-    <img [src]="'http://localhost:5204/' + category.image" class="card-img-top" alt="Mark Seliger Print" style="width: 96%; height: 300px;" >
+     <div class="position-relative"  >
+    <img [src]="'http://localhost:5204/' + category.image" class="card-img-top" alt="Mark Seliger Print" style="width: 96%; height: 300px;" [routerLink]= "['../action/auction-list',category.name]">
     <a style="cursor: pointer;" (click)="addToFav(category.id)">
       <div class="card-icon bg-light">
-        <i class="fa-heart" [ngClass]="isFav[category.id] ? 'fas' : 'far'" [style.color]="isFav[category.id] ? 'red' : 'black'" ></i>
+        <i class="fa-heart" [ngClass]="isFavCat[category.id] ? 'fas' : 'far'" [style.color]="isFavCat[category.id] ? 'red' : 'black'" ></i>
       </div>
     </a>
   </div>

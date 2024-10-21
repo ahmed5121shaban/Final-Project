@@ -1,66 +1,42 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ApiService } from '../../Services/api.service';
+import { ActivatedRoute } from '@angular/router';
+import { __param } from 'tslib';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit {
 
-  items:any[]
+ Profile: any = {};
+  userId :string = "";
 
-  constructor() {
+  constructor(private cookieService: CookieService,
+    private AccountService: ApiService,private route:ActivatedRoute) { }
 
-    this.items=[{
-      title:'Classic Car Auction 1',
-      text1:'August 15, 2024',
-      text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
-    },
-    {
-      title:'Classic Car Auction 2',
-      text1:'August 15, 2024',
-      text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
-    },
-    {
-      title:'Classic Car Auction 3',
-      text1:'August 15, 2024',
-      text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
-    },
-    {
-      title:'Classic Car Auction 4',
-      text1:'August 15, 2024',
-      text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
-    },
-    {
-      title:'Classic Car Auction 5',
-      text1:'August 15, 2024',
-      text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
-    },
-    {
-      title:'Classic Car Auction 6',
-      text1:'August 15, 2024',
-      text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
-    },
-    {
-      title:'Classic Car Auction 7',
-      text1:'August 15, 2024',
-      text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
-    },
-    {
-      title:'Classic Car Auction 8',
-      text1:'August 15, 2024',
-      text2:'$10,000',
-      image:'https://via.placeholder.com/400x300'
-    }]
+  ngOnInit(): void {
+  this.route.params.subscribe(Params=>{
+  this.userId = Params['id'];
+  this.getUserProfile(this.userId);
 
+  });
+
+  }
+  getUserProfile(id: string) {
+    this.AccountService.getUserProfile(id).subscribe({
+      next: res => {
+        console.log(res);
+        this.Profile=res;   
+      },
+      error:err=>{
+        console.log("error",err);
+        
+      }
+    })
   }
 
   liveAction: OwlOptions = {
@@ -71,7 +47,7 @@ export class UserProfileComponent {
     dots: false,
     navSpeed: 700,
     navText: ['<img src="previous-filled-svgrepo-com.svg" width="45px">',
-              '<img src="next-filled-svgrepo-com.svg" width="50px">'],
+      '<img src="next-filled-svgrepo-com.svg" width="50px">'],
     responsive: {
       0: {
         items: 1
