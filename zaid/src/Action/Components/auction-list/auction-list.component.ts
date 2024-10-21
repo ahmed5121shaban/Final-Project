@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AuctionService } from '../../Services/auction.service';
 import { CategoryService } from '../../../Admin/Services/category.service';
 import { Pagination } from '../../Models/models/pagination.model';
+
+import { FavouriteService } from '../../Services/favourite.service';
 import { Console, log } from 'console';
 import { FavCategoryService } from '../../../Shared/Services/fav/fav-category.service';
 
@@ -12,6 +14,8 @@ import { FavCategoryService } from '../../../Shared/Services/fav/fav-category.se
   styleUrls: ['./auction-list.component.css']
 })
 export class AuctionListComponent implements OnInit {
+
+  isFav:{[key:number]:boolean}={};
   activeAuctions: any[] = [];
   categories: any[] = [];
   categorysearch:any={};
@@ -19,6 +23,7 @@ export class AuctionListComponent implements OnInit {
   favCatIds:any[]=[];
   
 
+  favAuctionIds:any[]=[]
   // Pagination properties
   pageActive: number = 1; 
   itemsPerPage: number = 6; 
@@ -34,20 +39,57 @@ export class AuctionListComponent implements OnInit {
     private auctionService: AuctionService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
+    private favauctionService:FavouriteService,
     private favcatService:FavCategoryService
   ) {}
+
+
+  
+
+
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.selectedCategory = params['category'] || '';
+      if(this.selectedCategory==="mostBids"){
+        this.filterOption="mostBids";
+        this.selectedCategory="";
+        this.loadActiveAuctions();
+
+      }
+      
+      if(this.selectedCategory==="newArrivals"){
+        this.filterOption="newArrivals";
+        this.selectedCategory="";
+        this.loadActiveAuctions();
+
+      }
+      if(this.selectedCategory==="noBids"){
+        this.filterOption="noBids";
+        this.selectedCategory="";
+        this.loadActiveAuctions();
+
+      }
+      if(this.selectedCategory==="endingSoon"){
+        this.filterOption="EndDate";
+        this.selectedCategory="";
+        this.loadActiveAuctions();
+
+      }
+      else{
       this.loadActiveAuctions();
+      }
       this.getFavCatIds();
       this.loadCategories();
-     
-    
-      
+      this.loadFavAuctions();
     });
+  
+
   }
+
+  // ngOnInit(): void {
+   
+  // }
 
   toggleSortOrder(): void {
     this.isAscending = !this.isAscending; 
@@ -74,6 +116,7 @@ export class AuctionListComponent implements OnInit {
         next: (pagination: Pagination<any[]>) => {
           this.activeAuctions = pagination.list || [];
           this.totalItemsActive = pagination.totalCount || 0;
+          this.updateFavState();
           console.log(this.activeAuctions);
         },
         error: (err) => {
@@ -115,6 +158,46 @@ export class AuctionListComponent implements OnInit {
       this.loadActiveAuctions();
     }
   }
+
+
+  addToFav(id:number){
+this.favauctionService.addAuctionToFav(id).subscribe({
+  next:(response)=>{
+if(response==="added"){
+    console.log(response);
+this.isFav[id]=true;}
+if(response==="remove")
+  this.isFav[id]=false;
+    
+  },
+  error:(error)=>{
+    console.log(error)
+
+  }
+});
+
+
+}
+
+loadFavAuctions(){
+  this.favauctionService.getAllFavIds().subscribe({
+next:(response) =>{
+  //loop foreach auctionId in the fav list and mark it as favorite
+  response.favAuctionIds.forEach((favauctionId: any)=>{
+this.isFav[favauctionId]=true;
+  });
+},
+error:(error) =>{
+  console.log(error); 
+},
+});
+}
+
+updateFavState(){
+  this.activeAuctions.forEach(auction=>{
+    this.isFav[auction.id]=this.isFav[auction.id]|| false
+  });
+}
 
  // handel fav categories 
   getFavCatIds():void{

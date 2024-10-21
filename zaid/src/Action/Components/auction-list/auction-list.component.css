@@ -98,9 +98,26 @@
 
 .card-icon{
   position: absolute;
+  background-color: aliceblue;
+  top: 30%;
+  left: 10%;
+  padding: 5px 5px;
+  width: 30%;
+  border-radius: 10px;
+}
+
+.text-danger{
+  color: #ff5252;
+}
+.category.card-body{
+  position: absolute;
   top: 10%;
   right: 5%;
   padding: 4px 7px;
   border-radius: 20px;
 
+}
+
+.card-icon{
+  z-index: 1200 !important;
 }

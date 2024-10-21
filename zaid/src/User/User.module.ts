@@ -66,9 +66,9 @@ SellerwithdrawComponent,
     WonAuctionComponent,
     LostAuctionComponent,
     ComplainAddComponent,
+    
     MyLiveAuctionsComponent,
     WatchlistComponent
-    
     
   ],
  

@@ -10,13 +10,14 @@ export class PaymentService {
   firstAuctionPaymentUrl = "api/bid/first-auction-payment";
   addPaymentEmailUrl = "api/Payment/add-payment-email";
   getPaymentEmailUrl = "api/Payment/get-payment-email";
-  userHavePaymentUrl= "api/bid/user-have-payment";
+  userHavePaymentUrl= "api/Bid/user-have-payment/";
   PaymentForBuyerUrl= "api/payment/payment-for-buyer";
   apiUrl = environment.apiUrl
   constructor(private http:HttpClient) {}
 
-  userHavePayment(){
-    return this.http.get(`${this.apiUrl}${this.userHavePaymentUrl}`);
+  userHavePayment(itemID:number){
+    console.log(itemID,"user have buyer apiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+    return this.http.get(`${this.apiUrl}${this.userHavePaymentUrl}${itemID}`);
   }
 
   firstPaymentAuction(payment:any){
