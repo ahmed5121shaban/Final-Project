@@ -4,6 +4,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Pagination } from '../Models/models/pagination.model';
+import { DoneAuction } from '../../User/Components/Profile-Management/waiting-auction/waiting-auction.component';
+import { CompleteAuctionPayment } from '../Components/won-auction/won-auction.component';
 
 
 
@@ -21,13 +23,24 @@ export class AuctionService {
   }
   getWon():Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/won`)
-
   }
+
+  AllDoneAuctions(){
+    return this.http.get(`${this.apiUrl}/AllDoneAuctions`)
+  }
+
+  AllCompletedAuctions(){
+    return this.http.get(`${this.apiUrl}/AllCompletedAuctions`)
+  }
+
+  CompleteAuctionPayment(itemID:number){
+    return this.http.get(`${this.apiUrl}/CompleteAuctionPayment/${itemID}`)
+  }
+
   getBuyerLiveAuctions():Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/buyerAuctions`);
 
   }
-
 
   getLost():Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/lost`)
@@ -58,7 +71,7 @@ export class AuctionService {
     pageNumber: number = 1,
     categoryName: string | null = null,
     filterOption:string | null = null
-  
+
   ): Observable<Pagination<Auction[]>> {
     const params = new HttpParams()
       .set('searchtxt', searchText)
@@ -67,11 +80,11 @@ export class AuctionService {
       .set('pageSize', pageSize.toString())
       .set('pageNumber', pageNumber.toString())
       .set('categoryName', categoryName || '')
-      .set('filterOption', filterOption || '') 
-  
+      .set('filterOption', filterOption || '')
+
       return this.http.get<Pagination<Auction[]>>(`${this.apiUrl}/GetAuctions`, { params });
   }
-  
+
   // Fetch similar active auctions by category
   getSimilarActiveAuctions(auctionId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/SimilarActiveAuctions/${auctionId}`);
@@ -81,7 +94,25 @@ export class AuctionService {
     return this.http.get<any>(`${this.apiUrl}/SellerLive`)
   }
 
- 
+
+
+  getPopularAuctions():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/popularAuctions`);
+  }
+  getNewArrivals():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/newArrivalsAuctions`);
+  }
+  getEndingSoon():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/endingSoon`);
+  }
+  getNoBids():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/noBids`);
+  }
+
+ getreviews():Observable<any>{
+  return this.http.get<any>(`http://localhost:5204/api/review/getall`);
+ }
+
 
 }
 export interface Auction {

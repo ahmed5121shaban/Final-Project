@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HomeService } from './home.service';
+import { FavCategoryService } from './fav-category.service';
 
-describe('HomeService', () => {
-  let service: HomeService;
+describe('FavCategoryService', () => {
+  let service: FavCategoryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(HomeService);
+    service = TestBed.inject(FavCategoryService);
   });
 
   it('should be created', () => {

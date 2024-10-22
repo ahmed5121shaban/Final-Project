@@ -1,6 +1,7 @@
 <div class="container">
 <div class="main  p-xl-5 p-3">
     <div class="row justify-content-between ">
+      <h2>{{allBids|json}} => {{lastBid}}</h2>
         <div class="item-title">
             <h1>{{ auctionDetails.item.name }}</h1>
         </div>
@@ -57,6 +58,7 @@
                 </div>
 
                 @if ( paymentCount == 0){
+
                   <div class="place-bid text-center ">
                     <input type="number" [disabled]="true" name="" disabled id="" class="form-control">
                     <a role="button" (click)="notAllowed()" class=" btn btn-primary w-100 mt-3 mb-1">
@@ -64,7 +66,22 @@
                     </a>
                     <p class="bid-limits ">You can't Add Bid because This Your Auction.</p>
                 </div>
-                } @else if (paymentCount == 2 && paymentDetail.auctionID!=auctionId){
+                }@else if(paymentCount == 4) {
+                  <div class="place-bid text-center ">
+                    <input type="number" disabled name="" id="" class="form-control">
+                    <a routerLink="/user/login" class=" btn btn-dark w-100 mt-3 mb-1">Login Before bid in Auction</a>
+                    <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
+                        converted into SEK.</p>
+                </div>
+                }@else if (paymentCount == 1){
+                  <div class="place-bid text-center">
+                    <input type="number" name="" disabled id="" class="form-control">
+                    <a routerLink="/user/payment" class=" btn btn-danger w-100 mt-3 mb-1">
+                      You Haven't Payment Method
+                    </a>
+                    <p class="bid-limits">Check if You have Payment Email in your Profile.</p>
+                </div>
+                } @else if (paymentCount == 2 && paymentDetailAuctionID!=auctionId){
                   <div class="place-bid text-center">
                     <input type="number" placeholder="Choose one to Bid The First Price :{{auctionDetails.item.startPrice}}$" name="" disabled id="" class="form-control">
                     <a (click)="firstPayment(1)" class=" btn btn-primary w-50 mt-3 mb-1">
@@ -75,31 +92,17 @@
                     </a>
                     <p class="bid-limits ">You must Bid the First Amount to Continue in this Auction.</p>
                 </div>
-                }@else if (paymentCount == 3 && paymentDetail.auctionID!=auctionId){
+                }@else if (paymentCount == 3 && paymentDetailAuctionID!=auctionId){
                   <div class="place-bid text-center ">
                     <input type="number" disabled name="" id="" class="form-control">
                     <a role="button" (click)="firstPayment(method)" class=" btn btn-dark w-100 mt-3 mb-1">Bid The First Price {{auctionDetails.item.startPrice}}$</a>
                     <p class="bid-limits ">You must Bid the First Amount to Continue in this Auction.</p>
                 </div>
-                }@else if (paymentCount == 1){
-                  <div class="place-bid text-center">
-                    <input type="number" name="" disabled id="" class="form-control">
-                    <a routerLink="/user/payment" class=" btn btn-danger w-100 mt-3 mb-1">
-                      You Haven't Payment Method
-                    </a>
-                    <p class="bid-limits">Check if You have Payment Email in your Profile.</p>
-                </div>
-                }@else if(successesPayment&&paymentDetail.auctionID==auctionId) {
+              }
+                @else if(successesPayment&&paymentCount == 3&&paymentDetailAuctionID==auctionId) {
                   <div class="place-bid text-center ">
                     <input #bid type="number" name="" id="" class="form-control">
                     <a role="button" class=" btn btn-secondary w-100 mt-3 mb-1" (click)="placeBid(bid.value)">Place A Bid</a>
-                    <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
-                        converted into SEK.</p>
-                </div>
-                }@else if(paymentCount == 4) {
-                  <div class="place-bid text-center ">
-                    <input type="number" disabled name="" id="" class="form-control">
-                    <a routerLink="/user/login" class=" btn btn-dark w-100 mt-3 mb-1">Login Before bid in Auction</a>
                     <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
                         converted into SEK.</p>
                 </div>

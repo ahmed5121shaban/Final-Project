@@ -10,13 +10,16 @@ export class PaymentService {
   firstAuctionPaymentUrl = "api/bid/first-auction-payment";
   addPaymentEmailUrl = "api/Payment/add-payment-email";
   getPaymentEmailUrl = "api/Payment/get-payment-email";
-  userHavePaymentUrl= "api/bid/user-have-payment";
+  userHavePaymentUrl= "api/Bid/user-have-payment/";
   PaymentForBuyerUrl= "api/payment/payment-for-buyer";
+  addPaypalAmountUrl="api/payment/create-paypal-payment";
+  addStripeAmountUrl="api/payment/create-stripe-payment";
+  executePaypalPaymentUrl="api/Payment/auction/success";
   apiUrl = environment.apiUrl
   constructor(private http:HttpClient) {}
 
-  userHavePayment(){
-    return this.http.get(`${this.apiUrl}${this.userHavePaymentUrl}`);
+  userHavePayment(itemID:number){
+    return this.http.get(`${this.apiUrl}${this.userHavePaymentUrl}${itemID}`);
   }
 
   firstPaymentAuction(payment:any){
@@ -39,5 +42,17 @@ export class PaymentService {
     return this.http.post(`${this.apiUrl}${this.addBidUrl}`,bid)
   }
 
+  AddStripeAmount(amount:number,currency:string,auctionId:number){
+
+    return this.http.post(`${this.apiUrl}${this.addStripeAmountUrl}`,{Amount:amount,Currency:"USD",auctionID:auctionId});
+  }
+  AddPaypalAmount(amount:number,currency:string,auctionId:number){
+    console.log(currency,typeof currency);
+    return this.http.post(`${this.apiUrl}${this.addPaypalAmountUrl}`,{Amount:amount,Currency:"USD",auctionID:auctionId});
+  }
+  executePaypalPayment(paymentId:string,payerId:string,auctionId:number){
+    const url = `${this.apiUrl}${this.executePaypalPaymentUrl}?paymentId=${paymentId}&PayerID=${payerId}&auctionId=${auctionId}`;
+  return this.http.get(url);
+  }
 
 }

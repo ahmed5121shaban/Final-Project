@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from '../../Services/payment.service';
 import { AuctionService } from '../../Services/auction.service';
 import { ToastrService } from 'ngx-toastr';
+import * as signalR from '@microsoft/signalr';
+import { environment } from '../../../environments/environment';
 
 interface Reply {
   id: number;
@@ -28,25 +30,23 @@ export class AuctionDetailsComponent implements OnChanges {
   similarAuctions: any[] = [];
   groupedSimilarAuctions: any[][] = []; // Grouped auctions for the carouses
   successesPayment!: boolean;
-  paymentDetail!: any;
+  paymentDetailAuctionID!: any;
   secretKey!: string
-  method!:number
-
+  method!:number;
+  allBids:any
+  lastBid:any
 
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
     private toastr: ToastrService,
     private route: ActivatedRoute)
   {
-     this.paymentService.userHavePayment().subscribe({
-       next:(res:any)=>{
-         console.log(res,"paymentCount")
-          this.paymentCount=res.count;
-          if(res.count==3)
-            this.method=res.method[0]
-          console.log(this.method);
-
-        }
+    this.route.params.subscribe(params => {
+      this.auctionId = +params['id']; // Get auction ID from route
+      console.log(this.auctionId)
+      this.getAuctionDetails(); // Fetch auction details by ID
+      this.loadSimilarAuctions();
+      this.getPaymentForBuyer();
     });
 
   }
@@ -59,37 +59,72 @@ export class AuctionDetailsComponent implements OnChanges {
 
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.auctionId = +params['id']; // Get auction ID from route
-      this.getAuctionDetails(); // Fetch auction details by ID
-      this.loadSimilarAuctions();
-    });
-    // this.groupItems();
-    this.paymentService.getPaymentForBuyer().subscribe({
-      next:(res)=>{
-        this.successesPayment = true;
-        this.paymentDetail = res;
-        console.log(res)
-      },
-      error:(err)=>{
-        this.successesPayment = false;
-        console.log(err);
-      }
-    });
 
+      let hubConnection = new signalR.HubConnectionBuilder()
+        .withUrl(`${environment.apiUrl}bidsHub`)
+        .build();
+
+      hubConnection
+        .start()
+        .then(() => {
+          return hubConnection.invoke('joinGroup', this.auctionId);
+        })
+        .catch((err) => console.error('SignalR Connection Error: ', err));
+
+        hubConnection.on("allBids",(res:any)=>{
+          console.log(res," signalr connection  signalr connection  signalr connection  signalr connection ");
+          this.allBids = res;
+        })
+        hubConnection.on("lastBid",(res:any)=>{
+          console.log(res," signalr connection  signalr connection  signalr connection  signalr connection ");
+          this.lastBid = res;
+        })
+
+  }
+
+  getPaymentForBuyer(){
+  this.paymentService.getPaymentForBuyer().subscribe({
+    next:(res:any)=>{
+      console.log(res,"getPaymentFor Buyer getPaymentFor Buyer getPaymentFor Buyer getPaymentFor Buyer getPaymentForBuyer");
+      this.successesPayment = true;
+      this.paymentDetailAuctionID = res.result;
+      console.log(this.paymentDetailAuctionID,"getPaymentFor Buyer getPaymentFor Buyer getPaymentFor Buyer getPaymentFor Buyer getPaymentForBuyer");
+    },
+    error:(err)=>{
+      this.successesPayment = false;
+    }
+  });
+  }
+  userHavePayment(itemID:number){
+    //error in this.auctionDetails.item.id/////
+
+    this.paymentService.userHavePayment(itemID).subscribe({
+      next:(res:any)=>{
+         this.paymentCount=res.count;
+         if(res.count==3)
+           this.method=res.method[0]
+         console.log(res)
+       },error:(err)=>{console.log(err)}
+   });
   }
 
     // Fetch auction details from service by ID
     getAuctionDetails(): void {
+
       this.auctionService.getAuctionById(this.auctionId).subscribe({
         next:(res: any) => {
           this.auctionDetails = res;
           console.log('Auction details:', this.auctionDetails);
+          this.userHavePayment(res.item.id);
         },
         error:(error) => {
           console.error('Error fetching auction details:', error);
         }
       });
+
+
+
+
     }
 
 

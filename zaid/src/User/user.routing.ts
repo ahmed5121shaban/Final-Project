@@ -50,13 +50,13 @@ const routes: Routes = [
       {path:'lost-auction',component:LostAuctionComponent},
       { path: 'seller-earnings', component: SellerEarningsComponent },
       { path: 'seller-withdraw', component: SellerwithdrawComponent },
-{ path: 'complain-add', component:ComplainAddComponent },
+      { path: 'complain-add', component:ComplainAddComponent },
       { path: 'buyer-live-auctions', component:MyLiveAuctionsComponent },
       { path: 'auction-live-stream/:id', component: AuctionLiveStreamComponent },
 
     ] },
 
- 
+
 
 ];
 

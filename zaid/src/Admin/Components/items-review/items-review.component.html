@@ -24,11 +24,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of items ; let i = index">
-          <td>{{ item.title }}</td>
+          <td>{{item.title}}</td>
           <td>{{ item.description }}</td>
           <td>{{ item.startPrice }}</td>
-          <td>{{ item.sellPrice }}</td>
-          <td>{{ item.contract }}</td>
+          <td>{{ item.endPrice }}</td>
+          <td>{{ item.contractFile }}</td>
           <td>
             <!-- Small Carousel inside the table -->
             <div id="carousel{{i}}" class="carousel slide" data-bs-ride="carousel" style="width: 100px;">
