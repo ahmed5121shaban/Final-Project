@@ -31,6 +31,7 @@
     "@canvasjs/angular-charts": "^1.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@mdi/font": "^7.4.47",
+    "@microsoft/signalr": "^8.0.7",
     "@schematics/angular": "^18.1.1",
     "@stripe/stripe-js": "^4.8.0",
     "@swimlane/ngx-datatable": "^20.1.0",

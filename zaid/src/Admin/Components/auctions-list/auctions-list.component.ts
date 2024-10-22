@@ -9,7 +9,6 @@ import { Pagination } from '../../../Action/Models/models/pagination.model';
 interface Auction {
   name: string;
   id: number;
-  quantity: number;
   status: 'Open' | 'Closed' | 'Live';
   liveUrl?: string;
   imageUrl?: string;
@@ -32,7 +31,7 @@ export class AuctionsListComponent implements OnInit {
   
   // Pagination properties
   pageActive: number = 1; 
-  itemsPerPage: number = 2; 
+  itemsPerPage: number = 6; 
   totalItemsActive: number = 0;
   
   // Calculate total pages
@@ -67,10 +66,11 @@ export class AuctionsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadActiveAuctions();
+    
+    this.loadAuctions();
   }
 
-  loadActiveAuctions(): void {
+  loadAuctions(): void {
     this.auctionService.getPaginatedAuctions(
       this.searchtxt,
       this.sortOption,     
@@ -90,10 +90,19 @@ export class AuctionsListComponent implements OnInit {
       }
     });
   }
-
+  updateSortOption(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.filterOption = selectElement.value; 
+    this.loadAuctions(); 
+  }
+  onSearch(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.searchtxt = selectElement.value; 
+    this.loadAuctions(); 
+  }
  
   onPageChange(page: number): void {
     this.pageActive = page; // Update current page
-    this.loadActiveAuctions(); // Reload data based on the current page
+    this.loadAuctions(); // Reload data based on the current page
   }
 }
