@@ -29,6 +29,7 @@ import { WonAuctionComponent } from './Components/Profile-Management/won-auction
 import { RouterModule } from '@angular/router';
 import { WaitingAuctionComponent } from './Components/Profile-Management/waiting-auction/waiting-auction.component';
 import { WatchlistComponent } from "./Components/Profile-Management/watchlist/watchlist.component";
+import { NgxPaginationModule } from "ngx-pagination";
 import { AuctionLiveStreamComponent } from './Components/Profile-Management/auction-live-stream/auction-live-stream.component';
 
 
@@ -42,6 +43,8 @@ import { AuctionLiveStreamComponent } from './Components/Profile-Management/auct
     FormsModule,
     CarouselModule,
     ReactiveFormsModule,
+    AdminModule,
+    NgxPaginationModule
     RouterModule
 
   ],
@@ -71,6 +74,8 @@ import { AuctionLiveStreamComponent } from './Components/Profile-Management/auct
     LostAuctionComponent,
     ComplainAddComponent,
     MyLiveAuctionsComponent,
+    WaitingAuctionComponent,
+    WatchlistComponent
     WaitingAuctionComponent,
     WatchlistComponent,
     AuctionLiveStreamComponent

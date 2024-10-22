@@ -2,14 +2,19 @@
 
 .content-wrapper {
     padding: 30px;
+    background-color:white;
   }
+  .content {
+    background-color:white;
+  }
+  
   
   .card-profile {
     margin-bottom: 20px;
   }
   
   .card-header-bg {
-    height: 140px;
+    height: 60px;
     background-size: cover;
     background-position: center;
   }

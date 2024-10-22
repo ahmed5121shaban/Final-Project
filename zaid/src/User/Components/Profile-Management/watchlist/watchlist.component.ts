@@ -11,6 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrl: './watchlist.component.css'
 })
 export class WatchlistComponent {
+  page:number=1;
   activefavAuctions:any[]=[];
   endedfavAuctions:any[]=[];
   selectedAuctionId:any;

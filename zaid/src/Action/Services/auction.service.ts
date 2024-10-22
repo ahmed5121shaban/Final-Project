@@ -117,6 +117,12 @@ export class AuctionService {
  }
 
 
+//  getHomeSections():Observable<any>{
+//   return this.http.get<any>(`${this.apiUrl}/home`);
+// }
+
+ 
+
 }
 export interface Auction {
   ItemId: number;

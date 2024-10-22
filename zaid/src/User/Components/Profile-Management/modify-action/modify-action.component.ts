@@ -5,6 +5,7 @@ import { response } from 'express';
 import { FormArray, FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { log } from 'node:console';
 import { ToastrService } from 'ngx-toastr';
+declare var bootstrap: any;
 
 
 @Component({
@@ -13,6 +14,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./modify-action.component.css']
 })
 export class ModifyActionComponent {
+  pendingPage: number = 1;
+  acceptedPage: number = 1;
+  rejectedPage: number = 1;  
+  selectedImage: string | null = null;
   auctionForms: FormArray;
   acceptedItems :any[]=[];
   pendingItems :any[]=[];
@@ -121,6 +126,19 @@ error:(error)=>{
 }
 
 })
+}
+
+
+showImage(imageUrl: string) {
+
+  this.selectedImage = imageUrl;
+
+  // Use Bootstrap's Modal component to show the modal
+  const modalElement = document.getElementById('imageModal');
+  if (modalElement) {
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
+  }
 }
 }
 
