@@ -11,14 +11,14 @@
     </div> -->
     <div class="input-group mb-2">
       <select class="form-control" (change)="updateSortOption($event)">
-        <option value="" disabled>Auction Status</option>
+        <!-- <option value="" disabled>Auction Status</option> -->
         <option value="open">Open</option>
         <option value="closed">Closed</option>
         <option value="Live">Live</option>
       </select>
     </div>
     <div class="input-group mb-2">
-      <select class="form-control" formControlName="paymentStatus">
+      <select class="form-control" (change)="updateSortOption($event)">
         <option value="">Select Payment Status</option>
         <option value="Paid">Paid</option>
         <option value="Unpaid">Unpaid</option>
@@ -58,12 +58,23 @@
 
       <ngx-datatable-column name="Seller Name" prop="item.seller.user.name" ></ngx-datatable-column>
 
-      <ngx-datatable-column name="Live URL" [cellTemplate]="liveUrlTemplate" >
+      <!-- <ngx-datatable-column name="Live URL" [cellTemplate]="liveUrlTemplate" >
+        <ng-template #liveUrlTemplate let-row="row">
+          <a *ngIf="row.id" [href]="'admin/auction-live-stream/' + row.id" class="live-auction-link">View Live</a>
+        </ng-template>
+      </ngx-datatable-column> -->
+      <ngx-datatable-column *ngIf="filterOption === 'Live'" name="Live URL" [cellTemplate]="liveUrlTemplate">
         <ng-template #liveUrlTemplate let-row="row">
           <a *ngIf="row.id" [href]="'admin/auction-live-stream/' + row.id" class="live-auction-link">View Live</a>
         </ng-template>
       </ngx-datatable-column>
 
+      <!-- Conditionally show the Shipment Status column when payment status is 'Paid' -->
+      <ngx-datatable-column *ngIf="filterOption === 'Paid'" name="Shipment Status" [cellTemplate]="shipmentStatusTemplate">
+        <ng-template #shipmentStatusTemplate let-row="row">
+          <a *ngIf="row.id" [href]="'admin/Shipment-Tracking/' + row.id" class="live-auction-link">View</a>
+        </ng-template>
+      </ngx-datatable-column>
       <ngx-datatable-column name="Image" [cellTemplate]="imageTemplate" >
       </ngx-datatable-column>
 

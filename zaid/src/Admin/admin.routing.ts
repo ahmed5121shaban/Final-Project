@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'events-list', component: EventsListComponent },
   { path: 'auctions-list', component: AuctionsListComponent },
   { path: 'auction-live-stream/:id', component: AuctionLiveStreamComponent },
-  { path: 'Shipment-Tracking', component: ShipmentTrackingComponent },
+  { path: 'Shipment-Tracking/:id', component: ShipmentTrackingComponent },
   { path: 'complaints-list', component: ComplaintsListComponent },
   { path: 'items-review', component: ItemsReviewComponent },
   { path: 'add-category', component: AddCategoryComponent },
