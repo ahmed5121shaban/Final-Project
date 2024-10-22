@@ -7,7 +7,7 @@ import { AuctionService } from '../../../../Action/Services/auction.service';
   styleUrls: ['./lost-auction.component.css']
 })
 export class LostAuctionComponent{
-
+page:number=1;
 lostAuctions:any[]=[];
   constructor(private auctionService:AuctionService) { 
     this.auctionService.getLost().subscribe({
