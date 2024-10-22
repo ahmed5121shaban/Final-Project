@@ -99,6 +99,12 @@ export class AuctionService {
   return this.http.get<any>(`http://localhost:5204/api/review/getall`);
  }
 
+
+//  getHomeSections():Observable<any>{
+//   return this.http.get<any>(`${this.apiUrl}/home`);
+// }
+
+ 
 }
 export interface Auction {
   ItemId: number;

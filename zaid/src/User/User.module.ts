@@ -28,6 +28,7 @@ import { ComplainAddComponent } from './Components/Profile-Management/complain-a
 import { MyLiveAuctionsComponent } from './Components/Profile-Management/my-live-auctions/my-live-auctions.component';
 import { AdminModule } from '../Admin/Admin.module';
 import { WatchlistComponent } from "./Components/Profile-Management/watchlist/watchlist.component";
+import { NgxPaginationModule } from "ngx-pagination";
 
 
 
@@ -39,7 +40,9 @@ import { WatchlistComponent } from "./Components/Profile-Management/watchlist/wa
     FormsModule,
     CarouselModule,
     ReactiveFormsModule,
-    AdminModule
+    AdminModule,
+    NgxPaginationModule
+
   ],
   declarations: [
     RegisterComponent,
