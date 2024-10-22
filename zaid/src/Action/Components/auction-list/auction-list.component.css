@@ -96,9 +96,9 @@
   transition: opacity 0.3s ease, background-color 0.3s ease; /* Smooth transition for opacity and background color */
 }
 
-.card-icon{
+.category-card{
   position: absolute;
-  background-color: aliceblue;
+  background-color: rgb(255, 255, 255);
   top: 30%;
   left: 10%;
   padding: 5px 5px;
@@ -109,7 +109,7 @@
 .text-danger{
   color: #ff5252;
 }
-.category.card-body{
+.category-card-icon{
   position: absolute;
   top: 10%;
   right: 5%;

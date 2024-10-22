@@ -1,7 +1,7 @@
 
 @if(LiveAuctions.length !== 0){
 <div class="container container-custom" >
-    <div *ngFor="let auction of LiveAuctions; let i = index">
+    <div *ngFor="let auction of LiveAuctions; let i = index" class="mb-3">
       <a [routerLink]="['../auction-live-stream', auction.id]" class="text-decoration-none">
         <div class="card card-custom shadow">
         <div class="card-body d-flex h-25">
@@ -14,7 +14,7 @@
                     <strong class="fw-bold opacity-75">End Time: </strong>
                     <span class="fw-semibold opacity-75" id="endDate">{{ auction.endDate | date: 'dd/MM/yyyy' }}</span><br>
                 </p>
-                <button class="btn btn-secondary mt-5">Close Auction</button>
+                <button class="btn btn-secondary mt-5" (click)="Close(auction.id)" style="z-index: 1200;">Close Auction</button>
 
                 <!-- <div class="border border-1 rounded-2 p-3 bg-light-subtle">
                     <div class="d-flex align-items-center">

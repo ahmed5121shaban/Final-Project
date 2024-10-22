@@ -87,9 +87,7 @@ export class AuctionListComponent implements OnInit {
 
   }
 
-  // ngOnInit(): void {
-   
-  // }
+
 
   toggleSortOrder(): void {
     this.isAscending = !this.isAscending; 

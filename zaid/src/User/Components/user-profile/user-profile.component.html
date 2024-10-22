@@ -48,7 +48,7 @@
                 </div>
                 <h5 class="pt-3 pb-2" ><b>Categories</b></h5>
                 <div class="skills">
-@for(let Cat of Profile.FavCategories){
+@for( Cat of Profile.FavCategories; track $index){
     <a href=""><i class="fas fa-car"></i> {{Cat.name}}</a>
 }         
                 </div>
@@ -76,8 +76,8 @@
                                   />
                                   <div class="card-body">
                                     <h5 class="card-title">{{Auction.item.title}}</h5>
-                                    <p class="card-text">Date: {{item.text1}}</p>
-                                    <p class="card-text">Starting Bid: {{item.text2}}</p>
+                                    <p class="card-text">Date: {{Auction.item.startdate}}</p>
+                                    <p class="card-text">Starting Bid: </p>
                                   </div>
                                 </div>
                               </div>

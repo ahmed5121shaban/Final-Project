@@ -23,7 +23,8 @@ import { SellerEarningsComponent } from './Components/Profile-Management/seller-
 import { SellerwithdrawComponent } from './Components/Profile-Management/sellerwithdraw/sellerwithdraw.component';
 import { ComplainAddComponent } from './Components/Profile-Management/complain-add/complain-add.component';
 import { MyLiveAuctionsComponent } from './Components/Profile-Management/my-live-auctions/my-live-auctions.component';
-import { AuctionLiveStreamComponent } from '../Admin/Components/auction-live-stream/auction-live-stream.component';
+import { AuctionLiveStreamComponent } from './Components/Profile-Management/auction-live-stream/auction-live-stream.component';
+
 
 
 const routes: Routes = [
@@ -56,7 +57,7 @@ const routes: Routes = [
 
     ] },
 
- 
+
 
 ];
 
