@@ -35,62 +35,82 @@
       <!-- <div class="sidebar-heading">
         Interface
       </div> -->
-
-      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- Users -->
       <li class="nav-item">
-        <a class="nav-link" routerLink="./users-list">
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers"
+          aria-expanded="false" aria-controls="collapseUsers">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Users</span></a>
-      </li>
-      
+          <span>Users</span>
+        </a>
 
-      <li class="nav-item">
-        <a class="nav-link" routerLink="">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Items</span></a>
+        <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-bs-parent="#accordionSidebar">
+          <div class="text-white py-2 collapse-inner rounded">
+            <a class="collapse-item" routerLink="./users-list">Users list</a>
+            <a class="collapse-item" routerLink="profile-review">Review Profile</a>
+          </div>
+        </div>
       </li>
-        <!-- Auctions -->
-<li class="nav-item">
-  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAuctions" aria-expanded="false" aria-controls="collapseEvents">
-      <i class="fas fa-fw fa-folder"></i>
-      <span>Auctions</span>
-  </a>
-  
-  <div id="collapseAuctions" class="collapse" aria-labelledby="headingAuctions" data-bs-parent="#accordionSidebar">
-      <div class="text-white py-2 collapse-inner rounded">
-          <a class="collapse-item" routerLink="./auctions-list">View Auctions</a>
-      </div>
-  </div>
-</li>
-    <!-- Events -->
-<li class="nav-item">
-  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEvents" aria-expanded="false" aria-controls="collapseEvents">
-      <i class="fas fa-fw fa-folder"></i>
-      <span>Events</span>
-  </a>
-  
-  <div id="collapseEvents" class="collapse" aria-labelledby="headingEvents" data-bs-parent="#accordionSidebar">
-      <div class="text-white py-2 collapse-inner rounded">
-          <a class="collapse-item" routerLink="./events-list">View Events</a>
-          <a class="collapse-item" routerLink="./add-event">Add Event</a>
-      </div>
-  </div>
-</li>
-  <!-- Reviews -->
-<li class="nav-item">
-  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReviews" aria-expanded="false" aria-controls="collapseReviews">
-      <i class="fas fa-fw fa-table"></i>
-      <span>Reviews</span>
-  </a>
-  
-  <div id="collapseReviews" class="collapse" aria-labelledby="headingReviews" data-bs-parent="#accordionSidebar">
-      <div class="text-white py-2 collapse-inner rounded">
-          <a class="collapse-item"routerLink="items-review">Items Review</a>
-          <a class="collapse-item" routerLink="profile-review">User Review</a>
-      </div>
-  </div>
-</li>
-   
+<!-- Items -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseItems"
+          aria-expanded="false" aria-controls="collapseItems">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Items</span>
+        </a>
+
+        <div id="collapseItems" class="collapse" aria-labelledby="headingItems" data-bs-parent="#accordionSidebar">
+          <div class="text-white py-2 collapse-inner rounded">
+            <a class="collapse-item" routerLink="items-review">Items Review</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Auctions -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAuctions"
+          aria-expanded="false" aria-controls="collapseEvents">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Auctions</span>
+        </a>
+
+        <div id="collapseAuctions" class="collapse" aria-labelledby="headingAuctions"
+          data-bs-parent="#accordionSidebar">
+          <div class="text-white py-2 collapse-inner rounded">
+            <a class="collapse-item" routerLink="./auctions-list">Auctions List</a>
+          </div>
+        </div>
+      </li>
+      <!-- Events -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEvents"
+          aria-expanded="false" aria-controls="collapseEvents">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Events</span>
+        </a>
+
+        <div id="collapseEvents" class="collapse" aria-labelledby="headingEvents" data-bs-parent="#accordionSidebar">
+          <div class="text-white py-2 collapse-inner rounded">
+            <a class="collapse-item" routerLink="./events-list">Events List</a>
+            <a class="collapse-item" routerLink="./add-event">Add Event</a>
+          </div>
+        </div>
+      </li>
+      <!-- Reviews -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReviews"
+          aria-expanded="false" aria-controls="collapseReviews">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Reviews</span>
+        </a>
+
+        <div id="collapseReviews" class="collapse" aria-labelledby="headingReviews" data-bs-parent="#accordionSidebar">
+          <div class="text-white py-2 collapse-inner rounded">
+            <a class="collapse-item" routerLink="items-review">Items Review</a>
+            <a class="collapse-item" routerLink="profile-review">User Review</a>
+          </div>
+        </div>
+      </li>
+
     </ul>
     <!-- End of Sidebar -->
 
@@ -104,7 +124,8 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" type="button" data-bs-toggle="collapse" data-bs-target="#accordionSidebar" aria-expanded="true" aria-controls="accordionSidebar" class="btn btn-link d-md-none  mr-3">
+          <button id="sidebarToggleTop" type="button" data-bs-toggle="collapse" data-bs-target="#accordionSidebar"
+            aria-expanded="true" aria-controls="accordionSidebar" class="btn btn-link d-md-none  mr-3">
             <i class="fa fa-bars"></i>
           </button>
 
@@ -341,7 +362,7 @@
     </div>
   </div>
 
- 
+
 
 
 </body>

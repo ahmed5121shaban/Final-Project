@@ -7,12 +7,11 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { DashboardHomeComponent } from './Components/dashboard-home/dashboard-home.component';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { AuctionLiveStreamComponent } from './Components/auction-live-stream/auction-live-stream.component';
-
 import { DashboardLayoutComponent } from './Components/dashboard-layout/dashboard-layout.component';
 import { AddEventComponent } from './Components/add-event/add-event.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersListComponent } from './Components/users-list/users-list.component';
-import {EventsListComponent} from './Components/events-list/events-list.component';
+import { EventsListComponent } from './Components/events-list/events-list.component';
 import { AuctionsListComponent } from './Components/auctions-list/auctions-list.component';
 import { ComplaintsListComponent } from './Components/complaints-list/complaints-list.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -21,33 +20,37 @@ import { ItemsReviewComponent } from './Components/items-review/items-review.com
 import { AddCategoryComponent } from './Components/add-category/add-category.component';
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { CategoryListComponent } from './Components/category-list/category-list.component';
+import { ShipmentTrackingComponent } from './Components/shipment-tracking/shipment-tracking.component';
 import { ShortTextPipe } from '../Shared/Pipes/short-text.pipe';
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutes,
-    
+
 
     NgCircleProgressModule.forRoot({
       showUnits: false,
-      showSubtitle:true,
+      showSubtitle: true,
     }),
- CanvasJSAngularChartsModule,
-    CommonModule,AdminRoutes,FormsModule,ReactiveFormsModule,NgxDatatableModule,NgxPaginationModule
+    CanvasJSAngularChartsModule,
+    CommonModule, AdminRoutes, FormsModule, ReactiveFormsModule, NgxDatatableModule, NgxPaginationModule
   ],
   declarations: [
-     AdminComponent,
-     ProfileReviewComponent,
+    AdminComponent,
+    ProfileReviewComponent,
     DashboardHomeComponent,
-   DashboardLayoutComponent,AddEventComponent,UsersListComponent,EventsListComponent,AuctionsListComponent,ComplaintsListComponent,
-   DashboardLayoutComponent,
-   AuctionLiveStreamComponent,
-   ItemsReviewComponent,AddCategoryComponent,
-   ShortTextPipe,
-  CategoryListComponent],
+    DashboardLayoutComponent, AddEventComponent, UsersListComponent, EventsListComponent, AuctionsListComponent, ComplaintsListComponent,
+    DashboardLayoutComponent,
+    AuctionLiveStreamComponent,
+    ItemsReviewComponent, AddCategoryComponent,
+    ShortTextPipe,
+    CategoryListComponent,
+    ShipmentTrackingComponent],
 
-   providers:[
 
-   ]
+
+  providers: [
+
+  ]
 })
 export class AdminModule { }
