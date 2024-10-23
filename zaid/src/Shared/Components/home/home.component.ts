@@ -236,6 +236,29 @@ console.log(error);
   })
 }
 
+
+// getHomeSections() {
+//   this.auctionService.getHomeSections().subscribe({
+//     next: (response) => {
+//       console.log(response);
+
+//       this.popularAuctions = response.PopularAuctions;
+//       this.endingSoon=response.EndingSoon;
+//       this.newArrivals=response.NewArrivals;
+//       this.nobids=response.NoBidsAuctions;
+//       this.reviews=response.Testimonials;
+//       this.updateFavState();
+
+//     },
+//     error: (err) => {
+//       console.log(err);
+
+//     },
+//   });
+// }
+
+
+
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,

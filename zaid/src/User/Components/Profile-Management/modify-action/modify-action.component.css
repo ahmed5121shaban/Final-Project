@@ -146,3 +146,12 @@ color: rgb(229, 124, 35) ;
   display: block !important;
 }
 
+.carousel-inner img{
+  max-width: 160px;
+  max-height: 160px;
+}
+
+#imageModal img{
+  max-width: 760px;
+  max-height: 760px;
+}
