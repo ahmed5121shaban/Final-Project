@@ -26,7 +26,6 @@ import { MyLiveAuctionsComponent } from './Components/Profile-Management/my-live
 import { AdminModule } from '../Admin/Admin.module';
 import { CommonModule } from '@angular/common';
 import { WonAuctionComponent } from './Components/Profile-Management/won-auction/won-auction.component';
-import { RouterModule } from '@angular/router';
 import { WaitingAuctionComponent } from './Components/Profile-Management/waiting-auction/waiting-auction.component';
 import { WatchlistComponent } from "./Components/Profile-Management/watchlist/watchlist.component";
 import { NgxPaginationModule } from "ngx-pagination";
@@ -72,7 +71,7 @@ import { NgxPaginationModule } from "ngx-pagination";
     ComplainAddComponent,
     MyLiveAuctionsComponent,
     WaitingAuctionComponent,
-    WatchlistComponent
+    WatchlistComponent,
 
   ],
 
