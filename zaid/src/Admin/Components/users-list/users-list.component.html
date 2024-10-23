@@ -1,77 +1,57 @@
 <div class="container mt-4">
+  <!-- نموذج البحث -->
   <form [formGroup]="searchForm" class="search-container mb-4">
     <div class="input-group mb-2">
       <input type="text" class="form-control" placeholder="Search by name..." formControlName="name">
     </div>
-    <div class="input-group mb-2">
-      <input type="date" class="form-control" placeholder="Start Date" formControlName="startDate">
-    </div>
-    <div class="input-group mb-2">
-      <input type="date" class="form-control" placeholder="End Date" formControlName="endDate">
-    </div>
-    <div class="input-group mb-2">
-      <select class="form-control" formControlName="status">
-        <option value="">Select Status</option>
-        <option value="Active">Active</option>
-        <option value="Inactive">Inactive</option>
-      </select>
-    </div>
+
     <div class="input-group mb-2">
       <input type="text" class="form-control" placeholder="Email" formControlName="email">
     </div>
+
     <div class="input-group mb-2">
       <select class="form-control" formControlName="role">
         <option value="">Select Role</option>
         <option value="Admin">Admin</option>
         <option value="User">User</option>
-        <!-- Add other roles as needed -->
+        <option value="Buyer">Buyer</option>
+        <option value="Seller">Seller</option>
       </select>
     </div>
   </form>
 
+  <!-- الجدول -->
   <div class="table-wrapper">
     <ngx-datatable
       #datatable
       class="bootstrap"
-      [rows]="currentPageUsers"
+      [rows]="users"
       [columnMode]="'force'"
       [headerHeight]="50"
       [footerHeight]="50"
       [rowHeight]="'auto'"
-      (sort)="onSort($event)"
-      (page)="onPage($event)"
-      [sortType]="sortType"
+      [limit]="10"
     >
-      <ngx-datatable-column name="Name" prop="name" [width]="150"></ngx-datatable-column>
-      <ngx-datatable-column name="ID" prop="id" [width]="80"></ngx-datatable-column>
+      <ngx-datatable-column name="Name" prop="name" [width]="200"></ngx-datatable-column>
+      <ngx-datatable-column name="ID" prop="displayId" [width]="180"></ngx-datatable-column>
       <ngx-datatable-column name="Email" prop="email" [width]="200"></ngx-datatable-column>
-      <ngx-datatable-column name="Status" prop="status" [width]="100"></ngx-datatable-column>
-      <ngx-datatable-column name="Registered Date" [cellTemplate]="registeredDateTemplate" [width]="150"></ngx-datatable-column>
-      <ngx-datatable-column name="Last Login" [cellTemplate]="lastLoginTemplate" [width]="150"></ngx-datatable-column>
-      <ngx-datatable-column name="Role" prop="role" [width]="100"></ngx-datatable-column>
+      <ngx-datatable-column name="Role" prop="role" [width]="190"></ngx-datatable-column>
     </ngx-datatable>
 
-    <ng-template #registeredDateTemplate let-value="value">
-      {{ value ? (value | date:'yyyy-MM-dd') : '' }}
-    </ng-template>
-    <ng-template #lastLoginTemplate let-value="value">
-      {{ value ? (value | date:'yyyy-MM-dd') : '' }}
-    </ng-template>
+    <!-- Pagination -->
+    <nav>
+      <ul class="pagination pagination-controls">
+        <li class="page-item" [class.disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">
+          <a class="page-link" href="javascript:void(0)">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index; trackBy: trackByIndex" 
+            [class.active]="i + 1 === currentPage" (click)="onPageChange(i + 1)">
+          <a class="page-link" href="javascript:void(0)">{{ i + 1 }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages" (click)="onPageChange(currentPage + 1)">
+          <a class="page-link" href="javascript:void(0)">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
- 
-  <nav>
-    <ul class="pagination pagination-controls">
-      <li class="page-item" [class.disabled]="currentPage === 1" (click)="onPage(currentPage - 1)">
-        <a class="page-link" href="javascript:void(0)">Previous</a>
-      </li>
-      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" 
-          [class.active]="i + 1 === currentPage" (click)="onPage(i + 1)">
-        <a class="page-link" href="javascript:void(0)">{{ i + 1 }}</a>
-      </li>
-      <li class="page-item" [class.disabled]="currentPage === totalPages" (click)="onPage(currentPage + 1)">
-        <a class="page-link" href="javascript:void(0)">Next</a>
-      </li>
-    </ul>
-  </nav>
-  
 </div>

@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'login' , component: LoginComponent},
   { path: 'reset-password' , component: PasswordResetComponent},
   { path: 'new-password' , component: NewPasswordComponent},
-  { path: 'add-review' , component: AddReviewComponent},
+  { path: 'add-review/:id' , component: AddReviewComponent},
   { path: 'user-profile' , component: UserProfileComponent},
 
       { path: '', component: ProfileManagementComponent, children: [

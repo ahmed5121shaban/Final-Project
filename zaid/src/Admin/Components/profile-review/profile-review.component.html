@@ -1,516 +1,511 @@
 <div class="content-wrapper">
-  <div class="content">
-    <div class="card card-default card-profile">
-      <div class="card-header-bg"></div>
-      <div class="card-body card-profile-body">
-        <div class="profile-avata">
-          <img class="rounded-circle" src="dashboard/user-md-1.jpg" alt="Avata Image">
-          <span class="h5 d-block mt-3 mb-2">Sofia Straub</span>
-          <span class="d-block">Sofia.straub&commat;gmail.com</span>
-        </div>
-      </div>
+<div class="content">
+<div class="card card-default card-profile">
+<div class="card-header-bg"></div>
+<div class="card-body card-profile-body">
+<div class="profile-avata">
+<img class="rounded-circle" src="dashboard/user-md-1.jpg" alt="Avata Image">
+<span class="h5 d-block mt-3 mb-2">Sofia Straub</span>
+<span class="d-block">Sofia.straub&commat;gmail.com</span>
+</div>
+</div>
+<div class="card-footer card-profile-footer">
+<ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+<li class="nav-item" role="presentation">
+<button class="nav-link active rounded-pill px-5" id="pills-seller-tab" data-bs-toggle="pill"
+data-bs-target="#pills-seller" type="button" role="tab" aria-controls="pills-seller"
+aria-selected="true">Seller</button>
+</li>
+<li class="nav-item" role="presentation">
+<button class="nav-link rounded-pill px-5" id="pills-buyer-tab" data-bs-toggle="pill"
+data-bs-target="#pills-buyer" type="button" role="tab" aria-controls="pills-buyer"
+aria-selected="false">Buyer</button>
+</li>
+</ul>
 
+<div class="tab-content" id="pills-tabContent">
+<div class="tab-pane fade show active" id="pills-seller" role="tabpanel" aria-labelledby="pills-seller-tab">
+<!-- Content for Seller tab -->
+<div class="row mt-5">
 
-      <div class="card-footer card-profile-footer">
-        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active rounded-pill px-5" id="pills-seller-tab" data-bs-toggle="pill"
-              data-bs-target="#pills-seller" type="button" role="tab" aria-controls="pills-seller"
-              aria-selected="true">Seller</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link rounded-pill px-5" id="pills-buyer-tab" data-bs-toggle="pill"
-              data-bs-target="#pills-buyer" type="button" role="tab" aria-controls="pills-buyer"
-              aria-selected="false">Buyer</button>
-          </li>
-        </ul>
+@for(card of sellercards ; track $index){
+<div class="col-xl-3 col-md-6">
+<div class="card card-default">
+<div class="d-flex align-items-center justify-content-center">
+<circle-progress [percent]="card.percent" [title]="card.title"
+[subtitle]="getSubtitle(card.percent)" [titleFontSize]="'12'" [outerStrokeColor]="'#6c59f7'"
+[innerStrokeColor]="'#e6e6e6'" [subtitleFontSize]="'12'" [outerStrokeWidth]="10"
+[innerStrokeWidth]="10" [radius]=" 60" [space]="-10">
+</circle-progress>
 
-        <div class="tab-content" id="pills-tabContent">
-          <div class="tab-pane fade show active" id="pills-seller" role="tabpanel" aria-labelledby="pills-seller-tab">
-            <!-- Content for Seller tab -->
-            <div class="row mt-5">
+</div>
+</div>
+</div>
+}
 
-              @for(card of sellercards ; track $index){
-              <div class="col-xl-3 col-md-6">
-                <div class="card card-default">
-                  <div class="d-flex align-items-center justify-content-center">
-                    <circle-progress [percent]="card.percent" [title]="card.title"
-                      [subtitle]="getSubtitle(card.percent)" [titleFontSize]="'12'" [outerStrokeColor]="'#6c59f7'"
-                      [innerStrokeColor]="'#e6e6e6'" [subtitleFontSize]="'12'" [outerStrokeWidth]="10"
-                      [innerStrokeWidth]="10" [radius]=" 60" [space]="-10">
-                    </circle-progress>
+<!-- Table Product -->
+<div class="row mt-5">
+<div class="col-12">
+<div class="card border-0">
+<div class="card-header d-flex justify-content-between">
+<p class="fs-5">Sold Items</p>
+<div class="col-3">
+<input type="text" class="form-control" placeholder="Search...">
+</div>
+<div class="dropdown justify-content-end">
+<button class="btn border-0 dropdown-toggle fs-6 text-secondary" type="button"
+id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+sort
+</button>
+<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+<li><a class="dropdown-item" href="#">Newest</a></li>
+<li><a class="dropdown-item" href="#">Oldest</a></li>
+</ul>
+</div>
 
-                  </div>
-                </div>
-              </div>
-              }
+</div>
 
-              <!-- Table Product -->
-              <div class="row mt-5">
-                <div class="col-12">
-                  <div class="card border-0">
-                    <div class="card-header d-flex justify-content-between">
-                      <p class="fs-5">Sold Items</p>
-                      <div class="col-3">
-                        <input type="text" class="form-control" placeholder="Search...">
-                      </div>
-                      <div class="dropdown justify-content-end">
-                        <button class="btn border-0 dropdown-toggle fs-6 text-secondary" type="button"
-                          id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                          sort
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                          <li><a class="dropdown-item" href="#">Newest</a></li>
-                          <li><a class="dropdown-item" href="#">Oldest</a></li>
-                        </ul>
-                      </div>
+<div class="card-body">
+<table id="productsTable" class="table table-hover table-product" style="width:100%">
+<thead>
+<tr>
+<th></th>
+<th>Product Name</th>
+<th>ID</th>
+<th>Category</th>
+<th>Variants</th>
+<th>Committed</th>
+<th>Sold</th>
+<th>In Stock</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
 
-                    </div>
+<tr>
+<td class="py-0">
+<img src="dashboard/products/products-xs-01.jpg" alt="Product Image">
+</td>
+<td>Coach Swagger</td>
+<td>24541</td>
+<td>Watches</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>18</td>
+<td>
+<div class="dropdown">
+<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</a>
 
-                    <div class="card-body">
-                      <table id="productsTable" class="table table-hover table-product" style="width:100%">
-                        <thead>
-                          <tr>
-                            <th></th>
-                            <th>Product Name</th>
-                            <th>ID</th>
-                            <th>Category</th>
-                            <th>Variants</th>
-                            <th>Committed</th>
-                            <th>Sold</th>
-                            <th>In Stock</th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</td>
+</tr>
 
-                          <tr>
-                            <td class="py-0">
-                              <img src="dashboard/products/products-xs-01.jpg" alt="Product Image">
-                            </td>
-                            <td>Coach Swagger</td>
-                            <td>24541</td>
-                            <td>Watches</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>4</td>
-                            <td>18</td>
-                            <td>
-                              <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </a>
+<tr>
+<td class="py-0">
+<img src="dashboard/products/products-xs-02.jpg" alt="Product Image">
+</td>
+<td>Toddler Shoes, Gucci Watch</td>
+<td>24542</td>
+<td>HeadPhones</td>
+<td>7</td>
+<td>5</td>
+<td>1</td>
+<td>14</td>
+<td>
+<div class="dropdown">
+<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</td>
+</tr>
 
-                          <tr>
-                            <td class="py-0">
-                              <img src="dashboard/products/products-xs-02.jpg" alt="Product Image">
-                            </td>
-                            <td>Toddler Shoes, Gucci Watch</td>
-                            <td>24542</td>
-                            <td>HeadPhones</td>
-                            <td>7</td>
-                            <td>5</td>
-                            <td>1</td>
-                            <td>14</td>
-                            <td>
-                              <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </a>
+<tr>
+<td class="py-0">
+<img src="dashboard/products/products-xs-03.jpg" alt="Product Image">
+</td>
+<td>Hat Black Suits</td>
+<td>24543</td>
+<td>Bags</td>
+<td>3</td>
+<td>7</td>
+<td>6</td>
+<td>26</td>
+<td>
+<div class="dropdown">
+<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</td>
+</tr>
 
-                          <tr>
-                            <td class="py-0">
-                              <img src="dashboard/products/products-xs-03.jpg" alt="Product Image">
-                            </td>
-                            <td>Hat Black Suits</td>
-                            <td>24543</td>
-                            <td>Bags</td>
-                            <td>3</td>
-                            <td>7</td>
-                            <td>6</td>
-                            <td>26</td>
-                            <td>
-                              <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </a>
+<tr>
+<td class="py-0">
+<img src="dashboard/products/products-xs-05.jpg" alt="Product Image">
+</td>
+<td>Speed 500 Ignite</td>
+<td>24545</td>
+<td>Mobile</td>
+<td>3</td>
+<td>4</td>
+<td>8</td>
+<td>42</td>
+<td>
+<div class="dropdown">
+<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</td>
+</tr>
 
-                          <tr>
-                            <td class="py-0">
-                              <img src="dashboard/products/products-xs-05.jpg" alt="Product Image">
-                            </td>
-                            <td>Speed 500 Ignite</td>
-                            <td>24545</td>
-                            <td>Mobile</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>8</td>
-                            <td>42</td>
-                            <td>
-                              <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </a>
+<tr>
+<td class="py-0">
+<img src="dashboard/products/products-xs-06.jpg" alt="Product Image">
+</td>
+<td>Olay</td>
+<td>24546</td>
+<td>Bags</td>
+<td>6</td>
+<td>6</td>
+<td>79</td>
+<td>12</td>
+<td>
+<div class="dropdown">
+<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</td>
+</tr>
 
-                          <tr>
-                            <td class="py-0">
-                              <img src="dashboard/products/products-xs-06.jpg" alt="Product Image">
-                            </td>
-                            <td>Olay</td>
-                            <td>24546</td>
-                            <td>Bags</td>
-                            <td>6</td>
-                            <td>6</td>
-                            <td>79</td>
-                            <td>12</td>
-                            <td>
-                              <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </a>
+<tr>
+<td class="py-0">
+<img src="dashboard/products/products-xs-07.jpg" alt="Product Image">
+</td>
+<td>Ledger Nano X</td>
+<td>24547</td>
+<td>Electronics</td>
+<td>46</td>
+<td>18</td>
+<td>76</td>
+<td>36</td>
+<td>
+<div class="dropdown">
+<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</td>
+</tr>
 
-                          <tr>
-                            <td class="py-0">
-                              <img src="dashboard/products/products-xs-07.jpg" alt="Product Image">
-                            </td>
-                            <td>Ledger Nano X</td>
-                            <td>24547</td>
-                            <td>Electronics</td>
-                            <td>46</td>
-                            <td>18</td>
-                            <td>76</td>
-                            <td>36</td>
-                            <td>
-                              <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </a>
+<tr>
+<td class="py-0">
+<img src="dashboard/products/products-xs-08.jpg" alt="Product Image">
+</td>
+<td>Surface Laptop 2</td>
+<td>24548</td>
+<td>Labtops</td>
+<td>56</td>
+<td>89</td>
+<td>38</td>
+<td>5</td>
+<td>
+<div class="dropdown">
+<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</td>
+</tr>
 
-                          <tr>
-                            <td class="py-0">
-                              <img src="dashboard/products/products-xs-08.jpg" alt="Product Image">
-                            </td>
-                            <td>Surface Laptop 2</td>
-                            <td>24548</td>
-                            <td>Labtops</td>
-                            <td>56</td>
-                            <td>89</td>
-                            <td>38</td>
-                            <td>5</td>
-                            <td>
-                              <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </a>
+<tr>
+<td class="py-0">
+<img src="dashboard/products/products-xs-09.jpg" alt="Product Image">
+</td>
+<td>TIGI Bed Head Superstar Queen</td>
+<td>24549</td>
+<td>Mobile</td>
+<td>9</td>
+<td>15</td>
+<td>6</td>
+<td>46</td>
+<td>
+<div class="dropdown">
+<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="container mt-4">
+<ul class="pagination mt-3 d-flex justify-content-end">
+<li class="page-item">
+<a class="page-link" href="#" aria-label="Previous">
+<span aria-hidden="true">&laquo;</span>
+<span class="sr-only">Previous</span>
+</a>
+</li>
+<li class="page-item"><a class="page-link" href="#">1</a></li>
+<li class="page-item"><a class="page-link" href="#">2</a></li>
+<li class="page-item"><a class="page-link" href="#">3</a></li>
+<li class="page-item">
+<a class="page-link" href="#" aria-label="Next">
+<span aria-hidden="true">&raquo;</span>
+<span class="sr-only">Next</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-pane fade" id="pills-buyer" role="tabpanel" aria-labelledby="pills-buyer-tab">
+<!-- Content for Buyer tab -->
+<div class="row mt-5">
+@for(card of buyercards ; track $index){
+<div class="col-xl-3 col-md-6">
+<div class="card card-default">
+<div class="d-flex align-items-center justify-content-center">
+<circle-progress [percent]="card.percent" [title]="card.title"
+[subtitle]="getSubtitle(card.percent)" [titleFontSize]="'12'" [subtitleFontSize]="'12'"
+[outerStrokeColor]="'#6c59f7'" [innerStrokeColor]="'#e6e6e6'" [outerStrokeWidth]="10"
+[innerStrokeWidth]="10" [radius]=" 60" [space]="-10">
+</circle-progress>
 
-                          <tr>
-                            <td class="py-0">
-                              <img src="dashboard/products/products-xs-09.jpg" alt="Product Image">
-                            </td>
-                            <td>TIGI Bed Head Superstar Queen</td>
-                            <td>24549</td>
-                            <td>Mobile</td>
-                            <td>9</td>
-                            <td>15</td>
-                            <td>6</td>
-                            <td>46</td>
-                            <td>
-                              <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </a>
+</div>
+</div>
+</div>
+}
+<!-- Table Product -->
+<div class="row mt-5">
+<div class="col-12">
+<div class="card border-0">
+<div class="card-header d-flex justify-content-between">
+<p class="fs-5">Purchased Items</p>
+<div class="col-3">
+<input type="text" class="form-control" placeholder="Search...">
+</div>
+<div class="dropdown justify-content-end">
+<button class="btn border-0 dropdown-toggle fs-6 text-secondary" type="button"
+id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+sort
+</button>
+<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+<li><a class="dropdown-item" href="#">Newest</a></li>
+<li><a class="dropdown-item" href="#">Oldest</a></li>
+</ul>
+</div>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div class="container mt-4">
-                        <ul class="pagination mt-3 d-flex justify-content-end">
-                          <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                              <span aria-hidden="true">&laquo;</span>
-                              <span class="sr-only">Previous</span>
-                            </a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                              <span aria-hidden="true">&raquo;</span>
-                              <span class="sr-only">Next</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="pills-buyer" role="tabpanel" aria-labelledby="pills-buyer-tab">
-            <!-- Content for Buyer tab -->
-            <div class="row mt-5">
-              @for(card of buyercards ; track $index){
-              <div class="col-xl-3 col-md-6">
-                <div class="card card-default">
-                  <div class="d-flex align-items-center justify-content-center">
-                    <circle-progress [percent]="card.percent" [title]="card.title"
-                      [subtitle]="getSubtitle(card.percent)" [titleFontSize]="'12'" [subtitleFontSize]="'12'"
-                      [outerStrokeColor]="'#6c59f7'" [innerStrokeColor]="'#e6e6e6'" [outerStrokeWidth]="10"
-                      [innerStrokeWidth]="10" [radius]=" 60" [space]="-10">
-                    </circle-progress>
+</div>
+<div class="card-body">
+<table id="productsTable" class="table table-hover table-product" style="width:100%">
+<thead>
+<tr>
+<th></th>
+<th>Item Title</th>
+<th>ID</th>
+<th>Category</th>
+<th>End Price</th>
+<th>Committed</th>
+<th>Sold</th>
+<th>In Stock</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
 
-                  </div>
-                </div>
-              </div>
-              }
-              <!-- Table Product -->
-              <div class="row mt-5">
-                <div class="col-12">
-                  <div class="card border-0">
-                    <div class="card-header d-flex justify-content-between">
-                      <p class="fs-5">Purchased Items</p>
-                      <div class="col-3">
-                        <input type="text" class="form-control" placeholder="Search...">
-                      </div>
-                      <div class="dropdown justify-content-end">
-                        <button class="btn border-0 dropdown-toggle fs-6 text-secondary" type="button"
-                          id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                          sort
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                          <li><a class="dropdown-item" href="#">Newest</a></li>
-                          <li><a class="dropdown-item" href="#">Oldest</a></li>
-                        </ul>
-                      </div>
+<tr>
+<td class="py-0">
+<img src="dashboard/products/products-xs-06.jpg" alt="Product Image">
+</td>
+<td>Olay</td>
+<td>24546</td>
+<td>19</td>
+<td>6</td>
+<td>6</td>
+<td>79</td>
+<td>12</td>
+<td>
+<div class="dropdown">
+<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</a>
 
-                    </div>
-                    <div class="card-body">
-                      <table id="productsTable" class="table table-hover table-product" style="width:100%">
-                        <thead>
-                          <tr>
-                            <th></th>
-                            <th>Item Title</th>
-                            <th>ID</th>
-                            <th>Category</th>
-                            <th>End Price</th>
-                            <th>Committed</th>
-                            <th>Sold</th>
-                            <th>In Stock</th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</td>
+</tr>
 
-                          <tr>
-                            <td class="py-0">
-                              <img src="dashboard/products/products-xs-06.jpg" alt="Product Image">
-                            </td>
-                            <td>Olay</td>
-                            <td>24546</td>
-                            <td>19</td>
-                            <td>6</td>
-                            <td>6</td>
-                            <td>79</td>
-                            <td>12</td>
-                            <td>
-                              <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </a>
+<tr>
+<td class="py-0">
+<img src="dashboard/products/products-xs-07.jpg" alt="Product Image">
+</td>
+<td>Ledger Nano X</td>
+<td>24547</td>
+<td>61</td>
+<td>46</td>
+<td>18</td>
+<td>76</td>
+<td>36</td>
+<td>
+<div class="dropdown">
+<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</td>
+</tr>
 
-                          <tr>
-                            <td class="py-0">
-                              <img src="dashboard/products/products-xs-07.jpg" alt="Product Image">
-                            </td>
-                            <td>Ledger Nano X</td>
-                            <td>24547</td>
-                            <td>61</td>
-                            <td>46</td>
-                            <td>18</td>
-                            <td>76</td>
-                            <td>36</td>
-                            <td>
-                              <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </a>
+<tr>
+<td class="py-0">
+<img src="dashboard/products/products-xs-08.jpg" alt="Product Image">
+</td>
+<td>Surface Laptop 2</td>
+<td>24548</td>
+<td>33</td>
+<td>56</td>
+<td>89</td>
+<td>38</td>
+<td>5</td>
+<td>
+<div class="dropdown">
+<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</td>
+</tr>
 
-                          <tr>
-                            <td class="py-0">
-                              <img src="dashboard/products/products-xs-08.jpg" alt="Product Image">
-                            </td>
-                            <td>Surface Laptop 2</td>
-                            <td>24548</td>
-                            <td>33</td>
-                            <td>56</td>
-                            <td>89</td>
-                            <td>38</td>
-                            <td>5</td>
-                            <td>
-                              <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </a>
+<tr>
+<td class="py-0">
+<img src="dashboard/products/products-xs-09.jpg" alt="Product Image">
+</td>
+<td>TIGI Bed Head Superstar Queen</td>
+<td>24549</td>
+<td>3</td>
+<td>9</td>
+<td>15</td>
+<td>6</td>
+<td>46</td>
+<td>
+<div class="dropdown">
+<a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <td class="py-0">
-                              <img src="dashboard/products/products-xs-09.jpg" alt="Product Image">
-                            </td>
-                            <td>TIGI Bed Head Superstar Queen</td>
-                            <td>24549</td>
-                            <td>3</td>
-                            <td>9</td>
-                            <td>15</td>
-                            <td>6</td>
-                            <td>46</td>
-                            <td>
-                              <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-
-
-                        </tbody>
-                      </table>
-                      <div class="container mt-4">
-                        <ul class="pagination mt-3 d-flex justify-content-end">
-                          <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                              <span aria-hidden="true">&laquo;</span>
-                              <span class="sr-only">Previous</span>
-                            </a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                              <span aria-hidden="true">&raquo;</span>
-                              <span class="sr-only">Next</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="container mt-4">
+<ul class="pagination mt-3 d-flex justify-content-end">
+<li class="page-item">
+<a class="page-link" href="#" aria-label="Previous">
+<span aria-hidden="true">&laquo;</span>
+<span class="sr-only">Previous</span>
+</a>
+</li>
+<li class="page-item"><a class="page-link" href="#">1</a></li>
+<li class="page-item"><a class="page-link" href="#">2</a></li>
+<li class="page-item"><a class="page-link" href="#">3</a></li>
+<li class="page-item">
+<a class="page-link" href="#" aria-label="Next">
+<span aria-hidden="true">&raquo;</span>
+<span class="sr-only">Next</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 
-  </div>
+</div>
 </div>

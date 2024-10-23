@@ -1,67 +1,115 @@
 .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .search-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color:white;
+}
+
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  flex: 1;
+}
+
+.input-group input, .input-group select {
+  width: 100%;
+}
+
+.table-wrapper {
+  margin-top: 20px;
+}
+
+/* إعدادات الجدول */
+ngx-datatable {
+  width: 100%;
+}
+
+ngx-datatable-column {
+  padding: 10px;
+}
+
+ngx-datatable .datatable-body-row {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+ngx-datatable .datatable-header {
+  background-color: #f8f9fa;
+}
+
+ngx-datatable .datatable-header .datatable-header-cell {
+  font-weight: bold;
+}
+
+/* إعدادات الروابط */
+a.live-auction-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a.live-auction-link:hover {
+  text-decoration: underline;
+}
+
+/* إعدادات التحكم بالصفحات */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-link {
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border: 1px solid #007bff;
+  transition: background-color 0.3s ease;
+}
+
+.page-link:hover {
+  background-color: #0056b3;
+}
+
+.page-item.active .page-link {
+  background-color: #0056b3;
+  font-weight: bold;
+}
+
+.page-item.disabled .page-link {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .input-group {
-    flex: 1;
+    flex: 1 1 100%; /* تأخذ الحقول عرض الصفحة بالكامل في الشاشات الصغيرة */
   }
-  
-  .input-group input, .input-group select {
-    width: 100%;
-  }
-  
-  .table-wrapper {
-    margin-top: 20px;
-  }
-  
-  a.live-auction-link {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  a.live-auction-link:hover {
-    text-decoration: underline;
-  }
-  
+
   .pagination {
-    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
   }
-  
-  .page-item {
-    margin: 0 5px;
+
+  ngx-datatable-column {
+    width: 100%; /* ضمان تناسق الأعمدة في الشاشات الصغيرة */
   }
-  
-  .page-link {
-    padding: 8px 12px;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
+}
+
+@media (min-width: 1200px) {
+  .input-group {
+    flex: 0 0 30%; /* حقول البحث تأخذ نسبة ثابتة على الشاشات الكبيرة */
   }
-  
-  .page-link:hover {
-    background-color: #0056b3;
-  }
-  
-  .page-item.active .page-link {
-    background-color: #0056b3;
-    font-weight: bold;
-  }
-  
-  .page-item.disabled .page-link {
-    pointer-events: none;
-    opacity: 0.5;
-  }
-  
+}
