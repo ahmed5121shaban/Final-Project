@@ -8,7 +8,8 @@
                             <div class="col-12">
                                 <div class="mb-5">
                                     <h2 class="h3 text-primary">Leave a Review</h2>
-                                    <h3 class="fs-6 fw-normal text-secondary m-0">Share your thoughts about the seller</h3>
+                                    <h3 class="fs-6 fw-normal text-secondary m-0">Share your thoughts about the seller of {{sellerInfo.auctionTitle}}
+                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -19,16 +20,20 @@
                                         <div class="p-4">
                                             <div class="d-flex flex-column flex-sm-row align-items-center">
                                                 <div>
-                                                    <img src="300-6.jpg" alt="item" class="rounded-circle" width="140" />
+                                                    <img [src]="'http://localhost:5204/' + sellerInfo.sellerImage" alt="item" class="rounded-circle"
+                                                        width="140" />
                                                 </div>
                                                 <div class="p-lg-5">
-                                                    <span class="text-secondary fs-5">Seller Name</span>
+                                                    <span class="text-secondary fs-5">{{sellerInfo.sellerName}}</span>
                                                     <div class="d-flex justify-content-start mt-3">
                                                         <div class="text-center mb-3">
                                                             <div class="rating">
-                                                                <label *ngFor="let rating of [5, 4, 3, 2, 1]">
-                                                                    <input type="radio" [formControl]="sellerRatingControl" [value]="rating">
-                                                                    <i class="fas fa-star"></i>
+                                                                <label *ngFor="let rating of [1, 2, 3, 4, 5]">
+                                                                    <input type="radio"
+                                                                        [formControl]="sellerRatingControl"
+                                                                        [value]="rating" aria-label="Seller rating" />
+                                                                    <i class="fas fa-star"
+                                                                        [ngClass]="{'filled': sellerRatingControl.value >= rating}"></i>
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -38,22 +43,27 @@
                                         </div>
                                     </div>
                                 </div>
-                        
+
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
                                         <textarea class="form-control" id="sellerReview" rows="4" style="height: 140px;"
-                                                  [formControl]="sellerReviewControl" placeholder="Write your review about the seller"></textarea>
+                                            [formControl]="sellerReviewControl"
+                                            placeholder="Write your review about the seller"></textarea>
                                         <label for="sellerReview" class="form-label">Seller Review</label>
                                     </div>
                                 </div>
+
+                                <!-- Hidden field for auctionId -->
+                                <input type="hidden" formControlName="auctionId" [value]="auctionId" />
+
                                 <div class="col-12">
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary">Add Review</button>
+                                        <button type="submit" class="btn btn-primary"
+                                            [disabled]="reviewForm.invalid">Add Review</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        
                     </div>
                 </div>
             </div>

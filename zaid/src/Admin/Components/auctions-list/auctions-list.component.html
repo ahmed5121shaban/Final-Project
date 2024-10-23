@@ -100,19 +100,22 @@
 
   <nav>
     <ul class="pagination">
-      <li class="page-item" [class.disabled]="pageActive === 1" (click)="onPageChange(pageActive - 1)">
-        <a class="page-link">Previous</a>
+      <!-- Previous Button -->
+      <li class="page-item" [class.disabled]="pageActive === 1">
+        <a class="page-link" (click)="pageActive !== 1 && onPageChange(pageActive - 1)">Previous</a>
       </li>
-
-      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
-        [class.active]="i + 1 === pageActive" (click)="onPageChange(i + 1)">
-        <a class="page-link">{{ i + 1 }}</a>
+    
+      <!-- Page Numbers -->
+      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" 
+          [class.active]="i + 1 === pageActive">
+        <a class="page-link" (click)="onPageChange(i + 1)">{{ i + 1 }}</a>
       </li>
-
-      <li class="page-item" [class.disabled]="pageActive === totalPages" (click)="onPageChange(pageActive + 1)">
-        <a class="page-link">Next</a>
+    
+      <!-- Next Button -->
+      <li class="page-item" [class.disabled]="pageActive === totalPages">
+        <a class="page-link" (click)="pageActive !== totalPages && onPageChange(pageActive + 1)">Next</a>
       </li>
     </ul>
-
+    
   </nav>
 </div>

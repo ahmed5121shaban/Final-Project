@@ -13,6 +13,10 @@ export class ReviewsService {
   constructor(private http: HttpClient) { }
 
   addReview(formData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/add`, formData); // Ensure '/add' matches your API route
+    return this.http.post(`${this.apiUrl}/add`, formData); 
+  }
+
+  getSellerInfo(auctionId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/GetSellerInfo/${auctionId}`);
   }
 }
