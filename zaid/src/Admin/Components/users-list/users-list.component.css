@@ -1,12 +1,11 @@
-/* إعدادات الحاوية الرئيسية */
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px; /* لإضافة مسافة من الجوانب */
+  padding: 20px;
+  background-color:white;
 }
 
-/* ضبط الحاوية الخاصة بالبحث */
 .search-container {
   display: flex;
   flex-wrap: wrap;
@@ -16,18 +15,12 @@
 
 .input-group {
   flex: 1;
-  min-width: 250px; /* لضمان حجم مناسب للحقل في الشاشات الصغيرة */
 }
 
-/* إعدادات الحقل لتوسيعها بالكامل */
 .input-group input, .input-group select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
-/* تحسين تصميم التابل */
 .table-wrapper {
   margin-top: 20px;
 }
