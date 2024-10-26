@@ -5,6 +5,7 @@ import { CategoryService } from '../../../Admin/Services/category.service';
 import { FavCategoryService } from '../../Services/fav/fav-category.service';
 import { AuctionService } from '../../../Action/Services/auction.service';
 import { FavouriteService } from '../../../Action/Services/favourite.service';
+import { EventService } from '../../../Admin/Services/event.service';
 
 
 
@@ -14,6 +15,7 @@ import { FavouriteService } from '../../../Action/Services/favourite.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  Event:any[]=[];
   reviews:any[]=[];
   isauctionFav:{[key:number]:boolean}={};
   favAuctionIds:any[]=[]
@@ -30,7 +32,7 @@ export class HomeComponent implements OnInit {
   newArrivals: any[] = [];
   endingSoon: any[] = [];
   nobids: any[] = [];
-  constructor(private cookieService: CookieService, private categoryService: CategoryService, private FavcategoryService: FavCategoryService, private auctionService: AuctionService,private favauctionService:FavouriteService) {
+  constructor(private cookieService: CookieService, private categoryService: CategoryService, private FavcategoryService: FavCategoryService, private auctionService: AuctionService,private favauctionService:FavouriteService,private eventService:EventService) {
 
     this.items = [{
       title: 'Classic Car Auction 1',
@@ -93,6 +95,7 @@ export class HomeComponent implements OnInit {
     this.getNoBids();
     this.loadFavAuctions()
     this.getReviews();
+    this.getEvent();
   }
 
   ngOnInit() {
@@ -232,6 +235,19 @@ this.reviews=result;
     error:(error)=>{
 console.log(error);
 
+    }
+  })
+}
+
+getEvent(){
+  this.eventService.GetAllEvent().subscribe({
+    next:(res:any)=>{
+     this.Event= res.result;
+      console.log(this.Event);
+
+    },
+    error:(err)=>{
+      console.log(err);
     }
   })
 }
