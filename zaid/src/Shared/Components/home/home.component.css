@@ -446,3 +446,6 @@ border-bottom: 1px solid #999; */
   font-weight: 300;
   margin: 0 0 20px;
 }
+.custom-product-card{
+  max-width: 200px;
+}

@@ -460,7 +460,6 @@ getEvent(){
   }
 
   addauctionToFav(id:number){
-    alert(this.authService.isLoggedIn);
     if(this.authService.isLoggedIn){
 
     this.favauctionService.addAuctionToFav(id).subscribe({
