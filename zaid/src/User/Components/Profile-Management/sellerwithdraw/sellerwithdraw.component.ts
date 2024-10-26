@@ -54,6 +54,7 @@ getPaymentMethodsCount(){
   this.paymentService.IsUserHavePayment().subscribe({
     next:(res:any)=>{
        this.paymentCount=res.count;
+       this.method=res.method;
        console.log(res)
      },
      error:(err)=>{console.log(err)}
