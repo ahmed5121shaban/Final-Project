@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuctionService } from '../../Services/auction.service';
 import { CategoryService } from '../../../Admin/Services/category.service';
 import { Pagination } from '../../Models/models/pagination.model';
 import { Console } from 'console';
 import { FavouriteService } from '../../Services/favourite.service';
+import { AuthService } from '../../../User/Services/auth.service';
 
 @Component({
   selector: 'app-auction-list',
@@ -12,7 +13,7 @@ import { FavouriteService } from '../../Services/favourite.service';
   styleUrls: ['./auction-list.component.css']
 })
 export class AuctionListComponent implements OnInit {
-
+returnUrl:string="/";
   isFav:{[key:number]:boolean}={};
   activeAuctions: any[] = [];
   categories: any[] = [];
@@ -35,7 +36,10 @@ export class AuctionListComponent implements OnInit {
     private auctionService: AuctionService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private favauctionService:FavouriteService
+    private favauctionService:FavouriteService,
+    private authService:AuthService,
+    private router :Router
+
   ) {
 
 
@@ -154,6 +158,8 @@ export class AuctionListComponent implements OnInit {
 
 
   addToFav(id:number){
+    
+    if(this.authService.isLoggedIn){
 this.favauctionService.addAuctionToFav(id).subscribe({
   next:(response)=>{
 if(response==="added"){
@@ -168,9 +174,12 @@ if(response==="remove")
 
   }
 });
-
-
-}
+    }
+    else{
+      const returnUrl = this.router.url; 
+      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });     
+    }
+  }
 
 loadFavAuctions(){
   this.favauctionService.getAllFavIds().subscribe({

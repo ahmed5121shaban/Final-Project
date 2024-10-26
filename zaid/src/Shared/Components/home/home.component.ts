@@ -6,6 +6,8 @@ import { FavCategoryService } from '../../Services/fav/fav-category.service';
 import { AuctionService } from '../../../Action/Services/auction.service';
 import { FavouriteService } from '../../../Action/Services/favourite.service';
 import { EventService } from '../../../Admin/Services/event.service';
+import { AuthService } from '../../../User/Services/auth.service';
+import { Router } from '@angular/router';
 
 
 
@@ -32,7 +34,7 @@ export class HomeComponent implements OnInit {
   newArrivals: any[] = [];
   endingSoon: any[] = [];
   nobids: any[] = [];
-  constructor(private cookieService: CookieService, private categoryService: CategoryService, private FavcategoryService: FavCategoryService, private auctionService: AuctionService,private favauctionService:FavouriteService,private eventService:EventService) {
+  constructor(private cookieService: CookieService, private categoryService: CategoryService, private FavcategoryService: FavCategoryService, private auctionService: AuctionService,private favauctionService:FavouriteService,private eventService:EventService,private authService:AuthService,private router:Router) {
 
     this.items = [{
       title: 'Classic Car Auction 1',
@@ -458,6 +460,9 @@ getEvent(){
   }
 
   addauctionToFav(id:number){
+    alert(this.authService.isLoggedIn);
+    if(this.authService.isLoggedIn){
+
     this.favauctionService.addAuctionToFav(id).subscribe({
       next:(response)=>{
     if(response==="added"){
@@ -470,6 +475,11 @@ getEvent(){
         console.log(error)
       }
     });   
+  }
+  else{
+    const returnUrl = this.router.url; 
+      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });
+  }
     }
 
     loadFavAuctions() {
