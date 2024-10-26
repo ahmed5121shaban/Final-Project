@@ -17,6 +17,7 @@ export class AddCategoryComponent {
   //   description: ""
   // };
   imagePreview: string | ArrayBuffer | null = null;
+  iconPreview: string | ArrayBuffer | null = null;
 
   constructor(
     private categoryService: CategoryService,
@@ -27,11 +28,13 @@ export class AddCategoryComponent {
     this.CategoryForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      image: ['', Validators.required]
+      image: ['', Validators.required],
+      icon: ['', Validators.required]
+
     });
   }
 
-  onFileSelected(event: Event): void {
+  onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
 
     if (input && input.files && input.files.length > 0) {
@@ -55,6 +58,30 @@ export class AddCategoryComponent {
 
 
   }
+  onIconSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input && input.files && input.files.length > 0) {
+      const file = input.files[0];  // Get the first file
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.iconPreview = reader.result;  // Set the image preview
+      };
+
+      reader.readAsDataURL(file);  // Read the file as a data URL
+      // assign formcontrol "image" with value in this case the file
+      this.CategoryForm.patchValue({ icon: file });
+
+      // more check for validaton of the image form control
+      const iconControl = this.CategoryForm.get('icon');
+      if (iconControl) {
+        iconControl.updateValueAndValidity();
+      }
+    }
+
+
+  }
 
 
   onSubmit() {
@@ -70,7 +97,11 @@ export class AddCategoryComponent {
       const imageFile = this.CategoryForm.get('image')?.value;  // This will get the file object
       if (imageFile) {
         formData.append('image', imageFile);
-
+      }
+        // Append the file (icon) manually
+      const iconFile = this.CategoryForm.get('icon')?.value;  // This will get the file object
+      if (iconFile) {
+        formData.append('icon', iconFile);
       }
 
       console.log(formData);

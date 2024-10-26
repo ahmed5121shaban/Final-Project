@@ -1,5 +1,22 @@
 
+<!-- Category Carousel Section -->
+<div class="container mt-5 position-relative">
+  <owl-carousel-o [options]="categoryCarousel" class="categoryCarousel">
+   
+    @for (category of Categories; track $index) {
 
+    <ng-template carouselSlide>
+      <div class="d-flex flex-column align-items-center">
+        <a href=""><img [src]="'http://localhost:5204/'+ category.icon" alt="" style="width:20px">
+        <div>
+          <p class="pt-1 fw-semibold opacity-75" style="font-size:13px;">{{category.name}}</p>
+        </div>
+      </a>
+      </div>
+    </ng-template>
+  }
+  </owl-carousel-o>
+</div>
 <!-- Hero Section -->
 <section class="container hero-section d-flex align-items-start" style="height: 90vh">
   <div class="align-self-center  m-auto text-center">
