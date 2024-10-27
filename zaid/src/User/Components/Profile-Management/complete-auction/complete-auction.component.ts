@@ -7,7 +7,8 @@ import { AuctionService } from '../../../../Action/Services/auction.service';
   styleUrls: ['./complete-auction.component.css']
 })
 export class CompleteAuctionComponent implements OnInit {
-  allCompletedAuction!:CompletedAuction[];
+  page:number=0;
+  CompletedAuctions:any[]=[];
   constructor(private auctionService:AuctionService) { }
 
   ngOnInit() {
@@ -18,7 +19,7 @@ export class CompleteAuctionComponent implements OnInit {
   AllCompletedAuctions(){
     this.auctionService.AllCompletedAuctions().subscribe({
       next:(res:any)=>{
-        this.allCompletedAuction = res.result
+        this.CompletedAuctions = res.result
         console.log(res);
       },
       error:(err)=>{
@@ -30,10 +31,4 @@ export class CompleteAuctionComponent implements OnInit {
 }
 
 
-export interface CompletedAuction{
-  auctionTitle:string,
-  sellerName:string,
-  startDate:Date,
-  endDate:Date
-}
 

@@ -1,5 +1,23 @@
 
+<!-- Category Carousel Section -->
+<div class="container mt-5 position-relative">
+  <owl-carousel-o [options]="categoryCarousel" class="categoryCarousel">
+   
+    @for (category of Categories; track $index) {
 
+    <ng-template carouselSlide>
+      <div class="d-flex flex-column align-items-center">
+        <a href="" class="text-decoration-none">
+          <img [src]="'http://localhost:5204/'+ category.icon" alt="" style="width:20px">
+        <div>
+          <p class="pt-1 fw-semibold opacity-75" style="font-size:13px;">{{category.name}}</p>
+        </div>
+      </a>
+      </div>
+    </ng-template>
+  }
+  </owl-carousel-o>
+</div>
 <!-- Hero Section -->
 <section class="container hero-section d-flex align-items-start" style="height: 90vh">
   <div class="align-self-center  m-auto text-center">
@@ -110,7 +128,7 @@
                       <span class="visually-hidden">Next</span>
                     </button>
                   </div>
-                  <a  (click)="addToFav(auction.id)" style="cursor: pointer;">
+                  <a  (click)="addauctionToFav(auction.id)" style="cursor: pointer;">
                     <div class="card-icon bg-light" style="position: absolute; top: 10px; right: 10px;  z-index: 1200;">
                       <i class="fa-heart" [ngClass]="isauctionFav[auction.id] ? 'fas' : 'far'" [style.color]="isauctionFav[auction.id] ? 'red' : 'black'" ></i>
                     </div>
@@ -175,7 +193,7 @@
                       <span class="visually-hidden">Next</span>
                     </button>
                   </div>
-                  <a  (click)="addToFav(auction.id)" style="cursor: pointer;">
+                  <a  (click)="addauctionToFav(auction.id)" style="cursor: pointer;">
                     <div class="card-icon bg-light" style="position: absolute; top: 10px; right: 10px;  z-index: 1200;">
                       <i class="fa-heart" [ngClass]="isauctionFav[auction.id] ? 'fas' : 'far'" [style.color]="isauctionFav[auction.id] ? 'red' : 'black'" ></i>
                     </div>
@@ -239,7 +257,7 @@
                       <span class="visually-hidden">Next</span>
                     </button>
                   </div>
-                  <a  (click)="addToFav(auction.id)" style="cursor: pointer;">
+                  <a  (click)="addauctionToFav(auction.id)" style="cursor: pointer;">
                     <div class="card-icon bg-light" style="position: absolute; top: 10px; right: 10px;  z-index: 1200;">
                       <i class="fa-heart" [ngClass]="isauctionFav[auction.id] ? 'fas' : 'far'" [style.color]="isauctionFav[auction.id] ? 'red' : 'black'" ></i>
                     </div>
@@ -303,7 +321,7 @@
                       <span class="visually-hidden">Next</span>
                     </button>
                   </div>
-                  <a  (click)="addToFav(auction.id)" style="cursor: pointer;">
+                  <a  (click)="addauctionToFav(auction.id)" style="cursor: pointer;">
                     <div class="card-icon bg-light" style="position: absolute; top: 10px; right: 10px;  z-index: 1200;">
                       <i class="fa-heart" [ngClass]="isauctionFav[auction.id] ? 'fas' : 'far'" [style.color]="isauctionFav[auction.id] ? 'red' : 'black'" ></i>
                     </div>
@@ -367,7 +385,7 @@
                       <span class="visually-hidden">Next</span>
                     </button>
                   </div>
-                  <a  (click)="addToFav(auction.id)" style="cursor: pointer;">
+                  <a  (click)="addauctionToFav(auction.id)" style="cursor: pointer;">
                     <div class="card-icon bg-light" style="position: absolute; top: 10px; right: 10px;  z-index: 1200;">
                       <i class="fa-heart" [ngClass]="isauctionFav[auction.id] ? 'fas' : 'far'" [style.color]="isauctionFav[auction.id] ? 'red' : 'black'" ></i>
                     </div>
@@ -397,16 +415,20 @@
 
 
 <!-- Event Section -->
-<section class=" event-section d-flex align-items-start py-5" style="height: 90vh">
+<section class="event-section d-flex align-items-start py-5" 
+    style="height: 90vh; background-image: linear-gradient(#bebebe0e,#363636b4), url('{{Event[0].image}}')">
+    <!-- Your content here -->
+
+
   <div class="align-self-center  m-auto text-center">
-    <h4 class="mb-4 pt-1 text-light">Category Title</h4>
-    <h1 class="mb-4 fw-semibold pt-1 text-light">Event Auction Title</h1>
+    <h1 class="mb-4 fw-semibold pt-1 text-light">{{Event[0].title}}</h1>
+    <h4 class="mb-4 pt-1 text-light">{{Event[0].type}}</h4>
     <p class=" mb-4 fw-semibold opacity-75 text-light">
-      Auction Date
+      {{Event[0].startDate|date}}
     </p>
     <div>
-      <a routerLink="../action/auction-list" class="btn btn-light btn-lg me-2 py-2 px-5 fs-6" style="width: 70%;"><span
-          class="fw-semibold">Explore</span><i class="fa-solid fa-circle-chevron-right ms-2"></i></a>
+      <a routerLink="../action/auction-list" class="btn explore btn-lg me-2 py-2 px-3 fs-6">Explore 
+        <i class="fa-solid fa-circle-chevron-right ms-2"></i></a>
     </div>
   </div>
 </section>
