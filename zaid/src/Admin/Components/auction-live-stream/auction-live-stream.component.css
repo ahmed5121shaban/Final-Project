@@ -1,4 +1,11 @@
 
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color:white;
+  }
 .bid-info{
     padding:15px 20px !important;
     max-height: 150px;

@@ -26,7 +26,7 @@
         <a routerLink="../../action/auction-list" class="btn btn-primary mt-2">Explore our Auctions</a>
       </div>
       <div *ngIf="activefavAuctions.length !== 0" class="table-responsive">
-        <table class="table table-hover align-middle">
+        <table class="table table-striped table-hover align-middle">
           <thead>
             <tr>
               <th scope="col">Item</th>
@@ -37,23 +37,23 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let activefavAuction of activefavAuctions;let i=index;">
+            <tr *ngFor="let activefavAuction of activefavAuctions| paginate: { itemsPerPage: 2, currentPage: page }">
               <td>
                 <div class="d-flex align-items-center">
-                  <div id="carouselExample{{i}}" class="carousel slide w-75">
+                  <div id="carouselExample{{activefavAuction.id}}" class="carousel slide w-75">
                     <div class="carousel-inner">
                       <div *ngFor="let image of activefavAuction.auction.item.images; let j = index"
                         [class.active]="j === 0" class="carousel-item"
                         [routerLink]="['../../action/auction-details', activefavAuction.auction.id]"
                         style="cursor: pointer;">
-                        <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 rounded-2">
+                        <img [src]="'http://localhost:5204/' + image" class="d-block w-100 rounded-2">
                       </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample' + i"
+                    <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample' + activefavAuction.id"
                       data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     </button>
-                    <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExample' + i"
+                    <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExample' + activefavAuction.id"
                       data-bs-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     </button>
@@ -63,7 +63,7 @@
 
               <td>{{activefavAuction.auction.endDate|date }}</td>
               <td>{{activefavAuction.auction.item.startPrice}}</td>
-              <td>{{activefavAuction.auction.bids.count}}</td>
+              <td>{{activefavAuction.auction.bids.length}}</td>
               <td>
                 <button class="btn  " title="Delete" (click)="setSelectedAuctionId(activefavAuction.auction.id)"
                   data-bs-target="#myModal" data-bs-toggle="modal">
@@ -73,7 +73,11 @@
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-primary mt-2" data-bs-target="#deleteAll" data-bs-toggle="modal">Delete</button>
+        <div class="d-flex justify-content-between">
+          
+          <pagination-controls (pageChange)="page = $event" ></pagination-controls>
+          <button class="btn btn-outline-primary mt-2" data-bs-target="#deleteAll" data-bs-toggle="modal">Unfollow All Auctions</button>
+        </div>
       </div>
 
       <!-- deletoin modal -->
@@ -129,7 +133,7 @@
         <a routerLink="../../action/auction-list" class="btn btn-primary mt-2">Explore our Auctions</a>
       </div>
       <div *ngIf="endedfavAuctions.length !== 0" class="table-responsive">
-        <table class="table table-hover align-middle">
+        <table class="table table-hover table-striped align-middle">
           <thead>
             <tr>
               <th scope="col">Item</th>
@@ -164,7 +168,7 @@
                 </div>
               </td>
 
-              <td>{{endedfavAuction.auction.endDate|date}}</td>
+              <td>{{endedfavAuction.auction.endDate| date}}</td>
               <td>{{endedfavAuction.auction.item.startPrice}}</td>
               <td>{{endedfavAuction.auction.bids.count}}</td>
               <td>

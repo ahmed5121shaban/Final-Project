@@ -32,6 +32,23 @@ export class AuctionService {
   AllCompletedAuctions(){
     return this.http.get(`${this.apiUrl}/AllCompletedAuctions`)
   }
+  AllInCompletedAuctions(){
+    return this.http.get(`${this.apiUrl}/AllInCompletedAuctions`)
+  }
+  getAvailableBalance(){
+    return this.http.get(`${this.apiUrl}/getAvailableBalance`)
+  }
+  getUpComingBalance(){
+    return this.http.get(`${this.apiUrl}/getUpComingBalance`)
+  }
+  withdraw(amount:number):Observable<any>{
+    return this.http.get(`${this.apiUrl}/withdraw/${amount}`)
+  }
+
+  getwithdrawnamount():Observable<any>{
+    return this.http.get(`${this.apiUrl}/getwithdrawnamount`)
+
+  }
 
   CompleteAuctionPayment(itemID:number){
     return this.http.get(`${this.apiUrl}/CompleteAuctionPayment/${itemID}`)
@@ -113,6 +130,12 @@ export class AuctionService {
   return this.http.get<any>(`http://localhost:5204/api/review/getall`);
  }
 
+
+//  getHomeSections():Observable<any>{
+//   return this.http.get<any>(`${this.apiUrl}/home`);
+// }
+
+ 
 
 }
 export interface Auction {

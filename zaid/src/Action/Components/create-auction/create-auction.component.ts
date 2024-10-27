@@ -35,9 +35,14 @@ export class CreateAuctionComponent {
     });
 
 
-    this.categoryService.getCategories().subscribe(
-      data => {
-      this.categories = data.result;
+    this.categoryService.getCategories().subscribe({
+      next:(data) =>{
+        this.categories = data.result;
+      },
+      error:(err) =>{
+        console.log(err);
+        
+      },
     });
   }
   onFileSelected(event: Event): void {

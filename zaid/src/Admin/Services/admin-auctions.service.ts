@@ -39,6 +39,6 @@ export class AdminAuctionsService {
       .set('categoryName', categoryName || '')
       .set('filterOption', filterOption || '') 
   
-      return this.http.get<Pagination<Auction[]>>(`${this.apiUrl}/GetAuctions`, { params });
+      return this.http.get<Pagination<Auction[]>>(`${this.apiUrl}/GetAuctionForAdmin`, { params });
   }
 }

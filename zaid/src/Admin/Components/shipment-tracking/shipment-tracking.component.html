@@ -1,0 +1,82 @@
+<div class="container">
+    <!-- Shipment Details -->
+    <div class="shipment-detail mt-5" *ngIf="shipmentDetails">
+        <h4>Shipment # {{shipmentDetails.shipmentId}}</h4>
+        <p><strong>From:</strong> {{shipmentDetails.fromAddress.city}} , {{shipmentDetails.fromAddress.country}}</p>
+        <p><strong>To:</strong> {{shipmentDetails.toAddress.city}}, {{shipmentDetails.toAddress.country}}</p>
+        <p><strong>Estimated Delivery:</strong> {{shipmentDetails.estimatedDelivery | date}}</p>
+    </div>
+
+    <!-- Shipment Status Selection -->
+    <div class="form-group mt-4 mb-5 row">
+        <label for="shipmentStatus" class="col-form-label col-sm-2">Shipment Status:</label>
+        <div class="col-sm-8">
+            <select id="shipmentStatus" class="form-control" [(ngModel)]="selectedStatus" (change)="onStatusChange($event)">
+                <option value="0">Not Started</option>
+                <option value="1">Pending</option>
+                <option value="2">On The Way</option>
+                <option value="3">Delivered</option>
+                <option value="4">Returned</option>
+            </select>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-primary" (click)="updateStatus()">Update Status</button>
+        </div>
+    </div>
+    
+
+    <!-- Shipment Tracking Progress -->
+ <!-- Shipment Tracking Progress -->
+ <div class="progress-container">
+    <div class="progress mt-5 mb-4 shadow-sm">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-gradient" 
+            role="progressbar" 
+            [ngStyle]="{ 'background-color': progressColor, 'color': textColor }"
+            [style.width]="progressWidth" 
+            aria-valuenow="50" 
+            aria-valuemin="0" 
+            aria-valuemax="100">
+            {{ progressText }}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <!-- Tracking Status Timeline -->
+    <!-- <div class="tracking-status">
+        <div class="tracking-step" *ngFor="let event of shipmentDetails.status">
+            <div class="circle"
+                [ngClass]="{'bg-success': event.Status === 'Delivered', 'bg-secondary': event.Status !== 'Delivered'}">
+            </div>
+            <p>{{ event.Status }}</p>
+        </div>
+    </div> -->
+
+    <!-- Shipment Events -->
+    <!-- <h4 class="mt-5">Shipment Events</h4>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2024-10-15</td>
+                <td>Shipped</td>
+            </tr>
+            <tr>
+                <td>2024-10-16</td>
+                <td>In Transit</td>
+            </tr>
+            <tr>
+                <td>2024-10-17</td>
+                <td>Out for Delivery</td>
+            </tr>
+        </tbody>
+    </table> -->
+</div>

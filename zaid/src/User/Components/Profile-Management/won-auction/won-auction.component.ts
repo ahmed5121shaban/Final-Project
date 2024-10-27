@@ -57,6 +57,7 @@ export class WonAuctionComponent  {
     this.auctionService.AllDoneAuctions().subscribe({
       next:(data:any)=>{
         this.wonAuctions = data.result;
+        console.log(this.wonAuctions);
       },
       error:(error:any)=>{
         console.log("error in retrieving data");

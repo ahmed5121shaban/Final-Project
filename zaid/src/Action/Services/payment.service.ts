@@ -55,4 +55,9 @@ export class PaymentService {
   return this.http.get(url);
   }
 
+
+  IsUserHavePayment(){
+    return this.http.get(`${this.apiUrl}api/payment/user-have-payment`);
+  }
+
 }
