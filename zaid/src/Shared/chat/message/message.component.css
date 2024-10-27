@@ -1,0 +1,33 @@
+/* Chat messages styling */
+.chat-messages {
+  flex: 1 !important;
+  overflow-y: scroll !important;
+  padding: 1rem !important;
+  border-radius: 15px !important; /* Maintain rounded corners */
+}
+
+/* Customize the scrollbar */
+.chat-messages::-webkit-scrollbar {
+  width: 6px !important; /* Make scrollbar narrower */
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: #F8F1F1 !important; /* Match background to container */
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #ddd !important;
+  border-radius: 10px !important; /* Rounded corners to match the design */
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: #bbb !important; /* Darker color on hover */
+}
+/* Message input container styling */
+.message-input-container {
+  display: flex !important;
+  align-items: center !important;
+  padding: 2.5rem !important;
+  margin-top: 1rem !important;
+  position: relative !important;
+}

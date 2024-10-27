@@ -1,9 +1,8 @@
-<section style="background-color: #F8F1F1; padding: 20px;">
-  <div class="container py-5">
-    <div class="row">
+  <div class="container py-3" style="height: 90vh;">
+    <div class="row"  style="height: 100%;">
       <div class="col-md-12">
-        <div class="card" id="chat3" style="border-radius: 15px;">
-          <div class="card-body">
+        <div class="card" id="chat3" style="border-radius: 15px;height: 100%;">
+          <div class="p-3" style="height: 100%;">
             <div class="row">
               <!-- Search and Chat List -->
               <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
@@ -17,63 +16,42 @@
                   </div>
 
                   <!-- Chat List -->
-                  <div id="chat-list" class="chat-list"*ngIf="!isSmallScreen">
+                  <div id="chat-list" class="chat-list">
                     <ul class="list-unstyled mb-0">
-                      <li class="p-2 border-bottom chat-list-item" *ngFor="let msg of filteredMessages; let i = index" (click)="handleSearchClick(i)">
+                    @if (allChats.length<1||allChats==null||allChats==undefined) {
+                    <li class="p-2 border border-1 rounded-2 my-1 chat-list-item">
+                          <div class="bg-danger bg-opacity-75 p-2 rounded-2">
+                            <p class="text-center pt-2 fw-semibold">You Haven't Chats</p>
+                          </div>
+                        </li>
+                      }
+                      @for (chat of allChats; track $index) {
+                      <li class="p-2 border border-1 rounded-2 my-1 chat-list-item overflow-hidden">
+                        <a routerLink="/shared/chat/message/{{chat.id}}" class="text-decoration-none">
                         <div class="d-flex justify-content-between align-items-center">
                           <div class="d-flex flex-row align-items-center">
-                            <img [src]="msg.sender === 'buyer' ? 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-4.webp' : 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-3.webp'" alt="avatar" class="chat-avatar">
+                            @if (chat.receiverImage) {<img src="{{chat.receiverImage}}" alt="avatar" class="chat-avatar">}
+                            @else {<i class="fa-solid fa-user"></i>}
+
                             <div class="pt-1 ms-2">
-                              <p class="fw-bold mb-0 chat-sender-name">{{ msg.senderName }}</p>
-                              <p class="small text-muted mb-0 chat-message-text" [innerHTML]="msg.text"></p>
+                              <p class="fw-bold mb-0 chat-sender-name">{{ chat.receiverName }}</p>
+                              <p class="small text-muted mb-0 chat-message-text" innerHTML="{{chat.lastMessage|shortMessage}}"></p>
                             </div>
                           </div>
-                          <p class="small text-muted mb-0 chat-time">{{ msg.time }}</p>
+                          <p class="small text-muted mb-0 chat-time">{{ chat.messageDate|date:"shortTime" }}</p>
                         </div>
+                      </a>
                       </li>
+                    }
+
                     </ul>
                   </div>
                 </div>
               </div>
 
               <!-- Chat Messages and Input -->
-              <div class="col-md-6 col-lg-7 col-xl-8">
-                <div class="pt-3 pe-3" id="chat-messages" class="chat-messages">
-                  <!-- Chat Messages -->
-                  <div id="message-{{i}}" class="message-wrapper" *ngFor="let msg of messages; let i = index" [ngClass]="{'message-wrapper-buyer': msg.sender === 'buyer', 'message-wrapper-seller': msg.sender === 'seller'}">
-                    <div *ngIf="msg.sender === 'buyer'" class="text-center">
-                      <p class="small text-muted chat-sender-name">{{ msg.senderName }}</p>
-                      <img [src]="msg.sender === 'buyer' ? 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-4.webp' : 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-3.webp'" alt="avatar" class="chat-avatar">
-                    </div>
-                    <div class="message-bubble" [ngClass]="{'buyer': msg.sender === 'buyer', 'seller': msg.sender === 'seller'}">
-                      <p class="small mb-1 chat-message-text" [innerHTML]="msg.text"></p>
-                      <p class="small mb-0 text-muted chat-time">{{ msg.time }}</p>
-                    </div>
-                    <div *ngIf="msg.sender === 'seller'" class="text-center">
-                      <p class="small text-muted chat-sender-name">{{ msg.senderName }}</p>
-                      <img [src]="msg.sender === 'seller' ? 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-3.webp' : 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp'" alt="avatar" class="chat-avatar">
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Message Input -->
-                <div class="container-fluid px-3 px-md-5">
-                <div class="row">
-                  <div class="col-12 d-flex align-items-center pe-4 pt-3 mt-2 message-input-container">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-4.webp" alt="avatar" class="chat-avatar">
-                  <input type="text" class="form-control form-control-lg message-input" [(ngModel)]="newMessage" (keydown)="handleKeydown($event)" placeholder="Type message" />
-                  <input type="file" (change)="onFileChange($event)" style="display: none;" #fileInput />
-                  <button (click)="fileInput.click()" class="btn btn-light ms-1"><i class="fas fa-paperclip"></i></button>
-                  <button (click)="toggleEmojiPicker()" class="btn btn-light ms-3"><i class="fas fa-smile"></i></button>
-                  <button (click)="sendMessage()" class="btn btn-primary ms-3"><i class="fas fa-paper-plane"></i></button>
-                </div>
-                </div>
-                </div>
-
-                <!-- Emoji Picker -->
-                <div *ngIf="showEmojiPicker" class="emoji-picker">
-                  <span *ngFor="let emoji of emojis" (click)="selectEmoji(emoji)" class="emoji">{{ emoji }}</span>
-                </div>
+              <div class="col-md-6 col-lg-7 col-xl-8" style="height: 60vh;">
+                <router-outlet></router-outlet>
               </div>
             </div>
           </div>
@@ -81,4 +59,3 @@
       </div>
     </div>
   </div>
-</section>

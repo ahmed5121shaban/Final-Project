@@ -11,15 +11,15 @@ export class PaymentService {
   addPaymentEmailUrl = "api/Payment/add-payment-email";
   getPaymentEmailUrl = "api/Payment/get-payment-email";
   userHavePaymentUrl= "api/Bid/user-have-payment/";
-  PaymentForBuyerUrl= "api/payment/payment-for-buyer";
+  //PaymentForBuyerUrl= "api/payment/payment-for-buyer";
   addPaypalAmountUrl="api/payment/create-paypal-payment";
   addStripeAmountUrl="api/payment/create-stripe-payment";
   executePaypalPaymentUrl="api/Payment/auction/success";
   apiUrl = environment.apiUrl
   constructor(private http:HttpClient) {}
 
-  userHavePayment(itemID:number){
-    return this.http.get(`${this.apiUrl}${this.userHavePaymentUrl}${itemID}`);
+  userHavePayment(itemID:number,auctionID:number){
+    return this.http.get(`${this.apiUrl}${this.userHavePaymentUrl}${itemID}/${auctionID}`);
   }
 
   firstPaymentAuction(payment:any){
@@ -34,9 +34,9 @@ export class PaymentService {
     return this.http.get(`${this.apiUrl}${this.getPaymentEmailUrl}`)
   }
 
-  getPaymentForBuyer(){
+/*   getPaymentForBuyer(){
     return this.http.get(`${this.apiUrl}${this.PaymentForBuyerUrl}`)
-  }
+  } */
 
   placeBid(bid:any){
     return this.http.post(`${this.apiUrl}${this.addBidUrl}`,bid)

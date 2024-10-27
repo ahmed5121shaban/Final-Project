@@ -71,7 +71,8 @@ import { WatchlistComponent } from "./Components/Profile-Management/watchlist/wa
     LostAuctionComponent,
     ComplainAddComponent,
     MyLiveAuctionsComponent,
-    WaitingAuctionComponent
+    WaitingAuctionComponent,
+    WatchlistComponent
 
   ],
 
