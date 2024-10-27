@@ -19,4 +19,9 @@ export class ReviewsService {
   getSellerInfo(auctionId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/GetSellerInfo/${auctionId}`);
   }
+  getSellerReviews(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/GetSellerReviews`);
+  }
+
+
 }

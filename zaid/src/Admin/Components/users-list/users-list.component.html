@@ -36,6 +36,12 @@
       <ngx-datatable-column name="ID" prop="displayId" [width]="180"></ngx-datatable-column>
       <ngx-datatable-column name="Email" prop="email" [width]="200"></ngx-datatable-column>
       <ngx-datatable-column name="Role" prop="role" [width]="190"></ngx-datatable-column>
+      <ngx-datatable-column name="Action" [width]="120">
+        <ng-template ngx-datatable-cell-template let-row="row">
+          <button class="btn btn-primary" (click)="viewProfile(row)">View Profile</button>
+                </ng-template>
+        
+      </ngx-datatable-column>
     </ngx-datatable>
 
     <!-- Pagination -->

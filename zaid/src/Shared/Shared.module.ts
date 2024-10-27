@@ -9,14 +9,15 @@ import { NavComponent} from './Components/nav/nav.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { FaqRulesComponent } from './Components/faq-rules/faq-rules.component';
 import { LoaderComponent } from './Components/loader/loader.component';
-import { LoaderService } from './Interseptors/loader intersptors/loader.service';
-import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient } from '@angular/common/http';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { NotificationsComponent } from './Components/notifications/notifications.component';
 import { HomeComponent } from './Components/home/home.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import { ChatComponent } from './chat/chat.component';
 import { UserLayoutComponent } from './Components/user-layout/user-layout.component';
+import { MessageComponent } from './chat/message/message.component';
+import { EmptyMessageComponent } from './chat/empty-message/empty-message.component';
+import { ShortMessagePipe } from './Pipes/shortMessage.pipe';
 
 
 @NgModule({
@@ -41,7 +42,10 @@ import { UserLayoutComponent } from './Components/user-layout/user-layout.compon
       }
     }),
 
-    ReactiveFormsModule, FormsModule
+    ReactiveFormsModule,
+     FormsModule,
+
+
   ],
 
   declarations: [
@@ -55,8 +59,10 @@ import { UserLayoutComponent } from './Components/user-layout/user-layout.compon
     NotFoundComponent,
     ContactUsComponent,
     ChatComponent,
-  
+    MessageComponent,
     UserLayoutComponent,
+    EmptyMessageComponent,
+    ShortMessagePipe
 
 
   ],
@@ -65,9 +71,9 @@ import { UserLayoutComponent } from './Components/user-layout/user-layout.compon
     NavComponent,
     FooterComponent,
     LoaderComponent,
-  
-    
-    
+
+
+
   ]
 })
 export class SharedModule { }

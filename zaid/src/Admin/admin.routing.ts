@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: "home", component: DashboardHomeComponent },
   { path: 'users-list', component: UsersListComponent },
   { path: 'profile-review', component: ProfileReviewComponent },
+  { path: 'profile-review/:id', component: ProfileReviewComponent },
   { path: 'add-event', component: AddEventComponent },
   { path: 'events-list', component: EventsListComponent },
   { path: 'auctions-list', component: AuctionsListComponent },

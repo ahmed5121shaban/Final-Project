@@ -1,21 +1,82 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import * as signalR from '@microsoft/signalr';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from '../../Services/notification.service';
+import { Location } from '@angular/common';
+
+export interface Notification {
+  time: string;
+  title: number;
+  description: string;
+  subjectName: string;
+  isReaded: string;
+}
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrl: './nav.component.css'
+  styleUrl: './nav.component.css',
 })
-export class NavComponent {
-
-  constructor(private cookieService: CookieService,private toaster:ToastrService) {
-
-
+export class NavComponent implements OnInit {
+  hubConnection!: signalR.HubConnection;
+  allNotifications!: Notification[];
+  alert!: boolean;
+  audio = new Audio();
+  constructor(
+    private cookieService: CookieService,
+    private toaster: ToastrService,
+    private notificationService: NotificationService,
+    private location:Location
+  ) {
+    this.audio.src = 'audio/mixkit-correct-answer-tone-2870.wav';
   }
-  logUot(){
-    this.cookieService.delete("token");
-    this.cookieService.delete("auth");
-    this.toaster.success("you LogedUot now");
+
+  ngOnInit() {
+    this.openConnectionAndGetAllBidsWithLast();
+    this.notificationService.GetAllNotifications().subscribe({
+      next: (res: any) => {
+        this.allNotifications = res.result.reverse();
+        console.log(res);
+      },
+    });
+  }
+
+  logOut() {
+    this.cookieService.delete('token');
+    this.cookieService.delete('auth');
+    this.toaster.success('you LogUot now');
+    this.location.go('/login');
+  }
+
+  openConnectionAndGetAllBidsWithLast() {
+    let token = this.cookieService.get('token');
+    this.hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl('http://localhost:5204/notificationHub', {
+        accessTokenFactory: () => token,
+        transport: signalR.HttpTransportType.WebSockets,
+        skipNegotiation: true,
+      })
+      .build();
+
+    this.hubConnection
+      .start()
+      .then(() => {
+        console.log('SignalR Connection started');
+        this.hubConnection.on('notification', (res: Notification) => {
+          this.alert = true;
+          this.allNotifications.unshift(res);
+          this.audio.load();
+          this.audio.play().catch((err) => {
+            console.error('Error playing sound:', err);
+          });
+        });
+      })
+      .catch((err) => {
+        console.log('SignalR Connection Error: ', err);
+      });
+  }
+  removeNotify() {
+    this.alert = false;
   }
 }

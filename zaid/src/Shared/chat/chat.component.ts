@@ -1,5 +1,20 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { ChatService } from '../Services/chat/chat.service';
+
+export interface chat{
+   id :number,
+   senderID :string
+   receiverID :string
+   messageDate :any
+   isActive :boolean
+   senderImage :string
+   receiverImage :string
+   senderName :string
+   receiverName :string
+   lastMessage:string
+}
+
 
 @Component({
   selector: 'app-chat',
@@ -7,34 +22,50 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, AfterViewInit {
+
+  allChats!:chat[];
   messages: { text: string; sender: 'buyer' | 'seller'; time: string; date: string; day: string; senderName: string }[] = [];
   newMessage: string = '';
   searchTerm: string = '';
   selectedMessageIndex: number | null = null;
-  showEmojiPicker: boolean = false;
-  emojis: string[] = ['😊', '😂', '😍', '🥺', '😎', '😢', '😜', '😉', '😇', '🤔'];
+/*   showEmojiPicker: boolean = false;
+  emojis: string[] = ['😊', '😂', '😍', '🥺', '😎', '😢', '😜', '😉', '😇', '🤔'];*/
   filteredMessages: { text: string; sender: 'buyer' | 'seller'; time: string; date: string; day: string; senderName: string }[] = [];
   otherConversationMessages: { text: string; sender: 'buyer' | 'seller'; time: string; date: string; day: string; senderName: string }[] = [
     { text: 'هذا هو نص الرسالة من محادثة أخرى', sender: 'seller', time: '12:30', date: '10 August 2024', day: 'Saturday', senderName: 'Other Seller' }
   ];
   isSmallScreen: boolean = false;
 
-  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+/*   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+ */
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,private chatService : ChatService) {
     // Check if the platform is a browser before accessing window
     this.isSmallScreen = isPlatformBrowser(this.platformId) && window.innerWidth < 768;
   }
 
   ngOnInit() {
+    this.getAllChats();
     this.initializeMessages();
     this.updateFilteredMessages();
   }
 
+
+
+  getAllChats(){
+    this.chatService.getAllChats().subscribe({
+      next:(res:any)=>{
+        console.log(res);
+        this.allChats = res.result
+      },
+      error:(err)=>console.log(err)
+      
+    })
+  }
+
   ngAfterViewInit() {
-    if (isPlatformBrowser(this.platformId)) {
+ /*    if (isPlatformBrowser(this.platformId)) {
       this.fileInput.nativeElement.addEventListener('change', (event) => this.onFileChange(event));
-    }
+    } */
   }
 
   @HostListener('window:resize', ['$event'])
@@ -81,46 +112,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
       });
       this.newMessage = '';
       this.updateFilteredMessages();
-    }
-  }
-
-  toggleEmojiPicker() {
-    this.showEmojiPicker = !this.showEmojiPicker;
-  }
-
-  selectEmoji(emoji: string) {
-    this.newMessage += emoji;
-    this.showEmojiPicker = false;
-  }
-
-  onFileChange(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        let fileContent;
-        const fileType = file.type;
-
-        if (fileType.startsWith('image/')) {
-          fileContent = `<img src="${e.target.result}" alt="file" class="file-message" />`;
-        } else if (fileType === 'application/pdf') {
-          fileContent = `<iframe src="${e.target.result}" class="file-message" frameborder="0"></iframe>`;
-        } else {
-          fileContent = `<a href="${e.target.result}" download="${file.name}">Download ${file.name}</a>`;
-        }
-
-        this.messages.push({
-          text: fileContent,
-          sender: 'buyer',
-          time: new Date().toLocaleTimeString(),
-          date: this.formatDate(new Date()),
-          day: this.formatDay(new Date()),
-          senderName: 'Buyer'
-        });
-        this.updateFilteredMessages();
-      };
-      reader.readAsDataURL(file);
     }
   }
 
