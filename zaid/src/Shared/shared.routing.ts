@@ -7,6 +7,8 @@ import { NotificationsComponent } from './Components/notifications/notifications
 
 import { FaqRulesComponent } from './Components/faq-rules/faq-rules.component';
 import { ChatComponent } from './chat/chat.component';
+import { MessageComponent } from './chat/message/message.component';
+import { EmptyMessageComponent } from './chat/empty-message/empty-message.component';
 
 
 const routes: Routes = [
@@ -15,7 +17,10 @@ const routes: Routes = [
    {path:'contact',component:ContactUsComponent},
   {path:'about',component:AboutUsComponent},
   {path:'notifications',component:NotificationsComponent},
-   {path:'app-chat',component:ChatComponent},
+   {path:'chat',component:ChatComponent,children:[
+    {path:'message/:id',component:MessageComponent},
+    {path:'',component:EmptyMessageComponent}
+   ]},
   { path: 'contact', component: ContactUsComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'faq', component: FaqRulesComponent },

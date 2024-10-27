@@ -65,19 +65,19 @@
                  <!-- <span class="me-2">({{CategoryAuctionCount(category.name)}})</span> -->
              </a>
          </div>
-         
+
             </nav>
           </div>
         </div>
         <div class="col-lg-8 col-12">
-          <!-- @if(selectedCategory !=''){  
+          <!-- @if(selectedCategory !=''){
             <div class="position-relative mb-3">
                 <img [src]="'http://localhost:5204/' + categorysearch[0].image" class="card-img-top" alt="Mark Seliger Print" style="width: 96%; height: 300px;" >
                 <div class="card-custum card">
                   <h6>{{categorysearch[0].name}}</h6>
                   <p>{{categorysearch[0].description}}</p>
                 </div>
-             
+
             </div>
           }
           @else{
@@ -113,6 +113,7 @@
           </div>
 
           <div class="row">
+            
             <div
             *ngFor="let auction of activeAuctions | paginate: { itemsPerPage: itemsPerPage, currentPage: pageActive ,totalItems: totalItemsActive }"
             class="col-lg-4 col-md-6 col-12 mt-5">
