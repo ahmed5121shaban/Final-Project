@@ -11,6 +11,7 @@ import { ComplaintsListComponent } from './Components/complaints-list/complaints
 import { ItemsReviewComponent } from './Components/items-review/items-review.component';
 import { AddCategoryComponent } from './Components/add-category/add-category.component';
 import { ShipmentTrackingComponent } from './Components/shipment-tracking/shipment-tracking.component';
+import { CategoryListComponent } from './Components/category-list/category-list.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'complaints-list', component: ComplaintsListComponent },
   { path: 'items-review', component: ItemsReviewComponent },
   { path: 'add-category', component: AddCategoryComponent },
+  { path: 'categories-list',component: CategoryListComponent}
 
 ];
 

@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: 'new-password' , component: NewPasswordComponent},
   { path: 'add-review' , component: AddReviewComponent},
   { path: 'user-profile/:id' , component: UserProfileComponent},
+  { path: 'user-profile', component:UserProfileComponent },
 
       { path: '', component: ProfileManagementComponent, children: [
       { path: 'profile', component: MyProfileComponent },
@@ -53,7 +54,8 @@ const routes: Routes = [
       { path: 'seller-withdraw', component: SellerwithdrawComponent },
       { path: 'complain-add', component:ComplainAddComponent },
       { path: 'buyer-live-auctions', component:MyLiveAuctionsComponent },
-      { path: 'auction-live-stream/:id', component: AuctionLiveStreamComponent },
+      { path: 'auction-live-stream/:id', component: AuctionLiveStreamComponent }
+    
 
     ] },
 

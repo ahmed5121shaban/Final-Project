@@ -28,16 +28,7 @@ LiveAuctions : any[] =[];
     }
   });
   }
-  Close(id:number):void{
-    this.AuctionService.CloseAuction(id).subscribe({
-      next:res=>{
-      console.log(res);
-      this.LiveAuctions=this.LiveAuctions.filter(auction=>auction.Ended==false);
-        
-      }
-    })
 
-  }
 
 
 }

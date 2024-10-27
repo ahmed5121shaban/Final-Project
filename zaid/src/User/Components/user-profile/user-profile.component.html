@@ -49,7 +49,7 @@
                 <h5 class="pt-3 pb-2" ><b>Categories</b></h5>
                 <div class="skills">
 @for( Cat of Profile.FavCategories; track $index){
-    <a href=""><i class="fas fa-car"></i> {{Cat.name}}</a>
+    <a ><i class="fas fa-car"></i> {{Cat.name}}</a>
 }         
                 </div>
             </div>
@@ -63,9 +63,30 @@
                 <section class="py-5 position-relative parent-of-card">
                     <div class="container">
                       <div class="feature-parent-card">
-
-                        <owl-carousel-o [options]="liveAction" class="d-flex flex-nowrap ">
-                            @for (Auction of Profile.LatestAuctions; track $index) {
+                        if(Profile.Isseller == true){
+                            <owl-carousel-o [options]="liveAction" class="d-flex flex-nowrap ">
+                                @for (Auction of Profile.LatestAuctions; track $index) {
+                                  <ng-template carouselSlide>
+                                  <div  class="featured-card-carsoule me-3 ">
+                                    <div class="card border-0 shadow-sm featured-auction">
+                                      <img
+                                        src="{{Auction.images[0]}}"
+                                        class="card-img-top"
+                                        alt="Classic Car Auction"
+                                      />
+                                      <div class="card-body">
+                                        <h5 class="card-title">{{Auction.item.title}}</h5>
+                                        <p class="card-text">Date: {{Auction.item.startdate}}</p>
+                                        <!-- <p class="card-text">Starting Bid: </p> -->
+                                      </div>
+                                    </div>
+                                  </div>
+                                </ng-template>
+                                }
+                            </owl-carousel-o>
+                        }
+                        <owl-carousel-o [options]="wonAction" class="d-flex flex-nowrap ">
+                            @for (Auction of Profile.wonAuctions; track $index) {
                               <ng-template carouselSlide>
                               <div  class="featured-card-carsoule me-3 ">
                                 <div class="card border-0 shadow-sm featured-auction">
@@ -77,7 +98,7 @@
                                   <div class="card-body">
                                     <h5 class="card-title">{{Auction.item.title}}</h5>
                                     <p class="card-text">Date: {{Auction.item.startdate}}</p>
-                                    <p class="card-text">Starting Bid: </p>
+                                    <!-- <p class="card-text">Starting Bid: </p> -->
                                   </div>
                                 </div>
                               </div>
@@ -105,49 +126,51 @@
                             <div class=" col-3 col-md-3 col-lg-3 col-xl-3">
                                 <p >sort by:</p>
                             </div>
-                            <div class="select  w-100 " style="width: 100% !important;"  >
+                            <!-- <div class="select  w-100 " style="width: 100% !important;"  >
                                 <select class="form-select p-2" id="select" style="width: 100%;">
                                         <option selected value="">Recommended</option>
                                         <option value="">Most Recent</option>
                                    </select>
 
 
-                            </div>
+                            </div> -->
                     </div>
                 </div>
-                <div>
-                    <div class="d-flex p-2  justify-content-between">
-                        <div class="d-flex gap-3">
-                            <img src="300-4.jpg"
-                                style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
-                            <div>
-                                <p class="mentor-name mb-1 mt-2"><b>Satvik</b></p>
-                                <div class="rate-date d-md-flex flex-md-row d-flex flex-column">
-                                    <div class="rate d-flex me-1">
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                @for(review of Profile.reviews ;track $index){
+                    <div>
+                        <div class="d-flex p-2  justify-content-between">
+                            <div class="d-flex gap-3">
+                                <img src=""
+                                    style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
+                                <div>
+                                    <p class="mentor-name mb-1 mt-2"><b>{{review.buyerName}}</b></p>
+                                    <div class="rate-date d-md-flex flex-md-row d-flex flex-column">
+                                        <div class="rate d-flex me-1">
+                                           @for(star of Stars){
+                                            <i class="fas fa-star" style="line-height: 1;" [style.color]="star <= review.rate ? '#f59e0b' : '#e0e0e0' " ></i>
+                                           }
+                                
+                                        </div>
+                                        <p style="font-size: 13px"> September 9, 2024 </p>
                                     </div>
-                                    <p style="font-size: 13px"> September 9, 2024 </p>
+    
                                 </div>
-
                             </div>
+    
+    
                         </div>
-
-
+                        <p class="text-secondary">
+                            The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
+                            as
+                            well.... if you are really confused or do need to know how to start your DSA career have a
+                            session
+                            with Sir... it will really help you.
+                        </p>
+                        <hr>
                     </div>
-                    <p class="text-secondary">
-                        The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
-                        as
-                        well.... if you are really confused or do need to know how to start your DSA career have a
-                        session
-                        with Sir... it will really help you.
-                    </p>
-                    <hr>
-                </div>
-
+                }
+                
+<!-- 
                 <div>
                     <div class="d-flex  p-3 justify-content-between">
                         <div class="d-flex gap-3">
@@ -241,11 +264,11 @@
                         with Sir... it will really help you.
                     </p>
                     <hr>
-                </div>
+                </div> -->
 
-                <div class="link-primary text-center fs-5">
+                <!-- <div class="link-primary text-center fs-5">
                     <a>See More</a>
-                </div>
+                </div> -->
 
             </div>
         </div>

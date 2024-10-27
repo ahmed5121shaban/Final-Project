@@ -43,8 +43,7 @@ import { AuctionLiveStreamComponent } from './Components/Profile-Management/auct
     FormsModule,
     CarouselModule,
     ReactiveFormsModule,
-    AdminModule,
-    NgxPaginationModule
+    NgxPaginationModule,
     RouterModule
 
   ],
@@ -74,8 +73,6 @@ import { AuctionLiveStreamComponent } from './Components/Profile-Management/auct
     LostAuctionComponent,
     ComplainAddComponent,
     MyLiveAuctionsComponent,
-    WaitingAuctionComponent,
-    WatchlistComponent
     WaitingAuctionComponent,
     WatchlistComponent,
     AuctionLiveStreamComponent
