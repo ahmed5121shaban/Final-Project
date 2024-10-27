@@ -11,9 +11,15 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   // إرسال بيانات الملف الشخصي
-  updateProfile(data: FormData): Observable<any> {
-    return this.http.put(`${this.baseUrl}/profile`, data, { responseType: 'text' })
-  }
+updateProfile(data: FormData): Observable<any> {
+  return this.http.put(`${this.baseUrl}/profile`, data, { responseType: 'text' }).pipe(
+    catchError((error) => {
+      console.error('Error updating profile:', error);
+      return throwError(error); // Re-throw the error so it can be handled by the caller
+    })
+  );
+}
+
 
   // إرسال بيانات التحقق من الهوية
   verifyIdentity(data: any): Observable<any> {
