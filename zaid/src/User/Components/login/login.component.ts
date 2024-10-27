@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
@@ -11,7 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
+returnUrl:string;
   form: FormGroup;
   passwordFieldType: string = 'password';
   passwordInputNotEmpty: boolean = false;
@@ -19,7 +19,8 @@ export class LoginComponent {
     private builder: FormBuilder,
     private authService: AuthService,
     private toastr: ToastrService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private route:ActivatedRoute
   ) {
     this.form = this.builder.group({
       email: ["", [Validators.required, Validators.email]],
@@ -29,6 +30,8 @@ export class LoginComponent {
     this.form.get('password')!.valueChanges.subscribe(value => {
       this.passwordInputNotEmpty = value.length > 0;
     });
+
+    this.returnUrl=this.route.snapshot.queryParamMap.get('returnUrl') || '/';
   }
   get rememberMe(){
     return this.form.controls['rememberMe'];
@@ -47,7 +50,13 @@ export class LoginComponent {
         if (response.status == 200) {
           this.cookieService.set('token', response.token,2);
           this.cookieService.set("auth",response.token);
-          this.router.navigate(['/user/profile']);
+          
+          if(this.returnUrl=="/"){
+            this.router.navigate(['/user/profile']);
+          }
+          else{
+            this.router.navigateByUrl(this.returnUrl);
+          }
           this.toastr.success('Logged in successfully', 'Success');
         } else {
           this.toastr.error('Email or password is wrong', 'Error');

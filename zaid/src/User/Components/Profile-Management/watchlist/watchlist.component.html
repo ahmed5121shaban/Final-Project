@@ -74,7 +74,7 @@
                 </div>
               </td>
 
-              <td>{{activefavAuction.auction.endDate|date}}</td>
+              <td>{{activefavAuction.auction.endDate|date }}</td>
               <td>{{activefavAuction.auction.item.startPrice}}</td>
               <td>{{activefavAuction.auction.bids.length}}</td>
               <td>
@@ -143,7 +143,7 @@
                     <div class="carousel-inner">
                       <div *ngFor="let image of endedfavAuction.auction.item.images; let j = index"
                         [class.active]="j === 0" class="carousel-item"
-                        [routerLink]="['../../action/auction-details', endedfavAuction.auction.id]"
+                        [routerLink]="['../../action/auction-details', endedfavAuction.auction.id]">
                         style="cursor: pointer;">
                         <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 rounded-2">
                       </div>
@@ -160,7 +160,7 @@
                 </div>
               </td>
 
-              <td>{{endedfavAuction.auction.endDate|date}}</td>
+              <td>{{endedfavAuction.auction.endDate| date}}</td>
               <td>{{endedfavAuction.auction.item.startPrice}}</td>
               <td>{{endedfavAuction.auction.bids.count}}</td>
               <td>

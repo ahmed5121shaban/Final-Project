@@ -1,11 +1,9 @@
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from '../../Services/payment.service';
 import { AuctionService } from '../../Services/auction.service';
 import { ToastrService } from 'ngx-toastr';
 import * as signalR from '@microsoft/signalr';
-import { environment } from '../../../environments/environment';
-
 interface Reply {
   id: number;
   text: string;
@@ -30,24 +28,28 @@ export class AuctionDetailsComponent implements OnChanges {
   similarAuctions: any[] = [];
   groupedSimilarAuctions: any[][] = []; // Grouped auctions for the carouses
   successesPayment!: boolean;
-  paymentDetailAuctionID!: any;
+  //paymentDetailAuctionID!: any;
   secretKey!: string
   method!:number;
   allBids:any
-  lastBid:any
+  lastBid:any;
+  hubConnection!:signalR.HubConnection;
+  highlightNewBid!:boolean
 
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
     private toastr: ToastrService,
     private route: ActivatedRoute)
   {
+    this.openConnectionAndGetAllBidsWithLast();
     this.route.params.subscribe(params => {
       this.auctionId = +params['id']; // Get auction ID from route
       console.log(this.auctionId)
       this.getAuctionDetails(); // Fetch auction details by ID
       this.loadSimilarAuctions();
-      this.getPaymentForBuyer();
+      //this.getPaymentForBuyer();
     });
+
 
   }
   ngOnChanges(): void {}
@@ -60,45 +62,27 @@ export class AuctionDetailsComponent implements OnChanges {
 
   ngOnInit(): void {
 
-      let hubConnection = new signalR.HubConnectionBuilder()
-        .withUrl(`${environment.apiUrl}bidsHub`)
-        .build();
-
-      hubConnection
-        .start()
-        .then(() => {
-          return hubConnection.invoke('joinGroup', this.auctionId);
-        })
-        .catch((err) => console.error('SignalR Connection Error: ', err));
-
-        hubConnection.on("allBids",(res:any)=>{
-          console.log(res," signalr connection  signalr connection  signalr connection  signalr connection ");
-          this.allBids = res;
-        })
-        hubConnection.on("lastBid",(res:any)=>{
-          console.log(res," signalr connection  signalr connection  signalr connection  signalr connection ");
-          this.lastBid = res;
-        })
+    this.hubConnection.on('allBids', (res) => {
+      this.allBids = res
+      console.log('All bids received:', res);
+    });
 
   }
 
-  getPaymentForBuyer(){
+/*   getPaymentForBuyer(){
   this.paymentService.getPaymentForBuyer().subscribe({
     next:(res:any)=>{
-      console.log(res,"getPaymentFor Buyer getPaymentFor Buyer getPaymentFor Buyer getPaymentFor Buyer getPaymentForBuyer");
-      this.successesPayment = true;
       this.paymentDetailAuctionID = res.result;
-      console.log(this.paymentDetailAuctionID,"getPaymentFor Buyer getPaymentFor Buyer getPaymentFor Buyer getPaymentFor Buyer getPaymentForBuyer");
     },
-    error:(err)=>{
-      this.successesPayment = false;
-    }
+    error:(err)=>{console.log(err);}
   });
-  }
-  userHavePayment(itemID:number){
+  } */
+
+
+  userHavePayment(itemID:number,auctionID:number){
     //error in this.auctionDetails.item.id/////
 
-    this.paymentService.userHavePayment(itemID).subscribe({
+    this.paymentService.userHavePayment(itemID,auctionID).subscribe({
       next:(res:any)=>{
          this.paymentCount=res.count;
          if(res.count==3)
@@ -115,7 +99,7 @@ export class AuctionDetailsComponent implements OnChanges {
         next:(res: any) => {
           this.auctionDetails = res;
           console.log('Auction details:', this.auctionDetails);
-          this.userHavePayment(res.item.id);
+          this.userHavePayment(res.item.id,this.auctionId);
         },
         error:(error) => {
           console.error('Error fetching auction details:', error);
@@ -183,17 +167,50 @@ export class AuctionDetailsComponent implements OnChanges {
   }
 
   placeBid(bidAmount:string){
+    if(parseFloat(bidAmount)<1||parseFloat(bidAmount)==undefined||parseFloat(bidAmount)==null||isNaN(parseFloat(bidAmount)))
+      {this.toastr.warning("you must bid with more than 1$");return;}
+
     this.paymentService.placeBid({
       auctionID:this.auctionDetails.id,
       amount:parseFloat(bidAmount),
     }
   ).subscribe(
       {
-      next:(res)=>{console.log(res);},
+      next:(res)=>{
+        console.log(res);
+        this.highlightNewBid = true;
+        setTimeout(() => {
+          this.highlightNewBid = false;
+        }, 3000);},
       error:(err)=>{console.log(err);}
     })
   }
 
+
+  openConnectionAndGetAllBidsWithLast() {
+    this.hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl('http://localhost:5204/bidsHub', {
+        transport: signalR.HttpTransportType.WebSockets,
+        skipNegotiation: true
+      })
+      .build();
+
+    this.hubConnection
+      .start()
+      .then(() => {
+        console.log('SignalR Connection started');
+        return this.hubConnection.invoke('joinGroup', this.auctionId);
+      })
+      .then(() => {
+        console.log('Joined group successfully, fetching bids...');
+        return this.hubConnection.invoke('AllBids', this.auctionId);
+      })
+      .catch((err) => {
+        console.log('SignalR Connection Error: ', err);
+        this.toastr.error(err);
+      });
+
+  }
 
 
 }

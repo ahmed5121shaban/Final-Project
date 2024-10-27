@@ -7,7 +7,6 @@ section {
 
 /* Chat container styling */
 .chat-container {
-  height: calc(100vh - 20px) !important;
   display: flex !important;
   flex-direction: column !important;
   width: 100% !important;
@@ -15,7 +14,6 @@ section {
 
 /* Chat list styling */
 .chat-list {
-  height: calc(100vh - 150px) !important;
   flex: 1 !important;
   overflow-y: scroll !important;
   padding: 1rem !important;
@@ -41,32 +39,6 @@ section {
   background: #bbb !important; /* Darker color on hover */
 }
 
-/* Chat messages styling */
-.chat-messages {
-  flex: 1 !important;
-  height: calc(100vh - 100px) !important;
-  overflow-y: scroll !important;
-  padding: 1rem !important;
-  border-radius: 15px !important; /* Maintain rounded corners */
-}
-
-/* Customize the scrollbar */
-.chat-messages::-webkit-scrollbar {
-  width: 6px !important; /* Make scrollbar narrower */
-}
-
-.chat-messages::-webkit-scrollbar-track {
-  background: #F8F1F1 !important; /* Match background to container */
-}
-
-.chat-messages::-webkit-scrollbar-thumb {
-  background: #ddd !important;
-  border-radius: 10px !important; /* Rounded corners to match the design */
-}
-
-.chat-messages::-webkit-scrollbar-thumb:hover {
-  background: #bbb !important; /* Darker color on hover */
-}
 
 .chat-avatar {
   width: 50px !important;
@@ -161,14 +133,7 @@ input[type="text"].form-control {
   box-sizing: border-box !important;
 }
 
-/* Message input container styling */
-.message-input-container {
-  display: flex !important;
-  align-items: center !important;
-  padding: 2.5rem !important;
-  margin-top: 1rem !important;
-  position: relative !important;
-}
+
 
 /* File message styling */
 .file-message {
@@ -192,7 +157,7 @@ input[type="file"] {
   .chat-avatar {
     display: none !important;
   }
-  
+
   .message-input-container {
     padding: 1rem !important;
   }

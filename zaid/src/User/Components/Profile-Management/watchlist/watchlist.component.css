@@ -125,8 +125,9 @@
     margin: 100px auto;
   }
   
-  .carousel img{
-    max-width: 100px;
+  .carousel-inner img{
+    max-width: 160px;
+    max-height: 160px;
   }
   .card-icon{
     position: absolute;

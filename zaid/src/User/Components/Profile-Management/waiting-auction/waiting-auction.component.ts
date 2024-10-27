@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuctionService } from '../../../../Action/Services/auction.service';
-import { ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { PaymentService } from '../../../../Action/Services/payment.service';
+
 
 export interface DoneAuction{
   itemID:string,
@@ -19,35 +17,24 @@ export interface DoneAuction{
 })
 export class WaitingAuctionComponent implements OnInit {
 
-  allDoneAuction!:DoneAuction[];
-
-  constructor(private actionService:AuctionService,private routerActive:ActivatedRoute,private toaster:ToastrService,private paymentService:PaymentService) {
-
-   }
+  page:number=1;
+  InCompletedAuctions:any[]=[];
+  constructor(private auctionService:AuctionService) { }
 
   ngOnInit() {
-    this.routerActive.params.subscribe((param)=>{
-      if(param['paymentId'])
-        this.paymentService.executePaypalPayment(param['paymentId'],param['payerId'],param['auctionId']).subscribe({
-          next:(res:any)=>{
-            this.toaster.success(res.message)
-          },
-          error:(err)=>{
-            this.toaster.success(`the payment not completed :( => ${err.message}`)
-          }
-      })
-    })
-    this.AllDoneAuctions();
+    this.AllInCompletedAuctions();
   }
 
-  AllDoneAuctions(){
-    this.actionService.AllDoneAuctions().subscribe({
+  
+  AllInCompletedAuctions(){
+    this.auctionService.AllInCompletedAuctions().subscribe({
       next:(res:any)=>{
-        this.allDoneAuction = res.result
-        console.log(res)
+        this.InCompletedAuctions = res.result
+        console.log(res);
       },
       error:(err)=>{
         console.log(err);
+
       }
     })
   }

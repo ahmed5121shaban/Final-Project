@@ -33,13 +33,24 @@
                <label class="form-label">Category Image</label>
                <div class="mb-4 ">
                   <div class="file-upload  end-0 top-0 mt-1 me-1">
-                     <input type="file" class="file-input" (change)="onFileSelected($event)">
+                     <input type="file" class="file-input" (change)="onImageSelected($event)">
+                  </div>
+               </div>
+                  <!-- Image preview -->
+                  <div *ngIf="imagePreview">
+                     <img [src]="imagePreview" alt="Selected Image" width="200">
+                     </div>
+
+               <label class="form-label">Category Icon</label>
+               <div class="mb-4 ">
+                  <div class="file-upload  end-0 top-0 mt-1 me-1">
+                     <input type="file" class="file-input" (change)="onIconSelected($event)">
                   </div>
                </div>
 
                <!-- Image preview -->
-               <div *ngIf="imagePreview">
-                  <img [src]="imagePreview" alt="Selected Image" width="200">
+               <div *ngIf="iconPreview">
+                  <img [src]="iconPreview" alt="Selected Image" width="50">
                </div>
                <div class="row">
                   <!-- input -->

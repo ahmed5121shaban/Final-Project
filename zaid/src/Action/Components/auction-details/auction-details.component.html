@@ -1,7 +1,7 @@
 <div class="container">
 <div class="main  p-xl-5 p-3">
     <div class="row justify-content-between ">
-      <h2>{{allBids|json}} => {{lastBid}}</h2>
+
         <div class="item-title">
             <h1>{{ auctionDetails.item.name }}</h1>
         </div>
@@ -42,8 +42,8 @@
                 <div class="bid-info row bg-light  mb-3">
                     <div class="heighest-bid col-6">
                         <p>Last bid:</p>
-                        @if (auctionDetails.bids[0]!=null) {
-                          <h5>{{auctionDetails.bids[auctionDetails.bids.length-1].amount}}$</h5>
+                        @if (allBids!=null) {
+                          <h5>{{allBids[allBids.length-1].bidAmount}}$</h5>
                         }@else {
                           <h5>No Bids Here $</h5>
                         }
@@ -81,7 +81,7 @@
                     </a>
                     <p class="bid-limits">Check if You have Payment Email in your Profile.</p>
                 </div>
-                } @else if (paymentCount == 2 && paymentDetailAuctionID!=auctionId){
+                } @else if (paymentCount == 2){
                   <div class="place-bid text-center">
                     <input type="number" placeholder="Choose one to Bid The First Price :{{auctionDetails.item.startPrice}}$" name="" disabled id="" class="form-control">
                     <a (click)="firstPayment(1)" class=" btn btn-primary w-50 mt-3 mb-1">
@@ -92,14 +92,14 @@
                     </a>
                     <p class="bid-limits ">You must Bid the First Amount to Continue in this Auction.</p>
                 </div>
-                }@else if (paymentCount == 3 && paymentDetailAuctionID!=auctionId){
+                }@else if (paymentCount == 3){
                   <div class="place-bid text-center ">
                     <input type="number" disabled name="" id="" class="form-control">
-                    <a role="button" (click)="firstPayment(method)" class=" btn btn-dark w-100 mt-3 mb-1">Bid The First Price {{auctionDetails.item.startPrice}}$</a>
+                    <a role="button" (click)="firstPayment(method)" class=" btn btn-dark w-100 mt-3 mb-1">Bid The First Price: {{auctionDetails.item.startPrice}}$</a>
                     <p class="bid-limits ">You must Bid the First Amount to Continue in this Auction.</p>
                 </div>
               }
-                @else if(successesPayment&&paymentCount == 3&&paymentDetailAuctionID==auctionId) {
+                @else if(paymentCount == 5) {
                   <div class="place-bid text-center ">
                     <input #bid type="number" name="" id="" class="form-control">
                     <a role="button" class=" btn btn-secondary w-100 mt-3 mb-1" (click)="placeBid(bid.value)">Place A Bid</a>
@@ -133,12 +133,13 @@
 
             <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
                 <p class="title">Bid history</p>
-                @for (bid of auctionDetails.bids; track $index) {
-                <div class="row single-bid mb-1">
+                @for (bid of allBids; track $index;let i = $index) {
+                <div class="row single-bid mb-1"
+                  [ngClass]="{'highlight': i === 0 && highlightNewBid}">
 
                     <div class="col-4 bidder">{{bid.buyerName}}</div>
-                    <div class="col-4 bid-date">{{bid.time|date:'mediumTime'}}</div>
-                    <div class="col-4 bid-amount">{{bid.amount}}</div>
+                    <div class="col-4 bid-date">{{bid.bidTime|date:'mediumTime'}}</div>
+                    <div class="col-4 bid-amount">{{bid.bidAmount}}</div>
 
                 </div>
               }
