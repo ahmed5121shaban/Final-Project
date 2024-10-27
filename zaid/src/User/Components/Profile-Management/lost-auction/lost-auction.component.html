@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let auction of lostAuctions| paginate: { itemsPerPage: 2, currentPage: page }">
+        <tr *ngFor="let auction of lostAuctions| paginate: { itemsPerPage: 6, currentPage: page }">
           <td>
             <div class="d-flex align-items-center">
               <div id="carouselExample{{auction.id}}" class="carousel slide w-75">

@@ -18,7 +18,7 @@
               <div>
                 <img src="profile-1335-svgrepo-com.svg" width="17px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="profile"
+              <a class="nav-link text-dark opacity-75  " routerLink="profile"
                 routerLinkActive="active">profile</a>
             </div>
           </div>
@@ -28,7 +28,7 @@
               <div>
                 <img src="setting-5-svgrepo-com.svg" width="17px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="profile-setting"
+              <a class="nav-link text-dark opacity-75  " routerLink="profile-setting"
                 routerLinkActive="active">profile-setting</a>
             </div>
           </div>
@@ -38,7 +38,7 @@
               <div>
                 <img src="verify-svgrepo-com.svg" width="17px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="verify-identity"
+              <a class="nav-link text-dark opacity-75  " routerLink="verify-identity"
                 routerLinkActive="active">verify-identity</a>
             </div>
           </div>
@@ -48,7 +48,7 @@
               <div>
                 <img src="payment-card-svgrepo-com.svg" width="17px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="payment"
+              <a class="nav-link text-dark opacity-75  " routerLink="payment"
                 routerLinkActive="active">payment</a>
             </div>
           </div>
@@ -62,15 +62,41 @@
         </div>
 
         <nav class="nav flex-column">
-          <div class="ps-4 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8">
+          <div class="ps-4 pb-1 pt-1 m-0 border-bottom border-light-subtle" style="background-color: #f6f6f8;">
             <div class="d-flex align-items-center">
               <div>
                 <img src="small-image/auction-svgrepo-com.svg" width="20px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="modify-action"
-                routerLinkActive="active">My Auction</a>
+              <a class="nav-link text-dark opacity-75  " data-bs-toggle="collapse" href="#myItemsAccordion" role="button" aria-expanded="false" aria-controls="myItemsAccordion">
+                My Items
+              </a>
+            </div>
+          
+            <!-- Accordion Content -->
+            <div class="collapse" id="myItemsAccordion">
+              <div class="ps-2 ">
+                <ul class="list-unstyled">
+                  <li>
+                  <div  class="ps-4 pb-1 pt-1 m-0 rounded-bottom-2">
+                    <a style="text-decoration: none;" routerLink="pending-items">Pending</a>
+                  </div>
+                </li>
+                  <li>
+                  <div  class="ps-4 pb-1 pt-1 m-0 rounded-bottom-2">
+                    <a style="text-decoration: none;" routerLink="accepted-items">Accepted</a>
+                  </div>
+                </li>
+                  <li>
+                  <div  class="ps-4 pb-1 pt-1 m-0 rounded-bottom-2">
+                    <a style="text-decoration: none;" routerLink="rejected-items">Rejected</a>
+                  </div>
+                </li>
+                  
+                </ul>
+              </div>
             </div>
           </div>
+          
 
           <div class="ps-4 pb-1 pt-1 m-0 rounded-bottom-2" style="background-color: #f6f6f8">
             <div class="d-flex align-items-center">
@@ -78,7 +104,7 @@
                 <img src="small-image/waiting-svgrepo-com.svg" width="17px" alt="profile" />
               </div>
               <!--  Waiting Auctions  -->
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="waiting-auction"
+              <a class="nav-link text-dark opacity-75  " routerLink="waiting-auction"
                 routerLinkActive="active">Unpaid Auctions</a>
             </div>
           </div>
@@ -88,8 +114,8 @@
               <div>
                 <img src="small-image/completed-order-svgrepo-com.svg" width="17px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="complete-auction"
-                routerLinkActive="active">Completed Auctions</a>
+              <a class="nav-link text-dark opacity-75  " routerLink="complete-auction"
+                routerLinkActive="active">Paid Auctions</a>
             </div>
           </div>
 
@@ -98,7 +124,7 @@
               <div>
                 <img src="star-svgrepo-com.svg" width="17px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="reviews"
+              <a class="nav-link text-dark opacity-75  " routerLink="reviews"
                 routerLinkActive="active">Reviews</a>
             </div>
           </div>
@@ -107,7 +133,7 @@
               <div>
                 <img src="small-image/money-bag-svgrepo-com.svg" width="17px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="seller-earnings"
+              <a class="nav-link text-dark opacity-75  " routerLink="seller-earnings"
                 routerLinkActive="active">Earnings</a>
             </div>
           </div>
@@ -125,7 +151,7 @@
                 />
               </div>
               <a
-                class="nav-link text-dark opacity-75 fw-semibold"
+                class="nav-link text-dark opacity-75  "
                 routerLink="/action/create-auction"
                 routerLinkActive="active"
                 >Create Auctions</a
@@ -138,7 +164,7 @@
               <div>
                 <img src="small-image/live-svgrepo-com.svg" width="17px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="live-auction"
+              <a class="nav-link text-dark opacity-75  " routerLink="live-auction"
                 routerLinkActive="active">Live Auctions</a>
             </div>
           </div>
@@ -157,7 +183,7 @@
               <div>
                 <img src="small-image/auction-svgrepo-com.svg" width="20px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="buyer-live-auctions"
+              <a class="nav-link text-dark opacity-75  " routerLink="buyer-live-auctions"
                 routerLinkActive="active">My Auction</a>
             </div>
           </div>
@@ -166,7 +192,7 @@
               <div>
                 <i class="far fa-eye" style="line-height: 1; color: rgb(108, 108, 108);"></i>
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="watchlist" routerLinkActive="active">My
+              <a class="nav-link text-dark opacity-75  " routerLink="watchlist" routerLinkActive="active">My
                 Watchlist</a>
             </div>
           </div>
@@ -176,7 +202,7 @@
               <div>
                 <img src="small-image/win-svgrepo-com.svg" width="17px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="won-auction"
+              <a class="nav-link text-dark opacity-75  " routerLink="won-auction"
                 routerLinkActive="active">Won Auctions</a>
             </div>
           </div>
@@ -186,7 +212,7 @@
               <div>
                 <img src="small-image/heart-broken-svgrepo-com.svg" width="17px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="lost-auction"
+              <a class="nav-link text-dark opacity-75  " routerLink="lost-auction"
                 routerLinkActive="active">Lost Auctions</a>
             </div>
           </div>
@@ -196,7 +222,7 @@
               <div>
                 <img src="shipping-fast-solid-svgrepo-com.svg" width="17px" alt="profile" />
               </div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="shipping"
+              <a class="nav-link text-dark opacity-75  " routerLink="shipping"
                 routerLinkActive="active">shipping Details</a>
             </div>
           </div>
@@ -204,7 +230,7 @@
             <div class="d-flex align-items-center">
           
                 <div class="bi bi-exclamation-triangle"></div>
-              <a class="nav-link text-dark opacity-75 fw-semibold" routerLink="complain-add" routerLinkActive="active">Make Complaint</a>
+              <a class="nav-link text-dark opacity-75  " routerLink="complain-add" routerLinkActive="active">Make Complaint</a>
             </div>
           </div>
           

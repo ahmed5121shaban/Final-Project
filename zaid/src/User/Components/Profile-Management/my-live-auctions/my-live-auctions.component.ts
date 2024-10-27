@@ -8,7 +8,7 @@ import { AuctionService } from '../../../../Action/Services/auction.service';
 })
 export class MyLiveAuctionsComponent {
 auctions:any[]=[];
-
+page:number=0;
 
 constructor(private auctionService:AuctionService){
 this.auctionService.getBuyerLiveAuctions().subscribe({
