@@ -63,7 +63,7 @@
                 <section class="py-5 position-relative parent-of-card">
                     <div class="container">
                       <div class="feature-parent-card">
-                        if(Profile.Isseller == true){
+                        @if(Profile.Isseller == true){
                             <owl-carousel-o [options]="liveAction" class="d-flex flex-nowrap ">
                                 @for (Auction of Profile.LatestAuctions; track $index) {
                                   <ng-template carouselSlide>
@@ -146,7 +146,7 @@
                                     <p class="mentor-name mb-1 mt-2"><b>{{review.buyerName}}</b></p>
                                     <div class="rate-date d-md-flex flex-md-row d-flex flex-column">
                                         <div class="rate d-flex me-1">
-                                           @for(star of Stars){
+                                           @for(star of stars ;track $index){
                                             <i class="fas fa-star" style="line-height: 1;" [style.color]="star <= review.rate ? '#f59e0b' : '#e0e0e0' " ></i>
                                            }
                                 
@@ -170,105 +170,7 @@
                     </div>
                 }
                 
-<!-- 
-                <div>
-                    <div class="d-flex  p-3 justify-content-between">
-                        <div class="d-flex gap-3">
-                            <img src="300-4.jpg"
-                                style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
-                            <div>
-                                <p class="mentor-name mb-1 mt-2"><b>Satvik</b></p>
-                                <div class="rate-date d-md-flex flex-md-row d-flex flex-column">
-                                    <div class="rate d-flex me-1">
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                    </div>
-                                    <p style="font-size: 13px"> September 9, 2024 </p>
-                                </div>
 
-                            </div>
-                        </div>
-
-                    </div>
-                    <p class="text-secondary">
-                        The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
-                        as
-                        well.... if you are really confused or do need to know how to start your DSA career have a
-                        session
-                        with Sir... it will really help you.
-                    </p>
-                    <hr>
-                </div>
-
-                <div>
-                    <div class="d-flex  p-3 justify-content-between">
-                        <div class="d-flex gap-3">
-                            <img src="300-4.jpg"
-                                style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
-                            <div>
-                                <p class="mentor-name mb-1 mt-2"><b>Satvik</b></p>
-                                <div class="rate-date d-md-flex flex-md-row d-flex flex-column">
-                                    <div class="rate d-flex me-1">
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                    </div>
-                                    <p style="font-size: 13px"> September 9, 2024 </p>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <p class="text-secondary">
-                        The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
-                        as
-                        well.... if you are really confused or do need to know how to start your DSA career have a
-                        session
-                        with Sir... it will really help you.
-                    </p>
-                    <hr>
-                </div>
-
-                <div class="pb-5 ">
-                    <div class="d-flex  p-3 justify-content-between">
-                        <div class="d-flex gap-3">
-                            <img src="300-4.jpg"
-                                style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
-                            <div>
-                                <p class="mentor-name mb-1 mt-2"><b>Satvik</b></p>
-                                <div class="rate-date d-md-flex ">
-                                    <div class="rate d-flex me-1">
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                    </div>
-                                    <p style="font-size: 13px"> September 9, 2024 </p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-secondary">
-                        The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
-                        as
-                        well.... if you are really confused or do need to know how to start your DSA career have a
-                        session
-                        with Sir... it will really help you.
-                    </p>
-                    <hr>
-                </div> -->
-
-                <!-- <div class="link-primary text-center fs-5">
-                    <a>See More</a>
-                </div> -->
 
             </div>
         </div>
