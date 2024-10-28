@@ -4,14 +4,14 @@
         <p class="text-muted">You don't have any items accepted yet. Please wait for approve to your submissions.</p>
       </div>
       <div *ngIf="acceptedItems.length !== 0" class="table-responsive">
-        <table class="table table-striped table-hover align-middle">
+        <table class="table table-striped table-hover align-middle" >
           <thead>
             <tr>
               <th scope="col">Item</th>
               <th scope="col">Description</th>
               <th scope="col">Start price</th>
               <th scope="col">Category</th>
-              <th scope="col"></th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -42,20 +42,24 @@
               <td>{{item.startPrice}}</td>
               <td>{{item.category}}</td>
               <td>
-                <button class="btn  " title="Delete" (click)="setSelectedItemId(item.id)" data-bs-target="#myModal"
-                  data-bs-toggle="modal">
-                  <i class="fas fa-trash"></i>
-                </button>
-                <button class="btn  " title="Edit">
-                  <a [routerLink]="['../../action/auction-edit', item.id]" class="text-dark"><i
-                      class="fas fa-edit"></i></a>
-                </button>
-                <button class="btn" title="Create Auction" [attr.data-bs-target]="'#createauctionform'+i"
-                  data-bs-toggle="modal">
-                  <i class="fa-solid fa-circle-plus"></i>
-                </button>
+                <div class="action-menu">
+                  <!-- Three dots icon -->
+                  <span class="three-dots">⋮</span>
+              
+                  <!-- Action buttons (appears on hover) -->
+                  <div class="action-buttons">
+                    <button class="btn" title="Delete" (click)="setSelectedItemId(item.id)" data-bs-target="#myModal" data-bs-toggle="modal">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="btn" title="Edit">
+                      <a [routerLink]="['../../action/auction-edit', item.id]" class="text-dark"><i class="fas fa-edit"></i></a>
+                    </button>
+                    <button class="btn" title="Create Auction" [attr.data-bs-target]="'#createauctionform'+i" data-bs-toggle="modal">
+                      <i class="fa-solid fa-circle-plus"></i>
+                    </button>
+                  </div>
+                </div>
               </td>
-
               <!-- Modal for create auction form-->
               <div class="modal fade" id="createauctionform{{i}}" tabindex="-1" aria-labelledby="imageModalLabel"
                 aria-hidden="true">
@@ -113,7 +117,7 @@
                               <div class="carousel-inner">
                                 <div *ngFor="let image of item.images; let j = index" [class.active]="j === 0"
                                   class="carousel-item">
-                                  <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 rounded-2">
+                                  <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 rounded-2 create-modal-image">
                                 </div>
                               </div>
                               <button class="carousel-control-prev" type="button"

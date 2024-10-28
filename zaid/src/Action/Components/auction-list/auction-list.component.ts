@@ -121,8 +121,8 @@ ngOnInit(): void {
         next: (data) => {
           this.categories = data.result;
           this.UpdateCategoris();
-          this.categorysearch=this.categories.filter(category=>category.name==this.selectedCategory);
-
+          this.categorysearch=this.selectedCategory;
+console.log(this.categorysearch);
           resolve(); // Notify that categories have been loaded
         },
         error: (err) => {

@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse " id="navbarNav">
             <form class="form form-inline mx-auto" (ngSubmit)="onSearch()">
                 <input 
-                  class="form-control mr-sm-2" 
+                  class="form-control mr-sm-2 position-relative" 
                   type="search" 
                   placeholder="Find your favorite item..." 
                   aria-label="Search" 
@@ -17,13 +17,9 @@
               </form>
               
             <ul class="navbar-nav ">
-                <!-- Logged Out State -->
-                <!-- <li class="nav-item">
-              <a class="nav-link" routerLink="user/login">Login</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" routerLink="user/register">Sign Up</a>
-          </li> -->
+               
+@if(isLoggedIn){
+
 
                 <!-- Logged In State (Hidden by Default) -->
                 <li class="nav-item dropdown" id="notificationsDropdown">
@@ -69,10 +65,10 @@
                             </svg>                    </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown" aria-labelledby="profileDropdownLink">
                         <a class="dropdown-item" routerLink="../user/profile">My Profile</a>
-                        <a class="dropdown-item" routerLink="../admin">Admin</a>
+                        <!-- <a class="dropdown-item" routerLink="../admin">Admin</a> -->
 
-                        <a class="dropdown-item" routerLink="../user/login">LogIn</a>
-                        <a class="dropdown-item" type="button" (click)="logOut()">LogUot</a>
+                        <!-- <a class="dropdown-item" routerLink="../user/login">LogIn</a> -->
+                        <a class="dropdown-item"  type="button" (click)="logOut()">LogUot</a>
                     </div>
                 </li>
                 <li class="nav-item justify-content-between" id="sellLink">
@@ -85,6 +81,16 @@
                             <a class="nav-link  "routerLink="../admin/items-review">Review items</a> -->
 
                 </li>
+            }
+            @else{
+                 <!-- Logged Out State -->
+                <li class="nav-item">
+              <a class="nav-link" routerLink="../user/login">Login</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLink="../user/register">Register</a>
+          </li>
+            }
             </ul>
         </div>
 

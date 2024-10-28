@@ -15,6 +15,7 @@ returnUrl:string;
   form: FormGroup;
   passwordFieldType: string = 'password';
   passwordInputNotEmpty: boolean = false;
+  
   constructor(private router: Router,
     private builder: FormBuilder,
     private authService: AuthService,
@@ -50,15 +51,20 @@ returnUrl:string;
         if (response.status == 200) {
           this.cookieService.set('token', response.token,2);
           this.cookieService.set("auth",response.token);
-          
+          if(this.authService.isLoggedIn){
           if(this.returnUrl=="/"){
-            this.router.navigate(['/user/profile']);
-          }
+            this.router.navigate(['../']).then(() => {
+              window.location.reload();
+            });          }
           else{
-            this.router.navigateByUrl(this.returnUrl);
-          }
+            this.router.navigateByUrl(this.returnUrl).then(() => {
+              window.location.reload();
+          });
+        }
           this.toastr.success('Logged in successfully', 'Success');
-        } else {
+        } 
+      }
+        else {
           this.toastr.error('Email or password is wrong', 'Error');
         }
       }
