@@ -48,7 +48,7 @@ export class NavComponent implements OnInit {
   logOut() {
     this.cookieService.delete('token');
     this.cookieService.delete('auth');
-    this.toaster.success('you LogUot now');
+    this.toaster.success('you are Logout now');
     this.location.go('/login');
   }
 

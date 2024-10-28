@@ -44,33 +44,35 @@
       <section class="row">
 
         <div class="col-3 d-lg-block d-none" style="min-width: 250px;">
-         
-         
 
-           <div id="sidebar" *ngIf="searchtxt" class="d-flex flex-column mt-5">
-             <div class="ps-3 pt-2 m-0 border-bottom border-light-subtle" style="background-color: #f0f0f3;">
-               <p class="text-dark fw-bold pt-2">Search Word</p>
-             </div>
-             
-          
-           
-             <nav class="nav flex-column">
-               <!-- "All" Option -->
-               <div class="category-item ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle">
-                 <a [routerLink]="['/action/auction-list']" 
-                    class="nav-link text-dark opacity-75  text-decoration-none d-flex flex-row justify-content-between category-link">
-    <!-- Search Box with Clear Option -->
-    <div class="search-box  border rounded p-1 d-flex justify-content-between align-items-center bg-light">
-     <span>
-       {{ searchtxt }}
-     </span>
-     <i class="fa-solid fa-xmark ms-1"   (click)="clearSearch()"></i>
-   </div>                </a>
-               </div>
-             </nav>
-           </div>
-         
-          
+
+
+          <div id="sidebar" *ngIf="searchtxt" class="d-flex flex-column mt-5">
+            <div class="ps-3 pt-2 m-0 border-bottom border-light-subtle" style="background-color: #f0f0f3;">
+              <p class="text-dark fw-bold pt-2">Search Word</p>
+            </div>
+
+
+
+            <nav class="nav flex-column">
+              <!-- "All" Option -->
+              <div class="category-item ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle">
+                <a [routerLink]="['/action/auction-list']"
+                  class="nav-link text-dark opacity-75  text-decoration-none d-flex flex-row justify-content-between category-link">
+                  <!-- Search Box with Clear Option -->
+                  <div
+                    class="search-box  border rounded p-1 d-flex justify-content-between align-items-center bg-light">
+                    <span>
+                      {{ searchtxt }}
+                    </span>
+                    <i class="fa-solid fa-xmark ms-1" (click)="clearSearch()"></i>
+                  </div>
+                </a>
+              </div>
+            </nav>
+          </div>
+
+
           <div id="sidebar" class="d-flex flex-column mt-5">
             <div class=" ps-3 pt-2 m-0  border-bottom border-light-subtle" style="background-color: #f0f0f3;">
               <p class="text-dark fw-bold pt-2">Categories</p>
@@ -100,7 +102,8 @@
         <div class="col-lg-8 col-12">
           @if(selectedCategory !=''){
           <div class="position-relative mb-3 mt-5">
-           <img [src]="'http://localhost:5204/' + categorysearch[0].image" class="card-img-top" alt="Mark Seliger Print" style="width: 100%; height: 300px;" >
+            <img [src]="'http://localhost:5204/' + categorysearch[0].image" class="card-img-top"
+              alt="Mark Seliger Print" style="width: 100%; height: 300px;">
             <div class=" category-card card position-absolute" style="width: 15rem; top: 10%; left: 8%;">
               <div class="card-body">
                 <h5 class="card-title">{{categorysearch[0].name}}</h5>
@@ -109,10 +112,11 @@
             </div>
             <a style="cursor: pointer;" (click)="addCatToFav(categorysearch[0].id)">
               <div class="category-card-icon bg-light">
-                <i class="fa-heart" [ngClass]="isFavCat[categorysearch[0].id] ? 'fas' : 'far'" [style.color]="isFavCat[categorysearch[0].id] ? 'red' : 'black'" ></i>
+                <i class="fa-heart" [ngClass]="isFavCat[categorysearch[0].id] ? 'fas' : 'far'"
+                  [style.color]="isFavCat[categorysearch[0].id] ? 'red' : 'black'"></i>
               </div>
             </a>
-            </div>
+          </div>
           }
           @else{
           <h5 class="fw-semibold mb-3">All items</h5>
@@ -147,104 +151,106 @@
           </div>
 
           @if(searchtxt&& activeAuctions.length === 0){
-            <h2>No matched auctions with "{{searchtxt}}"</h2>
+          <h2>No matched auctions with "{{searchtxt}}"</h2>
           }
-@else if(searchtxt&&activeAuctions.length !== 0){
-  <div class="row">
-           <h3 class="mt-4"> results of "{{searchtxt}}" </h3>
-    <div
-    *ngFor="let auction of activeAuctions | paginate: { itemsPerPage: itemsPerPage, currentPage: pageActive ,totalItems: totalItemsActive }"
-    class="col-lg-4 col-md-6 col-12 mt-5">
-    <div class="custom-product-card mt-3 me-2 border border-1">
-      <div class="position-relative">
-        <div id="carousel{{auction.id}}" class="carousel slide" data-bs-ride="true">
-          <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
-            <div class="carousel-inner">
-              <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
-              class="carousel-item" style="height: 30vh;">
-              <img [src]="'http://localhost:5204/' + image" class="d-block w-100 card-img-top"
-              alt="Auction item image">
-            </div>
-          </div>
-        </a>
-              <button class="carousel-control-prev" type="button"
-                [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button"
-                [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-            <a  (click)="addToFav(auction.id)" style="cursor: pointer;">
-              <div class="card-icon bg-light" style="position: absolute; top: 10px; right: 10px;  z-index: 1200;">
-                <i class="fa-heart" [ngClass]="isFav[auction.id] ? 'fas' : 'far'" [style.color]="isFav[auction.id] ? 'red' : 'black'" ></i>
+          @else if(searchtxt&&activeAuctions.length !== 0){
+          <div class="row">
+            <h3 class="mt-4"> results of "{{searchtxt}}" </h3>
+            <div
+              *ngFor="let auction of activeAuctions | paginate: { itemsPerPage: itemsPerPage, currentPage: pageActive ,totalItems: totalItemsActive }"
+              class="col-lg-4 col-md-6 col-12 mt-5">
+              <div class="custom-product-card mt-3 me-2 border border-1">
+                <div class="position-relative">
+                  <div id="carousel{{auction.id}}" class="carousel slide" data-bs-ride="true">
+                    <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
+                      <div class="carousel-inner">
+                        <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
+                          class="carousel-item" style="height: 30vh;">
+                          <img [src]="'http://localhost:5204/' + image" class="d-block w-100 card-img-top"
+                            alt="Auction item image">
+                        </div>
+                      </div>
+                    </a>
+                    <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + auction.id"
+                      data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + auction.id"
+                      data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                  <a (click)="addToFav(auction.id)" style="cursor: pointer;">
+                    <div class="card-icon bg-light" style="position: absolute; top: 10px; right: 10px;  z-index: 1200;">
+                      <i class="fa-heart" [ngClass]="isFav[auction.id] ? 'fas' : 'far'"
+                        [style.color]="isFav[auction.id] ? 'red' : 'black'"></i>
+                    </div>
+                  </a>
+                </div>
+                <div class="card-body p-3">
+                  <p class="card-title fw-bold">{{auction.item.name}}</p>
+                  <p class="mb-1"><small class="text-muted">{{auction.item.sellerName}}</small></p>
+                  <p class="bids">{{ auction.bids.length }} bids</p>
+                  <p class="price">{{ auction.item.startPrice | number }} EGP</p>
+                  <!-- <p class="date">From:{{ auction.startDate | date:'mediumDate' }} </p>
+            <p class="date">To:{{ auction.endDate | date:'mediumDate' }} </p> -->
+                </div>
               </div>
-            </a>
-          </div>
-          <div class="card-body p-3">
-            <p class="card-title fw-bold">{{auction.item.name}}</p>
-            <p class="mb-1"><small class="text-muted">{{auction.item.sellerName}}</small></p>
-            <p class="bids">{{ auction.bids.length }} bids</p>
-            <p class="price">{{ auction.item.startPrice | number }} EGP</p>
-            <p class="date">From:{{ auction.startDate | date:'mediumDate' }} </p>
-            <p class="date">To:{{ auction.endDate | date:'mediumDate' }} </p>
-          </div>
-        </div>
-    </div>
-  </div>
-}
-
-@else{
-
-  <div class="row">
-    
-    <div
-    *ngFor="let auction of activeAuctions | paginate: { itemsPerPage: itemsPerPage, currentPage: pageActive ,totalItems: totalItemsActive }"
-    class="col-lg-4 col-md-6 col-12 mt-5">
-    <div class="custom-product-card mt-3 me-2 border border-1">
-      <div class="position-relative">
-        <div id="carousel{{auction.id}}" class="carousel slide" data-bs-ride="true">
-          <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
-            <div class="carousel-inner">
-              <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
-              class="carousel-item" style="height: 30vh;">
-              <img [src]="'http://localhost:5204/' + image" class="d-block w-100 card-img-top"
-              alt="Auction item image">
             </div>
           </div>
-        </a>
-              <button class="carousel-control-prev" type="button"
-                [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button"
-                [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-            <a  (click)="addToFav(auction.id)" style="cursor: pointer;">
-              <div class="card-icon bg-light" style="position: absolute; top: 10px; right: 10px;  z-index: 1200;">
-                <i class="fa-heart" [ngClass]="isFav[auction.id] ? 'fas' : 'far'" [style.color]="isFav[auction.id] ? 'red' : 'black'" ></i>
+          }
+
+          @else{
+
+          <div class="row">
+
+            <div
+              *ngFor="let auction of activeAuctions | paginate: { itemsPerPage: itemsPerPage, currentPage: pageActive ,totalItems: totalItemsActive }"
+              class="col-lg-4 col-md-6 col-12 mt-5">
+              <div class="custom-product-card mt-3 me-2 border border-1">
+                <div class="position-relative">
+                  <div id="carousel{{auction.id}}" class="carousel slide" data-bs-ride="true">
+                    <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
+                      <div class="carousel-inner">
+                        <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
+                          class="carousel-item" style="height: 30vh;">
+                          <img [src]="'http://localhost:5204/' + image" class="d-block w-100 card-img-top"
+                            alt="Auction item image">
+                        </div>
+                      </div>
+                    </a>
+                    <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + auction.id"
+                      data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + auction.id"
+                      data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                  <a (click)="addToFav(auction.id)" style="cursor: pointer;">
+                    <div class="card-icon bg-light" style="position: absolute; top: 10px; right: 10px;  z-index: 1200;">
+                      <i class="fa-heart" [ngClass]="isFav[auction.id] ? 'fas' : 'far'"
+                        [style.color]="isFav[auction.id] ? 'red' : 'black'"></i>
+                    </div>
+                  </a>
+                </div>
+                <div class="card-body p-3">
+                  <p class="card-title fw-bold">{{auction.item.name}}</p>
+                  <p class="mb-1"><small class="text-muted">{{auction.item.sellerName}}</small></p>
+                  <p class="bids">{{ auction.bids.length }} bids</p>
+                  <p class="price">{{ auction.item.startPrice | number }} EGP</p>
+                  <!-- <p class="date">From:{{ auction.startDate | date:'mediumDate' }} </p>
+                  <p class="date">To:{{ auction.endDate | date:'mediumDate' }} </p> -->
+                </div>
               </div>
-            </a>
+            </div>
           </div>
-          <div class="card-body p-3">
-            <p class="card-title fw-bold">{{auction.item.name}}</p>
-            <p class="mb-1"><small class="text-muted">{{auction.item.sellerName}}</small></p>
-            <p class="bids">{{ auction.bids.length }} bids</p>
-            <p class="price">{{ auction.item.startPrice | number }} EGP</p>
-            <p class="date">From:{{ auction.startDate | date:'mediumDate' }} </p>
-            <p class="date">To:{{ auction.endDate | date:'mediumDate' }} </p>
-          </div>
-        </div>
-    </div>
-  </div>
-}
+          }
           <div class="text-center mt-5">
             <pagination-controls (pageChange)="onActivePageChange($event)"></pagination-controls>
           </div>
