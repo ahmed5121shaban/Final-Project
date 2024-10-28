@@ -129,6 +129,9 @@ export class AuctionService {
  getreviews():Observable<any>{
   return this.http.get<any>(`http://localhost:5204/api/review/getall`);
  }
+ CloseAuction(AuctionId:number):Observable<any>{
+  return this.http.get<any>(`${this.apiUrl}/Close/${AuctionId}`);
+ }
 
 
 //  getHomeSections():Observable<any>{

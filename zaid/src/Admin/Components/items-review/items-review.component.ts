@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { ItemService } from "../../../Action/Services/item.service";
 import { response } from "express";
 import { error } from "console";
+import { ToastrService } from "ngx-toastr";
 declare var bootstrap: any;
 
 @Component({
@@ -15,7 +16,7 @@ export class ItemsReviewComponent implements OnInit {
 
   // List of items with images
   items: any[] = [];
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService,private toaster:ToastrService) { }
 
   get(): void {
     this.itemService.getUnreviewdItems().subscribe({
@@ -56,6 +57,7 @@ export class ItemsReviewComponent implements OnInit {
           console.log(itemId);
           this.itemService.AcceptItem(itemId).subscribe({
             next: (response) => {
+              this.toaster.success("this item successfully accepted");
               this.items = this.items.filter(item => item.id !== itemId);
               console.log("updated successfully", response)
             },
@@ -84,6 +86,7 @@ export class ItemsReviewComponent implements OnInit {
 
       this.itemService.rejectItem(itemId, rejectReason).subscribe({
         next: (response) => {
+          this.toaster.success("this item successfully rejected");
           console.log('Item rejected successfully:', response);
          this.items=this.items.filter(item => item.id !== itemId)
         },

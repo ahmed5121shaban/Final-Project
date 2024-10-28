@@ -30,7 +30,9 @@ updateProfile(data: FormData): Observable<any> {
     return this.http.get(`${this.baseUrl}/profile`)
   }
 
- 
+  getUserProfile(userId:string):Observable<any>{
+    return this.http.get(`${this.baseUrl}/UserProfile/${userId}`)
+  }
   
   
 }

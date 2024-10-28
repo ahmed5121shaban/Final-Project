@@ -36,6 +36,7 @@ const routes: Routes = [
   { path: 'new-password' , component: NewPasswordComponent},
   { path: 'add-review/:id' , component: AddReviewComponent},
   { path: 'user-profile' , component: UserProfileComponent},
+  { path: 'user-profile/:id' , component: UserProfileComponent},
 
       { path: '', component: ProfileManagementComponent, children: [
       { path: 'profile', component: MyProfileComponent },
