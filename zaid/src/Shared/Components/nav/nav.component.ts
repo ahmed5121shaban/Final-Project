@@ -55,7 +55,7 @@ export class NavComponent implements OnInit {
     this.cookieService.delete('auth');
   if(this.authService.isLoggedIn==false){
 
-    this.toaster.success('you LogUot now');
+    this.toaster.success('you Logout now');
     this.router.navigate(['../user/login']);
   }
   }

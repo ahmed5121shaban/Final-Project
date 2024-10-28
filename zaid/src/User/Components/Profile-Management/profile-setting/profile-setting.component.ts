@@ -21,23 +21,19 @@ export class ProfileSettingComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.formBuilder.group({
-      firstName: [''],
-      lastName: [''],
-      description: [''],
-      email: [''],
-      street: [''],
-      postalCode: [''],
-      city: [''],
-      country: [''],
-      timeZone: [''],
-      currency: [''],
-      phoneNumbers: this.formBuilder.array([]), 
-      age: [''],
-      gender: [''],
+      FirstName: [''],
+      LastName: [''],
+      Description: [''],
+      Email: [''],
+      TimeZone: [''],
+      Currency: [''],
+      PhoneNumbers: this.formBuilder.array([]),
+      Age: [''],
+      Gender: [''],
     });
-    
-    
-  
+
+
+
   }
 
   get PhoneNumbers() {
@@ -74,31 +70,27 @@ export class ProfileSettingComponent implements OnInit {
   editProfile() {
     if (this.form.valid) {
       const formData = new FormData();
-     formData.append('FirstName', this.form.get('FirstName')?.value || '');
+      formData.append('FirstName', this.form.get('FirstName')?.value || '');
       formData.append('LastName', this.form.get('LastName')?.value || '');
       formData.append('Email', this.form.get('Email')?.value || '');
-      formData.append('Street', this.form.get('Street')?.value || '');
-      formData.append('PostalCode', this.form.get('PostalCode')?.value || '');
-      formData.append('City', this.form.get('City')?.value || '');
-      formData.append('Country', this.form.get('Country')?.value || '');
       formData.append('TimeZone', this.form.get('TimeZone')?.value || '');
       formData.append('Age', this.form.get('Age')?.value || '');
       formData.append('Gender', this.form.get('Gender')?.value || '');
       formData.append('Description', this.form.get('Description')?.value || '');
       formData.append('Currency', this.form.get('Currency')?.value || '');
-      
+
       this.PhoneNumbers.value.forEach((phone: string, index: number) => {
         formData.append(`PhoneNumbers[${index}]`, phone);
       });
-  
-      
+
+
       if (this.selectedFile) {
         formData.append('ProfileImage', this.selectedFile);
       }
       formData.forEach((value, key) => {
         console.log(`${key}: ${value}`);
       });
-  
+
       this.apiService.updateProfile(formData).subscribe({
         next: (response: any) => {
           this.toastr.success('Profile updated successfully!');
@@ -115,5 +107,5 @@ export class ProfileSettingComponent implements OnInit {
       this.toastr.error('Please check the entered data for validity.');
     }
   }
-  
+
 }
