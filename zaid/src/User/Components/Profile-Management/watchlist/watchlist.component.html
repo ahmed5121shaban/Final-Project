@@ -50,7 +50,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let activefavAuction of activefavAuctions| paginate: { itemsPerPage: 2, currentPage: page }">
+            <tr *ngFor="let activefavAuction of activefavAuctions| paginate: { itemsPerPage: 6, currentPage: page }">
               <td>
                 <div class="d-flex align-items-center">
                   <div id="carouselExample{{activefavAuction.id}}" class="carousel slide w-75">
@@ -89,11 +89,10 @@
         <div class="d-flex justify-content-between">
           
           <pagination-controls (pageChange)="page = $event" ></pagination-controls>
-          <button class="btn btn-outline-primary mt-2" data-bs-target="#deleteAll" data-bs-toggle="modal">Unfollow All Auctions</button>
+          <button class="btn btn-outline-primary mt-2" data-bs-target="#deleteAllactive" data-bs-toggle="modal">Unfollow All Auctions</button>
         </div>
       </div>
             <!-- deletoin modal -->
-            <button class="btn btn-primary mt-2" data-bs-target="#myModal" data-bs-toggle="modal">Delete</button>
             <!-- Modal HTML -->
             <div id="myModal" class="modal fade">
                 <div class="modal-dialog modal-confirm">
@@ -109,10 +108,31 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-secondary">Yes,Delete</button>
-                        </div>
+                            <button type="button" class="btn btn-secondary" (click)="remove()" data-bs-dismiss="modal">Yes,
+                              Delete</button>                        
+                            </div>
                     </div>
                 </div>
+            </div>
+
+            <div id="deleteAllactive" class="modal fade">
+              <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                  <div class="modal-header">
+      
+                    <h4 class="modal-title">Are you sure?</h4>
+                    <button type="button" class="close btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Do you really want to delete these records? This process cannot be undone.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" (click)="deleteAll()" data-bs-dismiss="modal">Yes,
+                      Delete</button>
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
 
@@ -172,7 +192,6 @@
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-primary mt-2" data-bs-target="#deleteAllended" data-bs-toggle="modal">Delete</button>
       </div>
 
      <!-- deletoin modal -->
