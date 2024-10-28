@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { NotificationService } from '../../Services/notification.service';
 import { Location } from '@angular/common';
+import { Route, Router } from '@angular/router';
 
 export interface Notification {
   time: string;
@@ -23,11 +24,13 @@ export class NavComponent implements OnInit {
   allNotifications!: Notification[];
   alert!: boolean;
   audio = new Audio();
+  searchtxt:string="";
   constructor(
     private cookieService: CookieService,
     private toaster: ToastrService,
     private notificationService: NotificationService,
-    private location:Location
+    private location:Location,
+    private router:Router
   ) {
     this.audio.src = 'audio/mixkit-correct-answer-tone-2870.wav';
   }
@@ -79,4 +82,9 @@ export class NavComponent implements OnInit {
   removeNotify() {
     this.alert = false;
   }
+
+  onSearch() {
+    if (this.searchtxt.trim()) {
+      this.router.navigate(['../action/auction-list', this.searchtxt]);    }
+}
 }

@@ -6,9 +6,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse " id="navbarNav">
-            <form class="form form-inline mx-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="Find your favorite item..." aria-label="Search">
-            </form>
+            <form class="form form-inline mx-auto" (ngSubmit)="onSearch()">
+                <input 
+                  class="form-control mr-sm-2" 
+                  type="search" 
+                  placeholder="Find your favorite item..." 
+                  aria-label="Search" 
+                  [(ngModel)]="searchtxt" 
+                  name="searchtxt">
+              </form>
+              
             <ul class="navbar-nav ">
                 <!-- Logged Out State -->
                 <!-- <li class="nav-item">

@@ -18,7 +18,7 @@ returnUrl:string="/";
   activeAuctions: any[] = [];
   categories: any[] = [];
   categorysearch:any={};
-  
+  paramValue:string="";
 
   favAuctionIds:any[]=[]
   // Pagination properties
@@ -31,59 +31,59 @@ returnUrl:string="/";
   sortOption: string = 'Id'; 
   isAscending: boolean = false;
   filterOption: string =''; 
-
   constructor(
     private auctionService: AuctionService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private favauctionService:FavouriteService,
-    private authService:AuthService,
-    private router :Router
-
+    private favauctionService: FavouriteService,
+    private authService: AuthService,
+    private router: Router
   ) {
-
-
-    this.route.params.subscribe(params => {
-      this.selectedCategory = params['category'] || '';
-      if(this.selectedCategory==="mostBids"){
-        this.filterOption="mostBids";
-        this.selectedCategory="";
-        this.loadActiveAuctions();
-
-      }
-      
-      if(this.selectedCategory==="newArrivals"){
-        this.filterOption="newArrivals";
-        this.selectedCategory="";
-        this.loadActiveAuctions();
-
-      }
-      if(this.selectedCategory==="noBids"){
-        this.filterOption="noBids";
-        this.selectedCategory="";
-        this.loadActiveAuctions();
-
-      }
-      if(this.selectedCategory==="endingSoon"){
-        this.filterOption="EndDate";
-        this.selectedCategory="";
-        this.loadActiveAuctions();
-
-      }
-      else{
-      this.loadActiveAuctions();
-      }
-      this.loadCategories();
-      //console.log(this.selectedCategory);
-     // console.log(this.categories);
-     // this.categorysearch=this.categories.filter(category=>category.name==this.selectedCategory);
-     //console.log(this.categorysearch);
-      
-      this.loadFavAuctions();
-    });
+    // Load categories first and then process the route parameters
+    this.loadCategories().then(() => {
+      this.route.params.subscribe(params => {
+        this.paramValue = params['category'] || '';
   
-
+        // Check if paramValue matches any category name
+        const matchingCategory = this.categories.find(category => category.name === this.paramValue);
+        if (matchingCategory) {
+          this.selectedCategory = matchingCategory.name;
+          this.filterOption = ''; // Clear filter option if it's a category
+        } else if (this.paramValue === "mostBids" || this.paramValue === "newArrivals" || this.paramValue === "noBids" || this.paramValue === "endingSoon") {
+          // Handle specific filter options
+          this.filterOption = this.paramValue;
+          this.selectedCategory = '';
+        } else {
+          // If paramValue is neither a category nor a filter option, treat it as search text
+          this.searchtxt = this.paramValue;
+          this.selectedCategory = '';
+          this.filterOption = '';
+        }
+  
+        this.loadActiveAuctions();
+        this.loadFavAuctions();
+      });
+    });
   }
+  
+  // Modify loadCategories to return a Promise
+  loadCategories(): Promise<void> {
+    return new Promise<void>((resolve) => {
+      this.categoryService.getCategories().subscribe({
+        next: (data) => {
+          this.categories = data.result;
+          this.categorysearch=this.categories.filter(category=>category.name==this.selectedCategory);
+
+          resolve(); // Notify that categories have been loaded
+        },
+        error: (err) => {
+          console.error('Error fetching categories', err);
+          resolve(); // Even in case of error, resolve the promise to continue
+        }
+      });
+    });
+  }
+  
 
   ngOnInit(): void {
    
@@ -123,25 +123,29 @@ returnUrl:string="/";
       });
   }
 
-  loadCategories(): void {
-    this.categoryService.getCategories().subscribe({
-      next: (data) => {
-        this.categories = data.result;
-        console.log(this.selectedCategory);
-        this.categorysearch=this.categories.filter(category=>category.name==this.selectedCategory);
-        console.log(this.categorysearch);
+  // loadCategories(): void {
+  //   this.categoryService.getCategories().subscribe({
+  //     next: (data) => {
+  //       this.categories = data.result;
+  //       console.log(this.selectedCategory);
+  //       this.categorysearch=this.categories.filter(category=>category.name==this.selectedCategory);
+  //       console.log(this.categorysearch);
         
-      },
-      error: (err) => {
-        console.error('Error fetching categories', err);
-      }
-    });
-  }
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching categories', err);
+  //     }
+  //   });
+  // }
 
   onCategorySelect(category: string): void {
     this.selectedCategory = category;
     this.pageActive = 1; 
+    this.searchtxt=this.searchtxt;
     this.loadActiveAuctions();
+    console.log("after category");
+    console.log(this.activeAuctions);
+    
   }
 
       totalPagesActive(): number {
@@ -200,5 +204,8 @@ updateFavState(){
     this.isFav[auction.id]=this.isFav[auction.id]|| false
   });
 }
-
+clearSearch(){
+  this.searchtxt="";
+  this.router.navigate(['../action/auction-list',this.searchtxt]);
+}
 }
