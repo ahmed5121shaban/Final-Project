@@ -121,8 +121,8 @@ ngOnInit(): void {
         next: (data) => {
           this.categories = data.result;
           this.UpdateCategoris();
-          this.categorysearch=this.selectedCategory;
-console.log(this.categorysearch);
+          this.categorysearch=this.categories.filter(i=>i.name==this.selectedCategory);
+          console.log("catsearch", this.categorysearch);
           resolve(); // Notify that categories have been loaded
         },
         error: (err) => {
@@ -137,7 +137,7 @@ console.log(this.categorysearch);
   onCategorySelect(category: string): void {
     this.selectedCategory = category;
     this.pageActive = 1;
-    this.searchtxt=this.searchtxt;
+    this.searchtxt=this.selectedCategory;
     this.loadCategories();
     this.loadActiveAuctions();
     
