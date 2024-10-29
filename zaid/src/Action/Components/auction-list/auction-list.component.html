@@ -100,26 +100,26 @@
           </div>
         </div>
         <div class="col-lg-8 col-12">
-          @if(selectedCategory !=''){
+          @if(selectedCategory){
           <div class="position-relative mb-3 mt-5">
-            <img [src]="'http://localhost:5204/' + categorysearch[0].image" class="card-img-top"
+            <img [src]="'http://localhost:5204/' + selectedCategory.image" class="card-img-top"
               alt="Mark Seliger Print" style="width: 100%; height: 300px;">
             <div class=" category-card card position-absolute" style="width: 15rem; top: 10%; left: 8%;">
               <div class="card-body">
-                <h5 class="card-title">{{categorysearch[0].name}}</h5>
-                <p class="card-text">{{categorysearch[0].description}}.</p>
+                <h5 class="card-title">{{selectedCategory.name}}</h5>
+                <p class="card-text">{{selectedCategory.description}}.</p>
               </div>
             </div>
-            <a style="cursor: pointer;" (click)="addCatToFav(categorysearch[0].id)">
+            <a style="cursor: pointer;" (click)="addCatToFav(selectedCategory.id)">
               <div class="category-card-icon bg-light">
-                <i class="fa-heart" [ngClass]="isFavCat[categorysearch[0].id] ? 'fas' : 'far'"
-                  [style.color]="isFavCat[categorysearch[0].id] ? 'red' : 'black'"></i>
+                <i class="fa-heart" [ngClass]="isFavCat[selectedCategory.id] ? 'fas' : 'far'"
+                  [style.color]="isFavCat[selectedCategory.id] ? 'red' : 'black'"></i>
               </div>
             </a>
           </div>
           }
           @else{
-          <h5 class="fw-semibold mb-3">All items</h5>
+            <h5 class="fw-semibold mb-3">All items</h5>
           }
           <div class="d-flex flex-sm-row flex-column justify-content-between align-items-center">
             <form class="d-flex flex-sm-row flex-column justify-content-start align-items-center w-50">
@@ -149,9 +149,11 @@
             </div>
 
           </div>
+          @if(searchtxt&&selectedCategory&&activeAuctions.length === 0)
+          {
+        
+            <h2>no auctions of "{{searchtxt}}" in {{selectedCategory.name}}</h2>
 
-          @if(searchtxt&& activeAuctions.length === 0){
-          <h2>No matched auctions with "{{searchtxt}}"</h2>
           }
           @else if(searchtxt&&activeAuctions.length !== 0){
           <div class="row">
@@ -201,7 +203,9 @@
             </div>
           </div>
           }
-
+@else if(searchtxt&& activeAuctions.length === 0){
+  <h2>No matched auctions with 
+    "{{searchtxt}}"</h2>}
           @else{
 
           <div class="row">
