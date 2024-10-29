@@ -138,7 +138,7 @@ ngOnInit(): void {
     this.selectedCategoryname = category;
   
     this.pageActive = 1;
-    this.searchtxt=this.searchtxt;
+    this.searchtxt=this.selectedCategory;
     this.loadCategories();
     this.loadActiveAuctions();
     
