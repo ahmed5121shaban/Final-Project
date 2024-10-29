@@ -133,6 +133,7 @@
 
             <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
                 <p class="title">Bid history</p>
+                
                 @for (bid of allBids; track $index;let i = $index) {
                 <div class="row single-bid mb-1"
                   [ngClass]="{'highlight': i === 0 && highlightNewBid}">
