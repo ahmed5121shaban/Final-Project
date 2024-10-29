@@ -26,6 +26,7 @@ export class NavComponent implements OnInit {
   alert!: boolean;
   audio = new Audio();
   searchtxt:string="";
+  isLoggedIn:boolean;
   constructor(
     private cookieService: CookieService,
     private toaster: ToastrService,
@@ -52,10 +53,11 @@ export class NavComponent implements OnInit {
   logOut() {
     this.cookieService.delete('token');
     this.cookieService.delete('auth');
+  if(this.authService.isLoggedIn==false){
 
     this.toaster.success('you Logout now');
     this.router.navigate(['../user/login']);
-  
+  }
   }
 
   openConnectionAndGetAllBidsWithLast() {
