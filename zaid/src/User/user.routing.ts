@@ -23,10 +23,11 @@ import { SellerEarningsComponent } from './Components/Profile-Management/seller-
 import { SellerwithdrawComponent } from './Components/Profile-Management/sellerwithdraw/sellerwithdraw.component';
 import { ComplainAddComponent } from './Components/Profile-Management/complain-add/complain-add.component';
 import { MyLiveAuctionsComponent } from './Components/Profile-Management/my-live-auctions/my-live-auctions.component';
-import { AuctionLiveStreamComponent } from '../Admin/Components/auction-live-stream/auction-live-stream.component';
 import { PendingItemsComponent } from './Components/Profile-Management/pending-items/pending-items.component';
 import { AcceptedItemsComponent } from './Components/Profile-Management/accepted-items/accepted-items.component';
 import { RejectedItemsComponent } from './Components/Profile-Management/rejected-items/rejected-items.component';
+import { AuctionLiveStreamComponent } from './Components/Profile-Management/auction-live-stream/auction-live-stream.component';
+
 
 
 const routes: Routes = [
@@ -56,7 +57,7 @@ const routes: Routes = [
       { path: 'seller-withdraw', component: SellerwithdrawComponent },
       { path: 'complain-add', component:ComplainAddComponent },
       { path: 'buyer-live-auctions', component:MyLiveAuctionsComponent },
-      { path: 'auction-live-stream/:id', component: AuctionLiveStreamComponent },
+      { path: 'auction-live-stream/:id', component:AuctionLiveStreamComponent },
       { path: 'pending-items', component: PendingItemsComponent },
       { path: 'accepted-items', component: AcceptedItemsComponent },
       { path: 'rejected-items', component: RejectedItemsComponent }
