@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../../../Services/api.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shipping',
@@ -8,26 +11,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ShippingComponent implements OnInit {
   form:FormGroup
-  constructor(private formBuilder:FormBuilder) {
+  constructor(private formBuilder:FormBuilder,
+    private apiService:ApiService,
+    private toastr: ToastrService,
+    private router: Router,
+  ) {
     this.form = this.formBuilder.group({
-
-      name:['',[Validators.required,Validators.minLength(5),Validators.maxLength(40)]],
-      address:['',[Validators.required]],
-      aPostalCode:['',[Validators.required]],
-      aCity:['',[Validators.required]],
-      aCountry:['',[Validators.required]],
-      aState:['',[Validators.required]],
-      deliveryDesc:['',[]]
+      Street:['',[Validators.required]],
+      PostalCode:['',[Validators.required]],
+      City:['',[Validators.required]],
+      Country:['',[Validators.required]],
 
     })
    }
 
-   get name(){return this.form.get('name')}
-   get address(){return this.form.get('address')}
-   get aPostalCode(){return this.form.get('aPostalCode')}
-   get aCity(){return this.form.get('aCity')}
-   get aCountry(){return this.form.get('aCountry')}
-   get aState(){return this.form.get('aState')}
+   get Street(){return this.form.get('Street')}
+   get PostalCode(){return this.form.get('PostalCode')}
+   get City(){return this.form.get('City')}
+   get Country(){return this.form.get('Country')}
 
 
   ngOnInit() {
@@ -35,6 +36,26 @@ export class ShippingComponent implements OnInit {
 
   editShippingDetail(){
     console.log(this.form.value);
-  }
+    if (this.form.valid) {
+      const formData = new FormData();
+      formData.append('Street', this.form.get('Street')?.value || '');
+      formData.append('PostalCode', this.form.get('PostalCode')?.value || '');
+      formData.append('City', this.form.get('City')?.value || '');
+      formData.append('Country', this.form.get('Country')?.value || '');
+      this.apiService.updateAddress(formData).subscribe({
+        next: (response: any) => {
+          this.toastr.success('Address updated successfully!');
 
+          this.router.navigate(['/user/profile']);
+        },
+        error: (error: any) => {
+          console.error('Error updating Address:', error);
+          this.toastr.error('An error occurred while updating the Address.');
+        }
+    });
+    }
+  }
+  // onSubmit() {
+
+  // }
 }

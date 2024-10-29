@@ -1,117 +1,129 @@
 import { Component, OnInit } from '@angular/core';
+import * as signalR from '@microsoft/signalr';
+import { DashboardService } from '../../Services/dashboard/dashboard.service';
+
+export interface LastTenAuctions {
+  auctionName: string;
+  sellerName: string;
+  buyerName: string;
+  images: any;
+  Completed: boolean;
+  Ended: boolean;
+  StartDate: string;
+  EndDate: string;
+  ID: number;
+}
 @Component({
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',
   styleUrls: ['./dashboard-home.component.css'],
   //, '../../Admin.component.css'
-
 })
 export class DashboardHomeComponent implements OnInit {
-  constructor() {}
+  allAuctionsCount!: number;
+  topFiveSeller: any;
 
-  ngOnInit() {}
-  chart: any;
+  viewCat: any = [750, 750];
+  category!: { name: string; value: number }[];
+  completedAuctions!: number;
+  endedAuctions!: number;
+  auctionsAmounts!: number;
+  lastTenAuctions!: LastTenAuctions[];
+  auctionsBidsAmount!: { name: string; value: number }[];
+  hubConnection!: signalR.HubConnection;
+  legendCategoryPosition: any = 'right';
 
-  chartOptionsTable = {
-    animationEnabled: true,
-    theme: 'light2',
-    title: {
-      text: 'Income And Expenses',
-    },
-    axisY: {
-      title: 'Number of Auctions',
-      includeZero: true,
-    },
-    axisY2: {
-      title: 'Total Revenue',
-      includeZero: true,
-      labelFormatter: (e: any) => {
-        var suffixes = ['', 'K', 'M', 'B'];
-
-        var order = Math.max(Math.floor(Math.log(e.value) / Math.log(1000)), 0);
-        if (order > suffixes.length - 1) order = suffixes.length - 1;
-
-        var suffix = suffixes[order];
-        return '$' + e.value / Math.pow(1000, order) + suffix;
+  constructor(private dashboardService: DashboardService) {
+    this.connection();
+    //this.tableConnection();
+    this.getEndedCompletedAuctionCount();
+    this.getAllAuctionsAmounts();
+  }
+  getEndedCompletedAuctionCount() {
+    this.dashboardService.getEndedCompletedAuctionCount().subscribe({
+      next: (res: any) => {
+        this.completedAuctions = res.completedAuction;
+        this.endedAuctions = res.endedAuction;
       },
-    },
-    toolTip: {
-      shared: true,
-    },
-    legend: {
-      cursor: 'pointer',
-      itemclick: function (e: any) {
-        if (
-          typeof e.dataSeries.visible === 'undefined' ||
-          e.dataSeries.visible
-        ) {
-          e.dataSeries.visible = false;
-        } else {
-          e.dataSeries.visible = true;
-        }
-        e.chart.render();
-      },
-    },
-    data: [
-      {
-        type: 'column',
-        showInLegend: true,
-        name: 'Revenue',
-        axisYType: 'secondary',
-        yValueFormatString: '$#,###',
-        dataPoints: [
-          { label: 'Jan', y: 250000 },
-          { label: 'Feb', y: 431000 },
-          { label: 'Mar', y: 646000 },
-          { label: 'Apr', y: 522000 },
-          { label: 'May', y: 464000 },
-          { label: 'Jun', y: 470000 },
-          { label: 'Jul', y: 534000 },
-          { label: 'Aug', y: 407000 },
-          { label: 'Sep', y: 484000 },
-          { label: 'Oct', y: 465000 },
-          { label: 'Nov', y: 424000 },
-          { label: 'Dec', y: 231000 },
-        ],
-      },
-      {
-        type: 'spline',
-        showInLegend: true,
-        name: 'No of Orders',
-        dataPoints: [
-          { label: 'Jan', y: 372 },
-          { label: 'Feb', y: 412 },
-          { label: 'Mar', y: 572 },
-          { label: 'Apr', y: 224 },
-          { label: 'May', y: 246 },
-          { label: 'Jun', y: 601 },
-          { label: 'Jul', y: 642 },
-          { label: 'Aug', y: 590 },
-          { label: 'Sep', y: 527 },
-          { label: 'Oct', y: 273 },
-          { label: 'Nov', y: 251 },
-          { label: 'Dec', y: 331 },
-        ],
-      },
-    ],
-  };
+      error: (err) => console.log(err),
+    });
+  }
 
-  chartOptionsCircle = {
-	  animationEnabled: true,
-	  title: {
-		text: "Sales by Categories"
-	  },
-	  data: [{
-		type: "pie",
-		startAngle: -90,
-		indexLabel: "{name}: {y}",
-		yValueFormatString: "#,###.##'%'",
-		dataPoints: [
-		  { y: 14.1, name: "Toys" },
-		  { y: 28.2, name: "Electronics" },
-		  { y: 14.4, name: "Groceries" },
-		  { y: 43.3, name: "Furniture" }
-		]
-	  }]
-	}
+  getAllAuctionsAmounts() {
+    this.dashboardService.getAllAuctionsAmounts().subscribe({
+      next: (res: any) => {
+        this.auctionsAmounts = res.allAmount;
+      },
+      error: (err) => console.log(err),
+    });
+  }
+
+  ngOnInit() {
+    this.hubConnection.on('auctionsBidsAmount', (res: any) => {
+      console.log(res);
+      this.auctionsBidsAmount = res;
+    });
+
+    this.hubConnection.on('auctionsCount', (res: number) => {
+      this.allAuctionsCount = res;
+    });
+
+    this.hubConnection.on('topFiveSeller', (res: any) => {
+      this.topFiveSeller = res;
+    });
+
+    this.hubConnection.on('category', (res: any) => {
+      this.category = res;
+    });
+
+    this.hubConnection.on('completedAuctions', (res: number) => {
+      this.completedAuctions += res;
+    });
+
+    this.hubConnection.on('endedAuctions', (res: number) => {
+      this.endedAuctions += res;
+    });
+
+    this.hubConnection.on('auctionsAmounts', (res: number) => {
+      this.auctionsAmounts += res;
+    });
+  }
+
+  connection() {
+    this.hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl('http://localhost:5204/dashboardHub', {
+        transport: signalR.HttpTransportType.WebSockets,
+        skipNegotiation: true,
+      })
+      .configureLogging(signalR.LogLevel.Information)
+      .build();
+    this.hubConnection
+      .start()
+      .then(() => {
+        return this.hubConnection.invoke('dashboard');
+      })
+      .catch((reason) => console.log(reason));
+  }
+
+  tableConnection() {
+    this.hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl('http://localhost:5204/tableDashboardHub', {
+        transport: signalR.HttpTransportType.WebSockets,
+        skipNegotiation: true,
+      })
+      .configureLogging(signalR.LogLevel.Information)
+      .build();
+    this.hubConnection
+      .start()
+      .then(() => {
+        return this.hubConnection.invoke('tableData');
+      })
+      .then(() => {
+        this.hubConnection.on('lastTenAuctions', (res: any) => {
+          console.log(res);
+          this.lastTenAuctions = res;
+        });
+      })
+      .catch((reason) => console.log(reason));
+  }
 }

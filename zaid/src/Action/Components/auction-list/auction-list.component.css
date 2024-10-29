@@ -121,3 +121,12 @@
 .card-icon{
   z-index: 1200 !important;
 }
+
+
+
+.search-box {
+  margin-top: 10px; /* Add some space above */
+  min-width: 50px;
+}
+
+

@@ -2,7 +2,7 @@
     background-color: #F3F3F3;
     color: #2b2b2b;
     padding: 40px;
-    border-top: 1px solid #2b2b2b;
+    border-bottom: 1px solid rgb(212, 211, 210) ;
     text-align: center;
 }
 .footer   a,p,h6 {

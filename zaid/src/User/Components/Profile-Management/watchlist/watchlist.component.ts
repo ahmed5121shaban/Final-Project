@@ -58,6 +58,9 @@ if(this.selectedAuctionId!=null){
       this.toaster.success("Item deleted successfully")
 
 console.log(response);
+this.getAtiveWishlist();
+this.getEndedWishlist();
+
 this.activefavAuctions = this.activefavAuctions.filter(favAuction => favAuction.auctionID !== this.selectedAuctionId);
 this.endedfavAuctions = this.endedfavAuctions.filter(favAuction => favAuction.auctionID !== this.selectedAuctionId);
 

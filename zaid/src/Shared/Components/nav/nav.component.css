@@ -1,6 +1,6 @@
 .navbar-custom {
   background-color: white;
-  border-bottom: 1px solid rgb(44, 40, 36) ;
+  border-bottom: 1px solid rgb(212, 211, 210) ;
 }
 .navbar-custom .navbar-brand, .navbar-custom .nav-link {
   color: rgb(44, 40, 36) ;
@@ -36,14 +36,12 @@
   font-size: 0.8rem;
   color: #746a62;
 }
-.navbar-custom .form-inline .form-control {
-  border: none;
-  border-radius: 5px;
-  background-color: white;
+.form-control{
+  border-radius:30px !important ;
+
 }
 .form{
   width:35%;
-  border: 1px solid rgb(44, 40, 36) ;
   margin-left:31% !important;
 }
 .form input:focus{

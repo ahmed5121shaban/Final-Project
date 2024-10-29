@@ -47,6 +47,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.getAllChats();
     this.initializeMessages();
     this.updateFilteredMessages();
+    console.log(this.allChats);
+
   }
 
 
@@ -58,7 +60,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
         this.allChats = res.result
       },
       error:(err)=>console.log(err)
-      
+
     })
   }
 

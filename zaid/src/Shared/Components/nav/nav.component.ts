@@ -4,6 +4,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { NotificationService } from '../../Services/notification.service';
 import { Location } from '@angular/common';
+import { Route, Router } from '@angular/router';
+import { AuthService } from '../../../User/Services/auth.service';
 
 export interface Notification {
   time: string;
@@ -23,13 +25,19 @@ export class NavComponent implements OnInit {
   allNotifications!: Notification[];
   alert!: boolean;
   audio = new Audio();
+  searchtxt:string="";
+  isLoggedIn:boolean;
   constructor(
     private cookieService: CookieService,
     private toaster: ToastrService,
     private notificationService: NotificationService,
-    private location:Location
+    private location:Location,
+    private router:Router,
+    private authService:AuthService,
+    
   ) {
     this.audio.src = 'audio/mixkit-correct-answer-tone-2870.wav';
+    this.isLoggedIn=this.authService.isLoggedIn;
   }
 
   ngOnInit() {
@@ -45,8 +53,11 @@ export class NavComponent implements OnInit {
   logOut() {
     this.cookieService.delete('token');
     this.cookieService.delete('auth');
-    this.toaster.success('you LogUot now');
-    this.location.go('/login');
+  if(this.authService.isLoggedIn==false){
+
+    this.toaster.success('you Logout now');
+    this.router.navigate(['../user/login']);
+  }
   }
 
   openConnectionAndGetAllBidsWithLast() {
@@ -79,4 +90,11 @@ export class NavComponent implements OnInit {
   removeNotify() {
     this.alert = false;
   }
+
+  onSearch() {
+    if (this.searchtxt.trim()) {
+      this.router.navigate(['../action/auction-list', this.searchtxt]);    }
+}
+
+
 }

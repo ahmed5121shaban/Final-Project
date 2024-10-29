@@ -22,18 +22,23 @@ import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common
 import { CategoryListComponent } from './Components/category-list/category-list.component';
 import { ShipmentTrackingComponent } from './Components/shipment-tracking/shipment-tracking.component';
 import { ShortTextPipe } from '../Shared/Pipes/short-text.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxChartsModule } from "@swimlane/ngx-charts";
+
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutes,
-
-
     NgCircleProgressModule.forRoot({
       showUnits: false,
       showSubtitle: true,
     }),
     CanvasJSAngularChartsModule,
-    CommonModule, AdminRoutes, FormsModule, ReactiveFormsModule, NgxDatatableModule, NgxPaginationModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgxDatatableModule,
+    NgxPaginationModule,
+    NgxChartsModule,
   ],
   declarations: [
     AdminComponent,

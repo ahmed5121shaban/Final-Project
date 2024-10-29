@@ -22,7 +22,7 @@ returnUrl:string="/";
   categorysearch:any={};
   isFavCat:{[key:number]:boolean}={};
   favCatIds:any[]=[];
-  
+  paramValue:string="";
 
   favAuctionIds:any[]=[]
   // Pagination properties
@@ -35,7 +35,6 @@ returnUrl:string="/";
   sortOption: string = 'Id'; 
   isAscending: boolean = false;
   filterOption: string =''; 
-
   constructor(
     private auctionService: AuctionService,
     private categoryService: CategoryService,
@@ -45,52 +44,34 @@ returnUrl:string="/";
     private router :Router,
     private favcatService:FavCategoryService
 
+
   ) {
-
-
-
-
-
+    this.loadCategories().then(() => {
+      this.route.params.subscribe(params => {
+        this.paramValue = params['category'] || '';
   
-
-
-
- 
-    this.route.params.subscribe(params => {
-      this.selectedCategory = params['category'] || '';
-      if(this.selectedCategory==="mostBids"){
-        this.filterOption="mostBids";
-        this.selectedCategory="";
+        // Check if paramValue matches any category name
+        const matchingCategory = this.categories.find(category => category.name === this.paramValue);
+        if (matchingCategory) {
+          this.selectedCategory = matchingCategory.name;
+          this.filterOption = ''; // Clear filter option if it's a category
+        } else if (this.paramValue === "mostBids" || this.paramValue === "newArrivals" || this.paramValue === "noBids" || this.paramValue === "endingSoon") {
+          // Handle specific filter options
+          this.filterOption = this.paramValue;
+          this.selectedCategory = '';
+        } else {
+          // If paramValue is neither a category nor a filter option, treat it as search text
+          this.searchtxt = this.paramValue;
+          this.selectedCategory = '';
+          this.filterOption = '';
+        }
+  
         this.loadActiveAuctions();
+        this.loadFavAuctions();
+        this.getFavCatIds();
 
-      }
-      
-      if(this.selectedCategory==="newArrivals"){
-        this.filterOption="newArrivals";
-        this.selectedCategory="";
-        this.loadActiveAuctions();
-
-      }
-      if(this.selectedCategory==="noBids"){
-        this.filterOption="noBids";
-        this.selectedCategory="";
-        this.loadActiveAuctions();
-
-      }
-      if(this.selectedCategory==="endingSoon"){
-        this.filterOption="EndDate";
-        this.selectedCategory="";
-        this.loadActiveAuctions();
-
-      }
-      else{
-      this.loadActiveAuctions();
-      }
-      this.getFavCatIds();
-      this.loadCategories();
-      this.loadFavAuctions();
+      });
     });
-  
 
   }
 
@@ -132,23 +113,31 @@ ngOnInit(): void {
       });
   }
 
-  loadCategories(): void {
-    this.categoryService.getCategories().subscribe({
-      next: (data) => {
-        this.categories = data.result;
-        this.UpdateCategoris();
-        this.categorysearch=this.categories.filter(category=>category.name==this.selectedCategory);
 
-      },
-      error: (err) => {
-        console.error('Error fetching categories', err);
-      }
+
+  loadCategories(): Promise<void> {
+    return new Promise<void>((resolve) => {
+      this.categoryService.getCategories().subscribe({
+        next: (data) => {
+          this.categories = data.result;
+          this.UpdateCategoris();
+          this.categorysearch=this.selectedCategory;
+console.log(this.categorysearch);
+          resolve(); // Notify that categories have been loaded
+        },
+        error: (err) => {
+          console.error('Error fetching categories', err);
+          resolve(); // Even in case of error, resolve the promise to continue
+        }
+      });
     });
   }
+
 
   onCategorySelect(category: string): void {
     this.selectedCategory = category;
     this.pageActive = 1;
+    this.searchtxt=this.searchtxt;
     this.loadCategories();
     this.loadActiveAuctions();
     
@@ -250,5 +239,10 @@ updateFavState(){
 
     })
   }
-
+  clearSearch(){
+    this.searchtxt="";
+    this.router.navigate(['../action/auction-list',this.searchtxt]);
+  }
 }
+
+
