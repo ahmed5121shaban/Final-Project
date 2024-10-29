@@ -18,5 +18,8 @@ getFavCatIds():Observable<any>{
   return this.http.get(`${this.apiUrl}`);
 
 }
+getFavCat():Observable<any>{
+  return this.http.get(`${this.apiUrl}/allfav`);
+}
   
 }

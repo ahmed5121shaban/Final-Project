@@ -129,4 +129,10 @@
     max-width: 160px;
     max-height: 160px;
   }
-
+  .card-icon{
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    padding: 4px 7px;
+    border-radius: 5px;
+  }

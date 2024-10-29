@@ -95,12 +95,10 @@
   text-decoration: underline; /* Optional: add underline on hover */
   transition: opacity 0.3s ease, background-color 0.3s ease; /* Smooth transition for opacity and background color */
 }
- /*
-for category search section
- */
- .card-custum{
+
+.category-card{
   position: absolute;
-  background-color: aliceblue;
+  background-color: rgb(255, 255, 255);
   top: 30%;
   left: 10%;
   padding: 5px 5px;
@@ -111,7 +109,24 @@ for category search section
 .text-danger{
   color: #ff5252;
 }
+.category-card-icon{
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  padding: 4px 7px;
+  border-radius: 20px;
+
+}
 
 .card-icon{
   z-index: 1200 !important;
 }
+
+
+
+.search-box {
+  margin-top: 10px; /* Add some space above */
+  min-width: 50px;
+}
+
+
