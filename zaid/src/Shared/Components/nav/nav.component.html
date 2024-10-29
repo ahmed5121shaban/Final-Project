@@ -18,7 +18,6 @@
               
             <ul class="navbar-nav ">
                
-            @if(isLoggedIn){
                 <!-- Logged In State (Hidden by Default) -->
                 <li class="nav-item dropdown" id="notificationsDropdown">
                     <a class="nav-link dropdown-toggle position-relative" (click)="removeNotify()" href="#" id="navbarDropdown" role="button"
@@ -71,7 +70,7 @@
                                 <a class="dropdown-item" routerLink="../user/login">
                                   <i class="fas fa-sign-in-alt me-2"></i> Login
                                 </a>
-                                <a class="dropdown-item" type="button" routerLink="../user/login" (click)="logOut()">
+                                <a class="dropdown-item" type="button" (click)="logOut()">
                                   <i class="fas fa-sign-out-alt me-2"></i> Logout
                                 </a>
                               </div>
@@ -87,16 +86,16 @@
                             <a class="nav-link  "routerLink="../admin/items-review">Review items</a> -->
 
                 </li>
-            }
-            @else{
+            
+       
                  <!-- Logged Out State -->
-                <li class="nav-item">
+                <!-- <li class="nav-item">
               <a class="nav-link" routerLink="../user/login">Login</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" routerLink="../user/register">Register</a>
-          </li>
-            }
+          </li> -->
+            
             </ul>
         </div>
 

@@ -19,7 +19,6 @@ returnUrl:string="/";
   isFav:{[key:number]:boolean}={};
   activeAuctions: any[] = [];
   categories: any[] = [];
-  categorysearch:any={};
   isFavCat:{[key:number]:boolean}={};
   favCatIds:any[]=[];
   paramValue:string="";
@@ -31,7 +30,8 @@ returnUrl:string="/";
   totalItemsActive: number = 0;
     // Filter properties
   searchtxt: string = '';
-  selectedCategory: string = ''; 
+  selectedCategory: any; 
+  selectedCategoryname: string=''; 
   sortOption: string = 'Id'; 
   isAscending: boolean = false;
   filterOption: string =''; 
@@ -53,7 +53,8 @@ returnUrl:string="/";
         // Check if paramValue matches any category name
         const matchingCategory = this.categories.find(category => category.name === this.paramValue);
         if (matchingCategory) {
-          this.selectedCategory = matchingCategory.name;
+          this.selectedCategory = matchingCategory;
+          this.selectedCategoryname = matchingCategory.name;
           this.filterOption = ''; // Clear filter option if it's a category
         } else if (this.paramValue === "mostBids" || this.paramValue === "newArrivals" || this.paramValue === "noBids" || this.paramValue === "endingSoon") {
           // Handle specific filter options
@@ -66,10 +67,10 @@ returnUrl:string="/";
           this.filterOption = '';
         }
   
+        this.getFavCatIds();
         this.loadActiveAuctions();
         this.loadFavAuctions();
-        this.getFavCatIds();
-
+        
       });
     });
 
@@ -98,7 +99,7 @@ ngOnInit(): void {
         this.isAscending,     
         this.itemsPerPage,
         this.pageActive,
-        this.selectedCategory,
+        this.selectedCategoryname,
        this.filterOption
       ).subscribe({
         next: (pagination: Pagination<any[]>) => {
@@ -121,8 +122,7 @@ ngOnInit(): void {
         next: (data) => {
           this.categories = data.result;
           this.UpdateCategoris();
-          this.categorysearch=this.selectedCategory;
-console.log(this.categorysearch);
+   
           resolve(); // Notify that categories have been loaded
         },
         error: (err) => {
@@ -135,9 +135,10 @@ console.log(this.categorysearch);
 
 
   onCategorySelect(category: string): void {
-    this.selectedCategory = category;
+    this.selectedCategoryname = category;
+  
     this.pageActive = 1;
-    this.searchtxt=this.searchtxt;
+    this.searchtxt=this.selectedCategory;
     this.loadCategories();
     this.loadActiveAuctions();
     
@@ -226,10 +227,10 @@ updateFavState(){
     this.favcatService.AddToFav(id).subscribe({
       next:res=>{
         if(res.result == "added"){
-          this.categorysearch[0].isFavCat[id]=true ;
+         this.isFavCat[id]=true ;
         }
         if(res.result == "removed"){
-          this.categorysearch[0].isFavCat[id]=false;
+          this.isFavCat[id]=false;
         }
       },
       error:err=>{

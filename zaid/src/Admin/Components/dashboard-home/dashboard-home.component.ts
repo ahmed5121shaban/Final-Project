@@ -21,7 +21,7 @@ export interface LastTenAuctions {
 })
 export class DashboardHomeComponent implements OnInit {
   allAuctionsCount!: number;
-  topFiveSeller: any;
+  topFiveSeller!: { name: string; count: number }[];
 
   viewCat: any = [750, 750];
   category!: { name: string; value: number }[];
@@ -38,7 +38,11 @@ export class DashboardHomeComponent implements OnInit {
     //this.tableConnection();
     this.getEndedCompletedAuctionCount();
     this.getAllAuctionsAmounts();
+    this.getTopFiveSellers();
+    this.getCategoriesItems();
+    this.getAuctionsBidsAmount();
   }
+
   getEndedCompletedAuctionCount() {
     this.dashboardService.getEndedCompletedAuctionCount().subscribe({
       next: (res: any) => {
@@ -47,6 +51,15 @@ export class DashboardHomeComponent implements OnInit {
       },
       error: (err) => console.log(err),
     });
+  }
+
+  getCategoriesItems(){
+    this.dashboardService.getCategoriesItems().subscribe({
+      next: (res: any) => {
+        this.category = res
+      },
+      error: (err) => console.log(err),
+    })
   }
 
   getAllAuctionsAmounts() {
@@ -58,10 +71,37 @@ export class DashboardHomeComponent implements OnInit {
     });
   }
 
+
+  getTopFiveSellers(){
+    this.dashboardService.getTopFiveSellers().subscribe({
+      next: (res: any) => {
+        this.topFiveSeller = res;
+      },
+      error: (err) => console.log(err),
+    });
+  }
+
+  getAuctionsBidsAmount(){
+    this.dashboardService.getAuctionsBidsAmount().subscribe({
+      next: (res: any) => {
+        this.auctionsBidsAmount = res;
+      },
+      error: (err) => console.log(err),
+    });
+  }
+
+
+
   ngOnInit() {
     this.hubConnection.on('auctionsBidsAmount', (res: any) => {
-      console.log(res);
-      this.auctionsBidsAmount = res;
+      this.auctionsBidsAmount.forEach(element => {
+        if(element.name==res.name)
+          element.value = res.value
+      });
+      this.auctionsBidsAmount = [...this.auctionsBidsAmount]
+      console.log(res,'auctionsBidsAmount auctionsBidsAmountauctionsBidsAmountauctionsBidsAmountauctionsBidsAmount');
+      console.log(this.auctionsBidsAmount,'auctionsBidsAmount auctionsBidsAmountauctionsBidsAmountauctionsBidsAmountauctionsBidsAmount');
+
     });
 
     this.hubConnection.on('auctionsCount', (res: number) => {
@@ -69,11 +109,18 @@ export class DashboardHomeComponent implements OnInit {
     });
 
     this.hubConnection.on('topFiveSeller', (res: any) => {
-      this.topFiveSeller = res;
+      this.topFiveSeller.forEach(element => {
+        if(element.name==res.name)
+          element.count += res.count
+      });
     });
 
     this.hubConnection.on('category', (res: any) => {
-      this.category = res;
+      this.category.forEach(element => {
+        if(element.name==res.name)
+          element.value += res.value
+      });
+      this.category=[...this.category]
     });
 
     this.hubConnection.on('completedAuctions', (res: number) => {
