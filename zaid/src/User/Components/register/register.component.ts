@@ -29,7 +29,8 @@ export class RegisterComponent {
         Validators.required,
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@*%$#])[A-Za-z\d@*%$#]{8,}$/)
       ]],
-      confirmPassword: ["", Validators.required]
+      confirmPassword: ["", Validators.required],
+      iAgree: [false, Validators.requiredTrue]
     }, { validators: this.passwordMatchValidator }); 
   }
 
@@ -56,7 +57,9 @@ export class RegisterComponent {
   get confirmPassword() {
     return this.registerForm.controls['confirmPassword'];
   }
-
+  get iAgree() {
+    return this.registerForm.controls['iAgree'];
+  }
   submitDetails() {
     if (this.registerForm.invalid) {
       this.toastr.error('Please correct the errors in the form.', 'Error');
