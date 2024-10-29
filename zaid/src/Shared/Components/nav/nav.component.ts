@@ -38,6 +38,7 @@ export class NavComponent implements OnInit {
   ) {
     this.audio.src = 'audio/mixkit-correct-answer-tone-2870.wav';
     this.isLoggedIn=this.authService.isLoggedIn;
+    console.log( this.isLoggedIn);
   }
 
   ngOnInit() {
