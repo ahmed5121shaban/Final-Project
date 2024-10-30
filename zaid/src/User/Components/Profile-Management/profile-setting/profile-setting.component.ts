@@ -25,10 +25,6 @@ export class ProfileSettingComponent implements OnInit {
       FirstName: ['', [Validators.minLength(3), Validators.maxLength(15)]],
       LastName: ['', [Validators.minLength(3), Validators.maxLength(15)]],
       Email: ['', [Validators.email]],
-      Street: [''],
-      PostalCode: [''],
-      City: [''],
-      Country: [''],
       TimeZone: [''],
       Age: [''],
       Gender: [''],
@@ -66,10 +62,6 @@ removePhoneNumber(index: number) {
           FirstName: firstName || '',  // استخدم firstName من البيانات
           LastName: lastName || '',     // استخدم lastName من البيانات
           Email: data.email,
-          Street: data.street,
-          PostalCode: data.postalCode,
-          City: data.city,
-          Country: data.country,
           TimeZone: data.timeZone,
           Age: data.age,
           Gender: data.gender,
@@ -85,10 +77,6 @@ removePhoneNumber(index: number) {
           FirstName: data.FirstName,  // استخدم FirstName من التقسيم
           LastName: data.LastName,    // استخدم LastName من التقسيم
           Email: data.Email,
-          Street: data.Street,
-          PostalCode: data.PostalCode,
-          City: data.City,
-          Country: data.Country,
           TimeZone: data.TimeZone,
           Age: data.Age,
           Gender: data.Gender,
@@ -131,10 +119,6 @@ removePhoneNumber(index: number) {
     formData.append('FirstName', this.form.get('FirstName')?.value || '');
     formData.append('LastName', this.form.get('LastName')?.value || '');
     formData.append('Email', this.form.get('Email')?.value || '');
-    formData.append('Street', this.form.get('Street')?.value || '');
-    formData.append('PostalCode', this.form.get('PostalCode')?.value || '');
-    formData.append('City', this.form.get('City')?.value || '');
-    formData.append('Country', this.form.get('Country')?.value || '');
     formData.append('TimeZone', this.form.get('TimeZone')?.value || '');
     formData.append('Age', this.form.get('Age')?.value || '');
     formData.append('Gender', this.form.get('Gender')?.value || '');
