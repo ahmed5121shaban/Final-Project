@@ -38,6 +38,9 @@ export class ProfileSettingComponent implements OnInit {
         this.formBuilder.control('', [Validators.minLength(4), Validators.maxLength(30)]),
       ]),
     });
+
+
+
   }
 
   get PhoneNumbers():FormArray  {
@@ -157,4 +160,6 @@ removePhoneNumber(index: number) {
       }
     });
   }
+
 }
+

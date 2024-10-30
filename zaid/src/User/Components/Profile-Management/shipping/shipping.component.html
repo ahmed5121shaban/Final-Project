@@ -1,84 +1,46 @@
+<div class="container">
 
-    <div class="container">
+    <h4 class="bg-dark text-light mb-4 p-3 rounded-2">Shipping Address</h4>
+    <div class="mt-3">
+        <form class="ms-4" [formGroup]="form">
 
-              <h4 class="bg-dark text-light mb-4 p-3 rounded-2">Shipping Address</h4>
-            <div class="mt-3">
-                <form class="ms-4" [formGroup]="form">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" formControlName="Street" id="floatingInput"
+                    [class]="{'is-valid':Street?.valid&&Street?.dirty,'is-invalid':Street?.invalid&&Street?.dirty}"
+                    placeholder="Address Line 1" required>
+                <label for="floatingInput" class="ms-3">Street</label>
+            </div>
 
-                    <div class="form-floating mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" formControlName="City" id="floatingInput"
+                    [class]="{'is-valid':City?.valid&&City?.dirty,'is-invalid':City?.invalid&&City?.dirty}"
+                    placeholder="City" required>
+                <label for="floatingInput" class="ms-3">City</label>
+            </div>
 
-                        <input type="text" id="floatingInput"
-                         class="form-control " formControlName="name"
-                         [class]="{'is-valid':name?.valid&&name?.dirty,'is-invalid':name?.invalid&&name?.dirty}"
-                          placeholder="Full Name" required>
-                          <label for="floatingInput" class="ms-3">Full Name</label>
-                    </div>
-
-                    <div class="form-floating mb-3">
-
-                        <input type="text" class="form-control" formControlName="address" id="floatingInput"
-                        [class]="{'is-valid':address?.valid&&address?.dirty,'is-invalid':address?.invalid&&address?.dirty}"
-                         placeholder="Address Line 1" required>
-                         <label for="floatingInput" class="ms-3">Address Line 1</label>
-                    </div>
-
-                    <div class="form-floating mb-3">
-
-                        <input type="text" class="form-control" formControlName="aCity" id="floatingInput"
-                        [class]="{'is-valid':aCity?.valid&&aCity?.dirty,'is-invalid':aCity?.invalid&&aCity?.dirty}"
-                         placeholder="City" required>
-                         <label for="floatingInput" class="ms-3">City</label>
-                    </div>
-
-                    <div class=" row mb-3">
-                        <div class="form-floating col-md-6">
-
-                            <input type="text" class="form-control" formControlName="aState" id="floatingInput"
-                            [class]="{'is-valid':aState?.valid&&aState?.dirty,'is-invalid':aState?.invalid&&aState?.dirty}"
-                             placeholder="State" required>
-                             <label for="floatingInput" class="ms-3">State</label>
-                        </div>
-
-                        <div class="form-floating col-md-6">
-
-                            <input type="text" class="form-control" formControlName="aPostalCode" id="floatingInput"
-                            [class]="{'is-valid':aPostalCode?.valid&&aPostalCode?.dirty,'is-invalid':aPostalCode?.invalid&&aPostalCode?.dirty}"
-                             placeholder="Postal Code" required>
-                             <label for="floatingInput" class="ms-3">Postal Code</label>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="country" class="form-label">Country</label>
-                        <select class="form-select" formControlName="aCountry"
-                        [class]="{'is-valid':aCountry?.valid&&aCountry?.dirty,'is-invalid':aCountry?.invalid&&aCountry?.dirty}"
+            <div class=" row mb-3">
+                <div class="form-floating col-md-6">
+                    <select class="form-select" formControlName="Country"
+                        [class]="{'is-valid':Country?.valid&&Country?.dirty,'is-invalid':Country?.invalid&&Country?.dirty}"
                         id="country" required>
-                            <option value="">Select Country</option>
-                            <option value="US">United States</option>
-                            <option value="CA">Canada</option>
-                            <option value="GB">United Kingdom</option>
-                            <!-- Add more countries as needed -->
-                        </select>
-                    </div>
+                        <option value="">Select Country</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="GB">United Kingdom</option>
+                        <!-- Add more countries as needed -->
+                    </select>
+                </div>
 
-                </form>
+                <div class="form-floating col-md-6">
+
+                    <input type="text" class="form-control" formControlName="PostalCode" id="floatingInput"
+                        [class]="{'is-valid':PostalCode?.valid&&PostalCode?.dirty,'is-invalid':PostalCode?.invalid&&PostalCode?.dirty}"
+                        placeholder="Postal Code" required>
+                    <label for="floatingInput" class="ms-3">Postal Code</label>
+                </div>
             </div>
-        </div>
-
-
-        <div class="mt-4">
-            <div class="bg-dark text-white rounded-2">
-                <h4 class="mb-4 p-3">Additional Instructions</h4>
-            </div>
-            <div class="mt-3">
-                <form class="ms-4" [formGroup]="form">
-                    <div class="mb-3">
-                        <label for="instructions" class="form-label">Instructions for the delivery person</label>
-                        <textarea class="form-control" formControlName="deliveryDesc" id="instructions" rows="3" placeholder="Provide any additional instructions here..."></textarea>
-                    </div>
-                    <button type="submit" [disabled]="form.invalid" (click)="editShippingDetail()" class="btn btn-dark w-25">Save Preferences</button>
-                </form>
-            </div>
-
-
+            <button type="submit" [disabled]="form.invalid" (click)="editShippingDetail()"
+            class="btn btn-dark w-25">Add</button>
+        </form>
     </div>
+</div>

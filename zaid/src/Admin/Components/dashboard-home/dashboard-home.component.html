@@ -1,57 +1,26 @@
 <div class="container">
-  <div class="content">
+  <div class="content row mb-5 m-auto" style="width: 90%">
     <!-- Top Statistics 4 Cards -->
-    <div class="row my-5">
-      <div class="col-xl-3 col-sm-6">
-        <div class="card card-default card-mini shadow rounded-1 bg-danger-subtle">
-          <div class="card-header ">
-            <h2>$18,699</h2>
-
-            <div class="dropdown">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fa-solid fa-sliders fa-sm"></i>
-              </a>
-
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Auction</a></li>
-              </ul>
-          </div>
-
-            <div class="sub-title">
-              <span class="mr-1">Sales of this year</span> |
-              <span class="mx-1">45%</span>
-              <i class="fa-solid fa-down-long fa-flip fa-sm" style="color: #9b1208;"></i>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="chart-wrapper">
-              <div>
-                <div id="spline-area-1"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6">
-        <div class="card card-default card-mini shadow rounded-1 bg-primary-subtle">
-          <div class="card-header">
-            <h2>$14,500</h2>
-
-            <div class="dropdown">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-sliders fa-sm"></i>
-              </a>
-
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Auction</a></li>
-
-              </ul>
-          </div>
-
-            <div class="sub-title">
-              <span class="mr-1">Expense of this year</span> |
-              <span class="mx-1">50%</span>
-              <i class="fa-solid fa-down-long fa-flip fa-sm" style="color: #9b1208;"></i>
+    <div class="row g-3 my-5">
+      <div class="col-xl-4 col-sm-12">
+        <div class="p-3 shadow rounded-1 bg-opacity-75 bg-success-subtle">
+          <div
+            class="card-header d-flex flex-column text-dark justify-content-between py-4"
+          >
+            <i class="fa-regular fa-square-check fs-1"></i>
+            <span class="opacity-75 my-2">Completed Auctions</span>
+            <span class="fw-semibold fs-3 mb-2">{{completedAuctions}} Auctions</span>
+            <div class="fs-6">
+              @if (((completedAuctions/allAuctionsCount)*100)>50) {
+                <i
+                  class="fa-solid fa-up-long fa-rotate-by"
+                  style="color: #00d146; --fa-rotate-angle: 50deg"
+                ></i>
+              }@else { <i
+                class="fa-solid fa-up-long fa-rotate-by"
+                style="color: #c70d00; --fa-rotate-angle: 130deg"
+              ></i>}
+              <span class="ms-2 fw-semibold opacity-75">%{{(completedAuctions/allAuctionsCount)*100}}</span>
             </div>
           </div>
           <div class="card-body">
@@ -63,56 +32,56 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-3 col-sm-6">
-        <div class="card card-default card-mini shadow rounded-1 bg-success-subtle">
-          <div class="card-header">
-            <h2>$4199</h2>
-            <div class="dropdown">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-sliders fa-sm"></i>
-              </a>
-
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Auction</a></li>
-              </ul>
-          </div>
-            <div class="sub-title">
-              <span class="mr-1">Profit of this year</span> |
-              <span class="mx-1">20%</span>
-              <i class="fa-solid fa-up-long fa-flip" style="color: #63E6BE;"></i>
+      <div class="col-xl-4 col-sm-12">
+        <div class="p-3 shadow bg-opacity-75 bg-danger-subtle">
+          <div
+            class="card-header d-flex flex-column text-dark justify-content-between py-4"
+          >
+            <i class="fa-regular fa-calendar-xmark fs-1"></i>
+            <span class="opacity-75 my-2">Ended Auctions</span>
+            <span class="fw-semibold fs-3 mb-2">{{endedAuctions}} Auctions</span>
+            <div class="fs-6">
+              @if (((endedAuctions/allAuctionsCount)*100)>50) {
+              <i
+                class="fa-solid fa-up-long fa-rotate-by"
+                style="color: #00d146; --fa-rotate-angle: 50deg"
+              ></i>
+            }@else { <i
+              class="fa-solid fa-up-long fa-rotate-by"
+              style="color: #c70d00; --fa-rotate-angle: 130deg"
+            ></i>}
+              <span class="ms-2 fw-semibold opacity-75">%{{(endedAuctions/allAuctionsCount)*100}}</span>
             </div>
           </div>
           <div class="card-body">
             <div class="chart-wrapper">
               <div>
-                <div id="spline-area-3"></div>
+                <div id="spline-area-2"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-xl-3 col-sm-6">
-        <div class="card card-default card-mini shadow rounded-1 bg-warning-subtle">
-          <div class="card-header">
-            <h2>$20,199</h2>
-            <div class="dropdown">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-sliders fa-sm"></i>              </a>
-
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Auction</a></li>
-              </ul>
-          </div>
-            <div class="sub-title">
-              <span class="mr-1">Revenue of this year</span> |
-              <span class="mx-1">35%</span>
-              <i class="fa-solid fa-up-long fa-flip" style="color: #63E6BE;"></i>
-              </div>
+      <div class="col-xl-4 col-sm-12">
+        <div class="p-3 shadow bg-opacity-75 bg-primary-subtle">
+          <div
+            class="card-header d-flex flex-column text-dark justify-content-between py-4"
+          >
+            <i class="fa-regular fa-credit-card fs-1"></i>
+            <span class="opacity-75 my-2">Completed Amount</span>
+            <span class="fw-semibold fs-3 mb-2">${{auctionsAmounts}}</span>
+            <div class="fs-6">
+              <i
+                class="fa-solid fa-up-long fa-rotate-by"
+                style="color: #c70d00; --fa-rotate-angle: 130deg"
+              ></i>
+              <span class="ms-2 fw-semibold opacity-75">%12</span>
+            </div>
           </div>
           <div class="card-body">
             <div class="chart-wrapper">
               <div>
-                <div id="spline-area-4"></div>
+                <div id="spline-area-2"></div>
               </div>
             </div>
           </div>
@@ -120,427 +89,116 @@
       </div>
     </div>
 
-<!-- charts section And Top Customers  -->
-  <div class="row mb-6">
-    <div class="col-xl-8 mb-6">
-      <div>
-        <div class="shadow rounded-2 mb-6">
-          <canvasjs-chart [options]="chartOptionsTable" [styles]="{width: '100%', height:'460px'}"></canvasjs-chart>
+    <!-- charts section And Top Customers  -->
+    <div class="row g-3 my-5 align-items-center shadow py-2 px-1">
+          <ngx-charts-bar-vertical
+          class="col-xl-12 mb-12 "
+          style="height: 70vh;"
+          scheme="cool"
+          [results]="auctionsBidsAmount"
+          [gradient]="false"
+          [xAxis]="true"
+          [yAxis]="true"
+          [animations]="true">
+          </ngx-charts-bar-vertical>
       </div>
 
-    </div>
-  </div>
-  <div class="col-xl-4">
-    <div class="card card-default shadow rounded-2">
-      <div class="card-header">
-        <h2>Top Customers</h2>
-      </div>
-      <div class="card-body">
-        <table class="table table-borderless table-thead-border">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th class="text-right">Income</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-dark font-weight-bold">Gunter Reich</td>
-              <td class="text-right">$2,560</td>
-            </tr>
-            <tr>
-              <td class="text-dark font-weight-bold">Anke Kirsch</td>
-              <td class="text-right">$1,720</td>
-            </tr>
-            <tr>
-              <td class="text-dark font-weight-bold">Karolina Beer</td>
-              <td class="text-right">$1,230</td>
-            </tr>
-            <tr>
-              <td class="text-dark font-weight-bold">Lucia Christ</td>
-              <td class="text-right">$875</td>
-            </tr>
-          </tbody>
-          <tfoot class="border-top">
-            <tr>
-              <td><a href="#" class="text-uppercase">See All</a></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
-</div>
-</div>
 
-
-  <!-- Table Product -->
-  <div class="row mb-5">
-    <div class="col-12 mb-5">
-      <div class="card card-default">
-        <div class="card-header">
-          <h2>Products Inventory</h2>
-          <div class="dropdown">
-            <a class="dropdown-toggle" href="#" type="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-              aria-expanded="false"> Yearly Chart
-            </a>
-
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <table id="productsTable" class="table table-light table-hover table-product shadow rounded-2" style="width:100%">
-            <thead class="mb-5">
-              <tr>
-                <th></th>
-                <th>Product Name</th>
-                <th>ID</th>
-                <th>Qty</th>
-                <th>Variants</th>
-                <th>Committed</th>
-                <th>Daily Sale</th>
-                <th>Sold</th>
-                <th>In Stock</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody class="">
-
-              <tr class="p-3">
-                <td class="py-0">
-                  <img src="https://picsum.photos/200" alt="Product Image">
-                </td>
-                <td>Ledger Nano X</td>
-                <td>24547</td>
-                <td>61</td>
-                <td>46</td>
-                <td>18</td>
-                <td>
-                  <div id="tbl-chart-07"></div>
-                </td>
-                <td>76</td>
-                <td>36</td>
-                <td>
-                  <div class="dropdown">
-                    <a class="dropdown-toggle fa-solid fa-sliders fa-sm" type="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Auction</a>
-
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="p-3">
-                <td class="py-0">
-                  <img src="https://picsum.photos/200" alt="Product Image">
-                </td>
-                <td>Ledger Nano X</td>
-                <td>24547</td>
-                <td>61</td>
-                <td>46</td>
-                <td>18</td>
-                <td>
-                  <div id="tbl-chart-07"></div>
-                </td>
-                <td>76</td>
-                <td>36</td>
-                <td>
-                  <div class="dropdown">
-                    <a class="dropdown-toggle fa-solid fa-sliders fa-sm" type="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Auction</a>
-
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="p-3">
-                <td class="py-0">
-                  <img src="https://picsum.photos/200" alt="Product Image">
-                </td>
-                <td>Ledger Nano X</td>
-                <td>24547</td>
-                <td>61</td>
-                <td>46</td>
-                <td>18</td>
-                <td>
-                  <div id="tbl-chart-07"></div>
-                </td>
-                <td>76</td>
-                <td>36</td>
-                <td>
-                  <div class="dropdown">
-                    <a class="dropdown-toggle fa-solid fa-sliders fa-sm" type="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Auction</a>
-
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="p-3">
-                <td class="py-0">
-                  <img src="https://picsum.photos/200" alt="Product Image">
-                </td>
-                <td>Ledger Nano X</td>
-                <td>24547</td>
-                <td>61</td>
-                <td>46</td>
-                <td>18</td>
-                <td>
-                  <div id="tbl-chart-07"></div>
-                </td>
-                <td>76</td>
-                <td>36</td>
-                <td>
-                  <div class="dropdown">
-                    <a class="dropdown-toggle fa-solid fa-sliders fa-sm" type="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Auction</a>
-
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="p-3">
-                <td class="py-0">
-                  <img src="https://picsum.photos/200" alt="Product Image">
-                </td>
-                <td>Ledger Nano X</td>
-                <td>24547</td>
-                <td>61</td>
-                <td>46</td>
-                <td>18</td>
-                <td>
-                  <div id="tbl-chart-07"></div>
-                </td>
-                <td>76</td>
-                <td>36</td>
-                <td>
-                  <div class="dropdown">
-                    <a class="dropdown-toggle fa-solid fa-sliders fa-sm" type="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Auction</a>
-
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="p-3">
-                <td class="py-0">
-                  <img src="https://picsum.photos/200" alt="Product Image">
-                </td>
-                <td>Ledger Nano X</td>
-                <td>24547</td>
-                <td>61</td>
-                <td>46</td>
-                <td>18</td>
-                <td>
-                  <div id="tbl-chart-07"></div>
-                </td>
-                <td>76</td>
-                <td>36</td>
-                <td>
-                  <div class="dropdown">
-                    <a class="dropdown-toggle fa-solid fa-sliders fa-sm" type="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Auction</a>
-
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="p-3">
-                <td class="py-0">
-                  <img src="https://picsum.photos/200" alt="Product Image">
-                </td>
-                <td>Ledger Nano X</td>
-                <td>24547</td>
-                <td>61</td>
-                <td>46</td>
-                <td>18</td>
-                <td>
-                  <div id="tbl-chart-07"></div>
-                </td>
-                <td>76</td>
-                <td>36</td>
-                <td>
-                  <div class="dropdown">
-                    <a class="dropdown-toggle fa-solid fa-sliders fa-sm" type="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Auction</a>
-
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-            </tbody>
-          </table>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-<!-- Sales by Product And Sales By Category -->
-<div class="row">
-    <div class="col-xl-4">
-      <canvasjs-chart [options]="chartOptionsCircle" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
-    </div>
-
-
-  <div class="col-xl-8">
-
-      <div class="card card-default">
-        <div class="card-header align-items-center shadow rounded-2">
-          <h2 class="">Sales by Product</h2>
-          <a href="#" class="btn btn-primary btn-pill" data-toggle="modal" data-target="#modal-stock">Add Stock</a>
-        </div>
-        <div class="card-body">
-          <div class="tab-content">
-            <table id="product-sale" class="table table-product " style="width:100%">
-              <thead>
+    <!-- Table Product -->
+    <div class="row my-5"  style="margin-top: 200px;">
+      <div class="col-12 mb-5">
+        <div class="bg-dark-subtle p-3 m-auto">
+          <div class="">
+            <table
+              id="productsTable"
+              class="py-5 px-2 table table-light table-hover table-product shadow m-auto"
+            >
+              <thead class="mb-5">
                 <tr>
+                  <th>Product Image</th>
                   <th>Product Name</th>
-                  <th>Unit</th>
-                  <th>Amount</th>
-                  <th>%sold</th>
-                  <th class="th-width-250"></th>
+                  <th>Seller Name</th>
+                  <th>Buyer Name</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Completed</th>
+                  <th>Ended</th>
                 </tr>
               </thead>
-              <tbody>
-
-                <tr>
-                  <td>Coach Swagger</td>
-                  <td>134</td>
-                  <td>$24541</td>
-                  <td>35.28%</td>
-                  <td>
-                    <div class="progress progress-md rounded-0">
-                      <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70%" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+              <tbody class="">
+                @for (auction of lastTenAuctions; track $index) {
+                <tr class="p-3">
+                  <td class="py-0">
+                    <!-- @for (image of auction.images; track $index) { -->
+                    <img
+                      src="http://localhost:5204//{{auction.images[0]}}"
+                      width="50px"
+                      height="50px"
+                      alt="Product Image"
+                    />
+                  <!-- } -->
                   </td>
+                  <td>{{auction.auctionName}}</td>
+                  <td>{{auction.sellerName}}</td>
+                  <td>{{auction.buyerName}}</td>
+                  <td>{{auction.StartDate}}</td>
+                  <td>{{auction.EndDate}}</td>
+                  <td>{{auction.Completed}}</td>
+                  <td>{{auction.Ended}}</td>
                 </tr>
-
-                <tr>
-                  <td>Toddler Shoes</td>
-                  <td>119</td>
-                  <td>$20225</td>
-                  <td>27.05%</td>
-                  <td>
-                    <div class="progress progress-md rounded-0">
-                      <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55%" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>Hat Black Suits</td>
-                  <td>101</td>
-                  <td>$17,290</td>
-                  <td>20.25%</td>
-                  <td>
-                    <div class="progress progress-md rounded-0">
-                      <div class="progress-bar" role="progressbar" style="width: 45%" aria-valuenow="45%" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>Backpack Gents</td>
-                  <td>59</td>
-                  <td>$1150</td>
-                  <td>12.50%</td>
-                  <td>
-                    <div class="progress progress-md rounded-0">
-                      <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25%" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>Speed 500 Ignite</td>
-                  <td>25</td>
-                  <td>$590</td>
-                  <td>02.10%</td>
-                  <td>
-                    <div class="progress progress-md rounded-0">
-                      <div class="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="10%" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>Earphone & Headphone</td>
-                  <td>23</td>
-                  <td>$450</td>
-                  <td>02%</td>
-                  <td>
-                    <div class="progress progress-md rounded-0">
-                      <div class="progress-bar" role="progressbar" style="width: 8%" aria-valuenow="8%" aria-valuemin="0"
-                        aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>Gucci Watch</td>
-                  <td>32</td>
-                  <td>$554</td>
-                  <td>8%</td>
-                  <td>
-                    <div class="progress progress-md rounded-0">
-                      <div class="progress-bar" role="progressbar" style="width: 8%" aria-valuenow="8%" aria-valuemin="0"
-                        aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                </tr>
+              }
               </tbody>
             </table>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Sales by Product And Sales By Category -->
+    <div class="row justify-content-between align-items-center">
+      <div class="col-lg-4 shadow py-1">
+        <div class="card card-default shadow">
+          <div class="card-header">
+            <h2>Top Five Sellers</h2>
+          </div>
+          <div class="p-3">
+            <table class="table table-borderless table-thead-border">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th class="text-right">Auctions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (seller of topFiveSeller; track $index) {
+                <tr>
+                  <td class="text-dark font-weight-bold">{{seller.name}}</td>
+                  <td class="text-right">{{seller.count}}</td>
+                </tr>
+              }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <ngx-charts-pie-chart
+      class="col-lg-8"
+      [view]="viewCat"
+      scheme="cool"
+      [results]="category"
+      [gradient]="false"
+      legendTitle="Categories"
+      [legend]="true"
+      [legendPosition]="legendCategoryPosition"
+      [labels]="true"
+      [doughnut]="false"
+      [explodeSlices]="true"
+      [animations]="true"
+      >
+    </ngx-charts-pie-chart>
+
+    </div>
+
   </div>
-
-
-
 </div>

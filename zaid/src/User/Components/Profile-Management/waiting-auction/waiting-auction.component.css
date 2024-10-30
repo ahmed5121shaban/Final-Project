@@ -25,3 +25,7 @@
 .container-custom {
   padding: 20px;
 }
+.carousel-inner img{
+  max-width: 160px;
+  max-height: 160px;
+}

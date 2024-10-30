@@ -36,7 +36,7 @@
       ></textarea>
       <label for="floatingInput" class="ms-3">Description</label>
       <div *ngIf="form.get('Description')?.invalid && form.get('Description')?.dirty" class="invalid-feedback">
-        <ng-container *ngIf="form.get('Description')?.errors?.['required']">This field is required!</ng-container>
+
       </div>
     </div>
     
@@ -518,6 +518,7 @@
         <option value="Nuku'alofa">(GMT+13:00) Nuku'alofa</option>
         <option value="Samoa">(GMT+13:00) Samoa</option>
         <option value="Tokelau Is.">(GMT+13:00) Tokelau Is.</option>
+
       </select>
 
       <div *ngIf="form.get('TimeZone')?.invalid && form.get('TimeZone')?.dirty" class="invalid-feedback">
@@ -546,7 +547,7 @@
     
       <!-- رسائل التحقق -->
       <div *ngIf="form.get('Currency')?.invalid && form.get('Currency')?.dirty" class="invalid-feedback">
-        <ng-container *ngIf="form.get('Currency')?.errors?.['required']">Please select a valid currency.</ng-container>
+
       </div>
     </div>
     
@@ -611,7 +612,6 @@
       <input type="number" id="Age" formControlName="Age" class="form-control"
         [ngClass]="{'is-invalid': form.get('Age')?.invalid && form.get('Age')?.dirty}" />
       <div *ngIf="form.get('Age')?.invalid && form.get('Age')?.dirty" class="invalid-feedback">
-        <ng-container *ngIf="form.get('Age')?.errors?.['required']">Age is required!</ng-container>
         <ng-container *ngIf="form.get('Age')?.errors?.['min']">Age must be at least 1!</ng-container>
         <ng-container *ngIf="form.get('Age')?.errors?.['max']">Age cannot exceed 150!</ng-container>
       </div>
@@ -628,7 +628,6 @@
         <label class="form-check-label" for="genderFemale">Female</label>
       </div>
       <div *ngIf="form.get('Gender')?.invalid && form.get('Gender')?.dirty" class="text-danger">
-        <ng-container *ngIf="form.get('Gender')?.errors?.['required']">Gender is required!</ng-container>
       </div>
     </div>
     

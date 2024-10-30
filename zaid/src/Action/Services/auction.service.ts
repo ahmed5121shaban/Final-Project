@@ -110,6 +110,14 @@ export class AuctionService {
   getSellerAllLive(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/SellerLive`)
   }
+  //get upcoming Auctions for Seller
+  getSellerUpcomingAuctions(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/SellerUpcoming`)
+  }
+  //get upcoming Auctions for Seller
+  getUpcomingAuctions(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/upcomingAuctions`)
+  }
 
 
 
@@ -128,6 +136,9 @@ export class AuctionService {
 
  getreviews():Observable<any>{
   return this.http.get<any>(`http://localhost:5204/api/review/getall`);
+ }
+ CloseAuction(AuctionId:number):Observable<any>{
+  return this.http.get<any>(`${this.apiUrl}/Close/${AuctionId}`);
  }
 
 

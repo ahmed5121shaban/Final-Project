@@ -65,5 +65,9 @@ export class WonAuctionComponent  {
     })
   }
 
+  canAddReview(): boolean {
+    return this.wonAuctions.completed && this.wonAuctions.shippingStatus == 3 && !this.wonAuctions.isReviewd;
+}
+
 
 }

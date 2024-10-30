@@ -112,10 +112,14 @@
                 <!-- Terms and Conditions -->
                 <div class="col-12 py-4">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="iAgree" id="iAgree">
+                    <input class="form-check-input" type="checkbox" name="iAgree" id="iAgree" 
+                           formControlName="iAgree"> <!-- Bind to form control -->
                     <label class="form-check-label text-secondary" for="iAgree">
                       I agree to the <a class="text-primary text-decoration-none">terms and conditions</a>
                     </label>
+                    <div *ngIf="iAgree.errors && iAgree.touched" class="text-danger">
+                      You must agree to the terms and conditions.
+                    </div>
                   </div>
                 </div>
 

@@ -3,9 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuctionService } from '../../Services/auction.service';
 import { CategoryService } from '../../../Admin/Services/category.service';
 import { Pagination } from '../../Models/models/pagination.model';
-import { Console } from 'console';
+
 import { FavouriteService } from '../../Services/favourite.service';
 import { AuthService } from '../../../User/Services/auth.service';
+import { Console, log } from 'console';
+import { FavCategoryService } from '../../../Shared/Services/fav/fav-category.service';
 
 @Component({
   selector: 'app-auction-list',
@@ -17,8 +19,9 @@ returnUrl:string="/";
   isFav:{[key:number]:boolean}={};
   activeAuctions: any[] = [];
   categories: any[] = [];
-  categorysearch:any={};
-  
+  isFavCat:{[key:number]:boolean}={};
+  favCatIds:any[]=[];
+  paramValue:string="";
 
   favAuctionIds:any[]=[]
   // Pagination properties
@@ -27,68 +30,56 @@ returnUrl:string="/";
   totalItemsActive: number = 0;
     // Filter properties
   searchtxt: string = '';
-  selectedCategory: string = ''; 
+  selectedCategory: any; 
+  selectedCategoryname: string=''; 
   sortOption: string = 'Id'; 
   isAscending: boolean = false;
   filterOption: string =''; 
-
   constructor(
     private auctionService: AuctionService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private favauctionService:FavouriteService,
     private authService:AuthService,
-    private router :Router
+    private router :Router,
+    private favcatService:FavCategoryService
+
 
   ) {
-
-
-    this.route.params.subscribe(params => {
-      this.selectedCategory = params['category'] || '';
-      if(this.selectedCategory==="mostBids"){
-        this.filterOption="mostBids";
-        this.selectedCategory="";
-        this.loadActiveAuctions();
-
-      }
-      
-      if(this.selectedCategory==="newArrivals"){
-        this.filterOption="newArrivals";
-        this.selectedCategory="";
-        this.loadActiveAuctions();
-
-      }
-      if(this.selectedCategory==="noBids"){
-        this.filterOption="noBids";
-        this.selectedCategory="";
-        this.loadActiveAuctions();
-
-      }
-      if(this.selectedCategory==="endingSoon"){
-        this.filterOption="EndDate";
-        this.selectedCategory="";
-        this.loadActiveAuctions();
-
-      }
-      else{
-      this.loadActiveAuctions();
-      }
-      this.loadCategories();
-      //console.log(this.selectedCategory);
-     // console.log(this.categories);
-     // this.categorysearch=this.categories.filter(category=>category.name==this.selectedCategory);
-     //console.log(this.categorysearch);
-      
-      this.loadFavAuctions();
-    });
+    this.loadCategories().then(() => {
+      this.route.params.subscribe(params => {
+        this.paramValue = params['category'] || '';
   
+        // Check if paramValue matches any category name
+        const matchingCategory = this.categories.find(category => category.name === this.paramValue);
+        if (matchingCategory) {
+          this.selectedCategory = matchingCategory;
+          this.selectedCategoryname = matchingCategory.name;
+          this.filterOption = ''; // Clear filter option if it's a category
+        } else if (this.paramValue === "mostBids" || this.paramValue === "newArrivals" || this.paramValue === "noBids" || this.paramValue === "endingSoon") {
+          // Handle specific filter options
+          this.filterOption = this.paramValue;
+          this.selectedCategory = '';
+        } else {
+          // If paramValue is neither a category nor a filter option, treat it as search text
+          this.searchtxt = this.paramValue;
+          this.selectedCategory = '';
+          this.filterOption = '';
+        }
+  
+        this.getFavCatIds();
+        this.loadActiveAuctions();
+        this.loadFavAuctions();
+        
+      });
+    });
 
   }
 
-  ngOnInit(): void {
-   
-  }
 
+ngOnInit(): void {
+  
+}
   toggleSortOrder(): void {
     this.isAscending = !this.isAscending; 
     this.loadActiveAuctions(); 
@@ -108,7 +99,7 @@ returnUrl:string="/";
         this.isAscending,     
         this.itemsPerPage,
         this.pageActive,
-        this.selectedCategory,
+        this.selectedCategoryname,
        this.filterOption
       ).subscribe({
         next: (pagination: Pagination<any[]>) => {
@@ -123,28 +114,37 @@ returnUrl:string="/";
       });
   }
 
-  loadCategories(): void {
-    this.categoryService.getCategories().subscribe({
-      next: (data) => {
-        this.categories = data.result;
-        console.log(this.selectedCategory);
-        this.categorysearch=this.categories.filter(category=>category.name==this.selectedCategory);
-        console.log(this.categorysearch);
-        
-      },
-      error: (err) => {
-        console.error('Error fetching categories', err);
-      }
+
+
+  loadCategories(): Promise<void> {
+    return new Promise<void>((resolve) => {
+      this.categoryService.getCategories().subscribe({
+        next: (data) => {
+          this.categories = data.result;
+          this.UpdateCategoris();
+   
+          resolve(); // Notify that categories have been loaded
+        },
+        error: (err) => {
+          console.error('Error fetching categories', err);
+          resolve(); // Even in case of error, resolve the promise to continue
+        }
+      });
     });
   }
 
+
   onCategorySelect(category: string): void {
-    this.selectedCategory = category;
-    this.pageActive = 1; 
+    this.selectedCategoryname = category;
+  
+    this.pageActive = 1;
+    this.searchtxt=this.selectedCategory;
+    this.loadCategories();
     this.loadActiveAuctions();
+    
   }
 
-      totalPagesActive(): number {
+  totalPagesActive(): number {
     return Math.ceil(this.totalItemsActive / this.itemsPerPage);
   }
 
@@ -201,4 +201,49 @@ updateFavState(){
   });
 }
 
+ // handel fav categories 
+  getFavCatIds():void{
+    this.favcatService.getFavCatIds().subscribe({
+      next:data=>{
+        // data=data.filter(data==this.categorysearch.id);
+        // if(data.length>0){
+        //   this.categorysearch[0].isFavCat[this.categorysearch.id]=true;
+        // }
+        data.forEach((cat:any) => this.isFavCat[cat]=true); 
+        console.log(data);
+        
+      },
+      error:err=>{
+        console.log("my error is :",err);
+      }
+    })
+  }
+  UpdateCategoris(){
+    this.categories.forEach(category=>
+      this.isFavCat[category.id]=this.isFavCat[category.id]||false
+    )
+  }
+  addCatToFav(id:number){
+    this.favcatService.AddToFav(id).subscribe({
+      next:res=>{
+        if(res.result == "added"){
+         this.isFavCat[id]=true ;
+        }
+        if(res.result == "removed"){
+          this.isFavCat[id]=false;
+        }
+      },
+      error:err=>{
+        console.log("my err is :",err);
+        
+      }
+
+    })
+  }
+  clearSearch(){
+    this.searchtxt="";
+    this.router.navigate(['../action/auction-list',this.searchtxt]);
+  }
 }
+
+

@@ -67,7 +67,7 @@ export class AuctionLiveStreamComponent {
 ngOnInit(): void {
   this.route.params.subscribe(params =>{
     this.auctionId = +params['id'];
-    this.getAuctionDetails();
+    // this.getAuctionDetails();
   });
   
 }

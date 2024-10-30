@@ -1,0 +1,92 @@
+
+<div class="container">
+    <div class="main  p-md-5 p-3">
+        <div class="row justify-content-between ">
+            <div class="item-title">
+                <h1>{{auction.item.name}}</h1>
+            </div>
+    
+            <div class="col-xl-7  row mb-5 ">
+                <div id="carousel{{auction.item.id}}" class="carousel slide col-12 mb-5">
+                    <div class="carousel-inner mb-5">
+                        @for(image of auction.item.images; track $index ; let i=$index){
+                        <div class="carousel-item" [class.active]="i === 0">
+                            <img [src]="'http://localhost:5204/' + image" class="d-block w-100" style="height: 80vh;">
+                        </div>
+                        }
+    
+                    </div>
+    
+                    <a class="carousel-control-prev"  [attr.data-bs-target]="'#carousel' + auction.item.id" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                    </a>
+                    <a class="carousel-control-next"  [attr.data-bs-target]="'#carousel' + auction.item.id" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                    </a>
+    
+                    <div class="carousel-indicators">
+                        @for( image of auction.item.images;track $index ;let i=$index){
+                        <button class="w-25" type="button" [attr.data-bs-target]="'#carousel' + auction.item.id" [attr.data-bs-slide-to]="i"
+                            [class.active]="i === 0">
+                            <img [src]="'http://localhost:5204/' + image" class="d-block w-100" style="height: 15vh;">
+                        </button>
+                        }
+    
+                    </div>
+                </div>
+    
+                <br>
+    
+            </div>
+    
+            <div class="bid col-xl-5  justify-content-center  p-md-0 mt-5 mt-md-0">
+                <div class="bid-info-place  mb-3 ">
+                    <div class="bid-info row bg-light  mb-3">
+                        <div class="heighest-bid col-6">
+                            <p>Heighest bid:</p>
+                            <h5>{{highestBid}}</h5>
+                            <!-- <p class="estimate-price">Estimate: 257 EUR</p> -->
+                        </div>
+                        <div class="bid-ends-in col-6">
+                            <p>Ends in:</p>
+                            @if(auction.IsEnded == false){
+                                <h5 id="end-time">{{auction.endDate | date: 'shortTime'}}</h5>
+                                <p class="end-date">{{auction.endDate | date : 'mediumDate'}}</p>
+                            }
+                            @else{
+                                <h5 id="end-time">Ended</h5>
+                            }
+                            
+                        </div>
+                    </div>
+                    <button class="btn btn-primary w-100" (click)="Close(auction.id)">Close</button>
+
+                  
+                </div>
+    
+                <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
+                    <p class="title">Bid history</p>
+                    @for (bid of auction.bids; track $index) {
+                    <div class="row single-bid mb-1">
+    
+                        <div class="col-4 bidder">{{bid.buyerName}}</div>
+                        <div class="col-4 bid-date">{{bid.time|date:'mediumTime'}}</div>
+                        <div class="col-4 bid-amount">{{bid.amount}}</div>
+    
+                    </div>
+                  }
+                </div>
+             
+    
+            </div>
+        </div>
+    
+        <div class="row mt-5 mt-md-2">
+            <div class="item-desc mb-4">
+                <p class="title">Description</p>
+                <p>{{auction.item.description}}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    
