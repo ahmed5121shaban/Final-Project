@@ -4,6 +4,8 @@ import { PaymentService } from '../../Services/payment.service';
 import { AuctionService } from '../../Services/auction.service';
 import { ToastrService } from 'ngx-toastr';
 import * as signalR from '@microsoft/signalr';
+import { ApiService } from '../../../User/Services/api.service';
+
 interface Reply {
   id: number;
   text: string;
@@ -28,6 +30,7 @@ export class AuctionDetailsComponent implements OnChanges {
   similarAuctions: any[] = [];
   groupedSimilarAuctions: any[][] = []; // Grouped auctions for the carouses
   successesPayment!: boolean;
+  UserCurrency!:string;
   //paymentDetailAuctionID!: any;
   secretKey!: string
   method!:number;
@@ -39,7 +42,8 @@ export class AuctionDetailsComponent implements OnChanges {
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
     private toastr: ToastrService,
-    private route: ActivatedRoute)
+    private route: ActivatedRoute,
+    private userserv:ApiService)
   {
     this.openConnectionAndGetAllBidsWithLast();
     this.route.params.subscribe(params => {
@@ -66,6 +70,8 @@ export class AuctionDetailsComponent implements OnChanges {
       this.allBids = res
       console.log('All bids received:', res);
     });
+    
+    this.getUserCurrency();
 
   }
 
@@ -211,6 +217,16 @@ export class AuctionDetailsComponent implements OnChanges {
       });
 
   }
-
+  getUserCurrency():void{
+    this.userserv.getUserCurrency().subscribe({
+      next:(currency:string)=>{
+        this.UserCurrency = currency;
+      },
+      error:err=>{
+        console.log(err);
+        
+      }
+    })
+  }
 
 }

@@ -6,6 +6,7 @@ import { NotificationService } from '../../Services/notification.service';
 import { Location } from '@angular/common';
 import { Route, Router } from '@angular/router';
 import { AuthService } from '../../../User/Services/auth.service';
+import { BehaviorSubject } from 'rxjs';
 
 export interface Notification {
   time: string;
@@ -26,6 +27,7 @@ export class NavComponent implements OnInit {
   alert!: boolean;
   audio = new Audio();
   searchtxt:string="";
+  islogged:boolean=false;
   constructor(
     private cookieService: CookieService,
     private toaster: ToastrService,
@@ -33,6 +35,7 @@ export class NavComponent implements OnInit {
     private location:Location,
     private router:Router,
     private authService:AuthService,
+
     
   ) {
     this.audio.src = 'audio/mixkit-correct-answer-tone-2870.wav';
@@ -46,14 +49,20 @@ export class NavComponent implements OnInit {
         console.log(res);
       },
     });
+    // if(this.authService.isLoggedIn){
+    //   this.islogged = true;
+    // }
+  
   }
 
   logOut() {
     this.cookieService.delete('token');
     this.cookieService.delete('auth');
 
+
     this.toaster.success('you Logout now');
     this.router.navigate(['../user/login']);
+    this.islogged =false;
   
   }
 
