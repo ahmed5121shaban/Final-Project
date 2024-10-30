@@ -1,18 +1,18 @@
-<section class="about-section" data-aos="fade-up">
+<section class="about-section">
   <div class="container about-container">
     <div class="row text-center">
       <!-- Title and Intro -->
       <div class="col-12">
-        <h2 class="title mt-5 mb-3" data-aos="fade-up">About Zaid</h2>
-        <p class="caption mb-1" data-aos="fade-up">Over the past decade, we've sold over 100,000 admin themes, empowering businesses from startups to global enterprises.</p>
-        <p class="caption mb-5" data-aos="fade-up">Zaid is your go-to auction site for effortless buying and selling with utmost confidence.</p>
-        <img src="./aboutus.jpg" alt="About Zaid" class="img-fluid large-image" data-aos="fade-up">
-        <p class="description" data-aos="fade-up">Welcome to Zaid, the premier auction marketplace bridging tradition with innovation. We offer a wide range of high-quality items, all carefully curated and inspected to ensure top-notch standards.</p>
-        <p class="description" data-aos="fade-up">Bid smartly and sustainably with our expertly curated auctions. Our transparent practices and secure payment options make every transaction seamless and trustworthy.</p>
-        <p class="description" data-aos="fade-up">Experience the charm of local auctions on a global stage, with clear shipping costs and multilingual support ensuring a smooth experience.</p>
+        <h2 class="title mt-5 mb-3">About Zaid</h2>
+        <p class="caption mb-1">Over the past decade, we've sold over 100,000 admin themes, empowering businesses from startups to global enterprises.</p>
+        <p class="caption mb-5">Zaid is your go-to auction site for effortless buying and selling with utmost confidence.</p>
+        <img src="./aboutus.jpg" alt="About Zaid" class="img-fluid large-image" loading="lazy">
+        <p class="description">Welcome to Zaid, the premier auction marketplace bridging tradition with innovation. We offer a wide range of high-quality items, all carefully curated and inspected to ensure top-notch standards.</p>
+        <p class="description">Bid smartly and sustainably with our expertly curated auctions. Our transparent practices and secure payment options make every transaction seamless and trustworthy.</p>
+        <p class="description">Experience the charm of local auctions on a global stage, with clear shipping costs and multilingual support ensuring a smooth experience.</p>
 
         <!-- Quote and Publications Section -->
-        <div class="key-figures" data-aos="fade-up">
+        <div class="key-figures">
           <div class="figure">
             <i class="bi bi-shop-window"></i>
             <h4>50</h4>
@@ -29,7 +29,7 @@
             <p>Bids Placed</p>
           </div>
         </div>
-        <div class="quote-section" data-aos="fade-up">
+        <div class="quote-section">
           <blockquote class="quote">
             “When you care about your topic, you’ll write about it in a more powerful, emotionally expressive way.”
             <footer>- Marcus Levy, KeenThemes CEO</footer>
@@ -40,10 +40,10 @@
           </div>
         </div>
 
-        <div class="row" data-aos="fade-up">
+        <div class="row">
           <div class="col-md-4">
             <div class="article">
-              <img src="./Auction Trends.webp" alt="Auction Trends" class="article-image">
+              <img src="./Auction Trends.webp" alt="Auction Trends" class="article-image" loading="lazy">
               <h4 class="article-title">Evolving Auction Trends</h4>
               <p class="article-content">Explore how technology is transforming auctions and what it means for collectors and sellers.</p>
               <p class="article-author">By Jane Doe</p>
@@ -52,7 +52,7 @@
           </div>
           <div class="col-md-4">
             <div class="article">
-              <img src="./auction2.webp" alt="The Benefits of Online Auctions" class="article-image">
+              <img src="./auction2.webp" alt="The Benefits of Online Auctions" class="article-image" loading="lazy">
               <h4 class="article-title">Advantages of Online Auctions</h4>
               <p class="article-content">Learn how online auctions offer greater accessibility, transparency, and market reach.</p>
               <p class="article-author">By John Smith</p>
@@ -61,7 +61,7 @@
           </div>
           <div class="col-md-4">
             <div class="article">
-              <img src="Tips for Successful Bidding.png" alt="Tips for Successful Bidding" class="article-image">
+              <img src="Tips for Successful Bidding.png" alt="Tips for Successful Bidding" class="article-image" loading="lazy">
               <h4 class="article-title">Successful Bidding Tips</h4>
               <p class="article-content">Discover expert strategies to enhance your bidding experience and stay within budget.</p>
               <p class="article-author">By Emily Johnson</p>
@@ -71,7 +71,7 @@
         </div>
 
         <!-- Team Section -->
-        <div class="team-section" data-aos="fade-up">
+        <div class="team-section">
           <div class="text-center mb-12">
             <h3 class="fs-2hx mb-4">Our Amazing Team</h3>
             <div class="fs-5 fw-semibold mb-5">
@@ -79,7 +79,7 @@
             </div>
           </div>
 
-          <div id="teamCarousel" class="carousel slide" data-aos="fade-up">
+          <div id="teamCarousel" class="carousel slide">
             <div class="carousel-inner">
               @for(slide of slides;track $index; let i = $index){
                 <div class="carousel-item" [class.active]="i ===currentIndex">
@@ -87,7 +87,7 @@
                     @for(member of slide ;track $index){
                       <div class="col-md-4">
                         <div class="team-member">
-                          <img src="{{ member.imageUrl }}" alt="{{ member.name }}" class="team-member-img">
+                          <img src="{{ member.imageUrl }}" alt="{{ member.name }}" class="team-member-img" loading="lazy">
                         </div>
                         <h4 class="team-member-name">{{ member.name }}</h4>
                         <p class="team-member-position">{{ member.position }}</p>

@@ -9,7 +9,7 @@
   font-family: 'Ubuntu', sans-serif !important;
   color: #025464 !important;
   font-size: 2rem !important;
-  transition: color 0.3s ease !important;
+  transition: color 0.2s ease !important;
 }
 
 .title:hover {
@@ -35,7 +35,7 @@
   margin: 20px 0 !important;
   text-align: left !important;
   font-size: 1.5rem !important;
-  transition: color 0.3s ease !important;
+  transition: none !important; /* إزالة الأنميشن */
 }
 
 .description:hover {
@@ -121,7 +121,7 @@
   background-color: #f9f9f9 !important;
   border-radius: 8px !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
-  transition: transform 0.3s ease !important;
+  transition: transform 0.1s ease !important;
 }
 
 .article:hover {
@@ -167,11 +167,11 @@
 
 .carousel-inner {
   display: flex !important;
-  transition: transform 0.5s ease-in-out !important;
+  transition: transform 0.2s ease-in-out !important;
 }
 
 .carousel-item {
-  transition: transform 0.6s ease-in-out !important;
+  transition: transform 0.2s ease-in-out !important;
 }
 
 .carousel-item.active {
@@ -202,7 +202,7 @@
   background-color: #025464 !important;
   border-radius: 50% !important;
   font-size: 1.8rem !important;
-  transition: background-color 0.3s ease, color 0.3s ease !important;
+  transition: background-color 0.2s ease, color 0.2s ease !important;
 }
 
 .social-icon.facebook {

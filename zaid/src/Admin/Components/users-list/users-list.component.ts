@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms'; // استيراد FormBuilder و FormGroup
-import { UserService, User } from '../../Services/user.service'; // استيراد UserService
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserService, User } from '../../Services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,16 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./users-list.component.css']
 })
 export class UsersListComponent implements OnInit {
-
-  allUsers: User[] = []; // مصفوفة لتخزين جميع المستخدمين
-  users: User[] = []; // مصفوفة لتخزين المستخدمين المعروضين
-  totalUsers = 0; // عدد المستخدمين
-  currentPage = 1; // الصفحة الحالية
-  pageSize = 10; // حجم الصفحة
-  searchForm: FormGroup; // نموذج البحث
+  allUsers: User[] = [];
+  users: User[] = [];
+  totalUsers = 0;
+  currentPage = 1;
+  pageSize = 5;
+  searchForm: FormGroup;
 
   constructor(private userService: UserService, private fb: FormBuilder, private router: Router) {
-    // تهيئة نموذج البحث باستخدام FormBuilder
     this.searchForm = this.fb.group({
       name: [''],
       email: [''],
@@ -29,7 +27,6 @@ export class UsersListComponent implements OnInit {
   ngOnInit(): void {
     this.loadAllUsers();
 
-    // تحديث الفلترة عند تغيير قيم نموذج البحث
     this.searchForm.valueChanges.subscribe(() => {
       this.currentPage = 1;
       this.applyFilterAndPagination();
@@ -40,8 +37,8 @@ export class UsersListComponent implements OnInit {
     this.userService.getAllUsers().subscribe({
       next: (data: any) => {
         console.log('Received data:', data);
-        this.allUsers = data.users; // حفظ جميع المستخدمين
-        this.applyFilterAndPagination(); // تطبيق الفلترة والصفحات
+        this.allUsers = data.users;
+        this.applyFilterAndPagination();
       },
       error: (err) => {
         console.error('Error loading users:', err);
@@ -50,7 +47,7 @@ export class UsersListComponent implements OnInit {
   }
 
   applyFilterAndPagination(): void {
-    const { name, email, role } = this.searchForm.value; // استخراج القيم من نموذج البحث
+    const { name, email, role } = this.searchForm.value;
     const filteredUsers = this.allUsers
       .filter(user =>
         user.name.toLowerCase().includes(name.toLowerCase()) &&
@@ -59,36 +56,38 @@ export class UsersListComponent implements OnInit {
       )
       .map((user, index) => ({
         ...user,
-        displayId: (this.currentPage - 1) * this.pageSize + index + 1
+        displayId: index + 1 // تعيين displayId بناءً على ترتيب `index` بدون إضافة أي شيء
       }));
-
-    this.totalUsers = filteredUsers.length; // عدد المستخدمين بعد الفلترة
+  
+    this.totalUsers = filteredUsers.length;
     this.users = filteredUsers.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize);
+  
+    console.log('Filtered Users:', this.users); // تابع بيانات التصفية والصفحات هنا
   }
+  
 
   onPageChange(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page; // تحديث الصفحة الحالية
-      this.applyFilterAndPagination(); // إعادة تطبيق الفلترة والصفحات
+      this.currentPage = page;
+      this.applyFilterAndPagination();
     }
   }
 
   get totalPages(): number {
-    return Math.ceil(this.totalUsers / this.pageSize); // حساب عدد الصفحات
+    return Math.ceil(this.totalUsers / this.pageSize);
   }
 
   trackByIndex(index: number, obj: any): any {
-    return index; // تتبع الفهارس
+    return index;
   }
 
   viewProfile(user: User) {
     if (user && user.id) {
-      const userId = user.id; // استخدام نفس id المستخدم من user.id
-      console.log('User ID:', userId); // تحقق من قيمة userId
+      const userId = user.id;
+      console.log('User ID:', userId);
       this.router.navigate(['/admin/profile-review', userId]);
     } else {
       console.error('User or User ID is undefined or null');
     }
   }
-  
 }
