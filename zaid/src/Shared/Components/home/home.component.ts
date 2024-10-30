@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   activeAuctions: any[] = [];
   newArrivals: any[] = [];
   endingSoon: any[] = [];
+  Upcoming: any[] = [];
   nobids: any[] = [];
   constructor(private cookieService: CookieService, private categoryService: CategoryService, private FavcategoryService: FavCategoryService, private auctionService: AuctionService,private favauctionService:FavouriteService,private eventService:EventService,private authService:AuthService,private router:Router) {
 
@@ -95,6 +96,7 @@ export class HomeComponent implements OnInit {
     this.getNewArrivalse();
     this.getEndingSoon();
     this.getNoBids();
+    this.getUpcoming();
     this.loadFavAuctions()
     this.getReviews();
     this.getEvent();
@@ -123,6 +125,7 @@ export class HomeComponent implements OnInit {
 
 
   addToFav(categoryId: number) {
+    if(this.authService.isLoggedIn){
     this.FavcategoryService.AddToFav(categoryId).subscribe({
       next: res => {
         if (res.result == "added") {
@@ -137,6 +140,11 @@ export class HomeComponent implements OnInit {
         console.log("addtofaverror ", err);
       }
     })
+  }
+  else{
+    const returnUrl = this.router.url; 
+      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });
+  }
 
 
 
@@ -222,6 +230,20 @@ export class HomeComponent implements OnInit {
       next: (response) => {
         console.log(response);
         this.nobids = response;
+        this.updateFavState();
+
+      },
+      error: (error) => {
+        console.log(error);
+
+      }
+    })
+  }
+  getUpcoming() {
+    this.auctionService.getUpcomingAuctions().subscribe({
+      next: (response) => {
+        console.log(response);
+        this.Upcoming = response;
         this.updateFavState();
 
       },

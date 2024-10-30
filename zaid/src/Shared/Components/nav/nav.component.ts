@@ -6,6 +6,7 @@ import { NotificationService } from '../../Services/notification.service';
 import { Location } from '@angular/common';
 import { Route, Router } from '@angular/router';
 import { AuthService } from '../../../User/Services/auth.service';
+import { BehaviorSubject } from 'rxjs';
 
 export interface Notification {
   time: string;
@@ -34,6 +35,7 @@ export class NavComponent implements OnInit {
     private location:Location,
     private router:Router,
     private authService:AuthService,
+
     
   ) {
     this.audio.src = 'audio/mixkit-correct-answer-tone-2870.wav';
@@ -48,6 +50,10 @@ export class NavComponent implements OnInit {
         console.log(res);
       },
     });
+    // if(this.authService.isLoggedIn){
+    //   this.islogged = true;
+    // }
+  
   }
 
   logOut() {

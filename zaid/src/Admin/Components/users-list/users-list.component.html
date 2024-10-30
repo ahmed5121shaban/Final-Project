@@ -1,14 +1,12 @@
 <div class="container mt-4">
-  <!-- نموذج البحث -->
+  <!-- Search Form -->
   <form [formGroup]="searchForm" class="search-container mb-4">
     <div class="input-group mb-2">
       <input type="text" class="form-control" placeholder="Search by name..." formControlName="name">
     </div>
-
     <div class="input-group mb-2">
       <input type="text" class="form-control" placeholder="Email" formControlName="email">
     </div>
-
     <div class="input-group mb-2">
       <select class="form-control" formControlName="role">
         <option value="">Select Role</option>
@@ -20,7 +18,7 @@
     </div>
   </form>
 
-  <!-- الجدول -->
+  <!-- Table -->
   <div class="table-wrapper">
     <ngx-datatable
       #datatable
@@ -32,6 +30,7 @@
       [rowHeight]="'auto'"
       [limit]="10"
     >
+
       <ngx-datatable-column name="Name" prop="name" ></ngx-datatable-column>
       <ngx-datatable-column name="ID" prop="displayId"></ngx-datatable-column>
       <ngx-datatable-column name="Email" prop="email" ></ngx-datatable-column>

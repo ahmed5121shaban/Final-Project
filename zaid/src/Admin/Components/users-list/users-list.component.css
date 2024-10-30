@@ -3,7 +3,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color:white;
+  background-color: white;
 }
 
 .search-container {
@@ -14,10 +14,11 @@
 }
 
 .input-group {
-  flex: 1;
+  flex: 1 1 200px; /* يضمن مرونة العرض */
 }
 
-.input-group input, .input-group select {
+.input-group input,
+.input-group select {
   width: 100%;
 }
 
@@ -25,43 +26,58 @@
   margin-top: 20px;
 }
 
-/* إعدادات الجدول */
-ngx-datatable {
-  width: 100%;
+/* تنسيق زر الإجراءات */
+.action-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  margin: 2px 0; /* تقليل المسافة بين الأزرار */
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+  display: inline-block; /* اجعل الأزرار تظهر بجانب بعضها */
+  width: 100%; /* جعل الزر يستخدم كامل عرض العمود */
 }
 
-ngx-datatable-column {
-  padding: 10px;
+.action-btn:hover {
+  background-color: #0056b3;
+}
+
+/* تنسيق الجداول */
+ngx-datatable {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+ngx-datatable .datatable-header {
+  background-color: #f8f9fa;
+  font-weight: bold;
 }
 
 ngx-datatable .datatable-body-row {
   border-bottom: 1px solid #e0e0e0;
 }
 
-ngx-datatable .datatable-header {
-  background-color: #f8f9fa;
-}
-
 ngx-datatable .datatable-header .datatable-header-cell {
   font-weight: bold;
 }
 
-/* إعدادات الروابط */
-a.live-auction-link {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: bold;
+ngx-datatable-column {
+  min-width: 150px; /* عرض أدنى للأعمدة */
+  word-wrap: break-word; /* لكسر النصوص الطويلة */
 }
 
-a.live-auction-link:hover {
-  text-decoration: underline;
+ngx-datatable .datatable-body-cell {
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-/* إعدادات التحكم بالصفحات */
+/* تصميم الريسبونسف */
 .pagination {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 .page-item {
@@ -92,25 +108,24 @@ a.live-auction-link:hover {
   opacity: 0.5;
 }
 
-/* Responsive Design */
+/* إضافة ميديا كويريز */
 @media (max-width: 768px) {
   .input-group {
-    flex: 1 1 100%; /* تأخذ الحقول عرض الصفحة بالكامل في الشاشات الصغيرة */
-  }
-
-  .pagination {
-    flex-wrap: wrap;
-    justify-content: center;
+    flex: 1 1 100%; /* جعل المدخلات تأخذ عرض كامل */
   }
 
   ngx-datatable-column {
-    width: 100%; /* ضمان تناسق الأعمدة في الشاشات الصغيرة */
+    width: 100%; /* عرض كامل للأعمدة */
+  }
+
+  .pagination {
+    justify-content: center;
   }
 }
 
 @media (min-width: 1200px) {
   .input-group {
-    flex: 0 0 30%; /* حقول البحث تأخذ نسبة ثابتة على الشاشات الكبيرة */
+    flex: 0 0 30%; /* عرض مخصص لأحجام الشاشات الكبيرة */
   }
 }
 a.live-auction-link {

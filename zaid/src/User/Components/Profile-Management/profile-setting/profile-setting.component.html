@@ -3,47 +3,85 @@
     <h4 class="mb-4 p-3">Edit your profile</h4>
   </div>
   <form class="row ms-3 w-75" [formGroup]="form" (ngSubmit)="editProfile()">
-
+    <div>
+      <h5 class="fw-bolder opacity-75">ID: 153142</h5>
+    </div>
     <div class="form-floating col-6 mb-3">
-      <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name" />
+      <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name"
+        [ngClass]="{'is-valid': form.get('FirstName')?.valid && form.get('FirstName')?.dirty, 'is-invalid': form.get('FirstName')?.invalid && form.get('FirstName')?.dirty}"
+      />
       <label for="floatingInput" class="ms-3">First name</label>
+      <div *ngIf="form.get('FirstName')?.invalid && form.get('FirstName')?.dirty" class="invalid-feedback">
+        <ng-container *ngIf="form.get('FirstName')?.errors?.['maxLength']">Your first name must be less than 20 characters!</ng-container>
+        <ng-container *ngIf="form.get('FirstName')?.errors?.['minLength']">Your first name must be more than 4 characters!</ng-container>
+        <ng-container *ngIf="form.get('FirstName')?.errors?.['required']">This field is required!</ng-container>
+      </div>
     </div>
-
-
+    
     <div class="form-floating col-6 mb-3">
-      <input type="text" class="form-control" formControlName="LastName" placeholder="Last Name" />
+      <input type="text" class="form-control" formControlName="LastName" placeholder="Last Name"
+        [ngClass]="{'is-valid': form.get('LastName')?.valid && form.get('LastName')?.dirty, 'is-invalid': form.get('LastName')?.invalid && form.get('LastName')?.dirty}"
+      />
       <label for="floatingInput" class="ms-3">Last name</label>
+      <div *ngIf="form.get('LastName')?.invalid && form.get('LastName')?.dirty" class="invalid-feedback">
+        <ng-container *ngIf="form.get('LastName')?.errors?.['maxLength']">Your last name must be less than 20 characters!</ng-container>
+        <ng-container *ngIf="form.get('LastName')?.errors?.['minLength']">Your last name must be more than 4 characters!</ng-container>
+        <ng-container *ngIf="form.get('LastName')?.errors?.['required']">This field is required!</ng-container>
+      </div>
     </div>
-
+    
     <div class="form-floating col-12 mb-3">
       <textarea class="form-control" formControlName="Description" placeholder="Description"
-        [ngClass]="{'is-valid': form.get('Description')?.valid && form.get('Description')?.dirty, 'is-invalid': form.get('Description')?.invalid && form.get('Description')?.dirty}"></textarea>
+        [ngClass]="{'is-valid': form.get('Description')?.valid && form.get('Description')?.dirty, 'is-invalid': form.get('Description')?.invalid && form.get('Description')?.dirty}"
+      ></textarea>
       <label for="floatingInput" class="ms-3">Description</label>
       <div *ngIf="form.get('Description')?.invalid && form.get('Description')?.dirty" class="invalid-feedback">
 
       </div>
     </div>
-
+    
     <div class="col-12 mb-3">
-      <label for="validationServer02" class="form-label">Upload Profile image</label>
-      <input type="file" class="form-control" id="validationServer02" (change)="onFileSelect($event)" />
+      <label for="validationServer02" class="form-label">Upload Profile Image</label>
+      <input 
+        type="file" 
+        class="form-control" 
+        id="validationServer02" 
+        (change)="onFileSelect($event)" 
+      />
     </div>
-
+    
     <div class="form-floating col-12 mb-3">
-      <input type="email" class="form-control" formControlName="Email" placeholder="Email"
-        [ngClass]="{'is-valid': form.get('Email')?.valid && form.get('Email')?.dirty, 'is-invalid': form.get('Email')?.invalid && form.get('Email')?.dirty}" />
+      <input 
+        type="email" 
+        class="form-control" 
+        formControlName="Email" 
+        placeholder="Email"
+        [ngClass]="{
+          'is-valid': form.get('Email')?.valid && form.get('Email')?.dirty, 
+          'is-invalid': form.get('Email')?.invalid && form.get('Email')?.dirty
+        }" 
+      />
       <label for="floatingInput" class="ms-3">Email</label>
       <div *ngIf="form.get('Email')?.invalid && form.get('Email')?.dirty" class="invalid-feedback">
-        <ng-container *ngIf="form.get('Email')?.errors?.['email']">This email is not valid!</ng-container>
-
+        <ng-container *ngIf="form.get('Email')?.errors?.['email']">
+          This email is not valid!
+        </ng-container>
+        <ng-container *ngIf="form.get('Email')?.errors?.['required']">
+          This input is required!
+        </ng-container>
       </div>
     </div>
     <div class=" col-12 mb-3">
       <label for="International" class="form-check-label">Time zone</label>
-
-      <select class="form-select" formControlName="TimeZone"
-        [ngClass]="{'is-valid': form.get('TimeZone')?.valid && form.get('TimeZone')?.dirty, 'is-invalid': form.get('TimeZone')?.invalid && form.get('TimeZone')?.dirty}"
-        id="International">
+      <select 
+      class="form-select" 
+      formControlName="TimeZone"
+      [ngClass]="{
+        'is-valid': form.get('TimeZone')?.valid && form.get('TimeZone')?.dirty, 
+        'is-invalid': form.get('TimeZone')?.invalid && form.get('TimeZone')?.dirty
+      }" 
+      id="International"
+    >
         <option value="International Date Line West">
           (GMT-12:00) International Date Line West
         </option>
@@ -215,52 +253,91 @@
       </select>
 
       <div *ngIf="form.get('TimeZone')?.invalid && form.get('TimeZone')?.dirty" class="invalid-feedback">
+        <ng-container *ngIf="form.get('TimeZone')?.errors?.['required']">
+          Please select a valid time zone.
+        </ng-container>
       </div>
     </div>
     <div class="col-12 mb-3">
       <label for="Currency" class="form-check-label">Currency</label>
-      <select class="form-select" formControlName="Currency"
-        [ngClass]="{'is-valid': form.get('Currency')?.valid && form.get('Currency')?.dirty, 'is-invalid': form.get('Currency')?.invalid && form.get('Currency')?.dirty}"
-        id="Currency">
+      <select 
+        class="form-select" 
+        formControlName="Currency"
+        [ngClass]="{
+          'is-valid': form.get('Currency')?.valid && form.get('Currency')?.dirty, 
+          'is-invalid': form.get('Currency')?.invalid && form.get('Currency')?.dirty
+        }" 
+        id="Currency"
+      >
         <option value="SEK">EGP</option>
         <option value="EUR">EUR</option>
         <option value="USD">USD</option>
         <option value="GBP">GBP</option>
         <option value="DKK">DKK</option>
       </select>
+    
+      <!-- رسائل التحقق -->
       <div *ngIf="form.get('Currency')?.invalid && form.get('Currency')?.dirty" class="invalid-feedback">
 
       </div>
     </div>
+    
 
-    <div class="mb-3 ">
+    <div class="mb-3">
       <div class="d-flex align-items-center justify-content-between">
-
         <label for="PhoneNumbers" class="form-label">Phone Numbers</label>
-        <Button (click)="addPhoneNumber()" class="btn btn-primary">+</Button>
       </div>
+    
       <div formArrayName="PhoneNumbers">
-
-        <div *ngFor="let phone of PhoneNumbers.controls; let i=index"
-          class="d-flex align-items-center justify-content-between">
-          <label for="PhoneNumber" class="form-label">Phone Number {{i+1}} </label>
-
-          <input type="text" id="PhoneNumbers" formControlName="{{i}}" class="form-control" [ngClass]="{
-        'is-invalid': form.get('PhoneNumbers')?.invalid && form.get('PhoneNumbers')?.dirty,
-        'is-valid': form.get('PhoneNumbers')?.valid && form.get('PhoneNumbers')?.dirty
-      }" />
-          <Button (click)="removePhoneNumber(i)" class="btn btn-danger">X</Button>
-
+        <div 
+          *ngFor="let phone of PhoneNumbers.controls; let i = index" 
+          class="d-flex align-items-center justify-content-between my-2"
+        >
+          <label for="PhoneNumber-{{ i }}" class="form-label me-2">Phone Number {{ i + 1 }}</label>
+          <input 
+            id="PhoneNumber-{{ i }}" 
+            type="text" 
+            [formControlName]="i" 
+            class="form-control me-2" 
+            [ngClass]="{
+              'is-invalid': phone.invalid && phone.dirty,
+              'is-valid': phone.valid && phone.dirty
+            }" 
+          />
+    
+          <!-- زر الحذف يظهر فقط عند وجود أكثر من رقم واحد -->
+          <button 
+            *ngIf="PhoneNumbers.controls.length > 1" 
+            type="button" 
+            (click)="removePhoneNumber(i)" 
+            class="btn btn-danger btn-sm" 
+            [attr.aria-label]="'Remove phone number ' + (i + 1)"
+          >
+            X
+          </button>
         </div>
       </div>
-
-      <div *ngIf="form.get('PhoneNumbers')?.invalid && form.get('PhoneNumbers')?.dirty" class="invalid-feedback">
+    
+      <!-- زر لإضافة رقم جديد مع رمز "+" -->
+      <button 
+        type="button" 
+        (click)="addPhoneNumber()" 
+        class="btn btn-primary btn-sm mt-2 d-flex align-items-center"
+      >
+        <i class="fas fa-plus me-2"></i> <!-- أيقونة "+" -->
+        Add Phone Number
+      </button>
+    
+      <!-- رسائل التحقق في حالة الحقول غير الصالحة -->
+      <div *ngIf="PhoneNumbers.invalid && PhoneNumbers.dirty" class="invalid-feedback d-block mt-2">
+        Please check the phone numbers entered.
       </div>
-      <div *ngIf="form.get('PhoneNumbers')?.valid && form.get('PhoneNumbers')?.dirty" class="valid-feedback">
-        Phone number is valid!
+      <div *ngIf="PhoneNumbers.valid && PhoneNumbers.dirty" class="valid-feedback d-block mt-2">
+        All phone numbers are valid!
       </div>
     </div>
-
+    
+    
     <div class="mb-3">
       <label for="Age" class="form-label">Age</label>
       <input type="number" id="Age" formControlName="Age" class="form-control"
@@ -270,7 +347,7 @@
         <ng-container *ngIf="form.get('Age')?.errors?.['max']">Age cannot exceed 150!</ng-container>
       </div>
     </div>
-
+    
     <div class="mb-3">
       <label class="form-label">Gender:</label><br />
       <div class="form-check form-check-inline">
@@ -284,9 +361,9 @@
       <div *ngIf="form.get('Gender')?.invalid && form.get('Gender')?.dirty" class="text-danger">
       </div>
     </div>
-
+    
     <div class="col-12">
-      <button class="btn btn-dark" type="submit">Save</button>
+      <button class="btn btn-dark"type="submit">Save</button>
     </div>
   </form>
 </div>

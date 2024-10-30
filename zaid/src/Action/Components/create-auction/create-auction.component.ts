@@ -110,7 +110,7 @@ export class CreateAuctionComponent {
       this.itemService.addItem(formData).subscribe({
         next: (response) => {
           this.toastr.success("Item Added Successfully");
-          this.router.navigate(['user/modify-action'])
+          this.router.navigate(['user/pending-items'])
           console.log('Item added successfully:', response);
 
           // Reset the form or navigate after submission

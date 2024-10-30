@@ -14,11 +14,13 @@ export class WatchlistComponent {
   page:number=1;
   activefavAuctions:any[]=[];
   endedfavAuctions:any[]=[];
+  upcomingfavAuctions:any[]=[];
   selectedAuctionId:any;
 favCategories:any[]=[];
 constructor(private favauctionservice:FavouriteService,private toaster:ToastrService, private favCatService:FavCategoryService){
 this.getAtiveWishlist();
 this.getEndedWishlist();
+this.getUpcomingWishlist();
 this.loadAllFavCat();
 
 }
@@ -48,6 +50,19 @@ this.endedfavAuctions=response;
     }
   })
 }
+getUpcomingWishlist(){
+  this.favauctionservice.getAllUpcomingFavs().subscribe({
+    next:(response)=>{
+      console.log(response);
+      
+this.upcomingfavAuctions=response;
+    },
+    error:(error)=>{
+      console.log(error);
+      
+    }
+  })
+}
 setSelectedAuctionId(auctionId:number){
   this.selectedAuctionId=auctionId;
 }
@@ -60,9 +75,11 @@ if(this.selectedAuctionId!=null){
 console.log(response);
 this.getAtiveWishlist();
 this.getEndedWishlist();
+this.getUpcomingWishlist();
 
 this.activefavAuctions = this.activefavAuctions.filter(favAuction => favAuction.auctionID !== this.selectedAuctionId);
 this.endedfavAuctions = this.endedfavAuctions.filter(favAuction => favAuction.auctionID !== this.selectedAuctionId);
+this.upcomingfavAuctions = this.upcomingfavAuctions.filter(favAuction => favAuction.auctionID !== this.selectedAuctionId);
 
     },
     error:(error)=>{
@@ -83,6 +100,7 @@ deleteAll(){
 console.log(response);
 this.activefavAuctions = this.activefavAuctions.filter(favAuction => favAuction.auctionID === 0);
 this.endedfavAuctions = this.endedfavAuctions.filter(favAuction => favAuction.auctionID === 0);
+this.upcomingfavAuctions = this.endedfavAuctions.filter(favAuction => favAuction.auctionID === 0);
 
 
     },

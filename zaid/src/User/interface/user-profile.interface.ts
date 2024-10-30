@@ -5,10 +5,6 @@ export interface UserProfileGet {
     FirstName: string;
     LastName: string;
     Email: string;
-    Street: string;
-    PostalCode: string;
-    City: string;
-    Country: string;
     TimeZone: string;
     Age: number;
     Gender: string;
@@ -16,6 +12,8 @@ export interface UserProfileGet {
     Currency: string;
     SecondPhoneNumber?: string;
     PhoneNumbers: string[];
+    ProfileImage: File | null; // Change here to allow null
+
   }
   
   // Define interface for EDIT data

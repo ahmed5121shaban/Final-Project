@@ -34,9 +34,7 @@ import { PendingItemsComponent } from './Components/Profile-Management/pending-i
 import { AcceptedItemsComponent } from './Components/Profile-Management/accepted-items/accepted-items.component';
 import { RejectedItemsComponent } from './Components/Profile-Management/rejected-items/rejected-items.component';
 import { AuctionLiveStreamComponent } from './Components/Profile-Management/auction-live-stream/auction-live-stream.component';
-
-
-
+import { UpcomingAuctionsComponent } from './Components/Profile-Management/upcoming-auctions/upcoming-auctions.component';
 
 
 @NgModule({
@@ -47,8 +45,6 @@ import { AuctionLiveStreamComponent } from './Components/Profile-Management/auct
     CarouselModule,
     ReactiveFormsModule,
     NgxPaginationModule
-   
-
   ],
   declarations: [
     RegisterComponent,
@@ -82,7 +78,8 @@ import { AuctionLiveStreamComponent } from './Components/Profile-Management/auct
     PendingItemsComponent,
     AcceptedItemsComponent,
     RejectedItemsComponent,
-    AuctionLiveStreamComponent
+    AuctionLiveStreamComponent,
+    UpcomingAuctionsComponent
 
   ],
 

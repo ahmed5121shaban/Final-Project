@@ -11,6 +11,7 @@ import { ActionRoutes } from './action.routing';
 import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-feedback.component';
 import { WonAuctionComponent } from './Components/won-auction/won-auction.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UserModule } from '../User/User.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    UserModule
   ],
   declarations: [
     ActionComponent,
