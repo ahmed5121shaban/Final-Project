@@ -125,6 +125,7 @@ export class HomeComponent implements OnInit {
 
 
   addToFav(categoryId: number) {
+    if(this.authService.isLoggedIn){
     this.FavcategoryService.AddToFav(categoryId).subscribe({
       next: res => {
         if (res.result == "added") {
@@ -139,6 +140,11 @@ export class HomeComponent implements OnInit {
         console.log("addtofaverror ", err);
       }
     })
+  }
+  else{
+    const returnUrl = this.router.url; 
+      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });
+  }
 
 
 

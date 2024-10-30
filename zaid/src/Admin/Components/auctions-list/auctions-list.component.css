@@ -73,3 +73,7 @@ a.live-auction-link:hover {
   opacity: 0.5;
 }
 
+.auction-image {
+  max-width: 100%;  /* Use 100% to fit the container */
+  height: auto;     /* Maintain aspect ratio */
+}
