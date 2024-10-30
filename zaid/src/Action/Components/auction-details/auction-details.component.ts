@@ -219,8 +219,10 @@ export class AuctionDetailsComponent implements OnChanges {
   }
   getUserCurrency():void{
     this.userserv.getUserCurrency().subscribe({
-      next:(currency:string)=>{
-        this.UserCurrency = currency;
+      next:(data)=>{
+        console.log("cuurr",data.result);
+        
+        this.UserCurrency = data.result;
       },
       error:err=>{
         console.log(err);
