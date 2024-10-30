@@ -224,6 +224,7 @@ updateFavState(){
     )
   }
   addCatToFav(id:number){
+    if(this.authService.isLoggedIn){
     this.favcatService.AddToFav(id).subscribe({
       next:res=>{
         if(res.result == "added"){
@@ -238,7 +239,11 @@ updateFavState(){
         
       }
 
-    })
+    });}
+    else{
+      const returnUrl = this.router.url; 
+      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });     
+    }
   }
   clearSearch(){
     this.searchtxt="";
