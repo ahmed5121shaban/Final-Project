@@ -128,3 +128,12 @@ ngx-datatable .datatable-body-cell {
     flex: 0 0 30%; /* عرض مخصص لأحجام الشاشات الكبيرة */
   }
 }
+a.live-auction-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a.live-auction-link:hover {
+  text-decoration: underline;
+}

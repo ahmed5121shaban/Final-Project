@@ -16,6 +16,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoaderInterceptor } from '../Shared/Interseptors/loader intersptors/loading.interceptor';
 import { NgModule } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 
@@ -37,7 +38,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ],
   providers: [
 
-    provideHttpClient(withFetch(),withInterceptors([headerInterceptor,LoaderInterceptor])),CookieService
+    provideHttpClient(withFetch(),withInterceptors([headerInterceptor,LoaderInterceptor])),CookieService, provideAnimationsAsync()
   ],
   bootstrap: [AppComponent],
 })

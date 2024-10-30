@@ -67,7 +67,8 @@ export class AuctionDetailsComponent implements OnChanges {
   ngOnInit(): void {
 
     this.hubConnection.on('allBids', (res) => {
-      this.allBids = res
+      this.allBids = res;
+    
       console.log('All bids received:', res);
     });
     

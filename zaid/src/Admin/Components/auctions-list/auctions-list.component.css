@@ -26,8 +26,10 @@
 }
 
 .auction-image {
-  max-width: 90%;  /* Ensures the image fits within its container */
-  height: auto;     /* Maintains aspect ratio */
+  max-width: 100px;  /* Set a maximum width */
+  height: auto;      /* Maintain aspect ratio */
+  display: block;    /* Ensure the image is treated as a block element */
+  margin: 0 auto;    /* Center the image horizontally */
 }
 
 

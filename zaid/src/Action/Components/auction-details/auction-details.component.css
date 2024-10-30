@@ -105,6 +105,10 @@
 
 
 .highlight {
-  background-color: green;
+  background-color: rgb(93, 255, 93);
   transition: background-color 1s ease-out;
+}
+
+.single-bid{
+padding:10px;
 }

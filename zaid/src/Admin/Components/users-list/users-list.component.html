@@ -30,16 +30,17 @@
       [rowHeight]="'auto'"
       [limit]="10"
     >
-    <ngx-datatable-column name="Name" prop="name" [width]="-70"></ngx-datatable-column>
-    <ngx-datatable-column name="ID" prop="displayId" [width]="-70"></ngx-datatable-column>
-    <ngx-datatable-column name="Email" prop="email" [width]="-70"></ngx-datatable-column>
-    <ngx-datatable-column name="Role" prop="role" [width]="-70"></ngx-datatable-column>
-    <ngx-datatable-column name="Action" [width]="-70"> 
-      <ng-template ngx-datatable-cell-template let-row="row">
-        <button class="btn btn-primary action-btn" (click)="viewProfile(row)">View Profile</button>
-      </ng-template>
-    </ngx-datatable-column>
-    
+
+      <ngx-datatable-column name="Name" prop="name" ></ngx-datatable-column>
+      <ngx-datatable-column name="ID" prop="displayId"></ngx-datatable-column>
+      <ngx-datatable-column name="Email" prop="email" ></ngx-datatable-column>
+      <ngx-datatable-column name="Role" prop="role" ></ngx-datatable-column>
+      <ngx-datatable-column name="Profile Url" >
+        <ng-template ngx-datatable-cell-template let-row="row">
+          <a  (click)="viewProfile(row)" class="live-auction-link">View</a>
+                </ng-template>
+        
+      </ngx-datatable-column>
     </ngx-datatable>
 
     <!-- Pagination -->

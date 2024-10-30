@@ -1,22 +1,55 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { AdminAuctionsService } from '../../Services/admin-auctions.service';
-import { CategoryService } from '../../Services/category.service';
-import { ActivatedRoute } from '@angular/router';
 import { Pagination } from '../../../Action/Models/models/pagination.model';
 
-interface Auction {
-  name: string;
+interface Category {
   id: number;
-  status: 'Open' | 'Closed' | 'Live';
-  liveUrl?: string;
-  imageUrl?: string;
-  startDate?: Date;
-  endDate?: Date;
-  sellerName?: string;
-  paymentStatus?: 'Paid' | 'Unpaid';
+  name: string;
+  image: string;
+  description: string;
+  icon?: string | null; // Assuming it could be null or undefined
 }
+
+interface Seller {
+  userID: string;
+  user: {
+    name: string; 
+  };
+  items: any[]; // Adjust this type based on the items structure
+  reviews: any[]; // Adjust this type based on the reviews structure
+  chats: any[]; // Adjust this type based on the chats structure
+}
+
+interface Item {
+  id: number;
+  name: string;
+  description: string;
+  images: Array<{ src: string }>; // Adjust the src property as per your image structure
+  categoryID: number;
+  category: Category;
+  sellerID: string;
+  seller: Seller;
+  // Add other relevant properties from your item object
+}
+
+interface Auction {
+  id: number;
+  bids: any[]; // Adjust this type based on the bids structure
+  buyer: any | null; // Adjust this type based on the buyer structure
+  buyerID: string | null;
+  completed: boolean;
+  endDate: string; // Use Date type if you parse it later
+  ended: boolean;
+  favAuctions: any[]; // Adjust this type based on your favorite auctions
+  item: Item; // Reference to the Item object
+  startDate: string; // Use Date type if you parse it later
+  startPrice: number;
+  endPrice: number;
+  // Add any other relevant properties from your auction object
+}
+
 
 @Component({
   selector: 'app-auctions-list',
@@ -25,9 +58,7 @@ interface Auction {
 })
 export class AuctionsListComponent implements OnInit {
 
-  @ViewChild('datatable', { static: false }) datatable: ElementRef | undefined;
-
-  activeAuctions: any[] = [];
+  activeAuctions: Auction[] = [];
   
   // Pagination properties
   pageActive: number = 1; 
@@ -51,9 +82,7 @@ export class AuctionsListComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder, 
-    private auctionService: AdminAuctionsService,
-    private categoryService: CategoryService,
-    private route: ActivatedRoute
+    private auctionService: AdminAuctionsService
   ) {
     this.searchForm = this.fb.group({
       name: [''],
@@ -66,7 +95,6 @@ export class AuctionsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
     this.loadAuctions();
   }
 
@@ -90,19 +118,21 @@ export class AuctionsListComponent implements OnInit {
       }
     });
   }
+
   updateSortOption(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     this.filterOption = selectElement.value; 
     this.loadAuctions(); 
   }
+
   onSearch(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    this.searchtxt = selectElement.value; 
+    const inputElement = event.target as HTMLInputElement;
+    this.searchtxt = inputElement.value; 
     this.loadAuctions(); 
   }
  
   onPageChange(page: number): void {
-    this.pageActive = page; // Update current page
-    this.loadAuctions(); // Reload data based on the current page
+    this.pageActive = page; 
+    this.loadAuctions(); 
   }
 }
