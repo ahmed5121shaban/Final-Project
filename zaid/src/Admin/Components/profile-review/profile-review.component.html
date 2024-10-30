@@ -6,10 +6,13 @@
                 
                 <div class="profile-avatar">
                     <img class="rounded-circle" 
-                         [src]="sellerProfile?.imageUrl ? apiUrl + '/' + sellerProfile.imageUrl 
-                               : buyerProfile?.imageUrl ? apiUrl + '/' + buyerProfile.imageUrl 
-                               : 'blank-profile-picture-973460_1920.png'" 
+                         *ngIf="sellerProfile?.imageUrl || buyerProfile?.imageUrl"
+                         [src]="apiUrl + (sellerProfile?.imageUrl || buyerProfile?.imageUrl)"
                          alt="User Image">
+                
+                
+                
+                  
                     <span class="h5 d-block mt-3 mb-2">
                         {{ sellerProfile?.name || buyerProfile?.name }}
                     </span>
@@ -108,27 +111,25 @@
                             </div>
                         </div>
 
-                        <!-- جدول المزادات الخاصة بالبائع -->
                         <div class="row mt-5">
                             <div class="col-12">
                                 <div class="card border-0">
                                     <div class="card-header d-flex justify-content-between">
                                         <p class="fs-5">Sold Items</p>
                                         <div class="col-3">
-                                            <input type="text" class="form-control" placeholder="Search...">
+                                            <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText">
                                         </div>
                                         <div class="dropdown justify-content-end">
-                                            <button class="btn border-0 dropdown-toggle fs-6 text-secondary" type="button"
-                                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn border-0 dropdown-toggle fs-6 text-secondary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                                 Sort
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                                <li><a class="dropdown-item" href="#">Newest</a></li>
-                                                <li><a class="dropdown-item" href="#">Oldest</a></li>
+                                                <li><a class="dropdown-item" (click)="sortItems('name'); $event.preventDefault();">Sort by Item Name</a></li>
+                                                <li><a class="dropdown-item" (click)="sortItems('category'); $event.preventDefault();">Sort by Category</a></li>
                                             </ul>
-                                        </div>
+                                            
+                                        </div>                                        
                                     </div>
-
                                     <div class="card-body">
                                         <table id="productsTable" class="table table-hover table-product" style="width:100%">
                                             <thead>
@@ -136,25 +137,32 @@
                                                     <th></th>
                                                     <th>Item Name</th>
                                                     <th>Category</th>
-                                                    <th>Status</th>
+                                                    <th>Description</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let item of sellerProfile?.items">
+                                                <tr *ngFor="let item of filteredSellerItems | paginate: { itemsPerPage: 5, currentPage: sellerCurrentPage }">
                                                     <td class="py-0">
                                                         <ng-container *ngFor="let image of item.images">
                                                             <img [src]="apiUrl + '/' + image.src" alt="Item Image" class="img-large" />
                                                         </ng-container>
                                                     </td>
                                                     
-                                                
                                                     <td>{{ item.name }}</td>
                                                     <td>{{ item.category }}</td>
-                                                    <td>{{ item.status }}</td>
+                                                    <td>{{ item.description }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <pagination-controls 
+                                                (pageChange)="sellerCurrentPage = $event" 
+                                                class="pagination pagination-controls"></pagination-controls>
+                                                <span class="text-muted">
+                                                    Page {{ sellerCurrentPage }} of {{ totalSellerPages }}
+                                                </span>
+                                        </div>
+                                      </div>
                                 </div>
                             </div>
                         </div>
@@ -213,52 +221,65 @@
                         </div>
                     
 
-                        <!-- جدول المزادات الخاصة بالمشتري -->
                         <div class="row mt-5">
                             <div class="col-12">
                                 <div class="card border-0">
                                     <div class="card-header d-flex justify-content-between">
                                         <p class="fs-5">Purchased Items</p>
                                         <div class="col-3">
-                                            <input type="text" class="form-control" placeholder="Search...">
+                                            <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="buyerSearchText">
                                         </div>
                                         <div class="dropdown justify-content-end">
-                                            <button class="btn border-0 dropdown-toggle fs-6 text-secondary" type="button"
-                                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn border-0 dropdown-toggle fs-6 text-secondary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                                 Sort
                                             </button>
-                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                                <li><a class="dropdown-item" href="#">Newest</a></li>
-                                                <li><a class="dropdown-item" href="#">Oldest</a></li>
-                                            </ul>
+                                            <div class="dropdown">
+                                                
+                                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                                        <li><a class="dropdown-item" (click)="sortBuyerAuctions('name')">Sort by Item Name</a></li>
+                                                        <li><a class="dropdown-item" (click)="sortBuyerAuctions('sellerName')">Sort by Seller Name</a></li>
+                                                        <li><a class="dropdown-item" (click)="sortBuyerAuctions('startDate')">Sort by Start Date</a></li>
+    <li><a class="dropdown-item" (click)="sortBuyerAuctions('endDate')">Sort by End Date</a></li>
+                                                    </ul>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                            
                                         </div>
                                     </div>
-
                                     <div class="card-body">
                                         <table id="purchasedProductsTable" class="table table-hover table-product" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th></th>
-                                                    <th>Auction Item</th>
+                                                    <th>Auction Item Name</th>
                                                     <th>Start Date</th>
                                                     <th>End Date</th>
+                                                    <th>Seller Name</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let auction of buyerProfile?.auctions">
+                                                <tr *ngFor="let auction of filteredBuyerItems | paginate: { itemsPerPage: 5, currentPage: buyerCurrentPage }">
                                                     <td class="py-0">
-                                                        <img [src]="auction.item.imageUrl" alt="Auction Image">
+                                                        <img *ngIf="auction.item.images.length" [src]="getImageUrl(auction.item.images[0])" alt="Auction Image">
                                                     </td>
                                                     <td>{{ auction.item.name }}</td>
                                                     <td>{{ auction.startDate | date }}</td>
                                                     <td>{{ auction.endDate | date }}</td>
+                                                    <td>{{ auction.item.sellerName }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
+                                        <div *ngIf="filteredBuyerItems.length > 0" class="d-flex justify-content-between align-items-center mt-3">
+                                            <pagination-controls (pageChange)="buyerCurrentPage = $event" class="pagination"></pagination-controls>
+                                            <span class="text-muted">Page {{buyerCurrentPage}} of {{totalBuyerPages}}</span>
+                                        </div>
+                                                                         
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
