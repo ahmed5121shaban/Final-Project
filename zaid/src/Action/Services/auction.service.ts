@@ -110,6 +110,14 @@ export class AuctionService {
   getSellerAllLive(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/SellerLive`)
   }
+  //get upcoming Auctions for Seller
+  getSellerUpcomingAuctions(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/SellerUpcoming`)
+  }
+  //get upcoming Auctions for Seller
+  getUpcomingAuctions(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/upcomingAuctions`)
+  }
 
 
 

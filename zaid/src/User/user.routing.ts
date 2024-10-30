@@ -27,6 +27,7 @@ import { PendingItemsComponent } from './Components/Profile-Management/pending-i
 import { AcceptedItemsComponent } from './Components/Profile-Management/accepted-items/accepted-items.component';
 import { RejectedItemsComponent } from './Components/Profile-Management/rejected-items/rejected-items.component';
 import { AuctionLiveStreamComponent } from './Components/Profile-Management/auction-live-stream/auction-live-stream.component';
+import { UpcomingAuctionsComponent } from './Components/Profile-Management/upcoming-auctions/upcoming-auctions.component';
 
 
 
@@ -60,7 +61,8 @@ const routes: Routes = [
       { path: 'auction-live-stream/:id', component:AuctionLiveStreamComponent },
       { path: 'pending-items', component: PendingItemsComponent },
       { path: 'accepted-items', component: AcceptedItemsComponent },
-      { path: 'rejected-items', component: RejectedItemsComponent }
+      { path: 'rejected-items', component: RejectedItemsComponent },
+      { path: 'upcoming-auctions', component: UpcomingAuctionsComponent }
 
     ] },
 

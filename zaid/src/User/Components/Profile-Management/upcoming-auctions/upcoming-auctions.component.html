@@ -1,0 +1,56 @@
+<div class="container container-custom">
+    <div *ngIf="!UpcomingAuctions || UpcomingAuctions.length === 0" class="d-flex justify-content-center  border-bottom border-3 pb-4">
+        <div class="  opacity-75"><h5>There is no upcoming auctions to show.</h5>
+        <p>Create auctions start in future to make bidders stay tuned</p>
+        
+        </div>
+    </div>
+  </div>
+  
+  <div class="container container-custom">
+    <div *ngIf="UpcomingAuctions.length !== 0" class="table-responsive">
+      <table class="table table-striped table-hover align-middle">
+        <thead>
+          <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Description</th>
+            <th scope="col">Start price</th>
+            <th scope="col">Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let auction of UpcomingAuctions| paginate: { itemsPerPage: 6, currentPage: page }">
+            <td>
+              <div class="d-flex align-items-center">
+                <div id="carouselExample{{auction.id}}" class="carousel slide w-75">
+                  <div class="carousel-inner">
+                    <div *ngFor="let image of auction.item.images; let j = index" [class.active]="j === 0"
+                    class="carousel-item" style="cursor: pointer;">
+                    <img [src]="'http://localhost:5204/' + image"
+                       class="d-block w-100 rounded-2">
+                  </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample' + auction.id"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  </button>
+                  <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExample' + auction.id"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </td>
+  
+            <td>{{auction.item.description}}</td>
+            <td>{{auction.item.startPrice}}</td>
+            <td>{{auction.item.category}}</td>
+            
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="page = $event" ></pagination-controls>
+  
+    </div>
+  </div>
+  
