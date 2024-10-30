@@ -28,7 +28,8 @@ export class AboutUsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
-      AOS.init(); // Initialize AOS if in the browser
+      AOS.init({duration: 200, // تقليل مدة الرسوم المتحركة
+        once: true,}); // Initialize AOS if in the browser
     }
     this.createSlides();
     

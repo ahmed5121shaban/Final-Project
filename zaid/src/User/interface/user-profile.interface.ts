@@ -16,6 +16,8 @@ export interface UserProfileGet {
     Currency: string;
     SecondPhoneNumber?: string;
     PhoneNumbers: string[];
+    ProfileImage: File | null; // Change here to allow null
+
   }
   
   // Define interface for EDIT data
