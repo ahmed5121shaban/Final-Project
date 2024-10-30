@@ -49,7 +49,7 @@
                         </div>
                         <div class="bid-ends-in col-6">
                             <p>Ends in:</p>
-                            @if(auction.IsEnded == false){
+                            @if(auction.isEnded == false){
                                 <h5 id="end-time">{{auction.endDate | date: 'shortTime'}}</h5>
                                 <p class="end-date">{{auction.endDate | date : 'mediumDate'}}</p>
                             }

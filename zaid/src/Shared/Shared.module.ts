@@ -18,6 +18,8 @@ import { UserLayoutComponent } from './Components/user-layout/user-layout.compon
 import { MessageComponent } from './chat/message/message.component';
 import { EmptyMessageComponent } from './chat/empty-message/empty-message.component';
 import { ShortMessagePipe } from './Pipes/shortMessage.pipe';
+import { UnAuthorizedComponent } from './Components/un-authorized/un-authorized.component';
+import { InternalServerErrorComponent } from './Components/internal-server-error/internal-server-error.component';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import { ShortMessagePipe } from './Pipes/shortMessage.pipe';
     MessageComponent,
     UserLayoutComponent,
     EmptyMessageComponent,
-    ShortMessagePipe
+    ShortMessagePipe,
+    UnAuthorizedComponent,
+    InternalServerErrorComponent
 
 
   ],
