@@ -117,17 +117,6 @@
     border-color: #ffffff !important;
 }
 
-.btn-secondary {
-    background-color: rgb(229, 124, 35) !important;
-    border-color: rgb(229, 124, 35) !important;
-    color: #ffffff !important;
-
-}
-
-.btn-secondary:hover {
-    background-color: rgba(229, 126, 35, 0.845) !important;
-    border-color: rgb(229, 124, 35) !important;
-}
 
 /* You can add global styles to this file, and also import other style files */
 /* english font start*/
@@ -193,7 +182,7 @@ body{
 .btn-primary{
   background-color: rgb(44, 40, 36)!important;
   border-color:rgb(44, 40, 36) !important;
-border-radius: 0px;
+border-radius: 10px;
  
 }
 .btn-primary:hover{
@@ -204,7 +193,7 @@ border-radius: 0px;
 .btn-outline-primary{
   border-color: rgba(44, 40, 36)!important;
   color: rgba(44, 40, 36)!important;
-  border-radius: 0px;
+  border-radius: 10px;
 
 
 }
@@ -217,12 +206,12 @@ border-radius: 0px;
   background-color: rgb(229, 124, 35)!important;
   border-color: rgb(229, 124, 35) !important;
   color: #ffffff !important;
-  border-radius: 0px;
+  border-radius: 10px;
 
 }
 .btn-secondary:hover{
-  background-color: rgb(44, 40, 36)!important;
-  border-color: rgb(44, 40, 36)!important;
+  background-color: rgb(231, 138, 57)!important;
+  border-color: rgb(231, 138, 57) !important;
 }
 
 

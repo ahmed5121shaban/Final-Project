@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuctionService } from '../../../Action/Services/auction.service';
-import { BidService } from '../../../Action/Services/bid.service';
+import { AuctionService } from '../../../../Action/Services/auction.service';
+import { BidService } from '../../../../Action/Services/bid.service';
 import { error } from 'console';
 // interface Reply {
 //   id: number;
@@ -48,28 +48,39 @@ export class AuctionLiveStreamComponent {
     })
   }
   getAuctionDetails(): void {
-    this.auctionService.getAuctionById(this.auctionId).subscribe(
-      (res: any) => {
+    this.auctionService.getAuctionById(this.auctionId).subscribe({
+     next: res => {
         this.auction = res;
         console.log(this.auction);
-        console.log("statttt",this.auction.item.startPrice);
-        this.startprice=this.auction.item.startPrice;
-        this.getHighestBid();
+      
+       // this.startprice=this.auction.item.startPrice;
+      //  this.getHighestBid();
        // console.log('Auction:', this.auction,this.startprice);
       },
-      (error) => {
-        console.error('Error fetching auction details:', error);
+      error:err => {
+        console.log(err);
+        
       }
-    );
+  });
   }
 
 
 ngOnInit(): void {
   this.route.params.subscribe(params =>{
     this.auctionId = +params['id'];
-    // this.getAuctionDetails();
+    this.getAuctionDetails();
   });
   
+}
+Close(id:number):void{
+  this.auctionService.CloseAuction(id).subscribe({
+    next:res=>{
+    console.log(res);
+
+      
+    }
+  })
+
 }
 
 

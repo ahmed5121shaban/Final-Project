@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryService } from '../../Services/category.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',
@@ -22,7 +23,8 @@ export class AddCategoryComponent {
   constructor(
     private categoryService: CategoryService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastr :ToastrService
   ) {
 
     this.CategoryForm = this.formBuilder.group({
@@ -107,6 +109,7 @@ export class AddCategoryComponent {
       console.log(formData);
       this.categoryService.addCategory(formData).subscribe({
       next: (response:any) => {
+        this.toastr.success("Category added successfully");
       console.log('Category added successfully:', response);
       //this.router.navigate(['admin/categories-list']);
       },

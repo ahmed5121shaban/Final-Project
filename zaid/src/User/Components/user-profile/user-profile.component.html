@@ -5,14 +5,14 @@
             <div class="cover-img ">
                 <img style="width: 100%; height: 50vh;" src="mentor-single.png" alt="">
                 <div class="profile-img ">
-                    <img style="border-radius: 15px;" src="300-1.jpg" alt="">
+                    <img style="border-radius: 15px;" [src]="'http://localhost:5204/' + Profile.image" alt="">
                 </div>
             </div>
             <div class="p-3 p-md-5 pt-5">
                 <div class="info">
                     <div class="personal  ">
                         <div class="personal-info row gap-1 justify-content-between ">
-                            <h2 class="col-md-6 col-12 mb-1 "><b>Jitu Chauhan</b></h2>
+                            <h2 class="col-md-6 col-12 mb-1 "><b>{{Profile.FullName}}</b></h2>
                             <div class="personal-btns d-md-flex d-none col-md-5 col-12 row gap-1 justify-content-end">
                                 <button class="btn btn-secondary col-auto d-flex align-items-center">
                                     <i class="fas fa-heart" ></i><span > Save</span>
@@ -37,73 +37,112 @@
                     <div class="rating row mt-3 mb-2 ">
                         <p class="col-12 col-md-3 mb-1"><span><i class="fas fa-star"
                                     style="line-height: 1; color:#f59e0b;"></i>
-                                <b> 6.0</b> (16 Reviews)</span></p>
+                                <b>{{Profile.Rate}}</b> ({{Profile.ReviewNumber}} Reviews)</span></p>
                         <p class="col-12 col-md-3 mb-1"><span><i class="fas fa-gavel"
                                     style="line-height: 1; color: #754ffe;"></i>
-                                <b> +70</b> Auction</span></p>
+                                <b> +{{Profile.AuctionsNumber}}</b> Auction</span></p>
                         <p class="col-12 col-md-3 mb-1"><span><i class="fas fa-location-dot"
-                                    style="line-height: 1; color: #dc2626;"></i> Cairo,Egypt</span></p>
+                                    style="line-height: 1; color: #dc2626;"></i> {{Profile.Address}}</span></p>
                     </div>
 
                 </div>
                 <h5 class="pt-3 pb-2" ><b>Categories</b></h5>
                 <div class="skills">
-
-                    <a href=""><i class="fas fa-car"></i> Vehicles</a>
-                    <a href=""><i class="fas fa-chair"></i> Furniture</a>
-                    <a href=""><i class="fas fa-stopwatch"></i> Clocks & Watches</a>
-                    <a href=""><i class="fas fa-gem"></i> Jewellery</a>
+@for( Cat of Profile.FavCategories; track $index){
+    <a ><i class="fas fa-car"></i> {{Cat.name}}</a>
+}         
                 </div>
             </div>
 
         </div>
     </div>
     <div class="row">
+    @if(Profile.IsSeller == true && Profile.liveAuctions.length != 0){
         <div class="col-12">
             <div class="d-block p-5">
                 <h2>Seller latest Auctions</h2>
                 <section class="py-5 position-relative parent-of-card">
                     <div class="container">
                       <div class="feature-parent-card">
-
-                        <owl-carousel-o [options]="liveAction" class="d-flex flex-nowrap ">
-                            @for (item of items; track $index) {
-                              <ng-template carouselSlide>
-                              <div  class="featured-card-carsoule me-3 ">
-                                <div class="card border-0 shadow-sm featured-auction">
-                                  <img
-                                    src="{{item.image}}"
-                                    class="card-img-top"
-                                    alt="Classic Car Auction"
-                                  />
-                                  <div class="card-body">
-                                    <h5 class="card-title">{{item.title}}</h5>
-                                    <p class="card-text">Date: {{item.text1}}</p>
-                                    <p class="card-text">Starting Bid: {{item.text2}}</p>
+                        
+                            <owl-carousel-o [options]="liveAction" class="d-flex flex-nowrap ">
+                                @for (Auction of Profile.LatestAuctions; track $index) {
+                                  <ng-template carouselSlide>
+                                  <div  class="featured-card-carsoule me-3 ">
+                                    <div class="card border-0 shadow-sm featured-auction">
+                                      <img
+                                        src="{{Auction.images[0]}}"
+                                        class="card-img-top"
+                                        alt="Classic Car Auction"
+                                      />
+                                      <div class="card-body">
+                                        <h5 class="card-title">{{Auction.item.title}}</h5>
+                                        <p class="card-text">Date: {{Auction.item.startdate}}</p>
+                                        <!-- <p class="card-text">Starting Bid: </p> -->
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
-                            </ng-template>
-                            }
-                        </owl-carousel-o>
+                                </ng-template>
+                                }
+                            </owl-carousel-o>
+                        
                       </div>
                     </div>
                   </section>
 
             </div>
         </div>
+    }
+
+    @if(Profile.WonAuctions.length != 0){
+        <div class="col-12">
+            <div class="d-block p-5">
+                <h2>Won Auctions</h2>
+                <section class="py-5 position-relative parent-of-card">
+                    <div class="container">
+                      <div class="feature-parent-card">
+                        
+                            <owl-carousel-o [options]="wonAction" class="d-flex flex-nowrap ">
+                                @for (Auction of Profile.WonAuctions; track $index) {
+                                  <ng-template carouselSlide>
+                                  <div  class="featured-card-carsoule me-3 ">
+                                    <div class="card border-0 shadow-sm featured-auction">
+                                      <img
+                                        src="{{Auction.images[0]}}"
+                                        class="card-img-top"
+                                        alt="Classic Car Auction"
+                                      />
+                                      <div class="card-body">
+                                        <h5 class="card-title">{{Auction.item.title}}</h5>
+                                        <p class="card-text">Date: {{Auction.item.startdate}}</p>
+                                        <!-- <p class="card-text">Starting Bid: </p> -->
+                                      </div>
+                                    </div>
+                                  </div>
+                                </ng-template>
+                                }
+                            </owl-carousel-o>
+                        
+                      </div>
+                    </div>
+                  </section>
+
+            </div>
+        </div>
+    }
+    
     </div>
     <br>
 
     <br>
     <div class="row">
         <div class="col-12">
-            <div class=" reviews p-5 pt-1" id="reviews">
+            <div class=" reviews p-5 pt-1 scroll-vertical" id="reviews">
                 <div class="row align-items-center p-3  justify-content-between">
                     <h4 class="col-12 col-md-6 mt-3">
                         What Buyers say
                     </h4>
-                    <div class="col-12 col-md-6  d-flex align-items-center  justify-content-start justify-content-md-end mt-3">
+                    <!-- <div class="col-12 col-md-6  d-flex align-items-center  justify-content-start justify-content-md-end mt-3">
                             <div class=" col-3 col-md-3 col-lg-3 col-xl-3">
                                 <p >sort by:</p>
                             </div>
@@ -115,139 +154,38 @@
 
 
                             </div>
-                    </div>
+                    </div> -->
                 </div>
-                <div>
-                    <div class="d-flex p-2  justify-content-between">
-                        <div class="d-flex gap-3">
-                            <img src="300-4.jpg"
-                                style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
-                            <div>
-                                <p class="mentor-name mb-1 mt-2"><b>Satvik</b></p>
-                                <div class="rate-date d-md-flex flex-md-row d-flex flex-column">
-                                    <div class="rate d-flex me-1">
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
+                @for(review of Profile.Reviews ;track $index){
+                    <div>
+                        <div class="d-flex p-2  justify-content-between">
+                            <div class="d-flex gap-3">
+                                <img [src]="'http://localhost:5204/' + review.ProfileImageUrl"
+                                    style="width: 3.5rem;height: 3.5rem; border-radius: 50%; cursor: pointer;" alt=""
+                                    [routerLink]= "['../user-profile',review.ReviewerId]">
+                                <div>
+                                    <p class="mentor-name mb-1 mt-2"><b>{{review.ReviewerName}}</b></p>
+                                    <div class="rate-date d-md-flex flex-md-row d-flex flex-column">
+                                        <div class="rate d-flex me-1">
+                                           @for(star of stars ;track $index){
+                                            <i class="fas fa-star" style="line-height: 1;" [style.color]="star <= review.rate ? '#f59e0b' : '#e0e0e0' " ></i>
+                                           }
+                                
+                                        </div>
+                                        <p style="font-size: 13px"> {{review.ReviewDate}}</p>
                                     </div>
-                                    <p style="font-size: 13px"> September 9, 2024 </p>
+    
                                 </div>
-
                             </div>
+    
+    
                         </div>
-
-
+                        <p class="text-secondary">{{review.ReviewText}}</p>   
+                        <hr>
                     </div>
-                    <p class="text-secondary">
-                        The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
-                        as
-                        well.... if you are really confused or do need to know how to start your DSA career have a
-                        session
-                        with Sir... it will really help you.
-                    </p>
-                    <hr>
-                </div>
+                }
+                
 
-                <div>
-                    <div class="d-flex  p-3 justify-content-between">
-                        <div class="d-flex gap-3">
-                            <img src="300-4.jpg"
-                                style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
-                            <div>
-                                <p class="mentor-name mb-1 mt-2"><b>Satvik</b></p>
-                                <div class="rate-date d-md-flex flex-md-row d-flex flex-column">
-                                    <div class="rate d-flex me-1">
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                    </div>
-                                    <p style="font-size: 13px"> September 9, 2024 </p>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <p class="text-secondary">
-                        The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
-                        as
-                        well.... if you are really confused or do need to know how to start your DSA career have a
-                        session
-                        with Sir... it will really help you.
-                    </p>
-                    <hr>
-                </div>
-
-                <div>
-                    <div class="d-flex  p-3 justify-content-between">
-                        <div class="d-flex gap-3">
-                            <img src="300-4.jpg"
-                                style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
-                            <div>
-                                <p class="mentor-name mb-1 mt-2"><b>Satvik</b></p>
-                                <div class="rate-date d-md-flex flex-md-row d-flex flex-column">
-                                    <div class="rate d-flex me-1">
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                    </div>
-                                    <p style="font-size: 13px"> September 9, 2024 </p>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <p class="text-secondary">
-                        The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
-                        as
-                        well.... if you are really confused or do need to know how to start your DSA career have a
-                        session
-                        with Sir... it will really help you.
-                    </p>
-                    <hr>
-                </div>
-
-                <div class="pb-5 ">
-                    <div class="d-flex  p-3 justify-content-between">
-                        <div class="d-flex gap-3">
-                            <img src="300-4.jpg"
-                                style="width: 3.5rem;height: 3.5rem; border-radius: 50%;" alt="">
-                            <div>
-                                <p class="mentor-name mb-1 mt-2"><b>Satvik</b></p>
-                                <div class="rate-date d-md-flex ">
-                                    <div class="rate d-flex me-1">
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                        <i class="fas fa-star" style="line-height: 1; color:#f59e0b;"></i>
-                                    </div>
-                                    <p style="font-size: 13px"> September 9, 2024 </p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-secondary">
-                        The mentor was really knowledgeable and solved all my doubt regarding my Tech Stack and carrer
-                        as
-                        well.... if you are really confused or do need to know how to start your DSA career have a
-                        session
-                        with Sir... it will really help you.
-                    </p>
-                    <hr>
-                </div>
-
-                <div class="link-primary text-center fs-5">
-                    <a>See More</a>
-                </div>
 
             </div>
         </div>

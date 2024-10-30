@@ -23,6 +23,9 @@ export class FavouriteService {
   getAllEndedFavs():Observable<any>{
     return this.http.get(`${this.apiUrl}/getallendedfav`);
   }
+  getAllUpcomingFavs():Observable<any>{
+    return this.http.get(`${this.apiUrl}/getallupcomingfav`);
+  }
 removeFavAuction(auctionId:number):Observable<any>{
 return this.http.delete(`${this.apiUrl}/delete/${auctionId}`)
 }
