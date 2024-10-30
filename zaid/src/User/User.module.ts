@@ -37,9 +37,6 @@ import { AuctionLiveStreamComponent } from './Components/Profile-Management/auct
 import { UpcomingAuctionsComponent } from './Components/Profile-Management/upcoming-auctions/upcoming-auctions.component';
 
 
-
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -48,8 +45,6 @@ import { UpcomingAuctionsComponent } from './Components/Profile-Management/upcom
     CarouselModule,
     ReactiveFormsModule,
     NgxPaginationModule
-   
-
   ],
   declarations: [
     RegisterComponent,
