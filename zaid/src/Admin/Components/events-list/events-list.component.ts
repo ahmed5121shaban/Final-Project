@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SortType } from '@swimlane/ngx-datatable';
-import { PaginationInstance } from 'ngx-pagination'; // إضافة
+import { PaginationInstance } from 'ngx-pagination';
 import { EventService } from '../../Services/event.service';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from '../../Services/category.service';
@@ -28,7 +28,6 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('datatable', { static: false }) datatable: ElementRef | undefined;
 
   events: Event[] = [];
-
   filteredEvents: Event[] = [];
   currentPageEvents: Event[] = [];
   currentPage = 1;
@@ -36,28 +35,29 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
   searchForm: FormGroup;
   sortType: SortType = SortType.single;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
-  categories:any
+  categories: any;
 
-  constructor(private fb: FormBuilder,private eventService:EventService,private toaster:ToastrService,
-    private categoryService:CategoryService) {
+  constructor(
+    private fb: FormBuilder,
+    private eventService: EventService,
+    private toaster: ToastrService,
+    private categoryService: CategoryService
+  ) {
     this.searchForm = this.fb.group({
       name: [''],
       startDate: [''],
       endDate: [''],
-      category: ['']
+      category: ['All']
     });
   }
 
   ngOnInit(): void {
-    this.filteredEvents = [...this.events];
-    this.calculatePagination();
     this.getAllEvent();
     this.getAllCategory();
     this.searchForm.valueChanges
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(() => {
         this.filterEvents();
-        this.calculatePagination();
       });
   }
 
@@ -69,7 +69,6 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     if (this.datatable && this.datatable.nativeElement) {
       const element = this.datatable.nativeElement as HTMLElement;
-      //هنا السطريين دول بيضربو ايرورر
       if (element.getBoundingClientRect) {
         const rect = element.getBoundingClientRect();
         console.log('Element dimensions:', rect);
@@ -84,9 +83,9 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.filteredEvents = this.events.filter(event => {
       const matchesName = name ? event.name.toLowerCase().includes(name.toLowerCase()) : true;
-      const matchesStartDate = startDate ? (event.startDate ? new Date(event.startDate) >= new Date(startDate) : false) : true;
-      const matchesEndDate = endDate ? (event.endDate ? new Date(event.endDate) <= new Date(endDate) : false) : true;
-      const matchesCategory = category ? event.category === category : true;
+      const matchesStartDate = startDate ? new Date(event.startDate) >= new Date(startDate) : true;
+      const matchesEndDate = endDate ? new Date(event.endDate) <= new Date(endDate) : true;
+      const matchesCategory = category && category !== 'All' ? event.category === category : true;
 
       return matchesName && matchesStartDate && matchesEndDate && matchesCategory;
     });
@@ -123,38 +122,41 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
   calculatePagination(): void {
     this.currentPageEvents = this.filteredEvents.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize);
   }
+
   get totalPages(): number {
     return Math.ceil(this.filteredEvents.length / this.pageSize);
   }
 
-  getAllEvent(){
+  getAllEvent() {
     this.eventService.GetAllEvent().subscribe({
-      next:(res:any)=>{
-        res.result.forEach((element:any) => {
-          this.events.push({
-            id: element.id,
-            name: element.title,
-            description: element.description,
-            startDate: element.startDate,
-            endDate: element.endDate,
-            category: element.type,
-            imageUrl: element.image
-          })
-        });
-        console.log(this.events);
-
+      next: (res: any) => {
+        this.events = res.result.map((element: any) => ({
+          id: element.id,
+          name: element.title,
+          description: element.description,
+          startDate: element.startDate,
+          endDate: element.endDate,
+          category: element.type,
+          imageUrl: element.image
+        }));
+        this.filteredEvents = [...this.events]; // عرض كل الأحداث بشكل افتراضي
+        this.calculatePagination();
       },
-      error:(err)=>{
-        this.toaster.warning(err,"not event add")
+      error: (err) => {
+        this.toaster.warning(err, "لم يتم تحميل الأحداث");
       }
-    })
+    });
   }
 
-  getAllCategory(){
+  getAllCategory() {
     this.categoryService.getCategories().subscribe({
-      next:(res:any)=>{this.categories=res;console.log(res);
+      next: (res: any) => {
+        this.categories = res;
+        console.log(res);
+      },
+      error: (err) => {
+        this.toaster.error("فشل تحميل الفئات");
       }
-    })
+    });
   }
-
 }
