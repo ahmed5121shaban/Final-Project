@@ -113,3 +113,12 @@ a.live-auction-link:hover {
     flex: 0 0 30%; /* حقول البحث تأخذ نسبة ثابتة على الشاشات الكبيرة */
   }
 }
+a.live-auction-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a.live-auction-link:hover {
+  text-decoration: underline;
+}
