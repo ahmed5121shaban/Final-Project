@@ -76,8 +76,8 @@
                   <div class="place-bid text-center ">
                     <input type="number" disabled name="" id="" class="form-control">
                     <a routerLink="/user/login" class=" btn btn-dark w-100 mt-3 mb-1">Login Before bid in Auction</a>
-                    <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
-                        converted into SEK.</p>
+                    <p class="bid-limits ">Minimum bid: {{auctionDetails.item.startPrice}} {{UserCurrency}}. Or enter your own, higher max bid. The bid will be
+                        converted into USD.</p>
                 </div>
                 }@else if (paymentCount == 1){
                   <div class="place-bid text-center">
@@ -109,8 +109,8 @@
                   <div class="place-bid text-center ">
                     <input #bid type="number" name="" id="" class="form-control">
                     <a role="button" class=" btn btn-secondary w-100 mt-3 mb-1" (click)="placeBid(bid.value)">Place A Bid</a>
-                    <p class="bid-limits ">Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
-                        converted into SEK.</p>
+                    <p class="bid-limits ">Minimum bid: {{auctionDetails.item.startPrice}} {{UserCurrency}} . Or enter your own, higher max bid. The bid will be
+                        converted into USD.</p>
                 </div>
                 }
 
@@ -129,8 +129,8 @@
                         <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
                             data-parent="#accordion">
                             <div class="card-body" style="text-align: center;">
-                                Minimum bid: 189 EUR. Or enter your own, higher max bid. The bid will be
-                                converted into SEK.
+                                Minimum bid: {{auctionDetails.item.startPrice}} {{UserCurrency}}. Or enter your own, higher max bid. The bid will be
+                                converted into USD.
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,6 @@
 
             <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
                 <p class="title">Bid history</p>
-                
                 @for (bid of allBids; track $index;let i = $index) {
                 <div class="row single-bid mb-1"
                   [ngClass]="{'highlight': i === 0 && highlightNewBid}">
