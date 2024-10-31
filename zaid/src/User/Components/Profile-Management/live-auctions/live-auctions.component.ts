@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 
 export class LiveAuctionsComponent implements OnInit {
 LiveAuctions : any[] =[];
+page:number=1;
   constructor(private AuctionService:AuctionService) { }
 
   ngOnInit() {
