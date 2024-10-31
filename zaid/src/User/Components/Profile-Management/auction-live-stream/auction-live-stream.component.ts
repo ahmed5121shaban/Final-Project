@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route } from '@angular/router';
 import { AuctionService } from '../../../../Action/Services/auction.service';
 import { BidService } from '../../../../Action/Services/bid.service';
 import { error } from 'console';
 import * as signalR from '@microsoft/signalr';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 // interface Reply {
 //   id: number;
 //   text: string;
@@ -32,7 +33,8 @@ export class AuctionLiveStreamComponent {
   allBids:any;
 
   constructor(private route :ActivatedRoute,private auctionService :AuctionService,private bidService:BidService
-    ,private toastr: ToastrService
+    ,private toastr: ToastrService,
+    private location:Location
   ){
     this.openConnectionAndGetAllBidsWithLast();
   }
@@ -86,11 +88,15 @@ ngOnInit(): void {
 Close(id:number):void{
   this.auctionService.CloseAuction(id).subscribe({
     next:res=>{
-    console.log(res);
+      this.location.back();
+      console.log(res);
+    
+    
 
 
     }
-  })
+  });
+  
 }
 
 openConnectionAndGetAllBidsWithLast() {

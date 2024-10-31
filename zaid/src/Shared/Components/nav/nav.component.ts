@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
@@ -21,7 +21,7 @@ export interface Notification {
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit  {
   hubConnection!: signalR.HubConnection;
   allNotifications!: Notification[];
   alert!: boolean;
@@ -45,7 +45,20 @@ export class NavComponent implements OnInit {
         this.isLoggedIn=res
       },error:(err)=>console.log(err)
 
-    })
+    });
+    this.authService.roleSubject.subscribe({
+      next:(roles)=>{
+        console.log("userroles",roles);
+        this.role = roles.find(role=>role==="Admin") || "";
+        console.log("isadmin?",this.role);
+        
+      },
+      error:err=>{
+        console.log(err);
+        
+      }
+    });
+
   }
 
   ngOnInit() {
@@ -56,8 +69,9 @@ export class NavComponent implements OnInit {
         console.log(res);
       },
     });
-    this.getUserRole();
+    
   }
+ 
 
   logOut() {
     this.cookieService.delete('token');

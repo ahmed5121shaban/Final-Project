@@ -16,6 +16,7 @@ returnUrl:string;
   form: FormGroup;
   passwordFieldType: string = 'password';
   passwordInputNotEmpty: boolean = false;
+  role!: string;
 
   constructor(private router: Router,
     private builder: FormBuilder,
@@ -32,6 +33,18 @@ returnUrl:string;
     });
     this.form.get('password')!.valueChanges.subscribe(value => {
       this.passwordInputNotEmpty = value.length > 0;
+    });
+    this.authService.roleSubject.subscribe({
+      next:(roles)=>{
+        console.log("userroles",roles);
+        this.role = roles.find(role=>role==="Admin") || "";
+        console.log("isadmin?",this.role);
+        
+      },
+      error:err=>{
+        console.log(err);
+        
+      }
     });
 
     this.returnUrl=this.route.snapshot.queryParamMap.get('returnUrl') || '/';
@@ -54,7 +67,13 @@ returnUrl:string;
           this.cookieService.set('token', response.token,2);
           this.toastr.success('Logged in successfully', 'Success');
           this.authService.isLoggedUserSubject.next(true)
-          this.location.back()
+          if(this.role=="Admin"){ 
+            this.router.navigate(['/admin']);
+          }
+          else{
+            this.location.back();
+          }
+          
       }
         else {
           this.toastr.error('Email or password is wrong', 'Error');
