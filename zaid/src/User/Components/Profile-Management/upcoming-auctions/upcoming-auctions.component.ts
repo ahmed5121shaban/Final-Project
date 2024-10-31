@@ -13,13 +13,13 @@ export class UpcomingAuctionsComponent {
     constructor(private AuctionService:AuctionService) { }
   
     ngOnInit() {
-    this.getUpcomingAuctions();
+    this.getSellerUpcomingAuctions();
     }
   
 
 
-  getUpcomingAuctions():void {
-    this.AuctionService.getUpcomingAuctions().subscribe({
+    getSellerUpcomingAuctions():void {
+    this.AuctionService.getSellerUpcomingAuctions().subscribe({
       next :(data)=>{
       this.UpcomingAuctions=data;
       console.log("auctions",data);

@@ -100,7 +100,7 @@ export class HomeComponent implements OnInit {
     this.getUpcoming();
     this.loadFavAuctions()
     this.getReviews();
-    this.getEvent();
+    
   }
 
   ngOnInit() {
@@ -544,6 +544,9 @@ getEvent(){
       this.isauctionFav[auction.id] = this.isauctionFav[auction.id] || false
     });
     this.nobids.forEach(auction => {
+      this.isauctionFav[auction.id] = this.isauctionFav[auction.id] || false
+    });
+    this.Upcoming.forEach(auction => {
       this.isauctionFav[auction.id] = this.isauctionFav[auction.id] || false
     });
 
