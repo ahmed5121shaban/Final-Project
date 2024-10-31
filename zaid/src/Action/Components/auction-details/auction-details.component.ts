@@ -127,15 +127,6 @@ export class AuctionDetailsComponent implements OnChanges {
   }
 
 
-
-  // comments
-  comments: Comment[] = [
-    { id: 1, text: 'This is a comment from a sara.',author:"sara", replies: [{id:2,text:"This is a reply from a buyer."}] },
-    { id: 1, text: 'This is a comment from a nermeen.',author:"nermeen",  replies: [{id:2,text:"This is a reply from a buyer."}] },
-    { id: 1, text: 'This is a comment from a nada.', author:"nada", replies: [{id:2,text:"This is a reply from a buyer."}] }
-    // Add more comments if needed
-  ];
-
   firstPayment(paymentMethod:number){
     this.paymentService.firstPaymentAuction({
       auctionID:this.auctionDetails.id,

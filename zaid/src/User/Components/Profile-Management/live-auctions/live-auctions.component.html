@@ -26,7 +26,7 @@
                 <div class="carousel-inner">
                   <div *ngFor="let image of auction.item.images; let j = index" [class.active]="j === 0"
                   class="carousel-item" style="cursor: pointer;">
-                  <img [src]="'http://localhost:5204/' + image"
+                  <img [src]="image"
                      class="d-block w-100 rounded-2">
                 </div>
                 </div>
