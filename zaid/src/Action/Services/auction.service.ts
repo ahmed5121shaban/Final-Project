@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Pagination } from '../Models/models/pagination.model';
 import { DoneAuction } from '../../User/Components/Profile-Management/waiting-auction/waiting-auction.component';
-import { CompleteAuctionPayment } from '../Components/won-auction/won-auction.component';
 
 
 

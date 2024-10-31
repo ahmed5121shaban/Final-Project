@@ -28,6 +28,7 @@ export class NavComponent implements OnInit {
   audio = new Audio();
   searchtxt:string="";
   isLoggedIn!:boolean;
+  role :string="";
   constructor(
     private cookieService: CookieService,
     private toaster: ToastrService,
@@ -55,6 +56,7 @@ export class NavComponent implements OnInit {
         console.log(res);
       },
     });
+    this.getUserRole();
   }
 
   logOut() {
@@ -100,6 +102,20 @@ export class NavComponent implements OnInit {
   onSearch() {
     if (this.searchtxt.trim()) {
       this.router.navigate(['../action/auction-list', this.searchtxt]);    }
+}
+getUserRole():void{
+  this.authService.roleSubject.subscribe({
+    next:(roles)=>{
+      console.log("userroles",roles);
+      this.role = roles.find(role=>role==="Admin") || "";
+      console.log("isadmin?",this.role);
+      
+    },
+    error:err=>{
+      console.log(err);
+      
+    }
+  })
 }
 
 

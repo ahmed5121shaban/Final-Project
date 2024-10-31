@@ -12,7 +12,7 @@
     <div class="input-group mb-2">
       <select class="form-control" formControlName="category">
         <option value="All">Select Category</option>
-        @for (category of categories.result; track $index) {
+        @for (category of categories?.result; track $index) {
           <option [value]="category.name">{{ category.name }}</option>
         }
       </select>
