@@ -1,0 +1,40 @@
+
+.not-found-container {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 100px  !important;
+    border-radius: 8px;
+}
+
+@keyframes up-down{
+
+    0%{
+        transform: translateY(10px);
+    }
+    100%{
+        transform: translateY(-10px);
+    }
+}
+
+.not-found-container img{
+   animation:up-down 2s ease-in-out infinite alternate-reverse both;
+   width: 200px;
+}
+
+
+.not-found-container p {
+    margin: 30px 0 20px  !important;
+    color: #333333;
+    font-size: 18px !important;
+}
+
+@media (max-width:400px) {
+   
+.not-found-container img{
+
+    width: 70% !important;
+   }
+   p{
+    font-size: 1.3em !important;
+   }
+  }

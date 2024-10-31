@@ -25,7 +25,7 @@
             <!-- card -->
             <div class="card h-100 card-lg">
                 <div class=" my-4 mx-4 ">
-                   
+
                 </div>
                 <!-- card body -->
                 <div class="card-body p-0 align-items-center justify-content-center">
@@ -34,36 +34,36 @@
                         <table class="table   table-centered table-striped table-hover mb-0 text-nowrap table-borderless">
                             <thead>
 
-                                <tr> 
-                                  
+                                <tr>
+
                                     <th>Image</th>
                                     <th>Icon</th>
                                     <th>Name</th>
                                     <th>items</th>
-                                    
-                                </tr>                           
+
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let category of Categories| paginate: { itemsPerPage: 7, currentPage: page }">
-                                 
+
                                     <td>
-                                        <img [src]="'http://localhost:5204/' + category.image" alt="" class="icon-shape icon-sm" style="height: 30px;width:40px ;">
+                                        <img [src]="category.image" alt="" class="icon-shape icon-sm" style="height: 30px;width:40px ;">
                                     </td>
                                     <td>
                                         <img [src]="'http://localhost:5204/' + category.icon" alt="" class="icon-shape icon-sm" style="height: 30px;width:40px ;">
                                     </td>
                                     <td>{{category.name}}</td>
                                     <td>{{category.items.length}}</td>
-                                  
+
                                 </tr>
-                               
+
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="border-top d-flex justify-content-between align-items-md-center mb-4 mx-3 flex-md-row flex-column gap-4">
                     <pagination-controls (pageChange)="page = $event" ></pagination-controls>
-                 
+
                 </div>
             </div>
         </div>

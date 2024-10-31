@@ -2,7 +2,7 @@
 <!-- Category Carousel Section -->
 <div class="container mt-5 position-relative">
   <owl-carousel-o [options]="categoryCarousel" class="categoryCarousel">
-   
+
     @for (category of Categories; track $index) {
 
     <ng-template carouselSlide>
@@ -112,7 +112,7 @@
                   <div class="carousel-inner">
                     <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
                     class="carousel-item" style="height: 30vh;">
-                    <img [src]="'http://localhost:5204/' + image" class="d-block w-100 card-img-top"
+                    <img [src]="image" class="d-block w-100 card-img-top"
                     alt="Auction item image">
                   </div>
                 </div>
@@ -177,7 +177,7 @@
                   <div class="carousel-inner">
                     <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
                     class="carousel-item" style="height: 30vh;">
-                    <img [src]="'http://localhost:5204/' + image" class="d-block w-100 card-img-top"
+                    <img [src]="image" class="d-block w-100 card-img-top"
                     alt="Auction item image">
                   </div>
                 </div>
@@ -241,7 +241,7 @@
                   <div class="carousel-inner">
                     <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
                     class="carousel-item" style="height: 30vh;">
-                    <img [src]="'http://localhost:5204/' + image" class="d-block w-100 card-img-top"
+                    <img [src]="image" class="d-block w-100 card-img-top"
                     alt="Auction item image">
                   </div>
                 </div>
@@ -305,7 +305,7 @@
                   <div class="carousel-inner">
                     <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
                     class="carousel-item" style="height: 30vh;">
-                    <img [src]="'http://localhost:5204/' + image" class="d-block w-100 card-img-top"
+                    <img [src]="image" class="d-block w-100 card-img-top"
                     alt="Auction item image">
                   </div>
                 </div>
@@ -369,7 +369,7 @@
                   <div class="carousel-inner">
                     <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
                     class="carousel-item" style="height: 30vh;">
-                    <img [src]="'http://localhost:5204/' + image" class="d-block w-100 card-img-top"
+                    <img [src]="image" class="d-block w-100 card-img-top"
                     alt="Auction item image">
                   </div>
                 </div>
@@ -417,7 +417,7 @@
   <div class="container pt-2">
     <div class="mt-4 d-flex align-items-center">
       <p class="mt-0 fs-2  text-decoration-none">Upcoming</p>
-     
+
     </div>
     <div class="feature-parent-card">
       <owl-carousel-o [options]="customOptions" class="d-flex flex-nowrap ">
@@ -430,7 +430,7 @@
                   <div class="carousel-inner">
                     <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
                     class="carousel-item" style="height: 30vh;">
-                    <img [src]="'http://localhost:5204/' + image" class="d-block w-100 card-img-top"
+                    <img [src]="image" class="d-block w-100 card-img-top"
                     alt="Auction item image">
                   </div>
                 </div>
@@ -478,7 +478,7 @@
  @if(Event.length!==0){
 
 
-<section class="event-section d-flex align-items-start py-5" 
+<section class="event-section d-flex align-items-start py-5"
     style="height: 90vh; background-image: linear-gradient(#bebebe0e,#363636b4), url('{{Event[0].image}}')">
     <!-- Your content here -->
 
@@ -490,7 +490,7 @@
       {{Event[0].startDate|date}}
     </p>
     <div>
-      <a routerLink="../action/auction-list" class="btn explore btn-lg me-2 py-2 px-3 fs-6">Explore 
+      <a routerLink="../action/auction-list" class="btn explore btn-lg me-2 py-2 px-3 fs-6">Explore
         <i class="fa-solid fa-circle-chevron-right ms-2"></i></a>
     </div>
   </div>
@@ -569,7 +569,7 @@
     <ng-template carouselSlide>
      <h6>{{category.name}}</h6>
      <div class="position-relative"  >
-    <img [src]="'http://localhost:5204/' + category.image" class="card-img-top" alt="Mark Seliger Print" style="width: 96%; height: 300px;" [routerLink]= "['../action/auction-list',category.name]">
+    <img [src]="category.image" class="card-img-top" alt="Mark Seliger Print" style="width: 96%; height: 300px;" [routerLink]= "['../action/auction-list',category.name]">
     <a style="cursor: pointer;" (click)="addToFav(category.id)">
       <div class="card-icon bg-light">
         <i class="fa-heart" [ngClass]="isFavCat[category.id] ? 'fas' : 'far'" [style.color]="isFavCat[category.id] ? 'red' : 'black'" ></i>
@@ -598,12 +598,12 @@
           <h3>{{review.buyer.user.name}}</h3>
         </figcaption>
       </figure>
-   
-    
+
+
     </ng-template>
   }
- 
- 
+
+
 
   </owl-carousel-o>
 </section>

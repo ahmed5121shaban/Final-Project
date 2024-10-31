@@ -14,8 +14,8 @@
                             <div class="star-rating">
                                 <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
                                     <a href="#">
-                                        <i class="fas fa-star" 
-                                                       [class.active]="i < averageRating" 
+                                        <i class="fas fa-star"
+                                                       [class.active]="i < averageRating"
                                                        [class.inactive]="i >= averageRating"></i>
                                     </a>
                                 </ng-container>
@@ -28,7 +28,7 @@
                                 <div class="rating-list-left text-dark">{{ rating.star }} Star</div>
                                 <div class="rating-list-center">
                                     <div class="progress">
-                                        <div class="progress-bar bg-orange" role="progressbar" 
+                                        <div class="progress-bar bg-orange" role="progressbar"
                                              [style.width.%]="rating.percentage" aria-valuemin="0" aria-valuemax="100">
                                             <span class="sr-only">{{ rating.percentage }}% Complete</span>
                                         </div>
@@ -37,8 +37,8 @@
                                 <div class="rating-list-right text-dark">{{ rating.percentage }}%</div>
                             </div>
                         </div>
-                        
-                        
+
+
                         <!-- <div class="graph-star-rating-footer text-center mt-3 mb-3">
                             <button type="button" class="btn btn-outline-primary btn-sm">Rate and Review</button>
                         </div> -->
@@ -48,7 +48,7 @@
                         <div class="reviews-members pt-4 pb-4" *ngFor="let review of sellerReviews">
                             <div class="media">
                                 <a routerLink="../user-profile">
-                                    <img alt="Reviewer image" [src]="'http://localhost:5204/' + review.profileImageUrl" class="mr-3 rounded-pill">
+                                    <img alt="Reviewer image" [src]="review.profileImageUrl" class="mr-3 rounded-pill">
                                 </a>
                                 <div class="media-body">
                                     <div class="reviews-members-header mb-3">
@@ -61,16 +61,16 @@
                                         <span class="star-rating">
                                             <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
                                                 <a href="#">
-                                                    <i class="fas fa-star" 
-                                                       [class.active]="i < review.rating" 
+                                                    <i class="fas fa-star"
+                                                       [class.active]="i < review.rating"
                                                        [class.inactive]="i >= review.rating"></i>
                                                 </a>
                                             </ng-container>
                                         </span>
-                                        
-                                        
+
+
                                     </div>
-                                    
+
                                     <div class="reviews-members-body text-secondary">
                                         <p>{{ review.reviewText }}</p>
                                     </div>

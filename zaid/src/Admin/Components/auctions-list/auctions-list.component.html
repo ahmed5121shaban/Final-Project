@@ -53,7 +53,7 @@
           </td>
           <td>
             <div *ngIf="auction.item.images && auction.item.images.length > 0; else noImage">
-              <img [src]="'http://localhost:5204/' + auction.item.images[0].src" alt="Auction Image" class="auction-image" />
+              <img [src]="auction.item.images[0].src" alt="Auction Image" class="auction-image" />
             </div>
             <ng-template #noImage>
               <span>No Image Available</span>
@@ -62,23 +62,23 @@
         </tr>
       </tbody>
     </table>
-  
+
     <nav>
       <ul class="pagination">
         <li class="page-item" [class.disabled]="pageActive === 1">
           <a class="page-link" (click)="pageActive !== 1 && onPageChange(pageActive - 1)">Previous</a>
         </li>
-        
-        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" 
+
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
             [class.active]="i + 1 === pageActive">
           <a class="page-link" (click)="onPageChange(i + 1)">{{ i + 1 }}</a>
         </li>
-        
+
         <li class="page-item" [class.disabled]="pageActive === totalPages">
           <a class="page-link" (click)="pageActive !== totalPages && onPageChange(pageActive + 1)">Next</a>
         </li>
       </ul>
     </nav>
   </div>
-  
+
 </div>

@@ -7,18 +7,19 @@ import { DeleteConfirmationComponent } from './Components/delete-confirmation/de
 import { WonAuctionComponent } from './Components/won-auction/won-auction.component';
 
 import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-feedback.component';
+import { authGuard } from '../Shared/Guards/auth.guard';
 
 
 
 
 const routes: Routes = [
-  { path: 'create-auction' , component: CreateAuctionComponent},
+  { path: 'create-auction' , component: CreateAuctionComponent,canActivate:[authGuard]},
   { path: 'auction-details/:id' , component: AuctionDetailsComponent},
   { path: 'auction-list/:category', component: AuctionListComponent }, // With category
   { path: 'auction-list', component: AuctionListComponent }, // Without category
-  { path: 'auction-edit/:id' , component: EditAuctionComponent},
-  { path: 'delete-confirm' , component: DeleteConfirmationComponent},
-   { path: 'won-auction/:itemID' , component: WonAuctionComponent},
+  { path: 'auction-edit/:id' , component: EditAuctionComponent,canActivate:[authGuard]},
+  { path: 'delete-confirm' , component: DeleteConfirmationComponent,canActivate:[authGuard]},
+   { path: 'won-auction/:itemID' , component: WonAuctionComponent,canActivate:[authGuard]},
   { path: 'auction-feedback' , component: AuctionFeedbackComponent},
 ];
 
