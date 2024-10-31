@@ -27,7 +27,7 @@ export class NavComponent implements OnInit {
   alert!: boolean;
   audio = new Audio();
   searchtxt:string="";
-  isLoggedIn:boolean;
+  isLoggedIn!:boolean;
   constructor(
     private cookieService: CookieService,
     private toaster: ToastrService,
@@ -36,10 +36,15 @@ export class NavComponent implements OnInit {
     private router:Router,
     private authService:AuthService,
 
-    
+
   ) {
     this.audio.src = 'audio/mixkit-correct-answer-tone-2870.wav';
-    this.isLoggedIn=this.authService.isLoggedIn;
+    this.authService.isLoggedUserSubject.subscribe({
+      next:(res)=>{
+        this.isLoggedIn=res
+      },error:(err)=>console.log(err)
+
+    })
   }
 
   ngOnInit() {
@@ -50,17 +55,12 @@ export class NavComponent implements OnInit {
         console.log(res);
       },
     });
-    // if(this.authService.isLoggedIn){
-    //   this.islogged = true;
-    // }
-  
   }
 
   logOut() {
     this.cookieService.delete('token');
-    this.cookieService.delete('auth');
+    this.authService.isLoggedUserSubject.next(false)
   if(this.authService.isLoggedIn==false){
-
     this.toaster.success('you Logout now');
     this.router.navigate(['../user/login']);
   }
