@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CategoryService } from '../../../Admin/Services/category.service';
@@ -8,6 +8,7 @@ import { FavouriteService } from '../../../Action/Services/favourite.service';
 import { EventService } from '../../../Admin/Services/event.service';
 import { AuthService } from '../../../User/Services/auth.service';
 import { Router } from '@angular/router';
+import { log } from 'console';
 
 
 
@@ -103,7 +104,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    let token = this.cookieService.get("token");
+  if(!token)
+    console.log("you dont login");
+    ;
+  let role = (JSON.parse(atob(this.cookieService.get("token").split('.')[1])))['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+  console.log(role['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],"you login with this roles");
+  console.log(role,"you login with this roles");
   }
   // handling fav categories
 
@@ -142,7 +149,7 @@ export class HomeComponent implements OnInit {
     })
   }
   else{
-    const returnUrl = this.router.url; 
+    const returnUrl = this.router.url;
       this.router.navigate(['/user/login'], { queryParams: { returnUrl } });
   }
 
@@ -501,10 +508,10 @@ getEvent(){
       error: (error) => {
         console.log(error)
       }
-    });   
+    });
   }
   else{
-    const returnUrl = this.router.url; 
+    const returnUrl = this.router.url;
       this.router.navigate(['/user/login'], { queryParams: { returnUrl } });
   }
     }

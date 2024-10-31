@@ -12,23 +12,24 @@ import { ItemsReviewComponent } from './Components/items-review/items-review.com
 import { AddCategoryComponent } from './Components/add-category/add-category.component';
 import { ShipmentTrackingComponent } from './Components/shipment-tracking/shipment-tracking.component';
 import { CategoryListComponent } from './Components/category-list/category-list.component';
+import { authGuard } from '../Shared/Guards/auth.guard';
 
 
 const routes: Routes = [
 
-  { path: "home", component: DashboardHomeComponent },
-  { path: 'users-list', component: UsersListComponent },
-  { path: 'profile-review', component: ProfileReviewComponent },
-  { path: 'profile-review/:id', component: ProfileReviewComponent },
-  { path: 'add-event', component: AddEventComponent },
-  { path: 'events-list', component: EventsListComponent },
-  { path: 'auctions-list', component: AuctionsListComponent },
-  { path: 'auction-live-stream/:id', component: AuctionLiveStreamComponent },
-  { path: 'Shipment-Tracking/:id', component: ShipmentTrackingComponent },
-  { path: 'complaints-list', component: ComplaintsListComponent },
-  { path: 'items-review', component: ItemsReviewComponent },
-  { path: 'add-category', component: AddCategoryComponent },
-  { path: 'categories-list',component: CategoryListComponent}
+  { path: "home", component: DashboardHomeComponent,canActivate:[authGuard] },
+  { path: 'users-list', component: UsersListComponent,canActivate:[authGuard] },
+  { path: 'profile-review', component: ProfileReviewComponent,canActivate:[authGuard] },
+  { path: 'profile-review/:id', component: ProfileReviewComponent,canActivate:[authGuard] },
+  { path: 'add-event', component: AddEventComponent,canActivate:[authGuard] },
+  { path: 'events-list', component: EventsListComponent,canActivate:[authGuard] },
+  { path: 'auctions-list', component: AuctionsListComponent,canActivate:[authGuard] },
+  { path: 'auction-live-stream/:id', component: AuctionLiveStreamComponent,canActivate:[authGuard] },
+  { path: 'Shipment-Tracking/:id', component: ShipmentTrackingComponent,canActivate:[authGuard] },
+  { path: 'complaints-list', component: ComplaintsListComponent,canActivate:[authGuard] },
+  { path: 'items-review', component: ItemsReviewComponent,canActivate:[authGuard] },
+  { path: 'add-category', component: AddCategoryComponent,canActivate:[authGuard] },
+  { path: 'categories-list',component: CategoryListComponent,canActivate:[authGuard]}
 
 ];
 
