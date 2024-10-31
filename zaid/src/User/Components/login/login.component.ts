@@ -64,7 +64,7 @@ returnUrl:string;
     this.authService.loginUser(this.form.value).subscribe(
       (response:any) => {
         if (response.status == 200) {
-          this.cookieService.set('token', response.token,2);
+          this.cookieService.set('token', response.token);
           this.toastr.success('Logged in successfully', 'Success');
           this.authService.isLoggedUserSubject.next(true)
           if(this.role=="Admin"){ 

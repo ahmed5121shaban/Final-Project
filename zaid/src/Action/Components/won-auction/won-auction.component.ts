@@ -5,25 +5,6 @@ import { PaymentService } from '../../Services/payment.service';
 import { Location } from '@angular/common';
 
 
-export interface CompleteAuctionPayment{
-  id:number,
-  creationDate:string,
-  status:string,
-  itemName:string,
-  itemDescription:string,
-  taxes:number,
-  sellerName:string,
-  city:string,
-  Street:string,
-  phoneNumber:string,
-  country:string,
-  totalBids:number,
-  startPrice:number,
-  endPrice:number,
-  method:number,
-  currency:string,
-}
-
 
 @Component({
   selector: 'app-won-auction',
@@ -32,7 +13,7 @@ export interface CompleteAuctionPayment{
 })
 export class WonAuctionComponent implements OnInit {
 
-  completeAuctionPayment!:CompleteAuctionPayment
+  completeAuctionPayment!:any;
 
   constructor(private auctionService:AuctionService,private activeRout:ActivatedRoute,
     private paymentService:PaymentService,private location: Location) {}

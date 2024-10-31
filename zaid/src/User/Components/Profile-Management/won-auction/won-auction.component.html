@@ -1,50 +1,57 @@
-
 <div class="container container-custom">
   <div *ngIf="!wonAuctions || wonAuctions.length === 0" class="d-flex justify-content-center  border-bottom border-3 pb-4">
-    <div class=" fw-bold opacity-75"><h5>There are no Auctions you Win to show.</h5></div>
+      <div class=" fw-bold opacity-75"><h5>There is no thing to show.</h5></div>
+  </div>
 </div>
-  <div *ngFor="let auction of wonAuctions; let i = index" class="card card-custom shadow">
-      <div class="card-body d-flex">
-          <div class="col-6">
-              <h5 class="card-title card-title-custom opacity-75">{{auction.auctionTitle}}</h5>
-              <h6 class="card-title card-title-custom opacity-75">{{auction.sellerName}}</h6>
-              <p class="card-text card-text-custom">
-                  <strong class="fw-bold opacity-75">Start Date: </strong>
-                  <span class="fw-semibold opacity-75" id="startDate">{{auction.startDate | date}}</span><br>
-                  <strong class="fw-bold opacity-75">End Date: </strong>
-                  <span class="fw-semibold opacity-75" id="endDate">{{auction.endDate | date}}</span><br>
-              </p>
-              <div class="d-flex align-items-center">
-                  <div><img src="/small-image/achivement-mission-sport-svgrepo-com.svg" width="50px" alt=""></div>
-                  <div><h3 class="ms-3 opacity-75 fw-bold">Congrats</h3></div>
-              </div>
-          </div>
-          <div class="col-6 d-flex justify-content-end">
-            <div id="carouselExample{{i}}" class="carousel slide w-75">
-              <div class="carousel-inner">
-                <div *ngFor="let image of auction.imageUrl; let j = index" [class.active]="j === 0" class="carousel-item">
-                  <img [src]="image" class="d-block w-100 rounded-2">
+
+<div class="container container-custom">
+  <div *ngIf="wonAuctions.length !== 0" class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+      <thead>
+        <tr>
+          <th scope="col">Item</th>
+          <th scope="col">Seller</th>
+          <th scope="col">Total price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let auction of wonAuctions| paginate: { itemsPerPage: 6, currentPage: page };let i=index;">
+          <td>
+            <div class="d-flex align-items-center">
+              <div id="carouselExample{{i}}" class="carousel slide w-75">
+                <div class="carousel-inner">
+                  <div *ngFor="let image of auction.imageUrl; let j = index" [class.active]="j === 0"
+                  class="carousel-item" style="cursor: pointer;">
+                  <img [src]="image"
+                     class="d-block w-100 rounded-2">
                 </div>
+                </div>
+                <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample' + i"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExample' + i"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
               </div>
-              <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample' + i" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              </button>
-              <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExample' + i" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              </button>
             </div>
-          </div>
-      </div>
-      <div *ngIf="auction?.completed && auction.shippingStatus == 3 && !auction.isReviewd">
-        <button class="hover-button btn btn-secondary" [routerLink]="['/user/add-review', auction.auctionID]">Add Review</button>
-    </div>
-    <ng-template *ngIf="!auction?.completed && auction.shippingStatus === 0">
-        <button class="hover-button btn btn-secondary" [routerLink]="['/action/won-auction', auction.itemID]">Complete Payment</button>
-    </ng-template>
+          </td>
 
-
+          <td>{{auction.sellerName}}</td>
+          <td>{{auction.totalPrice}}</td>
+          <td >
+            <a *ngIf="auction?.completed && auction.shippingStatus == 3 && !auction.isReviewd"  [routerLink]="['/user/add-review', auction.auctionID]">Add Review</a>
+            <a *ngIf="!auction?.completed && auction.shippingStatus === 0"  [routerLink]="['/action/won-auction', auction.itemID]">Complete Payment</a>   
+          </td>   
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="page = $event" ></pagination-controls>
 
   </div>
 </div>
+
 
 

@@ -10,7 +10,8 @@ import { PaymentService } from '../../../../Action/Services/payment.service';
   styleUrls: ['./won-auction.component.css']
 })
 export class WonAuctionComponent  {
-  wonAuctions:any;
+  page:number=1;
+  wonAuctions:any[]=[];
   auctioId:number=-1
 
 
@@ -65,9 +66,6 @@ export class WonAuctionComponent  {
     })
   }
 
-  canAddReview(): boolean {
-    return this.wonAuctions.completed && this.wonAuctions.shippingStatus == 3 && !this.wonAuctions.isReviewd;
-}
-
+ 
 
 }
