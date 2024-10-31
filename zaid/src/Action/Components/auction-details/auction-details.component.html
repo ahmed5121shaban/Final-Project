@@ -10,7 +10,7 @@
                 <div class="carousel-inner mb-5">
                     <ng-container *ngFor="let image of auctionDetails.item.images; let i = index">
                         <div class="carousel-item" [class.active]="i === 0">
-                            <img [src]="'http://localhost:5204/' + image" class="d-block w-100" alt="Auction Image {{ i + 1 }}">
+                            <img [src]="image" class="d-block w-100" alt="Auction Image {{ i + 1 }}">
                         </div>
                     </ng-container>
                 </div>
@@ -28,7 +28,7 @@
                     <ng-container *ngFor="let image of auctionDetails.item.images; let i = index">
                         <button type="button" [attr.data-bs-target]="'#itemimages'" [attr.data-bs-slide-to]="i"
                                 [class.active]="i === 0" aria-current="true" [attr.aria-label]="'Slide ' + (i + 1)">
-                            <img [src]="'http://localhost:5204/' + image" class="d-block w-100" alt="Thumbnail Image {{ i + 1 }}">
+                            <img [src]="image" class="d-block w-100" alt="Thumbnail Image {{ i + 1 }}">
                         </button>
                     </ng-container>
                 </div>
@@ -41,11 +41,10 @@
             <div class="bid-info-place  mb-3">
                 <div class="bid-info row bg-light  mb-3">
                     <div class="heighest-bid col-6">
-                        <p>Last bid:</p>
-                        @if (allBids!=null) {
-                          <h5>{{allBids[allBids.length-1].bidAmount}}$</h5>
-                        }@else {
+                        @if (allBids==undefined||allBids==null) {
                           <h5>No Bids Here $</h5>
+                        }@else {
+                          <h5>Last bid: {{allBids[allBids.length-1].bidAmount}}$</h5>
                         }
 
                         <p class="estimate-price">Start Price: {{auctionDetails.item.startPrice}}$</p>
@@ -59,7 +58,7 @@
                         @else{
                             <h5 id="end-time">Ended</h5>
                         }
-                        
+
                     </div>
                 </div>
 
@@ -101,7 +100,7 @@
                 }@else if (paymentCount == 3){
                   <div class="place-bid text-center ">
                     <input type="number" disabled name="" id="" class="form-control">
-                    <a role="button" (click)="firstPayment(method)" class=" btn btn-dark w-100 mt-3 mb-1">Bid The First Price: {{auctionDetails.item.startPrice}}$</a>
+                    <a role="button" (click)="firstPayment(method)" class=" btn btn-dark w-100 mt-3 mb-1">Bid The First Price</a>
                     <p class="bid-limits ">You must Bid the First Amount to Continue in this Auction.</p>
                 </div>
               }
@@ -224,7 +223,7 @@
             <div *ngFor="let auction of group" class="col-md-4">
               <div class="card">
                 <a [routerLink]="['/auction-details', auction.id]">
-                    <img [src]="'http://localhost:5204/' + auction.item.images[0].src"
+                    <img [src]="auction.item.images[0].src"
                     class="card-img-top" [alt]="auction.item.name">
                 </a>
                 <div class="card-body">

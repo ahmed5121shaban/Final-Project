@@ -11,7 +11,7 @@
                 <tr>
                   <th scope="col">Item</th>
                   <th scope="col">End date</th>
-                   <th scope="col">No. of Bids</th> 
+                   <th scope="col">No. of Bids</th>
                   <th scope="col">Start price</th>
                   <th scope="col">Current price</th>
                 </tr>
@@ -25,9 +25,9 @@
                           <div *ngFor="let image of auction.item.images; let j = index"
                             [class.active]="j === 0" class="carousel-item"
                             [routerLink]="['../../action/auction-details', auction.id]"
-    
+
                             style="cursor: pointer;">
-                            <img [src]="'http://localhost:5204/' + image" class="d-block w-100 rounded-2">
+                            <img [src]="image" class="d-block w-100 rounded-2">
                           </div>
                         </div>
                         <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample' + auction.id"
@@ -41,19 +41,18 @@
                       </div>
                     </div>
                   </td>
-    
+
                   <td>{{auction.endDate|date}}</td>
                    <td>{{auction.bidsNumber}}</td>
                   <td>{{auction.item.startPrice}}</td>
                   <td>{{auction.totalPrice}}</td>
-                 
+
                 </tr>
               </tbody>
             </table>
-              
+
               <pagination-controls (pageChange)="page = $event" ></pagination-controls>
             </div>
   </div>
-  
- 
-  
+
+

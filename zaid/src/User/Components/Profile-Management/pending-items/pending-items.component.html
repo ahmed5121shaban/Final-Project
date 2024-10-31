@@ -23,8 +23,8 @@
                 <div class="carousel-inner">
                   <div *ngFor="let image of item.images; let j = index" [class.active]="j === 0"
                   class="carousel-item" style="cursor: pointer;">
-                  <img [src]="'http://localhost:5204/' + image.src"
-                    (click)="showImage('http://localhost:5204/' + image.src)" class="d-block w-100 rounded-2">
+                  <img [src]="image.src"
+                    (click)="showImage(image.src)" class="d-block w-100 rounded-2">
                 </div>
                 </div>
                 <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + item.id"

@@ -11,7 +11,6 @@ export class PaymentService {
   addPaymentEmailUrl = "api/Payment/add-payment-email";
   getPaymentEmailUrl = "api/Payment/get-payment-email";
   userHavePaymentUrl= "api/Bid/user-have-payment/";
-  //PaymentForBuyerUrl= "api/payment/payment-for-buyer";
   addPaypalAmountUrl="api/payment/create-paypal-payment";
   addStripeAmountUrl="api/payment/create-stripe-payment";
   executePaypalPaymentUrl="api/Payment/auction/success";
@@ -34,9 +33,6 @@ export class PaymentService {
     return this.http.get(`${this.apiUrl}${this.getPaymentEmailUrl}`)
   }
 
-/*   getPaymentForBuyer(){
-    return this.http.get(`${this.apiUrl}${this.PaymentForBuyerUrl}`)
-  } */
 
   placeBid(bid:any){
     return this.http.post(`${this.apiUrl}${this.addBidUrl}`,bid)

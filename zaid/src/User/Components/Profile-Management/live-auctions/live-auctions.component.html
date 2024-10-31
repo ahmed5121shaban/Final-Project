@@ -14,7 +14,7 @@
                     <strong class="fw-bold opacity-75">End Time: </strong>
                     <span class="fw-semibold opacity-75" id="endDate">{{ auction.endDate | date: 'dd/MM/yyyy' }}</span><br>
                 </p>
-               
+
 
                 <!-- <div class="border border-1 rounded-2 p-3 bg-light-subtle">
                     <div class="d-flex align-items-center">
@@ -35,7 +35,7 @@
               <div id="carousel{{auction.item.id}}" class="carousel slide w-75">
                 <div class="carousel-inner">
                   <div class="carousel-item"  *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0">
-                    <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 rounded-2">
+                    <img [src]="image.src" class="d-block w-100 rounded-2">
                   </div>
                 </div>
                 <button class="carousel-control-prev " type="button"  [attr.data-bs-target]="'#carousel' + auction.item.id" data-bs-slide="prev">

@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AuctionService } from '../../../../Action/Services/auction.service';
 import { BidService } from '../../../../Action/Services/bid.service';
 import { error } from 'console';
+import * as signalR from '@microsoft/signalr';
+import { ToastrService } from 'ngx-toastr';
 // interface Reply {
 //   id: number;
 //   text: string;
@@ -26,21 +28,27 @@ export class AuctionLiveStreamComponent {
   auctionId! :number ;
   highestBid! :number ;
   startprice! :number;
+  hubConnection!:signalR.HubConnection;
+  allBids:any;
 
-  constructor(private route :ActivatedRoute,private auctionService :AuctionService,private bidService:BidService){}
+  constructor(private route :ActivatedRoute,private auctionService :AuctionService,private bidService:BidService
+    ,private toastr: ToastrService
+  ){
+    this.openConnectionAndGetAllBidsWithLast();
+  }
 
   getHighestBid():void {
     this.bidService.getHighestBid(this.auctionId).subscribe({
       next :(res)=>{
         if(res.result==""){
           console.log("pricc",this.startprice);
-          
+
           this.highestBid=this.startprice;
         }
         else{
           this.highestBid =res.result.Amount;
         }
-        
+
       },
       error :(err)=>{
         console.log("error",err);
@@ -52,14 +60,14 @@ export class AuctionLiveStreamComponent {
      next: res => {
         this.auction = res;
         console.log(this.auction);
-      
+
        // this.startprice=this.auction.item.startPrice;
       //  this.getHighestBid();
        // console.log('Auction:', this.auction,this.startprice);
       },
       error:err => {
         console.log(err);
-        
+
       }
   });
   }
@@ -70,20 +78,45 @@ ngOnInit(): void {
     this.auctionId = +params['id'];
     this.getAuctionDetails();
   });
-  
+  this.hubConnection.on('allBids', (res) => {
+    this.allBids = res;
+    console.log('All bids received:', res);
+  });
 }
 Close(id:number):void{
   this.auctionService.CloseAuction(id).subscribe({
     next:res=>{
     console.log(res);
 
-      
+
     }
   })
-
 }
 
+openConnectionAndGetAllBidsWithLast() {
+  this.hubConnection = new signalR.HubConnectionBuilder()
+    .withUrl('http://localhost:5204/bidsHub', {
+      transport: signalR.HttpTransportType.WebSockets,
+      skipNegotiation: true
+    })
+    .build();
 
+  this.hubConnection
+    .start()
+    .then(() => {
+      console.log('SignalR Connection started');
+      return this.hubConnection.invoke('joinGroup', this.auctionId);
+    })
+    .then(() => {
+      console.log('Joined group successfully, fetching bids...');
+      return this.hubConnection.invoke('AllBids', this.auctionId);
+    })
+    .catch((err) => {
+      console.log('SignalR Connection Error: ', err);
+      this.toastr.error(err);
+    });
+
+}
 
 
 
@@ -93,8 +126,8 @@ Close(id:number):void{
   //   { src: 'hd_item_3649360_e2ceb54174.jpg'},
   //   { src: 'hd_item_3649360_e2ceb54174.jpg'},
   //   { src: 'hd_item_3649360_e2ceb54174.jpg'}
-  
-   
+
+
 
     // Add more slides as needed
   // ];
@@ -117,7 +150,7 @@ Close(id:number):void{
   //   for (let i = 0; i < this.similarAuctions.length; i += 3) {
   //     this.groupedItems.push(this.similarAuctions.slice(i, i + 3));
   //   }
-  // }  
+  // }
 
 
 
@@ -129,5 +162,5 @@ Close(id:number):void{
   //   // Add more comments if needed
   // ];
 
-  
+
 }

@@ -2,7 +2,7 @@
     <div *ngIf="CompletedAuctions.length === 0" class="text-center mt-5">
         <div>
             <img src="small-image/completed-order-svgrepo-com.svg" width="50px" alt="profile" />
-          </div>        
+          </div>
           <h3 class="mt-3">You have no Auctions Paid Yet.</h3>
       </div>
       <div *ngIf="CompletedAuctions.length !== 0" class="table-responsive">
@@ -12,7 +12,7 @@
               <th scope="col">Item</th>
               <th scope="col">Buyer</th>
               <th scope="col">End date</th>
-               <th scope="col">No. of Bids</th> 
+               <th scope="col">No. of Bids</th>
               <th scope="col">Start price</th>
               <th scope="col">Total price</th>
             </tr>
@@ -28,7 +28,7 @@
                         [routerLink]="['../../action/auction-details', auction.id]"
 
                         style="cursor: pointer;">
-                        <img [src]="'http://localhost:5204/' + image" class="d-block w-100 rounded-2">
+                        <img [src]="image" class="d-block w-100 rounded-2">
                       </div>
                     </div>
                     <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample' + auction.id"
@@ -48,11 +48,11 @@
                <td>{{auction.bidsNumber}}</td>
               <td>{{auction.item.startPrice}}</td>
               <td>{{auction.totalPrice}}</td>
-             
+
             </tr>
           </tbody>
         </table>
-          
+
           <pagination-controls (pageChange)="page = $event" ></pagination-controls>
         </div>
 
