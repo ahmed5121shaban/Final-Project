@@ -12,31 +12,33 @@ import { Location } from '@angular/common';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-returnUrl:string;
+  returnUrl: string;
   form: FormGroup;
   passwordFieldType: string = 'password';
   passwordInputNotEmpty: boolean = false;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private builder: FormBuilder,
     private authService: AuthService,
     private toastr: ToastrService,
     private cookieService: CookieService,
-    private route:ActivatedRoute,
-    private location:Location
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.form = this.builder.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required]],
-      rememberMe: ["",],
+      rememberMe: [""],
     });
     this.form.get('password')!.valueChanges.subscribe(value => {
       this.passwordInputNotEmpty = value.length > 0;
     });
 
-    this.returnUrl=this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    this.returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
   }
-  get rememberMe(){
+
+  get rememberMe() {
     return this.form.controls['rememberMe'];
   }
   get email() {
@@ -44,24 +46,28 @@ returnUrl:string;
   }
   get password() {
     return this.form.controls['password'];
-
   }
 
   loginUser() {
+    debugger;
     this.authService.loginUser(this.form.value).subscribe(
-      (response:any) => {
+      (response: any) => {
         if (response.status == 200) {
-          this.cookieService.set('token', response.token);
+          this.cookieService.set('token', response.token, 2);
           this.toastr.success('Logged in successfully', 'Success');
-          this.authService.isLoggedUserSubject.next(true)
-          this.location.back()
-      }
-        else {
+          this.authService.isLoggedUserSubject.next(true);
+          
+          const userRole = this.authService.getUserRoleFromToken(response.token);
+          if (userRole.includes("Admin")) {
+            this.router.navigate(['/admin/home']);
+          } else {
+            this.location.back();
+          }
+        } else {
           this.toastr.error('Email or password is wrong', 'Error');
         }
       }
     );
-
   }
 
   togglePasswordVisibility() {

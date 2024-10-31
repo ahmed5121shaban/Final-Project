@@ -60,13 +60,13 @@ export class NavComponent implements OnInit {
   }
 
   logOut() {
-    this.cookieService.delete('token');
-    this.authService.isLoggedUserSubject.next(false)
-  if(this.authService.isLoggedIn==false){
-    this.toaster.success('you Logout now');
-    this.router.navigate(['../user/login']);
+    this.authService.logout();
+    if (!this.authService.isLoggedIn) {
+      this.toaster.success('You are now logged out');
+      this.router.navigate(['../user/login']);
+    }
   }
-  }
+  
 
   openConnectionAndGetAllBidsWithLast() {
     let token = this.cookieService.get('token');
