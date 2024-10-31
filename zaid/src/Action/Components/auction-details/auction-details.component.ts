@@ -190,6 +190,7 @@ export class AuctionDetailsComponent implements OnChanges {
       });
 
   }
+  
   getUserCurrency():void{
     this.userserv.getUserCurrency().subscribe({
       next:(data)=>{
