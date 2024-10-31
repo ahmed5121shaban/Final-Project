@@ -546,6 +546,9 @@ getEvent(){
     this.nobids.forEach(auction => {
       this.isauctionFav[auction.id] = this.isauctionFav[auction.id] || false
     });
+    this.Upcoming.forEach(auction => {
+      this.isauctionFav[auction.id] = this.isauctionFav[auction.id] || false
+    });
 
 
   }
