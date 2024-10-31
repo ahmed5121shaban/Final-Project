@@ -31,7 +31,6 @@ export class AuctionDetailsComponent implements OnChanges {
   groupedSimilarAuctions: any[][] = []; // Grouped auctions for the carouses
   successesPayment!: boolean;
   UserCurrency!:string;
-  //paymentDetailAuctionID!: any;
   secretKey!: string
   method!:number;
   allBids:any
@@ -51,10 +50,7 @@ export class AuctionDetailsComponent implements OnChanges {
       console.log(this.auctionId)
       this.getAuctionDetails(); // Fetch auction details by ID
       this.loadSimilarAuctions();
-      //this.getPaymentForBuyer();
     });
-
-
   }
   ngOnChanges(): void {}
 
@@ -65,30 +61,15 @@ export class AuctionDetailsComponent implements OnChanges {
 
 
   ngOnInit(): void {
-
     this.hubConnection.on('allBids', (res) => {
       this.allBids = res;
-    
       console.log('All bids received:', res);
     });
-    
     this.getUserCurrency();
-
   }
-
-/*   getPaymentForBuyer(){
-  this.paymentService.getPaymentForBuyer().subscribe({
-    next:(res:any)=>{
-      this.paymentDetailAuctionID = res.result;
-    },
-    error:(err)=>{console.log(err);}
-  });
-  } */
 
 
   userHavePayment(itemID:number,auctionID:number){
-    //error in this.auctionDetails.item.id/////
-
     this.paymentService.userHavePayment(itemID,auctionID).subscribe({
       next:(res:any)=>{
          this.paymentCount=res.count;
@@ -222,12 +203,12 @@ export class AuctionDetailsComponent implements OnChanges {
     this.userserv.getUserCurrency().subscribe({
       next:(data)=>{
         console.log("cuurr",data.result);
-        
+
         this.UserCurrency = data.result;
       },
       error:err=>{
         console.log(err);
-        
+
       }
     })
   }

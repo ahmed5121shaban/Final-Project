@@ -85,7 +85,7 @@ export class MessageComponent implements OnInit {
       .then(() => {
         console.log('SignalR Connection started');
         this.hubConnection.on('getMessages', (res) => {
-          this.allMessages.push(res);
+          this.allMessages=res;
           this.audio.load();
           this.audio.play().catch((err) => {
             console.error('Error playing sound:', err);

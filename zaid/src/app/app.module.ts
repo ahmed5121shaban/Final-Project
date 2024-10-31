@@ -8,7 +8,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { AdminModule } from '../Admin/Admin.module';
 import { UserModule } from '../User/User.module';
 import { ActionModule } from '../Action/Action.module';
-import { ItemsModule } from '../Items/Items.module';
 import { SharedModule } from '../Shared/Shared.module';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { headerInterceptor } from '../Shared/Interseptors/header intersptor/header.interceptor';
@@ -17,6 +16,8 @@ import { LoaderInterceptor } from '../Shared/Interseptors/loader intersptors/loa
 import { NgModule } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -30,10 +31,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ToastrModule.forRoot(),
     UserModule,
     ActionModule,
-    ItemsModule,
     SharedModule,
     AdminModule,
     NgxPaginationModule,
+    RouterModule,
+    CommonModule
 
   ],
   providers: [

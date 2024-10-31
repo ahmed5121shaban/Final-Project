@@ -23,7 +23,7 @@
             <div id="carouselExample{{i}}" class="carousel slide w-75">
               <div class="carousel-inner">
                 <div *ngFor="let image of auction.imageUrl; let j = index" [class.active]="j === 0" class="carousel-item">
-                  <img [src]="'http://localhost:5204/' + image" class="d-block w-100 rounded-2">
+                  <img [src]="image" class="d-block w-100 rounded-2">
                 </div>
               </div>
               <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample' + i" data-bs-slide="prev">
@@ -41,8 +41,8 @@
     <ng-template *ngIf="!auction?.completed && auction.shippingStatus === 0">
         <button class="hover-button btn btn-secondary" [routerLink]="['/action/won-auction', auction.itemID]">Complete Payment</button>
     </ng-template>
-    
-      
+
+
 
   </div>
 </div>

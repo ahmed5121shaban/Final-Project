@@ -36,8 +36,8 @@
               <div id="carousel{{ i }}" class="carousel slide" data-bs-ride="carousel" style="width: 100px;">
                 <div class="carousel-inner">
                   <div class="carousel-item" *ngFor="let image of item.images; let j = index" [class.active]="j === 0">
-                    <img [src]="'http://localhost:5204/' + image.src" class="d-block w-100 img-thumbnail" alt="Image"
-                      (click)="showImage('http://localhost:5204/' + image.src)">
+                    <img [src]="image.src" class="d-block w-100 img-thumbnail" alt="Image"
+                      (click)="showImage(image.src)">
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + i"

@@ -14,10 +14,18 @@ import { environment } from '../../environments/environment';
 export class AuthService {
 
   private localStorageKey = 'token';
-  isLoggedUserSubject!: BehaviorSubject<boolean>
+  isLoggedUserSubject = new BehaviorSubject<boolean>(this.cookieService.get('token')!='')
+  roleSubject = new BehaviorSubject<string[]>(
+    this.cookieService.get("token")!=''
+      ? JSON.parse(atob(this.cookieService.get("token").split('.')[1]))['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+      : [""]
+  );
+
   apiUrl=environment.apiUrl;
 
-  constructor(private http:HttpClient,private cookieService: CookieService) { }
+  constructor(private http:HttpClient,private cookieService: CookieService) {
+
+  }
 
 get isLoggedIn(){
   if(this.cookieService.get(this.localStorageKey)){

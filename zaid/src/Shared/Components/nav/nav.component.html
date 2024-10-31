@@ -7,52 +7,87 @@
         </button>
         <div class="collapse navbar-collapse " id="navbarNav">
             <form class="form form-inline mx-auto" (ngSubmit)="onSearch()">
-                <input 
-                  class="form-control mr-sm-2 position-relative" 
-                  type="search" 
-                  placeholder="Find your favorite item..." 
-                  aria-label="Search" 
-                  [(ngModel)]="searchtxt" 
+                <input
+                  class="form-control mr-sm-2 position-relative"
+                  type="search"
+                  placeholder="Find your favorite item..."
+                  aria-label="Search"
+                  [(ngModel)]="searchtxt"
                   name="searchtxt">
               </form>
-              
-            <ul class="navbar-nav ">
-               
-                <!-- Logged In State (Hidden by Default) -->
-                <li class="nav-item dropdown" id="notificationsDropdown">
-                    <a class="nav-link dropdown-toggle position-relative" (click)="removeNotify()" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 24 24">
-                            <path d="M 11.992188 0.9921875 A 0.50005 0.50005 0 0 0 11.5 1.5 L 11.5 3.1015625 C 7.350916 3.3738548 4.0332031 6.7498274 4.0332031 10.966797 L 4.0332031 14.167969 C 4.0332031 17.145781 2.046875 19.146484 2.046875 19.146484 A 0.50005 0.50005 0 0 0 2.4003906 20 L 9 20 C 9 21.651094 10.348906 23 12 23 C 13.651094 23 15 21.651094 15 20 L 21.599609 20 A 0.50005 0.50005 0 0 0 21.953125 19.146484 C 21.953125 19.146484 19.966797 17.145781 19.966797 14.167969 L 19.966797 10.966797 C 19.966797 6.7498274 16.649084 3.3738548 12.5 3.1015625 L 12.5 1.5 A 0.50005 0.50005 0 0 0 11.992188 0.9921875 z M 11.96875 4.0058594 A 0.50005 0.50005 0 0 0 12.029297 4.0058594 C 15.868695 4.0225904 18.966797 7.1233977 18.966797 10.966797 L 18.966797 14.167969 C 18.966797 16.654161 19.964948 18.160272 20.623047 19 L 3.3769531 19 C 4.0350519 18.160272 5.0332031 16.654161 5.0332031 14.167969 L 5.0332031 10.966797 C 5.0332031 7.1240638 8.1302752 4.023658 11.96875 4.0058594 z M 10 20 L 14 20 C 14 21.110906 13.110906 22 12 22 C 10.889094 22 10 21.110906 10 20 z"></path>
-                            </svg>
-                            @if (alert==true) {
-                              <div class="notify-alert position-absolute rounded-circle bg-danger"
-                              style="left: 15%;top: 30%;height: 10px;width: 10px;">
-                            </div>
-                            }
 
+                <ul class="navbar-nav ">
+                  @if(isLoggedIn==true){
+                  <!-- Logged In State (Hidden by Default) -->
+                  <li class="nav-item dropdown" id="notificationsDropdown">
+                      <a class="nav-link dropdown-toggle position-relative" (click)="removeNotify()" href="#" id="navbarDropdown" role="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 24 24">
+                              <path d="M 11.992188 0.9921875 A 0.50005 0.50005 0 0 0 11.5 1.5 L 11.5 3.1015625 C 7.350916 3.3738548 4.0332031 6.7498274 4.0332031 10.966797 L 4.0332031 14.167969 C 4.0332031 17.145781 2.046875 19.146484 2.046875 19.146484 A 0.50005 0.50005 0 0 0 2.4003906 20 L 9 20 C 9 21.651094 10.348906 23 12 23 C 13.651094 23 15 21.651094 15 20 L 21.599609 20 A 0.50005 0.50005 0 0 0 21.953125 19.146484 C 21.953125 19.146484 19.966797 17.145781 19.966797 14.167969 L 19.966797 10.966797 C 19.966797 6.7498274 16.649084 3.3738548 12.5 3.1015625 L 12.5 1.5 A 0.50005 0.50005 0 0 0 11.992188 0.9921875 z M 11.96875 4.0058594 A 0.50005 0.50005 0 0 0 12.029297 4.0058594 C 15.868695 4.0225904 18.966797 7.1233977 18.966797 10.966797 L 18.966797 14.167969 C 18.966797 16.654161 19.964948 18.160272 20.623047 19 L 3.3769531 19 C 4.0350519 18.160272 5.0332031 16.654161 5.0332031 14.167969 L 5.0332031 10.966797 C 5.0332031 7.1240638 8.1302752 4.023658 11.96875 4.0058594 z M 10 20 L 14 20 C 14 21.110906 13.110906 22 12 22 C 10.889094 22 10 21.110906 10 20 z"></path>
+                              </svg>
+                              @if (alert==true) {
+                                <div class="notify-alert position-absolute rounded-circle bg-danger"
+                                style="left: 15%;top: 30%;height: 10px;width: 10px;">
+                              </div>
+                              }
+
+                            </a>
+                      <div class="dropdown-menu dropdown-menu-left notifications-dropdown "
+                          aria-labelledby="navbarDropdown">
+                          @if (allNotifications) {
+                          @for (item of allNotifications.slice(0,3); track $index;let i = $index) {
+                          <a class="dropdown-item" href="#">
+                              {{item.subjectName}}
+                              <div class="notification-text">{{item.description}}.</div>
+                              <div class="notification-time">{{item.time|date:"medium"}}</div>
                           </a>
-                    <div class="dropdown-menu dropdown-menu-left notifications-dropdown "
-                        aria-labelledby="navbarDropdown">
-                        @if (allNotifications) {
-                        @for (item of allNotifications.slice(0,3); track $index;let i = $index) {
-                        <a class="dropdown-item" href="#">
-                            {{item.subjectName}}
-                            <div class="notification-text">{{item.description}}.</div>
-                            <div class="notification-time">{{item.time|date:"medium"}}</div>
-                        </a>
+                        }
+                        <a class=" dropdown-item text-decoration-none see-all text-center"  routerLink="../shared/notifications">See All
+                          Notifications</a>
+                      }@else{
+                        <p class=" dropdown-item text-decoration-none see-all text-center">You Haven't
+                          Notifications</p>
                       }
-                      <a class=" dropdown-item text-decoration-none see-all text-center"  routerLink="../shared/notifications">See All
-                        Notifications</a>
-                    }@else{
-                      <p class=" dropdown-item text-decoration-none see-all text-center">You Haven't
-                        Notifications</p>
-                    }
 
 
-                    </div>
-                </li>
-                <li class="nav-item dropdown " id="profileDropdown">
+                      </div>
+                  </li>
+                  @if(role == "Admin"){
+                  <li class="nav-item dropdown " id="profileDropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="profileDropdownLink" role="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="17" viewBox="0 0 17 17">
+                              <g>
+                              </g>
+                                  <path d="M17 16.488c-0.063-2.687-2.778-4.999-6.521-5.609v-1.374c0.492-0.473 0.842-1.207 1.071-1.833 0.332-0.166 0.624-0.536 0.794-1.033 0.238-0.688 0.146-1.323-0.206-1.629 0.028-0.238 0.046-0.481 0.015-0.723-0.079-0.663 0.065-1.038 0.194-1.368 0.106-0.277 0.229-0.591 0.106-0.945-0.442-1.273-1.727-1.974-3.618-1.974l-0.264 0.005c-1.313 0.047-1.707 0.6-1.971 1.115-0.033 0.062-0.077 0.146-0.077 0.151-1.712 0.153-1.697 1.569-1.684 2.707l0.003 0.369c0 0.205 0.009 0.419 0.026 0.639-0.425 0.3-0.504 1.005-0.179 1.737 0.185 0.415 0.452 0.729 0.749 0.892 0.243 0.674 0.625 1.47 1.179 1.965v1.283c-3.798 0.589-6.554 2.907-6.617 5.625l-0.012 0.512h17.023l-0.011-0.512zM1.054 16c0.392-2.094 2.859-3.821 6.122-4.204l0.441-0.052v-2.666l-0.216-0.15c-0.393-0.272-0.791-0.947-1.090-1.851l-0.083-0.281-0.294-0.051c-0.053-0.019-0.208-0.153-0.33-0.428-0.075-0.168-0.104-0.312-0.112-0.415l0.51 0.143-0.096-0.749c-0.042-0.33-0.064-0.651-0.064-0.95l-0.003-0.38c-0.015-1.341 0.051-1.634 0.773-1.699 0.545-0.048 0.752-0.449 0.876-0.689 0.15-0.292 0.28-0.543 1.12-0.574l0.227-0.004c0.829 0 2.279 0.169 2.669 1.282 0 0.043-0.052 0.177-0.090 0.275-0.145 0.374-0.364 0.939-0.254 1.853 0.024 0.188-0.007 0.424-0.040 0.675l-0.089 0.805 0.441-0.048c0.008 0.104-0.004 0.269-0.075 0.472-0.097 0.289-0.242 0.438-0.237 0.454h-0.36l-0.114 0.342c-0.283 0.853-0.65 1.497-1.009 1.768l-0.198 0.15v2.726l0.438 0.055c3.211 0.401 5.641 2.123 6.030 4.192h-14.893z" fill="#000000"></path>
+                              </svg>                    </a>
+                              <div class="dropdown-menu dropdown-menu-right profile-dropdown" aria-labelledby="profileDropdownLink">
+                                  <a class="dropdown-item" routerLink="../user/profile">
+                                    <i class="fas fa-user me-2"></i> Profile
+                                  </a>
+                                  <a class="dropdown-item" routerLink="../admin">
+                                    <i class="fas fa-cogs me-2"></i> Admin
+                                  </a>
+
+                                  <a class="dropdown-item" type="button" (click)="logOut()">
+                                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                                  </a>
+                                </div>
+
+                  </li>
+                  <li class="nav-item justify-content-between" id="sellLink">
+                      <a class="nav-link  "routerLink="../action/create-auction">
+                          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+                              <path d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 24 13 L 24 24 L 13 24 L 13 26 L 24 26 L 24 37 L 26 37 L 26 26 L 37 26 L 37 24 L 26 24 L 26 13 L 24 13 z"></path>
+                              </svg><span class="ms-1">Add item</span></a>
+
+                              <!-- <a class="nav-link  "routerLink="../admin/add-category">add category</a>
+                              <a class="nav-link  "routerLink="../admin/items-review">Review items</a> -->
+
+                  </li>
+                }
+                @else{
+                  <li class="nav-item dropdown " id="profileDropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdownLink" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="17" viewBox="0 0 17 17">
@@ -64,17 +99,12 @@
                                 <a class="dropdown-item" routerLink="../user/profile">
                                   <i class="fas fa-user me-2"></i> Profile
                                 </a>
-                                <a class="dropdown-item" routerLink="../admin">
-                                  <i class="fas fa-cogs me-2"></i> Admin
-                                </a>
-                                <a class="dropdown-item" routerLink="../user/login">
-                                  <i class="fas fa-sign-in-alt me-2"></i> Login
-                                </a>
+
                                 <a class="dropdown-item" type="button" (click)="logOut()">
                                   <i class="fas fa-sign-out-alt me-2"></i> Logout
                                 </a>
                               </div>
-                              
+
                 </li>
                 <li class="nav-item justify-content-between" id="sellLink">
                     <a class="nav-link  "routerLink="../action/create-auction">
@@ -86,18 +116,30 @@
                             <a class="nav-link  "routerLink="../admin/items-review">Review items</a> -->
 
                 </li>
-            
-       
-                 <!-- Logged Out State -->
-                <!-- <li class="nav-item">
-              <a class="nav-link" routerLink="../user/login">Login</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" routerLink="../user/register">Register</a>
-          </li> -->
-            
-            </ul>
-            
+
+                }
+
+                   <!-- Logged Out State -->
+                  <!-- <li class="nav-item">
+                <a class="nav-link" routerLink="../user/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="../user/register">Register</a>
+            </li> -->
+          }@else{
+            <li class="d-flex">
+              <a class="dropdown-item me-2" routerLink="../user/login">
+                <i class="fas fa-sign-in-alt me-1"></i> Login
+              </a>
+              <a class="dropdown-item" routerLink="../user/register">
+                <i class="fas fa-sign-in-alt me-1"></i> Register
+              </a>
+            </li>
+          }
+              </ul>
+
+
+
         </div>
 
     </div>

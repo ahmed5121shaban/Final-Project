@@ -53,10 +53,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of inactiveItems">
-            <td>
-              <!-- Display image directly from the src provided by the API -->
-              <img [src]="getImageUrl(item.images[0].src)" alt="{{ item.name }}" class="item-image">
-            </td>
+            <td><img src="http://localhost:5204/{{item.images[0].src}}" alt="{{ item.name }}" class="item-image"></td>
             <td>{{ item.name }}</td>
             <td>{{ item.description | shortText }}</td>
             <td>${{ item.startPrice }}</td>
@@ -68,6 +65,22 @@
       </table>
     </div>
 
+    <!-- Selected Items -->
+<!-- Selected Items 
+<div *ngIf="selectedItems.length > 0" class="mt-4 selected-items-wrapper">
+  <h4>Selected Items</h4>
+  <ul class="list-group">
+    <li *ngFor="let selectedItem of selectedItems" class="list-group-item selected-item">
+      <div class="d-flex justify-content-between align-items-center">
+        <span>{{ selectedItem.name }}</span>
+        <span>${{ selectedItem.price }}</span>
+      </div>
+      <p>{{ selectedItem.description }}</p>
+    </li>
+  </ul>
+</div>
+
+ -->
     <!-- Image Upload -->
     <div class="form-floating mb-3 file-upload-wrapper">
       <input type="file" id="auctionImage" formControlName="image" (change)="onFileChange($event)" class="form-control file-input" required />

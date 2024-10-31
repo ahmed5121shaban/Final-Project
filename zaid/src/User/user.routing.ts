@@ -28,20 +28,21 @@ import { AcceptedItemsComponent } from './Components/Profile-Management/accepted
 import { RejectedItemsComponent } from './Components/Profile-Management/rejected-items/rejected-items.component';
 import { AuctionLiveStreamComponent } from './Components/Profile-Management/auction-live-stream/auction-live-stream.component';
 import { UpcomingAuctionsComponent } from './Components/Profile-Management/upcoming-auctions/upcoming-auctions.component';
+import { authGuard } from '../Shared/Guards/auth.guard';
 
 
 
 const routes: Routes = [
   { path: 'register' , component: RegisterComponent},
   { path: 'login' , component: LoginComponent},
-  { path: 'reset-password' , component: PasswordResetComponent},
-  { path: 'new-password' , component: NewPasswordComponent},
-  { path: 'add-review/:id' , component: AddReviewComponent},
-  { path: 'user-profile' , component: UserProfileComponent},
-  { path: 'user-profile/:id' , component: UserProfileComponent},
+  { path: 'reset-password' , component: PasswordResetComponent,canActivate:[authGuard]},
+  { path: 'new-password' , component: NewPasswordComponent,canActivate:[authGuard]},
+  { path: 'add-review/:id' , component: AddReviewComponent,canActivate:[authGuard]},
+  { path: 'user-profile' , component: UserProfileComponent,canActivate:[authGuard]},
+  { path: 'user-profile/:id' , component: UserProfileComponent,canActivate:[authGuard]},
 
-      { path: '', component: ProfileManagementComponent, children: [
-      { path: 'profile', component: MyProfileComponent },
+      { path: '', component: ProfileManagementComponent,canActivate:[authGuard], children: [
+      { path: 'profile', component: MyProfileComponent},
       { path: 'payment', component: PaymentComponent },
       { path: 'profile-setting', component: ProfileSettingComponent },
       { path: 'shipping', component: ShippingComponent },

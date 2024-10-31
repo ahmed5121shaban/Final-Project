@@ -25,7 +25,8 @@ export class AcceptedItemsComponent {
     private formbuilder: FormBuilder)
    {
     const today = new Date();
-    this.today = today.toISOString().split('T')[0];
+    this.today = today.toISOString().slice(0, 16); // Formats as 'YYYY-MM-DDTHH:MM'
+    ;
     this.auctionForms = this.formbuilder.array([]);
 
     // get accepted items

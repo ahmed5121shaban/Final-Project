@@ -1,19 +1,13 @@
 <div class="container mt-4">
   <div [formGroup]="searchForm" class="search-container mb-4">
     <div class="input-group mb-2">
-      <input type="text" class="form-control" placeholder="Search by name..." (change)="onSearch($event)">
+      <input type="text" class="form-control" placeholder="Search by name..." (keydown.enter)="onSearch($event)">
     </div>
-    <!-- <div class="input-group mb-2">
-      <input type="date" class="form-control" placeholder="Start Date" formControlName="startDate">
-    </div>
-    <div class="input-group mb-2">
-      <input type="date" class="form-control" placeholder="End Date" formControlName="endDate">
-    </div> -->
     <div class="input-group mb-2">
       <select class="form-control" (change)="updateSortOption($event)">
-        <!-- <option value="" disabled>Auction Status</option> -->
-        <option value="open">Open</option>
-        <option value="closed">Closed</option>
+        <option value="">Select Auction Status</option>
+        <option value="Open">Open</option>
+        <option value="Closed">Closed</option>
         <option value="Live">Live</option>
       </select>
     </div>
@@ -27,95 +21,64 @@
   </div>
 
   <div class="table-wrapper">
-    <ngx-datatable #datatable class="bootstrap" [rows]="activeAuctions" [columnMode]="'force'" [headerHeight]="50"
-      [footerHeight]="50" [rowHeight]="'auto'"  [count]="totalItemsActive" (page)="onPageChange($event)">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>ID</th>
+          <th>Status</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Payment Status</th>
+          <th>Seller Name</th>
+          <th>Image</th>
+          <th *ngIf="filterOption === 'Live'">Live URL</th>
+          <th *ngIf="filterOption === 'Paid'">Shipment Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let auction of activeAuctions">
+          <td>{{ auction.item.name }}</td>
+          <td>{{ auction.id }}</td>
+          <td>{{ auction.ended ? 'Closed' : 'Open' }}</td>
+          <td>{{ auction.startDate | date:'yyyy-MM-dd' }}</td>
+          <td>{{ auction.endDate | date:'yyyy-MM-dd' }}</td>
+          <td>{{ auction.completed ? 'Paid' : 'Unpaid' }}</td>
+          <td>{{ auction.item.seller.user.name }}</td>
+          <td *ngIf="filterOption === 'Live'">
+            <a *ngIf="auction.id" [href]="'admin/auction-live-stream/' + auction.id" class="live-auction-link">View Live</a>
+          </td>
+          <td *ngIf="filterOption === 'Paid'">
+            <a *ngIf="auction.id" [href]="'admin/Shipment-Tracking/' + auction.id" class="live-auction-link">View</a>
+          </td>
+          <td>
+            <div *ngIf="auction.item.images && auction.item.images.length > 0; else noImage">
+              <img [src]="auction.item.images[0].src" alt="Auction Image" class="auction-image" />
+            </div>
+            <ng-template #noImage>
+              <span>No Image Available</span>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-      <ngx-datatable-column name="Name" prop="item.name" ></ngx-datatable-column>
+    <nav>
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="pageActive === 1">
+          <a class="page-link" (click)="pageActive !== 1 && onPageChange(pageActive - 1)">Previous</a>
+        </li>
 
-      <ngx-datatable-column name="ID" prop="id" ></ngx-datatable-column>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+            [class.active]="i + 1 === pageActive">
+          <a class="page-link" (click)="onPageChange(i + 1)">{{ i + 1 }}</a>
+        </li>
 
-      <ngx-datatable-column name="Status" [cellTemplate]="statusTemplate"></ngx-datatable-column>
-      <ng-template #statusTemplate let-row="row">
-        <span>{{ row.ended ? 'Closed' : 'Open' }}</span>
-      </ng-template>
-
-      <ngx-datatable-column name="Start Date" [cellTemplate]="startDateTemplate" >
-        <ng-template #startDateTemplate let-value="value">
-          {{ value ? (value | date:'yyyy-MM-dd') : '' }}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="End Date" [cellTemplate]="endDateTemplate" >
-        <ng-template #endDateTemplate let-value="value">
-          {{ value ? (value | date:'yyyy-MM-dd') : '' }}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="Payment Status" [cellTemplate]="PaymentStatusTemplate"></ngx-datatable-column>
-      <ng-template #PaymentStatusTemplate let-row="row">
-        <span>{{ row.completed ? 'paid' : 'unpaid' }}</span>
-      </ng-template>
-
-      <ngx-datatable-column name="Seller Name" prop="item.seller.user.name" ></ngx-datatable-column>
-
-      <!-- <ngx-datatable-column name="Live URL" [cellTemplate]="liveUrlTemplate" >
-        <ng-template #liveUrlTemplate let-row="row">
-          <a *ngIf="row.id" [href]="'admin/auction-live-stream/' + row.id" class="live-auction-link">View Live</a>
-        </ng-template>
-      </ngx-datatable-column> -->
-      <ngx-datatable-column *ngIf="filterOption === 'Live'" name="Live URL" [cellTemplate]="liveUrlTemplate">
-        <ng-template #liveUrlTemplate let-row="row">
-          <a *ngIf="row.id" [href]="'admin/auction-live-stream/' + row.id" class="live-auction-link">View Live</a>
-        </ng-template>
-      </ngx-datatable-column>
-
-      <!-- Conditionally show the Shipment Status column when payment status is 'Paid' -->
-      <ngx-datatable-column *ngIf="filterOption === 'Paid'" name="Shipment Status" [cellTemplate]="shipmentStatusTemplate">
-        <ng-template #shipmentStatusTemplate let-row="row">
-          <a *ngIf="row.id" [href]="'admin/Shipment-Tracking/' + row.id" class="live-auction-link">View</a>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="Image" [cellTemplate]="imageTemplate" >
-      </ngx-datatable-column>
-
-      <ngx-datatable-footer *ngIf="true">
-        <ng-template ngx-datatable-footer-template>
-          <div> Page {{ pageActive }} of {{ totalPages }}</div>
-        </ng-template>
-      </ngx-datatable-footer>
-    </ngx-datatable>
-
-    <ng-template #imageTemplate let-row="row">
-      <div *ngIf="row.item && row.item.images && row.item.images.length > 0; else noImage">
-        <img [src]="'http://localhost:5204/' + row.item.images[0].src" alt="Auction Image" class="auction-image" />
-      </div>
-      <ng-template #noImage>
-        <span>No Image Available</span>
-      </ng-template>
-    </ng-template>
-    <ng-template #liveUrlTemplate let-value="value">
-      <a *ngIf="value" class="live-auction-link">View Live</a>
-    </ng-template>
+        <li class="page-item" [class.disabled]="pageActive === totalPages">
+          <a class="page-link" (click)="pageActive !== totalPages && onPageChange(pageActive + 1)">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 
-  <nav>
-    <ul class="pagination">
-      <!-- Previous Button -->
-      <li class="page-item" [class.disabled]="pageActive === 1">
-        <a class="page-link" (click)="pageActive !== 1 && onPageChange(pageActive - 1)">Previous</a>
-      </li>
-    
-      <!-- Page Numbers -->
-      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" 
-          [class.active]="i + 1 === pageActive">
-        <a class="page-link" (click)="onPageChange(i + 1)">{{ i + 1 }}</a>
-      </li>
-    
-      <!-- Next Button -->
-      <li class="page-item" [class.disabled]="pageActive === totalPages">
-        <a class="page-link" (click)="pageActive !== totalPages && onPageChange(pageActive + 1)">Next</a>
-      </li>
-    </ul>
-    
-  </nav>
 </div>

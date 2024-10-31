@@ -28,11 +28,6 @@ const routes: Routes = [
       import('../Action/Action.module').then((m) => m.ActionModule),
   },
   {
-    path: 'items',component:UserLayoutComponent,
-    loadChildren: () =>
-      import('../Items/Items.module').then((m) => m.ItemsModule),
-  },
-  {
     path: 'shared',component:UserLayoutComponent,
     loadChildren: () =>
       import('../Shared/Shared.module').then((m) => m.SharedModule),

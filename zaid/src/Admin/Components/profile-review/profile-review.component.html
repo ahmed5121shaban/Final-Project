@@ -3,16 +3,16 @@
         <div class="card card-default card-profile">
             <div class="card-header-bg"></div>
             <div class="card-body card-profile-body">
-                
+
                 <div class="profile-avatar">
-                    <img class="rounded-circle" 
+                    <img class="rounded-circle"
                          *ngIf="sellerProfile?.imageUrl || buyerProfile?.imageUrl"
                          [src]="apiUrl + (sellerProfile?.imageUrl || buyerProfile?.imageUrl)"
                          alt="User Image">
-                
-                
-                
-                  
+
+
+
+
                     <span class="h5 d-block mt-3 mb-2">
                         {{ sellerProfile?.name || buyerProfile?.name }}
                     </span>
@@ -35,8 +35,8 @@
                             [ngClass]="{'active': !sellerProfile}" aria-selected="false">Buyer</button>
                     </li>
                 </ul>
-            
-                
+
+
 
                 <div class="tab-content" id="pills-tabContent">
                     <div *ngIf="sellerProfile" class="tab-pane fade show active" id="pills-seller" role="tabpanel" aria-labelledby="pills-seller-tab">
@@ -127,8 +127,8 @@
                                                 <li><a class="dropdown-item" (click)="sortItems('name'); $event.preventDefault();">Sort by Item Name</a></li>
                                                 <li><a class="dropdown-item" (click)="sortItems('category'); $event.preventDefault();">Sort by Category</a></li>
                                             </ul>
-                                            
-                                        </div>                                        
+
+                                        </div>
                                     </div>
                                     <div class="card-body">
                                         <table id="productsTable" class="table table-hover table-product" style="width:100%">
@@ -144,10 +144,10 @@
                                                 <tr *ngFor="let item of filteredSellerItems | paginate: { itemsPerPage: 5, currentPage: sellerCurrentPage }">
                                                     <td class="py-0">
                                                         <ng-container *ngFor="let image of item.images">
-                                                            <img [src]="apiUrl + '/' + image.src" alt="Item Image" class="img-large" />
+                                                            <img [src]="image.src" alt="Item Image" class="img-large" />
                                                         </ng-container>
                                                     </td>
-                                                    
+
                                                     <td>{{ item.name }}</td>
                                                     <td>{{ item.category }}</td>
                                                     <td>{{ item.description }}</td>
@@ -155,8 +155,8 @@
                                             </tbody>
                                         </table>
                                         <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <pagination-controls 
-                                                (pageChange)="sellerCurrentPage = $event" 
+                                            <pagination-controls
+                                                (pageChange)="sellerCurrentPage = $event"
                                                 class="pagination pagination-controls"></pagination-controls>
                                                 <span class="text-muted">
                                                     Page {{ sellerCurrentPage }} of {{ totalSellerPages }}
@@ -219,7 +219,7 @@
                                 </circle-progress>
                             </div>
                         </div>
-                    
+
 
                         <div class="row mt-5">
                             <div class="col-12">
@@ -234,7 +234,7 @@
                                                 Sort
                                             </button>
                                             <div class="dropdown">
-                                                
+
                                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                                                         <li><a class="dropdown-item" (click)="sortBuyerAuctions('name')">Sort by Item Name</a></li>
                                                         <li><a class="dropdown-item" (click)="sortBuyerAuctions('sellerName')">Sort by Seller Name</a></li>
@@ -242,10 +242,10 @@
     <li><a class="dropdown-item" (click)="sortBuyerAuctions('endDate')">Sort by End Date</a></li>
                                                     </ul>
                                                 </div>
-                                                
+
                                             </div>
-                                            
-                                            
+
+
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -275,11 +275,11 @@
                                             <pagination-controls (pageChange)="buyerCurrentPage = $event" class="pagination"></pagination-controls>
                                             <span class="text-muted">Page {{buyerCurrentPage}} of {{totalBuyerPages}}</span>
                                         </div>
-                                                                         
+
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

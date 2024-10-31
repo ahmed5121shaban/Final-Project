@@ -2,7 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PaymentService } from '../../../../Action/Services/payment.service';
 import { ToastrService } from 'ngx-toastr';
-
+import * as signalR from '@microsoft/signalr'
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -11,8 +11,9 @@ import { ToastrService } from 'ngx-toastr';
 export class PaymentComponent implements OnInit {
   paypalForm:FormGroup;
   stripeForm :FormGroup;
-  stripe!:string
-  paypal!:string
+  stripe!:string;
+  paypal!:string;
+  hubConnection!:signalR.HubConnection
   constructor(private formBuilder:FormBuilder,private paymentService:PaymentService,private toastr:ToastrService) {
 
     this.paypalForm = this.formBuilder.group({
@@ -74,5 +75,29 @@ export class PaymentComponent implements OnInit {
   }
 
 
+  openConnection() {
+    this.hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl('http://localhost:5204/profileHub', {
+        transport: signalR.HttpTransportType.WebSockets,
+        skipNegotiation: true
+      })
+      .build();
 
+    this.hubConnection
+      .start()
+      .then(() => {
+        console.log('SignalR Connected');
+        this.hubConnection.on('paypalEmail',(res)=>{
+          this.paypal = res;
+        });
+        this.hubConnection.on('stripeEmail',(res)=>{
+          this.stripe = res;
+        });
+      })
+      .catch((err) => {
+        console.log('SignalR Connection Error: ', err);
+        this.toastr.error(err);
+      });
+
+  }
 }
