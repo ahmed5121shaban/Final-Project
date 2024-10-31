@@ -223,7 +223,7 @@
             <div *ngFor="let auction of group" class="col-md-4">
               <div class="card">
                 <a [routerLink]="['/auction-details', auction.id]">
-                    <img [src]="auction.item.images[0].src"
+                    <img [src]="auction.item.images[0]"
                     class="card-img-top" [alt]="auction.item.name">
                 </a>
                 <div class="card-body">

@@ -40,11 +40,11 @@
         <tr *ngFor="let auction of activeAuctions">
           <td>{{ auction.item.name }}</td>
           <td>{{ auction.id }}</td>
-          <td>{{ auction.ended ? 'Closed' : 'Open' }}</td>
+          <td>{{ auction.isEnded ? 'Closed' : 'Open' }}</td>
           <td>{{ auction.startDate | date:'yyyy-MM-dd' }}</td>
           <td>{{ auction.endDate | date:'yyyy-MM-dd' }}</td>
           <td>{{ auction.completed ? 'Paid' : 'Unpaid' }}</td>
-          <td>{{ auction.item.seller.user.name }}</td>
+          <td>{{ auction.item.sellerName }}</td>
           <td *ngIf="filterOption === 'Live'">
             <a *ngIf="auction.id" [href]="'admin/auction-live-stream/' + auction.id" class="live-auction-link">View Live</a>
           </td>
@@ -53,7 +53,7 @@
           </td>
           <td>
             <div *ngIf="auction.item.images && auction.item.images.length > 0; else noImage">
-              <img [src]="auction.item.images[0].src" alt="Auction Image" class="auction-image" />
+              <img [src]="auction.item.images[0]" alt="Auction Image" class="auction-image" />
             </div>
             <ng-template #noImage>
               <span>No Image Available</span>

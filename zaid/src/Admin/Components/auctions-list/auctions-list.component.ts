@@ -34,21 +34,6 @@ interface Item {
   // Add other relevant properties from your item object
 }
 
-interface Auction {
-  id: number;
-  bids: any[]; // Adjust this type based on the bids structure
-  buyer: any | null; // Adjust this type based on the buyer structure
-  buyerID: string | null;
-  completed: boolean;
-  endDate: string; // Use Date type if you parse it later
-  ended: boolean;
-  favAuctions: any[]; // Adjust this type based on your favorite auctions
-  item: Item; // Reference to the Item object
-  startDate: string; // Use Date type if you parse it later
-  startPrice: number;
-  endPrice: number;
-  // Add any other relevant properties from your auction object
-}
 
 
 @Component({
@@ -58,7 +43,7 @@ interface Auction {
 })
 export class AuctionsListComponent implements OnInit {
 
-  activeAuctions: Auction[] = [];
+  activeAuctions: any[] = [];
   
   // Pagination properties
   pageActive: number = 1; 
