@@ -35,3 +35,7 @@
 .card-custom:hover .card-body {
   opacity: 0.3 !important;
 }
+.carousel-inner img{
+  max-width: 160px;
+  max-height: 160px;
+}
