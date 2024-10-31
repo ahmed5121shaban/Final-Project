@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit {
     this.getUpcoming();
     this.loadFavAuctions()
     this.getReviews();
-    this.getEvent();
+    
   }
 
   ngOnInit() {

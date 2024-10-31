@@ -50,6 +50,7 @@ export class AuctionDetailsComponent implements OnChanges {
       this.auctionId = +params['id']; // Get auction ID from route
       console.log(this.auctionId)
       this.getAuctionDetails(); // Fetch auction details by ID
+      this.getUserCurrency();
       this.loadSimilarAuctions();
       //this.getPaymentForBuyer();
     });
@@ -72,7 +73,6 @@ export class AuctionDetailsComponent implements OnChanges {
       console.log('All bids received:', res);
     });
     
-    this.getUserCurrency();
 
   }
 
