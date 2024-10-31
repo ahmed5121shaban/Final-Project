@@ -7,8 +7,25 @@
 
       <div class="row">
         <!-- Auction Item Image -->
-        <div class="col-md-4 align-content-center">
-          <img src="hd_item_3649360_e2ceb54174.jpg" alt="Auction Item" class="img-fluid rounded">
+       
+        <div class="d-flex col-md-4 align-items-center">
+          <div id="carouselExample" class="carousel slide w-25">
+            <div class="carousel-inner">
+              <div *ngFor="let image of completeAuctionPayment.images; let j = index" [class.active]="j === 0"
+              class="carousel-item" style="cursor: pointer;">
+              <img [src]="image"
+                 class="d-block w-100 rounded-2">
+            </div>
+            </div>
+            <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExample'"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExample'"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+          </div>
         </div>
         <!-- Auction Item and Invoice Details -->
         <div class="col-md-8 mt-2">
@@ -50,11 +67,11 @@
             <div class="card-body">
               <h6 class="card-subtitle mb-2 text-secondary">Total Price: </h6>
               <p class="card-text text-primary fs-3"><strong>
-                ${{completeAuctionPayment.startPrice+completeAuctionPayment.totalBids}}
-                 +
-                 ${{completeAuctionPayment.startPrice}}
+                ${{completeAuctionPayment.startPrice}}
+                +
+                ${{completeAuctionPayment.totalBids}}
                  =
-                ${{(completeAuctionPayment.startPrice+completeAuctionPayment.totalBids)-(completeAuctionPayment.startPrice)}}</strong></p>
+                ${{(completeAuctionPayment.startPrice+completeAuctionPayment.totalBids)}}</strong></p>
             </div>
           </div>
         </div>

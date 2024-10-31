@@ -26,14 +26,7 @@
   padding: 20px;
 }
 
-.hover-button {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  display: none !important;
-  z-index: 10 !important;
-}
+
 
 .card-custom:hover .hover-button {
   display: block !important;
