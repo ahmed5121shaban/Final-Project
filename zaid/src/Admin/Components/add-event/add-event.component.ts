@@ -4,7 +4,7 @@ import { CategoryService } from '../../Services/category.service';
 import { EventService } from '../../Services/event.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-add-event',
   templateUrl: './add-event.component.html',
@@ -17,6 +17,7 @@ export class AddEventComponent implements OnInit {
   selectedItems: number[]=[];
   uploadedImage!: File;
   fileName: string = ''; // لحفظ اسم الملف المختار
+  apiUrl = environment.apiUrl;
 
   allInactiveItems: { [key: string]: any[] } = {
     'Art': [
@@ -49,7 +50,7 @@ export class AddEventComponent implements OnInit {
       description: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
-      category: ['', Validators.required],
+      category: ['0', Validators.required],
       image: ['', Validators.required],
     });
   }
@@ -60,12 +61,25 @@ export class AddEventComponent implements OnInit {
 
   onCategoryChange(event: Event): void {
     const target = event.target as HTMLSelectElement;
-    const category = target.value;
-    this.inactiveItems = this.categories.result[parseInt(category)-1].items || [];
-    console.log(this.categories.result[parseInt(category)-1].items);
-    this.selectedItems = [];
+    const categoryId = parseInt(target.value, 10);
+  
+    // تحقق إذا كانت الفئة المختارة هي الخيار الافتراضي
+    if (categoryId === 0) {
+      this.inactiveItems = []; // تصفير قائمة العناصر
+      this.selectedItems = []; // تصفير العناصر المختارة
+    } else {
+      const selectedCategory = this.categories.find((cat: any) => cat.id === categoryId);
+      if (selectedCategory) {
+        this.inactiveItems = selectedCategory.items || [];
+        this.selectedItems = [];
+        console.log('Inactive items:', this.inactiveItems);
+      } else {
+        console.warn('Category not found or items are not available');
+      }
+    }
   }
-
+  
+  
   onItemSelect(event: Event, itemID: number): void {
     const target = event.target as HTMLInputElement;
     if (target.checked) {
@@ -91,27 +105,59 @@ export class AddEventComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (!this.eventForm.valid || !this.uploadedImage) {
+      this.toaster.error("Please fill in all required fields and upload an image.");
+      return;
+    }
+  
     const formData = new FormData();
-
-    formData.append("Title",this.eventForm.controls['name']?.value)
-    formData.append("Description",this.eventForm.controls['description']?.value)
-    formData.append("Type",this.eventForm.controls['category']?.value)
-    formData.append("startDate",this.eventForm.controls['startDate']?.value)
-    formData.append("EndDate",this.eventForm.controls['endDate']?.value)
-    formData.append("Image",this.uploadedImage,this.uploadedImage.name);
-    formData.append("itemsID",this.selectedItems.join("-"));
-    console.log(formData);
-
+    formData.append("Title", this.eventForm.controls['name']?.value);
+    formData.append("Description", this.eventForm.controls['description']?.value);
+    
+    // التحقق من الـ category قبل الإرسال
+    const categoryValue = this.eventForm.controls['category']?.value;
+    if (categoryValue) {
+      formData.append("Type", categoryValue);
+    } else {
+      this.toaster.error("Category is required.");
+      return;
+    }
+  
+    formData.append("startDate", this.eventForm.controls['startDate']?.value);
+    formData.append("EndDate", this.eventForm.controls['endDate']?.value);
+    formData.append("Image", this.uploadedImage, this.uploadedImage.name);
+    formData.append("itemsID", this.selectedItems.join("-"));
+    
     this.eventService.AddEvent(formData).subscribe({
-      next:(res)=>{this.toaster.success("The Event Added");this.router.navigateByUrl('/admin/events-list')},
-      error:(err)=>{this.toaster.error("The Event Not Added");}
-    })
-  }
-
-  getAllCategory(){
-    this.categoryService.getCategories().subscribe({
-      next:(res:any)=>{this.categories=res;console.log(res);
+      next: (res) => {
+        this.toaster.success("The Event Added");
+        this.router.navigateByUrl('/admin/events-list');
+      },
+      error: (err) => {
+        this.toaster.error("The Event Not Added");
+        console.error('Error adding event:', err);
       }
-    })
+    });
   }
-}
+  
+
+  getAllCategory() {
+    this.categoryService.getCategories().subscribe({
+      next: (res: any) => {
+        if (res && res.result) {
+          this.categories = res.result;
+          console.log(this.categories);
+        } else {
+          console.warn('No categories found in response');
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching categories:', err);
+      }
+    });
+  }
+  getImageUrl(imagePath: string | null | undefined): string {
+    return imagePath ? `${this.apiUrl}${imagePath}` : '';
+  }
+  
+}  
