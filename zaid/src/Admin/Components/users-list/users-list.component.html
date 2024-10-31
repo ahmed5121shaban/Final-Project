@@ -30,11 +30,13 @@
       [rowHeight]="'auto'"
       [limit]="10"
     >
-    <ngx-datatable-column name="Name" prop="name" [width]="-70"></ngx-datatable-column>
-    <ngx-datatable-column name="ID" prop="displayId" [width]="-70"></ngx-datatable-column>
-    <ngx-datatable-column name="Email" prop="email" [width]="-70"></ngx-datatable-column>
-    <ngx-datatable-column name="Role" prop="role" [width]="-70"></ngx-datatable-column>
-    <ngx-datatable-column name="Action" [width]="-70"> 
+
+    <ngx-datatable-column name="Name" prop="name" [width]="180" [minWidth]="150"></ngx-datatable-column>
+    <ngx-datatable-column name="ID" prop="displayId" [width]="130" [minWidth]="120"></ngx-datatable-column>
+    <ngx-datatable-column name="Email" prop="email" [width]="280" [minWidth]="250"></ngx-datatable-column>
+    <ngx-datatable-column name="Role" prop="role" [width]="120" [minWidth]="100"></ngx-datatable-column>
+    
+    <ngx-datatable-column name="Action" [width]="140">
       <ng-template ngx-datatable-cell-template let-row="row">
         <button class="btn btn-primary action-btn" (click)="viewProfile(row)">View Profile</button>
       </ng-template>
