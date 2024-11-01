@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { Route, Router } from '@angular/router';
 import { AuthService } from '../../../User/Services/auth.service';
 import { BehaviorSubject } from 'rxjs';
+import { ChatService } from '../../Services/chat/chat.service';
 
 export interface Notification {
   time: string;
@@ -25,6 +26,7 @@ export class NavComponent implements OnInit  {
   hubConnection!: signalR.HubConnection;
   allNotifications!: Notification[];
   alert!: boolean;
+  messageAlert!:boolean
   audio = new Audio();
   searchtxt:string="";
   isLoggedIn!:boolean;
@@ -36,6 +38,7 @@ export class NavComponent implements OnInit  {
     private location:Location,
     private router:Router,
     private authService:AuthService,
+    private chatService: ChatService,
 
 
   ) {
@@ -51,11 +54,11 @@ export class NavComponent implements OnInit  {
         console.log("userroles",roles);
         this.role = roles.find(role=>role==="Admin") || "";
         console.log("isadmin?",this.role);
-        
+
       },
       error:err=>{
         console.log(err);
-        
+
       }
     });
 
@@ -63,15 +66,14 @@ export class NavComponent implements OnInit  {
 
   ngOnInit() {
     this.openConnectionAndGetAllBidsWithLast();
-    this.notificationService.GetAllNotifications().subscribe({
-      next: (res: any) => {
-        this.allNotifications = res.result.reverse();
-        console.log(res);
-      },
+    this.hubConnection.on('threeNotification', (res: Notification[]) => {
+      this.allNotifications=res;
     });
-    
+    this.chatService.newMessage.subscribe((res)=>{
+      this.messageAlert = res
+    })
   }
- 
+
 
   logOut() {
     this.cookieService.delete('token');
@@ -94,6 +96,10 @@ export class NavComponent implements OnInit  {
 
     this.hubConnection
       .start()
+      .then(()=>{
+        console.log('SignalR Connection started');
+        return this.hubConnection.invoke("lastThreeNotification");
+      })
       .then(() => {
         console.log('SignalR Connection started');
         this.hubConnection.on('notification', (res: Notification) => {
@@ -112,7 +118,9 @@ export class NavComponent implements OnInit  {
   removeNotify() {
     this.alert = false;
   }
-
+  removeMessageNotify(){
+    this.messageAlert = false;
+  }
   onSearch() {
     if (this.searchtxt.trim()) {
       this.router.navigate(['../action/auction-list', this.searchtxt]);    }
@@ -123,11 +131,11 @@ getUserRole():void{
       console.log("userroles",roles);
       this.role = roles.find(role=>role==="Admin") || "";
       console.log("isadmin?",this.role);
-      
+
     },
     error:err=>{
       console.log(err);
-      
+
     }
   })
 }
