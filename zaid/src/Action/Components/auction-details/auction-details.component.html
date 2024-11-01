@@ -36,12 +36,15 @@
 
             <br>
         </div>
-
+ 
         <div class="bid col-xl-5  justify-content-center  p-md-0 mt-5 mt-md-0">
+        @if(auctionDetails.isEnded == false){
+          @if(isUpcoming==false){
+            <!-- LiveAuctions -->
             <div class="bid-info-place  mb-3">
                 <div class="bid-info row bg-light  mb-3">
                     <div class="heighest-bid col-6">
-                        @if (allBids==undefined||allBids==null) {
+                        @if (auctionDetails.bids.length==0) {
                           <h5>No Bids Here $</h5>
                         }@else {
                           <h5>Last bid: {{allBids[allBids.length-1].bidAmount}}$</h5>
@@ -51,17 +54,11 @@
                     </div>
                     <div class="bid-ends-in col-6">
                         <p>Ends in:</p>
-                        @if(auctionDetails.isEnded == false){
                             <h5 id="end-time">{{ auctionDetails.endDate | date: 'shortTime' }}</h5>
                             <p class="end-date">{{ auctionDetails.endDate | date: 'mediumDate' }}</p>
-                        }
-                        @else{
-                            <h5 id="end-time">Ended</h5>
-                        }
-
                     </div>
                 </div>
-
+        
                 @if ( paymentCount == 0){
 
                   <div class="place-bid text-center ">
@@ -112,7 +109,7 @@
                         converted into USD.</p>
                 </div>
                 }
-
+            
                 <!-- roles accordion  -->
                 <div id="accordion">
                     <div class="card">
@@ -136,19 +133,121 @@
                 </div>
             </div>
 
-            <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
-                <p class="title">Bid history</p>
-                @for (bid of allBids.slice().reverse(); let i = $index; track $index;) {
-                <div class="row single-bid mb-1"
-                  [ngClass]="{'highlight': i === 0 && highlightNewBid}">
-
-                    <div class="col-4 bidder">{{bid.buyerName}}</div>
-                    <div class="col-4 bid-date">{{bid.bidTime|date:'mediumTime'}}</div>
-                    <div class="col-4 bid-amount">{{bid.bidAmount}}</div>
-
+           
+              @if(auctionDetails.bids.length>0){
+                <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
+                    <p class="title">Bid history</p>
+                    @for (bid of allBids.slice().reverse(); let i = $index; track $index;) {
+                    <div class="row single-bid mb-1"
+                      [ngClass]="{'highlight': i === 0 && highlightNewBid}">
+    
+                        <div class="col-4 bidder">{{bid.buyerName}}</div>
+                        <div class="col-4 bid-date">{{bid.bidTime|date:'mediumTime'}}</div>
+                        <div class="col-4 bid-amount">{{bid.bidAmount}}</div>
+    
+                    </div>
+                  }
+                
                 </div>
               }
-            </div>
+              @else{
+                <div class="bid-history mt-0 mb-5 ">
+                    <p class="title">Bid history</p>
+                    <div class="row single-bid mb-1 justify-content-center">
+                      There is no Bids on This auction yet.
+                    </div>
+                  
+                </div>
+
+              }
+            }
+            @else{
+                <!-- upcomingAuctions -->
+                <div class="bid-info-place  mb-3">
+                    <div class="bid-info row bg-light  mb-3">
+                        <div class="heighest-bid col-6">
+                            <p class="estimate-price">Start Price: {{auctionDetails.item.startPrice}}$</p>
+                        </div>
+                        <div class="bid-ends-in col-6">
+                            <p>Starts in:</p>
+                                <h5 id="end-time">{{ auctionDetails.startDate | date: 'shortTime' }}</h5>
+                                <p class="end-date">{{ auctionDetails.startDate | date: 'mediumDate' }}</p>
+                        </div>
+                    </div>
+            
+                
+                
+                    <!-- roles accordion  -->
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header" style="text-align: center;" id="headingOne">
+                                <h5 class="mb-0 ">
+                                    <button class="btn" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        See Validations and Roles
+                                    </button>
+                                </h5>
+                            </div>
+    
+                            <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
+                                data-parent="#accordion">
+                                <div class="card-body" style="text-align: center;">
+                                    Minimum bid: {{auctionDetails.item.startPrice}} {{UserCurrency}}. Or enter your own, higher max bid. The bid will be
+                                    converted into USD.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bid-history mt-0 mb-5 ">
+                    <p class="title">Bid history</p>
+                    <div class="row single-bid mb-1 justify-content-center">
+                      There is no Bids on This auction yet.
+                    </div>
+                  
+                </div>
+
+            }
+        }
+        @else{
+                    <!-- ended Auctions -->
+                    <div class="bid-info-place  mb-3">
+                        <div class="bid-info row bg-light  mb-3 justify-content-center">
+                           <h5>Ended</h5>
+                        </div>
+                    </div>
+        
+                @if(auctionDetails.bids.length>0){
+                    <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
+                        <p class="title">Bid history</p>
+                        @for (bid of allBids.slice().reverse(); let i = $index; track $index;) {
+                        <div class="row single-bid mb-1"
+                          [ngClass]="{'highlight': i === 0 && highlightNewBid}">
+        
+                            <div class="col-4 bidder">{{bid.buyerName}}</div>
+                            <div class="col-4 bid-date">{{bid.bidTime|date:'mediumTime'}}</div>
+                            <div class="col-4 bid-amount">{{bid.bidAmount}}</div>
+        
+                        </div>
+                      }
+                    
+                    </div>
+                }
+                @else{
+                    <div class="bid-history mt-0 mb-5 ">
+                        <p class="title">Bid history</p>
+                        <div class="row single-bid mb-1 justify-content-center">
+                          There is no Bids on This auction.
+                        </div>
+                      
+                    </div>
+
+                }
+                 
+            }
+           
+        
+
             <div class="payment mb-5">
                 <p class="title">Payment options for this item</p>
                 <svg viewBox="0 0 3311 72" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -178,6 +277,7 @@
             </div>
 
         </div>
+  
     </div>
 
     <div class="row mt-5 mt-md-2">

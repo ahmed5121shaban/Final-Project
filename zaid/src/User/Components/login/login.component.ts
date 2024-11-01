@@ -16,6 +16,7 @@ export class LoginComponent {
   form: FormGroup;
   passwordFieldType: string = 'password';
   passwordInputNotEmpty: boolean = false;
+  role!: string;
 
   constructor(
     private router: Router,
@@ -33,6 +34,18 @@ export class LoginComponent {
     });
     this.form.get('password')!.valueChanges.subscribe(value => {
       this.passwordInputNotEmpty = value.length > 0;
+    });
+    this.authService.roleSubject.subscribe({
+      next:(roles)=>{
+        console.log("userroles",roles);
+        this.role = roles.find(role=>role==="Admin") || "";
+        console.log("isadmin?",this.role);
+        
+      },
+      error:err=>{
+        console.log(err);
+        
+      }
     });
 
     this.returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';

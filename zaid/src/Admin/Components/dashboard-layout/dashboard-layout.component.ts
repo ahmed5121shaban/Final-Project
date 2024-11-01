@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../../User/Services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ApiService } from '../../../User/Services/api.service';
+
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -7,4 +13,35 @@ import { Component } from '@angular/core';
 })
 export class DashboardLayoutComponent {
 
+User:any ;
+  constructor(private authService:AuthService,
+              private cookieService:CookieService,
+              private toaster:ToastrService,
+              private router: Router,
+              private userserv:ApiService
+){
+  this.userserv.getUserData().subscribe({
+    next:(data)=>{
+      console.log(data);
+      data.name = data.name.split(' ')[0];
+      this.User=data;
+
+    },
+    error:(err)=>{
+      console.log(err);
+      
+    }
+  })
 }
+
+
+  logOut() {
+    this.cookieService.delete('token');
+    this.authService.isLoggedUserSubject.next(false)
+  if(this.authService.isLoggedIn==false){
+    this.toaster.success('you Logout now');
+    this.router.navigate(['../user/login']);
+  }
+  }
+}
+

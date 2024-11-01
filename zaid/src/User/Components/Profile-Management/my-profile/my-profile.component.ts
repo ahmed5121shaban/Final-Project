@@ -6,16 +6,11 @@ import { ApiService } from '../../../Services/api.service';
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.css']
 })
-export class MyProfileComponent implements OnInit {
+export class MyProfileComponent  {
   User :any;
 
-  constructor(private userserv:ApiService) { }
+  constructor(private userserv:ApiService) {
 
-  ngOnInit() {
-  this.getUserData();
-    
-  }
-  getUserData():void{
     this.userserv.getUserData().subscribe({
       next:(data)=>{
         console.log(data);
@@ -27,7 +22,11 @@ export class MyProfileComponent implements OnInit {
         console.log(err);
         
       }
-    })
-  }
+    });
+
+   }
+
+ 
+ 
 
 }

@@ -25,16 +25,16 @@ returnUrl:string="/";
 
   favAuctionIds:any[]=[]
   // Pagination properties
-  pageActive: number = 1; 
-  itemsPerPage: number = 6; 
+  pageActive: number = 1;
+  itemsPerPage: number = 6;
   totalItemsActive: number = 0;
     // Filter properties
   searchtxt: string = '';
-  selectedCategory: any; 
-  selectedCategoryname: string=''; 
-  sortOption: string = 'Id'; 
+  selectedCategory: any;
+  selectedCategoryname: string='';
+  sortOption: string = 'Id';
   isAscending: boolean = false;
-  filterOption: string =''; 
+  filterOption: string ='';
   constructor(
     private auctionService: AuctionService,
     private categoryService: CategoryService,
@@ -49,7 +49,7 @@ returnUrl:string="/";
     this.loadCategories().then(() => {
       this.route.params.subscribe(params => {
         this.paramValue = params['category'] || '';
-  
+
         // Check if paramValue matches any category name
         const matchingCategory = this.categories.find(category => category.name === this.paramValue);
         if (matchingCategory) {
@@ -66,11 +66,11 @@ returnUrl:string="/";
           this.selectedCategory = '';
           this.filterOption = '';
         }
-  
+
         this.getFavCatIds();
         this.loadActiveAuctions();
         this.loadFavAuctions();
-        
+
       });
     });
 
@@ -78,25 +78,25 @@ returnUrl:string="/";
 
 
 ngOnInit(): void {
-  
+
 }
   toggleSortOrder(): void {
-    this.isAscending = !this.isAscending; 
-    this.loadActiveAuctions(); 
+    this.isAscending = !this.isAscending;
+    this.loadActiveAuctions();
   }
 
   // Handle sort option changes
   updateSortOption(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
-    this.filterOption = selectElement.value; 
-    this.loadActiveAuctions(); 
+    this.filterOption = selectElement.value;
+    this.loadActiveAuctions();
   }
-  
+
   loadActiveAuctions(): void {
       this.auctionService.getPaginatedAuctions(
         this.searchtxt,
-        this.sortOption,     
-        this.isAscending,     
+        this.sortOption,
+        this.isAscending,
         this.itemsPerPage,
         this.pageActive,
         this.selectedCategoryname,
@@ -122,7 +122,7 @@ ngOnInit(): void {
         next: (data) => {
           this.categories = data.result;
           this.UpdateCategoris();
-   
+
           resolve(); // Notify that categories have been loaded
         },
         error: (err) => {
@@ -136,12 +136,12 @@ ngOnInit(): void {
 
   onCategorySelect(category: string): void {
     this.selectedCategoryname = category;
-  
+
     this.pageActive = 1;
     this.searchtxt=this.selectedCategory;
     this.loadCategories();
     this.loadActiveAuctions();
-    
+
   }
 
   totalPagesActive(): number {
@@ -158,7 +158,7 @@ ngOnInit(): void {
 
 
   addToFav(id:number){
-    
+
     if(this.authService.isLoggedIn){
 this.favauctionService.addAuctionToFav(id).subscribe({
   next:(response)=>{
@@ -167,7 +167,7 @@ if(response==="added"){
 this.isFav[id]=true;}
 if(response==="remove")
   this.isFav[id]=false;
-    
+
   },
   error:(error)=>{
     console.log(error)
@@ -176,8 +176,8 @@ if(response==="remove")
 });
     }
     else{
-      const returnUrl = this.router.url; 
-      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });     
+      const returnUrl = this.router.url;
+      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });
     }
   }
 
@@ -190,7 +190,7 @@ this.isFav[favauctionId]=true;
   });
 },
 error:(error) =>{
-  console.log(error); 
+  console.log(error);
 },
 });
 }
@@ -201,7 +201,7 @@ updateFavState(){
   });
 }
 
- // handel fav categories 
+ // handel fav categories
   getFavCatIds():void{
     this.favcatService.getFavCatIds().subscribe({
       next:data=>{
@@ -209,9 +209,9 @@ updateFavState(){
         // if(data.length>0){
         //   this.categorysearch[0].isFavCat[this.categorysearch.id]=true;
         // }
-        data.forEach((cat:any) => this.isFavCat[cat]=true); 
+        data.forEach((cat:any) => this.isFavCat[cat]=true);
         console.log(data);
-        
+
       },
       error:err=>{
         console.log("my error is :",err);
@@ -236,13 +236,13 @@ updateFavState(){
       },
       error:err=>{
         console.log("my err is :",err);
-        
+
       }
 
     });}
     else{
-      const returnUrl = this.router.url; 
-      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });     
+      const returnUrl = this.router.url;
+      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });
     }
   }
   clearSearch(){
