@@ -37,9 +37,6 @@ export class HomeComponent implements OnInit {
   nobids: any[] = [];
   constructor(private cookieService: CookieService, private categoryService: CategoryService, private FavcategoryService: FavCategoryService, private auctionService: AuctionService,private favauctionService:FavouriteService,private eventService:EventService,private authService:AuthService,private router:Router) {
 
-
-
-
   }
 
   ngOnInit() {
@@ -236,28 +233,6 @@ getEvent(){
     }
   })
 }
-
-
-// getHomeSections() {
-//   this.auctionService.getHomeSections().subscribe({
-//     next: (response) => {
-//       console.log(response);
-
-//       this.popularAuctions = response.PopularAuctions;
-//       this.endingSoon=response.EndingSoon;
-//       this.newArrivals=response.NewArrivals;
-//       this.nobids=response.NoBidsAuctions;
-//       this.reviews=response.Testimonials;
-//       this.updateFavState();
-
-//     },
-//     error: (err) => {
-//       console.log(err);
-
-//     },
-//   });
-// }
-
 
 
   customOptions: OwlOptions = {

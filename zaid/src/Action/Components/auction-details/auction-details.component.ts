@@ -37,6 +37,7 @@ export class AuctionDetailsComponent implements OnChanges {
   lastBid:any;
   hubConnection!:signalR.HubConnection;
   highlightNewBid!:boolean
+  isUpcoming:boolean=false;
 
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
@@ -88,6 +89,7 @@ export class AuctionDetailsComponent implements OnChanges {
         next:(res: any) => {
           this.auctionDetails = res;
           console.log('Auction details:', this.auctionDetails);
+          this.checkIfUpcoming();
           this.userHavePayment(res.item.id,this.auctionId);
           this.getUserCurrency();
           this.loadSimilarAuctions();
@@ -203,6 +205,16 @@ export class AuctionDetailsComponent implements OnChanges {
 
       }
     })
+  }
+  
+  checkIfUpcoming():void{
+    const startDate = new Date(this.auctionDetails.startDate);
+
+    if (startDate.getTime() > Date.now()) {
+      this.isUpcoming = true;
+      console.log("isuppp",this.isUpcoming);
+      
+    }
   }
 
 }
