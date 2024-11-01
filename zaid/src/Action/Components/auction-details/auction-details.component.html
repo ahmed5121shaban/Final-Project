@@ -48,12 +48,14 @@
                         @if (auctionDetails.bids.length==0) {
                           <h5>No Bids Here </h5>
                         }@else {
-                          <h5>{{allBids[allBids.length-1].bidAmount}}EGP</h5>
+
+                            <p>Current price</p>
+                            <h5>{{auctionDetails.currentPrice}}$</h5>
                         }
 
-                        <p class="estimate-price">Start Price: {{auctionDetails.item.startPrice}}EGP</p>
-                    </div>
-                    <!-- <div class="bid-ends-in col-6">
+                        <p class="estimate-price">Start price: {{auctionDetails.item.startPrice}}$</p>
+                    </div>                         
+                    <div class="bid-ends-in col-6">
                         <p>Ends in:</p>
                             <h5 id="end-time">{{ auctionDetails.endDate | date: 'shortTime' }}</h5>
                             <p class="end-date">{{ auctionDetails.endDate | date: 'mediumDate' }}</p>
@@ -134,6 +136,7 @@
                                 Minimum bid: {{auctionDetails.item.startPrice}} {{UserCurrency}}. Or enter your own, higher max bid. The bid will be
                                 converted into USD.
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -141,6 +144,7 @@
 
            
               @if(auctionDetails.bids.length>0){
+                <p class="estimate-price">Last bid: {{allBids[allBids.length-1].bidAmount}}$</p>
                 <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
                     <p class="title">Bid history</p>
                     @for (bid of allBids.slice().reverse(); let i = $index; track $index;) {
