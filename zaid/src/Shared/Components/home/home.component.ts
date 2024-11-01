@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
   newArrival = "newArrivals";
   noBids = "noBids";
   endingsoon = "endingSoon";
-  items: any[]
   Categories: any[] = []
   favCategories: any[] = []
   isFavCat: { [key: number]: boolean } = {};
@@ -38,58 +37,6 @@ export class HomeComponent implements OnInit {
   nobids: any[] = [];
   constructor(private cookieService: CookieService, private categoryService: CategoryService, private FavcategoryService: FavCategoryService, private auctionService: AuctionService,private favauctionService:FavouriteService,private eventService:EventService,private authService:AuthService,private router:Router) {
 
-    this.items = [{
-      title: 'Classic Car Auction 1',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-
-      image: 'https://picsum.photos/501/500'
-
-    },
-    {
-      title: 'Classic Car Auction 2',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-
-      image: 'https://picsum.photos/510/500'
-
-    },
-    {
-      title: 'Classic Car Auction 3',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-      image: 'https://picsum.photos/520/510'
-    },
-    {
-      title: 'Classic Car Auction 4',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-      image: 'https://picsum.photos/510/501'
-    },
-    {
-      title: 'Classic Car Auction 5',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-      image: 'https://picsum.photos/500/502'
-    },
-    {
-      title: 'Classic Car Auction 6',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-      image: 'https://picsum.photos/520/500'
-    },
-    {
-      title: 'Classic Car Auction 7',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-      image: 'https://picsum.photos/502/500'
-    },
-    {
-      title: 'Classic Car Auction 8',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-      image: 'https://picsum.photos/500/520'
-    }]
     this.getAllFavCatIds();
     this.getAllCategories();
     this.getPopularAuctions();
@@ -287,28 +234,6 @@ getEvent(){
     }
   })
 }
-
-
-// getHomeSections() {
-//   this.auctionService.getHomeSections().subscribe({
-//     next: (response) => {
-//       console.log(response);
-
-//       this.popularAuctions = response.PopularAuctions;
-//       this.endingSoon=response.EndingSoon;
-//       this.newArrivals=response.NewArrivals;
-//       this.nobids=response.NoBidsAuctions;
-//       this.reviews=response.Testimonials;
-//       this.updateFavState();
-
-//     },
-//     error: (err) => {
-//       console.log(err);
-
-//     },
-//   });
-// }
-
 
 
   customOptions: OwlOptions = {
