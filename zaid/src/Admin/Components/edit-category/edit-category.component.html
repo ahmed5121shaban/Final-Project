@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row mb-8">
+      <div class="col-md-12">
+        <div class="d-md-flex justify-content-between align-items-center">
+          <div class="py-5">
+            <h2>Edit Category</h2>
+          </div>
+          <div>
+            <a routerLink="../categories-list" class="btn btn-light">Back to Categories</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <form class="row" [formGroup]="CategoryForm" (ngSubmit)="onSubmit()">
+      <div class="col-lg-12 col-12">
+        <div class="card mb-6 shadow border-0">
+          <div class="card-body p-5">
+            <label class="form-label">Category Image</label>
+            <div *ngIf="!removeImage && imagePreview">
+                <img [src]="imagePreview" alt="Current Image" style="max-width: 150px;">
+                <a type="button" (click)="removeCurrentImage()">Remove Image</a>
+              </div>
+              <input
+                type="file"
+                *ngIf="removeImage || !imagePreview"
+                (change)="onImageSelected($event)"
+                accept="image/*"
+              >
+  
+            <label class="form-label">Category Icon</label>
+            <div *ngIf="!removeIcon && iconPreview">
+                <img [src]="iconPreview" alt="Current Icon" style="max-width: 50px;">
+                <a type="button" (click)="removeCurrentIcon()">Remove Icon</a>
+              </div>
+              <input
+                type="file"
+                *ngIf="removeIcon || !iconPreview"
+                (change)="onIconSelected($event)"
+                accept="image/*"
+              >
+  
+            <div class="row">
+              <div class="mb-3 col-12">
+                <label for="name" class="form-label">Category Name</label>
+                <input type="text" id="name" class="form-control w-100" formControlName="name"
+                       [ngClass]="{'is-invalid': CategoryForm.controls['name'].invalid && CategoryForm.controls['name'].touched}">
+                <div *ngIf="CategoryForm.controls['name'].hasError('required') && CategoryForm.controls['name'].touched" class="invalid-feedback">
+                  <span>Category name is required</span>
+                </div>
+              </div>
+  
+              <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" formControlName="description"
+                          [ngClass]="{'is-invalid': CategoryForm.controls['description'].invalid && CategoryForm.controls['description'].touched}">
+                </textarea>
+                <div *ngIf="CategoryForm.controls['description'].hasError('required') && CategoryForm.controls['description'].touched" class="invalid-feedback">
+                  <span>Category description is required</span>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-lg-12">
+              <button class="btn btn-secondary" type="submit" [disabled]="CategoryForm.invalid">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
