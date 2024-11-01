@@ -61,8 +61,6 @@ export class AuctionDetailsComponent implements OnChanges {
     this.toastr.warning("you can't place bid in your auction")
   }
 
-
-
   ngOnInit(): void {
     this.hubConnection.on('allBids', (res) => {
       this.allBids = res;
