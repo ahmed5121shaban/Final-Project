@@ -6,17 +6,6 @@ import { error } from 'console';
 import * as signalR from '@microsoft/signalr';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
-// interface Reply {
-//   id: number;
-//   text: string;
-// }
-
-// interface Comment {
-//   id: number;
-//   author:string;
-//   text: string;
-//   replies: Reply[];
-// }
 
 @Component({
   selector: 'app-auction-live-stream',
@@ -31,14 +20,20 @@ export class AuctionLiveStreamComponent {
   startprice! :number;
   hubConnection!:signalR.HubConnection;
   allBids:any;
+  auctionEndDate!: Date; 
+  countdown: string = '';
+  private countdownInterval: any;
 
   constructor(private route :ActivatedRoute,private auctionService :AuctionService,private bidService:BidService
     ,private toastr: ToastrService,
     private location:Location
   ){
     this.openConnectionAndGetAllBidsWithLast();
-  }
 
+  }
+  ngOnDestroy(): void {
+    clearInterval(this.countdownInterval); // Clean up on component destroy
+  }
   getHighestBid():void {
     this.bidService.getHighestBid(this.auctionId).subscribe({
       next :(res)=>{
@@ -61,11 +56,8 @@ export class AuctionLiveStreamComponent {
     this.auctionService.getAuctionById(this.auctionId).subscribe({
      next: res => {
         this.auction = res;
+        this.auctionEndDate = new Date(res.endDate);
         console.log(this.auction);
-
-       // this.startprice=this.auction.item.startPrice;
-      //  this.getHighestBid();
-       // console.log('Auction:', this.auction,this.startprice);
       },
       error:err => {
         console.log(err);
@@ -79,6 +71,7 @@ ngOnInit(): void {
   this.route.params.subscribe(params =>{
     this.auctionId = +params['id'];
     this.getAuctionDetails();
+    this.startCountdown();
   });
   this.hubConnection.on('allBids', (res) => {
     this.allBids = res;
@@ -123,6 +116,32 @@ openConnectionAndGetAllBidsWithLast() {
     });
 
 }
+startCountdown() {
+  this.countdownInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const endTime = this.auctionEndDate.getTime(); 
+    const timeLeft = endTime - now;
 
+    if (timeLeft > 0) {
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+if(days>0){
+this.countdown = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}else if(hours>0){
+this.countdown = `${hours}h ${minutes}m ${seconds}s`;
+}else if (minutes>0){
+this.countdown = `${minutes}m ${seconds}s`;
+}else{
+this.countdown = `${seconds}s`;
+}
+     
+    } else {
+      this.countdown = 'Auction Ended';
+      clearInterval(this.countdownInterval);
+    }
+  }, 1000);
+}
 
 }

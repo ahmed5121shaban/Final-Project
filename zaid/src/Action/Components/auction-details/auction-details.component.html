@@ -44,19 +44,25 @@
             <div class="bid-info-place  mb-3">
                 <div class="bid-info row bg-light  mb-3">
                     <div class="heighest-bid col-6">
+                        <p>Last bid:</p>
                         @if (auctionDetails.bids.length==0) {
-                          <h5>No Bids Here $</h5>
+                          <h5>No Bids Here </h5>
                         }@else {
-                          <h5>Last bid: {{allBids[allBids.length-1].bidAmount}}$</h5>
+                          <h5>{{allBids[allBids.length-1].bidAmount}}EGP</h5>
                         }
 
-                        <p class="estimate-price">Start Price: {{auctionDetails.item.startPrice}}$</p>
+                        <p class="estimate-price">Start Price: {{auctionDetails.item.startPrice}}EGP</p>
                     </div>
-                    <div class="bid-ends-in col-6">
+                    <!-- <div class="bid-ends-in col-6">
                         <p>Ends in:</p>
                             <h5 id="end-time">{{ auctionDetails.endDate | date: 'shortTime' }}</h5>
                             <p class="end-date">{{ auctionDetails.endDate | date: 'mediumDate' }}</p>
-                    </div>
+                    </div> -->
+                    <div class="bid-ends-in col-6">
+                        <p>Ends in:</p>
+                        <h5 id="end-time">{{ countdown }}</h5>
+                        <p class="end-date">{{ auctionEndDate | date: 'mediumDate' }}</p>
+                      </div>
                 </div>
         
                 @if ( paymentCount == 0){
