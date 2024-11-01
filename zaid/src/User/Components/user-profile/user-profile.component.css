@@ -24,16 +24,54 @@
     margin-left: 5% !important;
 }
 
-.card {
+/* .card {
     border-radius: 10px !important;
     border: none;
     transition-duration: 0.5s;
-}
+} */
 
-.card:hover {
+/* .card:hover {
     transform: translateY(-3px);
-}
+} */
 
 .card-img img {
     border-radius: 10px !important;
 }
+
+.custom-card img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  .small-text {
+    font-size: 0.8rem;
+    color: #6c757d;
+    text-align: left;
+  }
+  
+  .bids {
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-align: left;
+  }
+  
+  .price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #28a745;
+    text-align: left;
+  }
+  .feature-parent-card{
+    transition: ease-in-out;
+  }
+  .custom-product-card{
+    max-width: 200px;
+  }

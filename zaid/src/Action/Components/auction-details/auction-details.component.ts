@@ -37,6 +37,7 @@ export class AuctionDetailsComponent implements OnChanges {
   lastBid:any;
   hubConnection!:signalR.HubConnection;
   highlightNewBid!:boolean
+  isUpcoming:boolean=false;
 
   constructor(private paymentService:PaymentService ,
     private auctionService: AuctionService,
@@ -44,13 +45,15 @@ export class AuctionDetailsComponent implements OnChanges {
     private route: ActivatedRoute,
     private userserv:ApiService)
   {
-    this.openConnectionAndGetAllBidsWithLast();
     this.route.params.subscribe(params => {
       this.auctionId = +params['id']; // Get auction ID from route
       console.log(this.auctionId)
       this.getAuctionDetails(); // Fetch auction details by ID
-      this.loadSimilarAuctions();
+
     });
+    this.openConnectionAndGetAllBidsWithLast();
+
+
   }
   ngOnChanges(): void {}
 
@@ -65,9 +68,8 @@ export class AuctionDetailsComponent implements OnChanges {
       this.allBids = res;
       console.log('All bids received:', res);
     });
-    this.getUserCurrency();
-  }
 
+  }
 
   userHavePayment(itemID:number,auctionID:number){
     this.paymentService.userHavePayment(itemID,auctionID).subscribe({
@@ -87,15 +89,15 @@ export class AuctionDetailsComponent implements OnChanges {
         next:(res: any) => {
           this.auctionDetails = res;
           console.log('Auction details:', this.auctionDetails);
+          this.checkIfUpcoming();
           this.userHavePayment(res.item.id,this.auctionId);
+          this.getUserCurrency();
+          this.loadSimilarAuctions();
         },
         error:(error) => {
           console.error('Error fetching auction details:', error);
         }
       });
-
-
-
 
     }
 
@@ -190,6 +192,7 @@ export class AuctionDetailsComponent implements OnChanges {
       });
 
   }
+
   getUserCurrency():void{
     this.userserv.getUserCurrency().subscribe({
       next:(data)=>{
@@ -202,6 +205,16 @@ export class AuctionDetailsComponent implements OnChanges {
 
       }
     })
+  }
+  
+  checkIfUpcoming():void{
+    const startDate = new Date(this.auctionDetails.startDate);
+
+    if (startDate.getTime() > Date.now()) {
+      this.isUpcoming = true;
+      console.log("isuppp",this.isUpcoming);
+      
+    }
   }
 
 }

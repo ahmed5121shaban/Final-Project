@@ -19,8 +19,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let auction of LiveAuctions| paginate: { itemsPerPage: 6, currentPage: page }">
-          <td>
+        <tr *ngFor="let auction of LiveAuctions| paginate: { itemsPerPage: 6, currentPage: page }" >
+          <td [routerLink]="['../auction-live-stream',auction.id]" style="cursor: pointer;">
             <div class="d-flex align-items-center">
               <div id="carouselExample{{auction.id}}" class="carousel slide w-75">
                 <div class="carousel-inner">

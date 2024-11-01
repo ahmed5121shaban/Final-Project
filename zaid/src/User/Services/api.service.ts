@@ -39,7 +39,7 @@ updateAddress(data: FormData): Observable<any> {
   }
 
   getUserProfile(userId:string):Observable<any>{
-    return this.http.get<any>(`${this.baseUrl}/UserProfile/${userId}`)
+    return this.http.get<any>(`http://localhost:5204/api/Acount/UserProfile/${userId}`)
   }
   
   getUserData(): Observable<any>{
