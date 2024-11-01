@@ -16,8 +16,9 @@
         <thead class="table-light table-borderless">
           <tr>
             <th>Item Title</th>
-            <th>Seller Name</th>
+            <th>Category</th>
             <th>Description</th>
+            <th>Seller Name</th>
             <th>Start Price</th>
             <th>Reserve Price</th>
             <th>Certificate or Contract</th>
@@ -28,8 +29,9 @@
         <tbody>
           <tr *ngFor="let item of items; let i = index">
             <td>{{ item.name }}</td>
-            <td>{{ item.seller.name }}</td>
+            <td>{{ item.category }}</td>
             <td>{{ item.description }}</td>
+            <td>{{ item.sellerName}}</td>
             <td>{{ item.startPrice }}</td>
             <td>{{ item.sellPrice }}</td>
             <td><a [href]="'http://localhost:5204/' + item.contract" target="_blank"> View Contract</a></td>
