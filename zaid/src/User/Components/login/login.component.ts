@@ -56,7 +56,7 @@ export class LoginComponent {
           this.cookieService.set('token', response.token);
           this.toastr.success('Logged in successfully', 'Success');
           this.authService.isLoggedUserSubject.next(true);
-          
+          this.authService.roleSubject.next(JSON.parse(atob(this.cookieService.get("token").split('.')[1]))['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'])
           const userRole = this.authService.getUserRoleFromToken(response.token);
           if (userRole.includes("Admin")) {
             this.router.navigate(['/admin/home']);
