@@ -125,20 +125,6 @@ export class NavComponent implements OnInit  {
     if (this.searchtxt.trim()) {
       this.router.navigate(['../action/auction-list', this.searchtxt]);    }
 }
-getUserRole():void{
-  this.authService.roleSubject.subscribe({
-    next:(roles)=>{
-      console.log("userroles",roles);
-      this.role = roles.find(role=>role==="Admin") || "";
-      console.log("isadmin?",this.role);
-
-    },
-    error:err=>{
-      console.log(err);
-
-    }
-  })
-}
 
 
 }

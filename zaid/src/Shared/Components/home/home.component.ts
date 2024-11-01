@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
   newArrival = "newArrivals";
   noBids = "noBids";
   endingsoon = "endingSoon";
-  items: any[]
   Categories: any[] = []
   favCategories: any[] = []
   isFavCat: { [key: number]: boolean } = {};
@@ -38,79 +37,16 @@ export class HomeComponent implements OnInit {
   nobids: any[] = [];
   constructor(private cookieService: CookieService, private categoryService: CategoryService, private FavcategoryService: FavCategoryService, private auctionService: AuctionService,private favauctionService:FavouriteService,private eventService:EventService,private authService:AuthService,private router:Router) {
 
-    this.items = [{
-      title: 'Classic Car Auction 1',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
 
-      image: 'https://picsum.photos/501/500'
 
-    },
-    {
-      title: 'Classic Car Auction 2',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
 
-      image: 'https://picsum.photos/510/500'
-
-    },
-    {
-      title: 'Classic Car Auction 3',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-      image: 'https://picsum.photos/520/510'
-    },
-    {
-      title: 'Classic Car Auction 4',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-      image: 'https://picsum.photos/510/501'
-    },
-    {
-      title: 'Classic Car Auction 5',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-      image: 'https://picsum.photos/500/502'
-    },
-    {
-      title: 'Classic Car Auction 6',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-      image: 'https://picsum.photos/520/500'
-    },
-    {
-      title: 'Classic Car Auction 7',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-      image: 'https://picsum.photos/502/500'
-    },
-    {
-      title: 'Classic Car Auction 8',
-      text1: 'August 15, 2024',
-      text2: '$10,000',
-      image: 'https://picsum.photos/500/520'
-    }]
-    this.getAllFavCatIds();
-    this.getAllCategories();
-    this.getPopularAuctions();
-    this.getAllActiveAuctions();
-    this.getNewArrivalse();
-    this.getEndingSoon();
-    this.getNoBids();
-    this.getUpcoming();
-    this.loadFavAuctions()
-    this.getReviews();
-    
   }
 
   ngOnInit() {
-    let token = this.cookieService.get("token");
-  if(!token)
-    console.log("you dont login");
-    ;
-  let role = (JSON.parse(atob(this.cookieService.get("token").split('.')[1])))['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-  console.log(role['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],"you login with this roles");
-  console.log(role,"you login with this roles");
+    this.getPopularAuctions();
+    this.getAllActiveAuctions();
+    this.getNewArrivalse();
+
   }
   // handling fav categories
 
@@ -157,6 +93,7 @@ export class HomeComponent implements OnInit {
 
 
   }
+
   getAllFavCatIds() {
     this.FavcategoryService.getFavCatIds().subscribe({
       next: res => {
@@ -176,19 +113,30 @@ export class HomeComponent implements OnInit {
 
   }
   getPopularAuctions() {
+    this.getAllCategories();
     this.auctionService.getPopularAuctions().subscribe({
       next: (response) => {
         console.log(response);
 
         this.popularAuctions = response;
-        this.updateFavState();
 
+        this.updateFavState();
+        this.getEndingSoon();
+        this.getNoBids();
+        this.getUpcoming();
+        this.loadFavAuctions()
+        this.getReviews();
+        this.getAllFavCatIds();
       },
       error: (err) => {
         console.log(err);
 
       },
     });
+
+
+
+
   }
   getAllActiveAuctions() {
     this.auctionService.getAllActive().subscribe({
@@ -196,6 +144,7 @@ export class HomeComponent implements OnInit {
         console.log(response);
         this.activeAuctions = response;
         this.updateFavState();
+
       },
       error: (error) => {
         console.log(error);
