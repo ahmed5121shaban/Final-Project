@@ -18,10 +18,10 @@ import { log } from 'console';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  Event:any[]=[];
-  reviews:any[]=[];
-  isauctionFav:{[key:number]:boolean}={};
-  favAuctionIds:any[]=[]
+  Event: any[] = [];
+  reviews: any[] = [];
+  isauctionFav: { [key: number]: boolean } = {};
+  favAuctionIds: any[] = []
   mostBids = "mostBids";
   newArrival = "newArrivals";
   noBids = "noBids";
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   endingSoon: any[] = [];
   Upcoming: any[] = [];
   nobids: any[] = [];
-  constructor(private cookieService: CookieService, private categoryService: CategoryService, private FavcategoryService: FavCategoryService, private auctionService: AuctionService,private favauctionService:FavouriteService,private eventService:EventService,private authService:AuthService,private router:Router) {
+  constructor(private cookieService: CookieService, private categoryService: CategoryService, private FavcategoryService: FavCategoryService, private auctionService: AuctionService, private favauctionService: FavouriteService, private eventService: EventService, private authService: AuthService, private router: Router) {
 
   }
 
@@ -43,6 +43,14 @@ export class HomeComponent implements OnInit {
     this.getPopularAuctions();
     this.getAllActiveAuctions();
     this.getNewArrivalse();
+    this.getEvent();
+    this.updateFavState();
+    this.getEndingSoon();
+    this.getNoBids();
+    this.getUpcoming();
+    this.loadFavAuctions()
+    this.getReviews();
+    this.getAllFavCatIds();
 
   }
   // handling fav categories
@@ -65,26 +73,26 @@ export class HomeComponent implements OnInit {
 
 
   addToFav(categoryId: number) {
-    if(this.authService.isLoggedIn){
-    this.FavcategoryService.AddToFav(categoryId).subscribe({
-      next: res => {
-        if (res.result == "added") {
-          this.isFavCat[categoryId] = true;
+    if (this.authService.isLoggedIn) {
+      this.FavcategoryService.AddToFav(categoryId).subscribe({
+        next: res => {
+          if (res.result == "added") {
+            this.isFavCat[categoryId] = true;
+          }
+          if (res.result == "removed") {
+            this.isFavCat[categoryId] = false;
+          }
+          console.log(res.result);
+        },
+        error: err => {
+          console.log("addtofaverror ", err);
         }
-        if (res.result == "removed") {
-          this.isFavCat[categoryId] = false;
-        }
-        console.log(res.result);
-      },
-      error: err => {
-        console.log("addtofaverror ", err);
-      }
-    })
-  }
-  else{
-    const returnUrl = this.router.url;
+      })
+    }
+    else {
+      const returnUrl = this.router.url;
       this.router.navigate(['/login'], { queryParams: { returnUrl } });
-  }
+    }
 
 
 
@@ -117,13 +125,6 @@ export class HomeComponent implements OnInit {
 
         this.popularAuctions = response;
 
-        this.updateFavState();
-        this.getEndingSoon();
-        this.getNoBids();
-        this.getUpcoming();
-        this.loadFavAuctions()
-        this.getReviews();
-        this.getAllFavCatIds();
       },
       error: (err) => {
         console.log(err);
@@ -217,22 +218,22 @@ export class HomeComponent implements OnInit {
       error: (error) => {
         console.log(error);
 
-    }
-  })
-}
+      }
+    })
+  }
 
-getEvent(){
-  this.eventService.GetAllEvent().subscribe({
-    next:(res:any)=>{
-     this.Event= res.result;
-      console.log(this.Event);
+  getEvent() {
+    this.eventService.GetAllEvent().subscribe({
+      next: (res: any) => {
+        this.Event = res.result;
+        console.log("Event", this.Event);
 
-    },
-    error:(err)=>{
-      console.log(err);
-    }
-  })
-}
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
 
 
   customOptions: OwlOptions = {
@@ -417,28 +418,28 @@ getEvent(){
     prev?.append(prev1.item(0) as HTMLElement)
   }
 
-  addauctionToFav(id:number){
-    if(this.authService.isLoggedIn){
+  addauctionToFav(id: number) {
+    if (this.authService.isLoggedIn) {
 
-    this.favauctionService.addAuctionToFav(id).subscribe({
-      next: (response) => {
-        if (response === "added") {
-          console.log(response);
-          this.isauctionFav[id] = true;
+      this.favauctionService.addAuctionToFav(id).subscribe({
+        next: (response) => {
+          if (response === "added") {
+            console.log(response);
+            this.isauctionFav[id] = true;
+          }
+          if (response === "remove")
+            this.isauctionFav[id] = false;
+        },
+        error: (error) => {
+          console.log(error)
         }
-        if (response === "remove")
-          this.isauctionFav[id] = false;
-      },
-      error: (error) => {
-        console.log(error)
-      }
-    });
-  }
-  else{
-    const returnUrl = this.router.url;
-      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });
-  }
+      });
     }
+    else {
+      const returnUrl = this.router.url;
+      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });
+    }
+  }
 
   loadFavAuctions() {
     this.favauctionService.getAllFavIds().subscribe({
