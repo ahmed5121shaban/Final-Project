@@ -5,6 +5,7 @@ import { EventService } from '../../Services/event.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { AuctionService } from '../../../Action/Services/auction.service';
 @Component({
   selector: 'app-add-event',
   templateUrl: './add-event.component.html',
@@ -14,10 +15,13 @@ export class AddEventComponent implements OnInit {
   eventForm: FormGroup;
   categories:any;
   inactiveItems: any[] = [];
+  activeItems: any[] = [];
   selectedItems: number[]=[];
   uploadedImage!: File;
+  activeAuctions: any[] = [];
   fileName: string = ''; // لحفظ اسم الملف المختار
   apiUrl = environment.apiUrl;
+  event:boolean= false;
 
   allInactiveItems: { [key: string]: any[] } = {
     'Art': [
@@ -43,7 +47,7 @@ export class AddEventComponent implements OnInit {
   };
 
   constructor(private fb: FormBuilder,private categoryService:CategoryService,private eventService:EventService
-    ,private toaster:ToastrService,private router:Router
+    ,private toaster:ToastrService,private router:Router,private auctionService:AuctionService
   ) {
     this.eventForm = this.fb.group({
       name: ['', Validators.required],
@@ -57,6 +61,22 @@ export class AddEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCategory();
+    this.getAllActiveAuctions();
+    this.checkEvent();
+  }
+
+  getAllActiveAuctions() {
+    this.auctionService.getAllActive().subscribe({
+      next: (response) => {
+        console.log(response);
+        this.activeAuctions = response;
+
+      },
+      error: (error) => {
+        console.log(error);
+
+      }
+    })
   }
 
   onCategoryChange(event: Event): void {
@@ -70,11 +90,15 @@ export class AddEventComponent implements OnInit {
     } else {
       const selectedCategory = this.categories.find((cat: any) => cat.id === categoryId);
       if (selectedCategory) {
-        this.inactiveItems = selectedCategory.items || [];
+       
+       this.activeAuctions= this.activeAuctions.filter(auction=>auction.item.categoryId==selectedCategory.Id)|| [];
+     
+        this.activeAuctions.forEach(auction=>this.inactiveItems.push(auction.item));
+        
         this.selectedItems = [];
         console.log('Inactive items:', this.inactiveItems);
       } else {
-        console.warn('Category not found or items are not available');
+      console.warn('Category not found or items are not available');
       }
     }
   }
@@ -159,5 +183,15 @@ export class AddEventComponent implements OnInit {
   getImageUrl(imagePath: string | null | undefined): string {
     return imagePath ? `${this.apiUrl}${imagePath}` : '';
   }
-  
+  checkEvent():void{
+  this.eventService.GetAllEvent().subscribe({
+    next:res=>{
+      if(res != ""){this.event=true;console.log(this.event);}
+    },
+    error:err=>{
+      console.log(err);
+      
+    }
+  })
+  }
 }  

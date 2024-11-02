@@ -44,17 +44,16 @@
             <div class="bid-info-place  mb-3">
                 <div class="bid-info row bg-light  mb-3">
                     <div class="heighest-bid col-6">
-
+                        <p>Current price</p>
                         @if (auctionDetails.bids.length==0) {
-                          <h5>No Bids Here </h5>
+                          <h5>{{auctionDetails.item.startPrice}}$ </h5>
                         }@else {
-
-                            <p>Current price:</p>
+                           
                             <h5>{{auctionDetails.currentPrice}}$</h5>
                         }
 
                         <p class="estimate-price">Start price: {{auctionDetails.item.startPrice}}$</p>
-                    </div>
+                    </div>                         
                     <div class="bid-ends-in col-6">
                         <p>Ends in:</p>
                         <h5 id="end-time">{{ countdown }}</h5>

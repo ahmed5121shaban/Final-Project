@@ -141,6 +141,8 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.highlightNewBid = false;
         }, 3000);
+        this.getAuctionDetails();
+
       },
       error: (err) => { console.log(err); }
     });
