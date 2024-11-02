@@ -18,7 +18,8 @@ User:any ;
               private cookieService:CookieService,
               private toaster:ToastrService,
               private router: Router,
-              private userserv:ApiService
+              private userserv:ApiService,
+
 ){
   this.userserv.getUserData().subscribe({
     next:(data)=>{
@@ -29,19 +30,16 @@ User:any ;
     },
     error:(err)=>{
       console.log(err);
-      
+
     }
   })
 }
 
 
   logOut() {
-    this.cookieService.delete('token');
-    this.authService.isLoggedUserSubject.next(false)
-  if(this.authService.isLoggedIn==false){
-    this.toaster.success('you Logout now');
-    this.router.navigate(['../user/login']);
-  }
+    debugger
+    this.authService.logout()
+
   }
 }
 
