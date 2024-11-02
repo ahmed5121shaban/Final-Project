@@ -91,10 +91,10 @@ export class AuthService {
     this.cookieService.get('token') != ''
   );
   roleSubject = new BehaviorSubject<string[]>(
-    ['']
-    /* this.cookieService.get("token") != ''
+    /* [''] */
+    this.cookieService.get("token") != ''
       ? JSON.parse(atob(this.cookieService.get("token").split('.')[1]))['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
-      : [""] */
+      : [""]
   );
 
   apiUrl = environment.apiUrl;
