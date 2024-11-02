@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ReviewsService } from '../../../Services/reviews/reviews.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-my-reviews',
@@ -14,10 +15,14 @@ export class MyReviewsComponent {
   totalReviews: number = 0;
   ratingPercentages: any = {}; // Make this an object, not an array
   ratingPercentagesArray: { star: number; percentage: number }[] = [];
+  
+  allReviews!:any
+  sliceNumber=4
 
   constructor(
     private reviewsService: ReviewsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toaster:ToastrService
   ){}
 
   ngOnInit(): void {
@@ -31,6 +36,8 @@ export class MyReviewsComponent {
         this.averageRating = response.averageRating;
         this.totalReviews = response.totalReviews;
         this.ratingPercentages = response.ratingPercentages;
+        this.allReviews=response.reviews;
+        console.log("reviews", this.allReviews)
 
         // Convert ratingPercentages to an array after data is received
         this.ratingPercentagesArray = Object.entries(this.ratingPercentages)
@@ -48,4 +55,17 @@ export class MyReviewsComponent {
       }
     });
   }
+
+  get slicingReviews(){
+    return this.allReviews.slice(0,this.sliceNumber);
+  }
+
+  moreReviews(){
+    if (this.allReviews.length<this.sliceNumber) {
+      this.toaster.warning("No more Reviews to show");
+      return
+    }
+    this.sliceNumber+=4;
+  }
+
 }
