@@ -26,6 +26,10 @@ export class LoginComponent {
     private route: ActivatedRoute,
     private location: Location
   ) {
+    if(this.cookieService.get("token")!=''){
+      this.toastr.warning("you are already login")
+      this.router.navigate(['']);
+    }
     this.form = this.builder.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required]],
