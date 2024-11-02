@@ -28,7 +28,6 @@ export class DashboardHomeComponent implements OnInit {
   completedAuctions!: number;
   endedAuctions!: number;
   auctionsAmounts!: number;
-  lastTenAuctions!: LastTenAuctions[];
   auctionsBidsAmount!: { name: string; value: number }[];
   hubConnection!: signalR.HubConnection;
   legendCategoryPosition: any = 'right';
@@ -164,12 +163,6 @@ export class DashboardHomeComponent implements OnInit {
       .start()
       .then(() => {
         return this.hubConnection.invoke('tableData');
-      })
-      .then(() => {
-        this.hubConnection.on('lastTenAuctions', (res: any) => {
-          console.log(res);
-          this.lastTenAuctions = res;
-        });
       })
       .catch((reason) => console.log(reason));
   }

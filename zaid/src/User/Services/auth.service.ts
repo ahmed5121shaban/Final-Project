@@ -158,6 +158,6 @@ export class AuthService {
     this.cookieService.delete('token');
     this.isLoggedUserSubject.next(false);
     this.toaster.success('you Logout now');
-    this.router.navigate(['../user/login']);
+    this.router.navigate(['/login']);
   }
 }

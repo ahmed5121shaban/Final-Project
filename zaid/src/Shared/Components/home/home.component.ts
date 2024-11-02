@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
   }
   else{
     const returnUrl = this.router.url;
-      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });
+      this.router.navigate(['/login'], { queryParams: { returnUrl } });
   }
 
 

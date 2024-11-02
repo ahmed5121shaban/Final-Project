@@ -80,7 +80,7 @@ export class NavComponent implements OnInit  {
     this.authService.roleSubject.next([''])
     if (!this.authService.isLoggedIn) {
       this.toaster.success('You are now logged out');
-      this.router.navigate(['../user/login']);
+      this.router.navigate(['../login']);
 
     }
   }

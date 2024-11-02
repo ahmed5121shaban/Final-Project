@@ -18,7 +18,7 @@
                 <!-- First Name -->
                 <div class="col-6">
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" 
+                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name"
                       formControlName="firstName"
                       [ngClass]="{
                         'is-invalid': registerForm.controls['firstName'].invalid && registerForm.controls['firstName'].touched
@@ -35,7 +35,7 @@
                 <!-- Last Name -->
                 <div class="col-6">
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" 
+                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name"
                       formControlName="lastName"
                       [ngClass]="{
                         'is-invalid': registerForm.controls['lastName'].invalid && registerForm.controls['lastName'].touched
@@ -54,7 +54,7 @@
                 <div class="col-12">
                   <div class="form-floating mb-3">
                     <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com"
-                      formControlName="email" 
+                      formControlName="email"
                       [ngClass]="{
                         'is-invalid': registerForm.controls['email'].invalid && registerForm.controls['email'].touched
                       }">
@@ -100,9 +100,9 @@
                       }">
                     <div class="invalid-feedback">
                       @if(registerForm.controls['confirmPassword'].hasError("required")){
-                        <span>Password confirmation is required</span> 
+                        <span>Password confirmation is required</span>
                       }@else if(registerForm.hasError("mismatch")){
-                        <span>Passwords must match</span> 
+                        <span>Passwords must match</span>
                       }
                     </div>
                     <label for="confirmPassword" class="form-label">Repeat your password</label>
@@ -112,7 +112,7 @@
                 <!-- Terms and Conditions -->
                 <div class="col-12 py-4">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="iAgree" id="iAgree" 
+                    <input class="form-check-input" type="checkbox" name="iAgree" id="iAgree"
                            formControlName="iAgree"> <!-- Bind to form control -->
                     <label class="form-check-label text-secondary" for="iAgree">
                       I agree to the <a class="text-primary text-decoration-none">terms and conditions</a>
@@ -135,7 +135,7 @@
               <div class="col-12">
                 <hr class="mt-5 mb-4 border-secondary-subtle">
                 <p class="m-0 text-secondary text-center">Already have an account?
-                  <a routerLink="/user/login" class="text-primary text-decoration-none">Login</a></p>
+                  <a routerLink="/login" class="text-primary text-decoration-none">Login</a></p>
               </div>
             </div>
             <div class="row">

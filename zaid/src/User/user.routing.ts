@@ -33,8 +33,8 @@ import { authGuard } from '../Shared/Guards/auth.guard';
 
 
 const routes: Routes = [
-  { path: 'register' , component: RegisterComponent},
-  { path: 'login' , component: LoginComponent},
+/*   { path: 'register' , component: RegisterComponent},
+  { path: 'login' , component: LoginComponent}, */
   { path: 'reset-password' , component: PasswordResetComponent,canActivate:[authGuard]},
   { path: 'new-password' , component: NewPasswordComponent,canActivate:[authGuard]},
   { path: 'add-review/:id' , component: AddReviewComponent,canActivate:[authGuard]},
