@@ -3,10 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from '../Shared/Components/not-found/not-found.component';
 import { DashboardLayoutComponent } from '../Admin/Components/dashboard-layout/dashboard-layout.component';
 import { UserLayoutComponent } from '../Shared/Components/user-layout/user-layout.component';
+import { LoginComponent } from '../User/Components/login/login.component';
+import { RegisterComponent } from '../User/Components/register/register.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'login', component:LoginComponent},
+  { path: 'register', component:RegisterComponent},
   {
     path: 'home',component:UserLayoutComponent,
     loadChildren: () =>

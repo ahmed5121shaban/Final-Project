@@ -76,13 +76,15 @@ export class NavComponent implements OnInit  {
 
 
   logOut() {
-    this.cookieService.delete('token');
-    this.authService.isLoggedUserSubject.next(false)
-  if(this.authService.isLoggedIn==false){
-    this.toaster.success('you Logout now');
-    this.router.navigate(['../user/login']);
+    this.authService.logout();
+    this.authService.roleSubject.next([''])
+    if (!this.authService.isLoggedIn) {
+      this.toaster.success('You are now logged out');
+      this.router.navigate(['../login']);
+
+    }
   }
-  }
+
 
   openConnectionAndGetAllBidsWithLast() {
     let token = this.cookieService.get('token');
@@ -124,20 +126,6 @@ export class NavComponent implements OnInit  {
   onSearch() {
     if (this.searchtxt.trim()) {
       this.router.navigate(['../action/auction-list', this.searchtxt]);    }
-}
-getUserRole():void{
-  this.authService.roleSubject.subscribe({
-    next:(roles)=>{
-      console.log("userroles",roles);
-      this.role = roles.find(role=>role==="Admin") || "";
-      console.log("isadmin?",this.role);
-
-    },
-    error:err=>{
-      console.log(err);
-
-    }
-  })
 }
 
 

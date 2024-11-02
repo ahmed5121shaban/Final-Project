@@ -24,6 +24,7 @@ import { ShipmentTrackingComponent } from './Components/shipment-tracking/shipme
 import { ShortTextPipe } from '../Shared/Pipes/short-text.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { EditCategoryComponent } from './Components/edit-category/edit-category.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
     ItemsReviewComponent, AddCategoryComponent,
     ShortTextPipe,
     CategoryListComponent,
-    ShipmentTrackingComponent],
+    ShipmentTrackingComponent,
+    EditCategoryComponent],
 
 
 

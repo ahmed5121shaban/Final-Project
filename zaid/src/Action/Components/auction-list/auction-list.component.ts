@@ -8,55 +8,64 @@ import { FavouriteService } from '../../Services/favourite.service';
 import { AuthService } from '../../../User/Services/auth.service';
 import { Console, log } from 'console';
 import { FavCategoryService } from '../../../Shared/Services/fav/fav-category.service';
+import { LoaderService } from '../../../Shared/Interseptors/loader intersptors/loader.service';
+import { finalize } from 'rxjs/internal/operators/finalize';
 
 @Component({
   selector: 'app-auction-list',
   templateUrl: './auction-list.component.html',
-  styleUrls: ['./auction-list.component.css']
+  styleUrls: ['./auction-list.component.css'],
 })
 export class AuctionListComponent implements OnInit {
-returnUrl:string="/";
-  isFav:{[key:number]:boolean}={};
+  returnUrl: string = '/';
+  isFav: { [key: number]: boolean } = {};
   activeAuctions: any[] = [];
   categories: any[] = [];
-  isFavCat:{[key:number]:boolean}={};
-  favCatIds:any[]=[];
-  paramValue:string="";
+  isFavCat: { [key: number]: boolean } = {};
+  favCatIds: any[] = [];
+  paramValue: string = '';
 
-  favAuctionIds:any[]=[]
+  favAuctionIds: any[] = [];
   // Pagination properties
   pageActive: number = 1;
   itemsPerPage: number = 6;
   totalItemsActive: number = 0;
-    // Filter properties
+  // Filter properties
   searchtxt: string = '';
   selectedCategory: any;
-  selectedCategoryname: string='';
+  selectedCategoryname: string = '';
   sortOption: string = 'Id';
   isAscending: boolean = false;
-  filterOption: string ='';
+  filterOption: string = '';
   constructor(
     private auctionService: AuctionService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private favauctionService:FavouriteService,
-    private authService:AuthService,
-    private router :Router,
-    private favcatService:FavCategoryService
-
-
+    private favauctionService: FavouriteService,
+    private authService: AuthService,
+    private router: Router,
+    private favcatService: FavCategoryService,
+    private loader: LoaderService
   ) {
+    this.loader.show();
     this.loadCategories().then(() => {
-      this.route.params.subscribe(params => {
+      this.route.params.subscribe((params) => {
         this.paramValue = params['category'] || '';
 
         // Check if paramValue matches any category name
-        const matchingCategory = this.categories.find(category => category.name === this.paramValue);
+        const matchingCategory = this.categories.find(
+          (category) => category.name === this.paramValue
+        );
         if (matchingCategory) {
           this.selectedCategory = matchingCategory;
           this.selectedCategoryname = matchingCategory.name;
           this.filterOption = ''; // Clear filter option if it's a category
-        } else if (this.paramValue === "mostBids" || this.paramValue === "newArrivals" || this.paramValue === "noBids" || this.paramValue === "endingSoon") {
+        } else if (
+          this.paramValue === 'mostBids' ||
+          this.paramValue === 'newArrivals' ||
+          this.paramValue === 'noBids' ||
+          this.paramValue === 'endingSoon'
+        ) {
           // Handle specific filter options
           this.filterOption = this.paramValue;
           this.selectedCategory = '';
@@ -70,16 +79,11 @@ returnUrl:string="/";
         this.getFavCatIds();
         this.loadActiveAuctions();
         this.loadFavAuctions();
-
       });
     });
-
   }
 
-
-ngOnInit(): void {
-
-}
+  ngOnInit(): void {}
   toggleSortOrder(): void {
     this.isAscending = !this.isAscending;
     this.loadActiveAuctions();
@@ -93,15 +97,22 @@ ngOnInit(): void {
   }
 
   loadActiveAuctions(): void {
-      this.auctionService.getPaginatedAuctions(
+    this.auctionService
+      .getPaginatedAuctions(
         this.searchtxt,
         this.sortOption,
         this.isAscending,
         this.itemsPerPage,
         this.pageActive,
         this.selectedCategoryname,
-       this.filterOption
-      ).subscribe({
+        this.filterOption
+      )
+      .pipe(
+        finalize(() => {
+          this.loader.hide();
+        })
+      )
+      .subscribe({
         next: (pagination: Pagination<any[]>) => {
           this.activeAuctions = pagination.list || [];
           this.totalItemsActive = pagination.totalCount || 0;
@@ -110,11 +121,9 @@ ngOnInit(): void {
         },
         error: (err) => {
           console.error('Error fetching active auctions', err);
-        }
+        },
       });
   }
-
-
 
   loadCategories(): Promise<void> {
     return new Promise<void>((resolve) => {
@@ -128,20 +137,18 @@ ngOnInit(): void {
         error: (err) => {
           console.error('Error fetching categories', err);
           resolve(); // Even in case of error, resolve the promise to continue
-        }
+        },
       });
     });
   }
-
 
   onCategorySelect(category: string): void {
     this.selectedCategoryname = category;
 
     this.pageActive = 1;
-    this.searchtxt=this.selectedCategory;
+    this.searchtxt = this.selectedCategory;
     this.loadCategories();
     this.loadActiveAuctions();
-
   }
 
   totalPagesActive(): number {
@@ -156,99 +163,90 @@ ngOnInit(): void {
     }
   }
 
-
-  addToFav(id:number){
-
-    if(this.authService.isLoggedIn){
-this.favauctionService.addAuctionToFav(id).subscribe({
-  next:(response)=>{
-if(response==="added"){
-    console.log(response);
-this.isFav[id]=true;}
-if(response==="remove")
-  this.isFav[id]=false;
-
-  },
-  error:(error)=>{
-    console.log(error)
-
-  }
-});
-    }
-    else{
+  addToFav(id: number) {
+    if (this.authService.isLoggedIn) {
+      this.favauctionService.addAuctionToFav(id).subscribe({
+        next: (response) => {
+          if (response === 'added') {
+            console.log(response);
+            this.isFav[id] = true;
+          }
+          if (response === 'remove') this.isFav[id] = false;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    } else {
       const returnUrl = this.router.url;
-      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });
+      this.router.navigate(['/login'], { queryParams: { returnUrl } });
     }
   }
 
-loadFavAuctions(){
-  this.favauctionService.getAllFavIds().subscribe({
-next:(response) =>{
-  //loop foreach auctionId in the fav list and mark it as favorite
-  response.favAuctionIds.forEach((favauctionId: any)=>{
-this.isFav[favauctionId]=true;
-  });
-},
-error:(error) =>{
-  console.log(error);
-},
-});
-}
+  loadFavAuctions() {
+    this.favauctionService.getAllFavIds().subscribe({
+      next: (response) => {
+        //loop foreach auctionId in the fav list and mark it as favorite
+        response.favAuctionIds.forEach((favauctionId: any) => {
+          this.isFav[favauctionId] = true;
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 
-updateFavState(){
-  this.activeAuctions.forEach(auction=>{
-    this.isFav[auction.id]=this.isFav[auction.id]|| false
-  });
-}
+  updateFavState() {
+    this.activeAuctions.forEach((auction) => {
+      this.isFav[auction.id] = this.isFav[auction.id] || false;
+    });
+  }
 
- // handel fav categories
-  getFavCatIds():void{
+  // handel fav categories
+  getFavCatIds(): void {
     this.favcatService.getFavCatIds().subscribe({
-      next:data=>{
+      next: (data) => {
         // data=data.filter(data==this.categorysearch.id);
         // if(data.length>0){
         //   this.categorysearch[0].isFavCat[this.categorysearch.id]=true;
         // }
-        data.forEach((cat:any) => this.isFavCat[cat]=true);
+        data.forEach((cat: any) => (this.isFavCat[cat] = true));
         console.log(data);
-
       },
-      error:err=>{
-        console.log("my error is :",err);
-      }
-    })
-  }
-  UpdateCategoris(){
-    this.categories.forEach(category=>
-      this.isFavCat[category.id]=this.isFavCat[category.id]||false
-    )
-  }
-  addCatToFav(id:number){
-    if(this.authService.isLoggedIn){
-    this.favcatService.AddToFav(id).subscribe({
-      next:res=>{
-        if(res.result == "added"){
-         this.isFavCat[id]=true ;
-        }
-        if(res.result == "removed"){
-          this.isFavCat[id]=false;
-        }
+      error: (err) => {
+        console.log('my error is :', err);
       },
-      error:err=>{
-        console.log("my err is :",err);
-
-      }
-
-    });}
-    else{
+    });
+  }
+  UpdateCategoris() {
+    this.categories.forEach(
+      (category) =>
+        (this.isFavCat[category.id] = this.isFavCat[category.id] || false)
+    );
+  }
+  addCatToFav(id: number) {
+    if (this.authService.isLoggedIn) {
+      this.favcatService.AddToFav(id).subscribe({
+        next: (res) => {
+          if (res.result == 'added') {
+            this.isFavCat[id] = true;
+          }
+          if (res.result == 'removed') {
+            this.isFavCat[id] = false;
+          }
+        },
+        error: (err) => {
+          console.log('my err is :', err);
+        },
+      });
+    } else {
       const returnUrl = this.router.url;
-      this.router.navigate(['/user/login'], { queryParams: { returnUrl } });
+      this.router.navigate(['/login'], { queryParams: { returnUrl } });
     }
   }
-  clearSearch(){
-    this.searchtxt="";
-    this.router.navigate(['../action/auction-list',this.searchtxt]);
+  clearSearch() {
+    this.searchtxt = '';
+    this.router.navigate(['../action/auction-list', this.searchtxt]);
   }
 }
-
-

@@ -1,10 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Pagination } from '../Models/models/pagination.model';
 import { DoneAuction } from '../../User/Components/Profile-Management/waiting-auction/waiting-auction.component';
+import { LoaderService } from '../../Shared/Interseptors/loader intersptors/loader.service';
 
 
 
@@ -15,7 +16,7 @@ export class AuctionService {
   private apiUrl = `${environment.apiUrl}api/Auction`
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private loader : LoaderService) { }
 
   createAuction(auction: Auction): Observable<any> {
     return this.http.post(this.apiUrl, auction)
@@ -72,7 +73,15 @@ export class AuctionService {
   }
 
   getAllActive(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/Active`);
+    this.loader.show();
+    console.log("noooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+
+    return this.http.get<any>(`${this.apiUrl}/Active`).pipe(
+      finalize(()=>{
+        this.loader.hide();
+        console.log("noooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+      })
+    );
   }
 
   getAllEnded(): Observable<any> {
@@ -97,8 +106,14 @@ export class AuctionService {
       .set('pageNumber', pageNumber.toString())
       .set('categoryName', categoryName || '')
       .set('filterOption', filterOption || '')
-
-      return this.http.get<Pagination<Auction[]>>(`${this.apiUrl}/GetAuctions`, { params });
+      this.loader.show();
+      console.log("noooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+      return this.http.get<Pagination<Auction[]>>(`${this.apiUrl}/GetAuctions`, { params }).pipe(
+        finalize(()=>{
+          this.loader.hide();
+          console.log("noooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+        })
+      );
   }
 
   // Fetch similar active auctions by category
@@ -145,7 +160,7 @@ export class AuctionService {
 //   return this.http.get<any>(`${this.apiUrl}/home`);
 // }
 
- 
+
 
 }
 export interface Auction {

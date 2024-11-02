@@ -64,7 +64,7 @@ export class MessageComponent implements OnInit {
       .invoke('SendMessage', this.chatID, message)
       .then(() => {
         console.log('Message sent successfully');
-        this.chatService.newMessage.next(true)
+        this.chatService.newMessage.next(true);
       })
       .catch((err) => {
         console.log('Error sending message: ', err);
