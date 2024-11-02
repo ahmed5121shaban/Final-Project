@@ -41,7 +41,7 @@ withdraw(){
   this.auctionService.withdraw(this.amount).subscribe({
     next:(response)=>{
       console.log(response);
-      
+      window.location.href = response.result
     },
     error:(error)=>{
 console.log(error);
