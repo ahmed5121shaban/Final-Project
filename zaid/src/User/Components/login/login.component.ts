@@ -51,7 +51,7 @@ export class LoginComponent {
   loginUser() {
     debugger;
     this.authService.loginUser(this.form.value).subscribe(
-      (response: any) => {
+      {next:(response: any) => {
         if (response.status == 200) {
           this.cookieService.set('token', response.token);
           this.toastr.success('Logged in successfully', 'Success');
@@ -61,13 +61,17 @@ export class LoginComponent {
           if (userRole.includes("Admin")) {
             this.router.navigate(['/admin/home']);
           } else {
-            this.location.back();
+            //we have problem in location back
+            this.router.navigate(['']);
+            //this.location.back();
           }
         } else {
           this.toastr.error('Email or password is wrong', 'Error');
         }
+      },error:(err)=>{
+        this.toastr.error('Email or password is wrong', 'Error');
       }
-    );
+  });
   }
 
   togglePasswordVisibility() {

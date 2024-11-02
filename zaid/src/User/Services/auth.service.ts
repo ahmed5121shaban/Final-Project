@@ -7,7 +7,6 @@
 // import { CookieService } from 'ngx-cookie-service';
 // import { environment } from '../../environments/environment';
 
-
 // @Injectable({
 //   providedIn: 'root'
 // })
@@ -80,14 +79,19 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private localStorageKey = 'token';
-  isLoggedUserSubject = new BehaviorSubject<boolean>(this.cookieService.get('token') != '');
-  roleSubject = new BehaviorSubject<string[]>(['']
+  isLoggedUserSubject = new BehaviorSubject<boolean>(
+    this.cookieService.get('token') != ''
+  );
+  roleSubject = new BehaviorSubject<string[]>(
+    ['']
     /* this.cookieService.get("token") != ''
       ? JSON.parse(atob(this.cookieService.get("token").split('.')[1]))['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
       : [""] */
@@ -95,7 +99,12 @@ export class AuthService {
 
   apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient, private cookieService: CookieService) { }
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService,
+    private toaster: ToastrService,
+    private router: Router
+  ) {}
 
   get isLoggedIn() {
     return !!this.cookieService.get(this.localStorageKey);
@@ -107,7 +116,10 @@ export class AuthService {
 
   getUserRoleFromToken(token: string): string[] {
     const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] || [];
+    return (
+      payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] ||
+      []
+    );
   }
 
   registerUser(userDetails: any) {
@@ -116,7 +128,7 @@ export class AuthService {
 
   updateUserPassword(email: string, newPassword: string): Observable<boolean> {
     const users = this.getUsersFromCookie();
-    const userIndex = users.findIndex(user => user.email === email);
+    const userIndex = users.findIndex((user) => user.email === email);
 
     if (userIndex !== -1) {
       users[userIndex].password = newPassword;
@@ -129,7 +141,7 @@ export class AuthService {
 
   getUserByEmail(email: string): Observable<User[]> {
     const users = this.getUsersFromCookie();
-    const filteredUsers = users.filter(user => user.email === email);
+    const filteredUsers = users.filter((user) => user.email === email);
     return of(filteredUsers);
   }
 
@@ -140,12 +152,12 @@ export class AuthService {
 
   private setUsersToCookie(users: User[]): void {
     this.cookieService.set(this.localStorageKey, JSON.stringify(users));
+  }
 
-}
-
-logout() {
-  this.cookieService.delete(this.localStorageKey);
-  this.isLoggedUserSubject.next(false);
-}
-
+  logout() {
+    this.cookieService.delete('token');
+    this.isLoggedUserSubject.next(false);
+    this.toaster.success('you Logout now');
+    this.router.navigate(['/login']);
+  }
 }

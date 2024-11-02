@@ -104,56 +104,6 @@
       </div>
 
 
-    <!-- Table Product -->
-    <div class="row my-5"  style="margin-top: 200px;">
-      <div class="col-12 mb-5">
-        <div class="bg-dark-subtle p-3 m-auto">
-          <div class="">
-            <table
-              id="productsTable"
-              class="py-5 px-2 table table-light table-hover table-product shadow m-auto"
-            >
-              <thead class="mb-5">
-                <tr>
-                  <th>Product Image</th>
-                  <th>Product Name</th>
-                  <th>Seller Name</th>
-                  <th>Buyer Name</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Completed</th>
-                  <th>Ended</th>
-                </tr>
-              </thead>
-              <tbody class="">
-                @for (auction of lastTenAuctions; track $index) {
-                <tr class="p-3">
-                  <td class="py-0">
-                    <!-- @for (image of auction.images; track $index) { -->
-                    <img
-                      src="{{auction.images[0]}}"
-                      width="50px"
-                      height="50px"
-                      alt="Product Image"
-                    />
-                  <!-- } -->
-                  </td>
-                  <td>{{auction.auctionName}}</td>
-                  <td>{{auction.sellerName}}</td>
-                  <td>{{auction.buyerName}}</td>
-                  <td>{{auction.StartDate}}</td>
-                  <td>{{auction.EndDate}}</td>
-                  <td>{{auction.Completed}}</td>
-                  <td>{{auction.Ended}}</td>
-                </tr>
-              }
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Sales by Product And Sales By Category -->
     <div class="row justify-content-between align-items-center">
       <div class="col-lg-4 shadow py-1">

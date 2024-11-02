@@ -31,7 +31,7 @@ export class RegisterComponent {
       ]],
       confirmPassword: ["", Validators.required],
       iAgree: [false, Validators.requiredTrue]
-    }, { validators: this.passwordMatchValidator }); 
+    }, { validators: this.passwordMatchValidator });
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
@@ -70,7 +70,7 @@ export class RegisterComponent {
         if(res.status == 200){
           console.log(res);
         this.toastr.success('Register successfully', 'Success');
-        this.router.navigate(['/user/login']);
+        this.router.navigate(['/login']);
       }else{
         this.toastr.error('Something went wrong', 'Error');
       }
