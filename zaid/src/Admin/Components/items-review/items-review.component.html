@@ -2,11 +2,11 @@
   <h2 class="mb-4">Review Items</h2>
 
   <!-- Search Bar -->
-  <div class="row mb-3">
+  <!-- <div class="row mb-3">
     <div class="col-md-6">
       <input type="text" class="form-control" placeholder="Search items...">
     </div>
-  </div>
+  </div> -->
 
   <!-- Check if items are available -->
   <div *ngIf="items && items.length > 0; else noItems">
@@ -16,7 +16,9 @@
         <thead class="table-light table-borderless">
           <tr>
             <th>Item Title</th>
+            <th>Category</th>
             <th>Description</th>
+            <th>Seller Name</th>
             <th>Start Price</th>
             <th>Reserve Price</th>
             <th>Certificate or Contract</th>
@@ -27,7 +29,9 @@
         <tbody>
           <tr *ngFor="let item of items; let i = index">
             <td>{{ item.name }}</td>
+            <td>{{ item.category }}</td>
             <td>{{ item.description }}</td>
+            <td>{{ item.sellerName}}</td>
             <td>{{ item.startPrice }}</td>
             <td>{{ item.sellPrice }}</td>
             <td><a [href]="'http://localhost:5204/' + item.contract" target="_blank"> View Contract</a></td>

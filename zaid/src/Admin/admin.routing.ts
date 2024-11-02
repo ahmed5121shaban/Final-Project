@@ -13,6 +13,7 @@ import { AddCategoryComponent } from './Components/add-category/add-category.com
 import { ShipmentTrackingComponent } from './Components/shipment-tracking/shipment-tracking.component';
 import { CategoryListComponent } from './Components/category-list/category-list.component';
 import { authGuard } from '../Shared/Guards/auth.guard';
+import { EditCategoryComponent } from './Components/edit-category/edit-category.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,9 @@ const routes: Routes = [
   { path: 'complaints-list', component: ComplaintsListComponent,canActivate:[authGuard] },
   { path: 'items-review', component: ItemsReviewComponent,canActivate:[authGuard] },
   { path: 'add-category', component: AddCategoryComponent,canActivate:[authGuard] },
-  { path: 'categories-list',component: CategoryListComponent,canActivate:[authGuard]}
+  { path: 'categories-list',component: CategoryListComponent,canActivate:[authGuard]},
+  { path: 'edit-category/:id', component: EditCategoryComponent,canActivate:[authGuard] },
+
 
 ];
 
