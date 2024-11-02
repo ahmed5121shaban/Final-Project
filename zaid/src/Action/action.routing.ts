@@ -8,6 +8,7 @@ import { WonAuctionComponent } from './Components/won-auction/won-auction.compon
 
 import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-feedback.component';
 import { authGuard } from '../Shared/Guards/auth.guard';
+import { EventsListComponent } from './Components/events-list/events-list.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'delete-confirm' , component: DeleteConfirmationComponent,canActivate:[authGuard]},
    { path: 'won-auction/:itemID' , component: WonAuctionComponent,canActivate:[authGuard]},
   { path: 'auction-feedback' , component: AuctionFeedbackComponent},
+  { path: 'events-list' , component: EventsListComponent},
 ];
 
 export const ActionRoutes = RouterModule.forChild(routes);

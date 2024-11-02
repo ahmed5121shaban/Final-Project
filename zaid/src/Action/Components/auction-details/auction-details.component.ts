@@ -16,7 +16,7 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
   auctionId!: number;
   auctionDetails: any;
   similarAuctions: any[] = [];
-  groupedSimilarAuctions: any[][] = []; 
+  groupedSimilarAuctions: any[][] = [];
   successesPayment!: boolean;
   UserCurrency!: string;
   method!: number;
@@ -25,7 +25,7 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
   hubConnection!: signalR.HubConnection;
   highlightNewBid!: boolean;
   isUpcoming: boolean = false;
-  auctionEndDate!: Date; 
+  auctionEndDate!: Date;
   countdown: string = '';
   private countdownInterval: any;
 
@@ -76,7 +76,7 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
     this.auctionService.getAuctionById(this.auctionId).subscribe({
       next: (res: any) => {
         this.auctionDetails = res;
-        this.auctionEndDate = new Date(res.endDate); 
+        this.auctionEndDate = new Date(res.endDate);
         console.log('Auction details:', this.auctionDetails);
         this.checkIfUpcoming();
         this.userHavePayment(res.item.id, this.auctionId);
@@ -203,7 +203,7 @@ if(days>0){
 }else{
   this.countdown = `${seconds}s`;
 }
-       
+
       } else {
         this.countdown = 'Auction Ended';
         clearInterval(this.countdownInterval);
