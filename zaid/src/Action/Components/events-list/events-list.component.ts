@@ -1,23 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuctionService } from '../../Services/auction.service';
-import { CategoryService } from '../../../Admin/Services/category.service';
-import { Pagination } from '../../Models/models/pagination.model';
-
 import { FavouriteService } from '../../Services/favourite.service';
 import { AuthService } from '../../../User/Services/auth.service';
-import { Console, log } from 'console';
-import { FavCategoryService } from '../../../Shared/Services/fav/fav-category.service';
-import { LoaderService } from '../../../Shared/Interseptors/loader intersptors/loader.service';
-import { finalize } from 'rxjs/internal/operators/finalize';
+import { EventService } from '../../../Admin/Services/event.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-events-list',
   templateUrl: './events-list.component.html',
-  styleUrls: ['./events-list.component.css']
+  styleUrls: ['./events-list.component.css'],
 })
 export class EventsListComponent implements OnInit {
-
   returnUrl: string = '/';
   isFav: { [key: number]: boolean } = {};
   activeAuctions: any[] = [];
@@ -39,48 +31,33 @@ export class EventsListComponent implements OnInit {
   isAscending: boolean = false;
   filterOption: string = '';
   load = 4;
+  eventId!: number;
+  event: any;
+  countdownInterval: any;
+  countdown: string = '';
   constructor(
-    private auctionService: AuctionService,
     private favauctionService: FavouriteService,
     private authService: AuthService,
     private router: Router,
-    private favcatService: FavCategoryService,
-    private loader: LoaderService
+    private route: ActivatedRoute,
+    private eventService: EventService
   ) {
-    this.loader.show();
-    this.loadActiveAuctions();
+    this.route.params.subscribe((res) => {
+      this.GetEventDetails(res['id']);
+    });
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  ngOnInit(): void {}
 
-  loadActiveAuctions(): void {
-    this.auctionService
-      .getPaginatedAuctions(
-        this.searchtxt,
-        this.sortOption,
-        this.isAscending,
-        this.itemsPerPage,
-        this.pageActive,
-        this.selectedCategoryname,
-        this.filterOption
-      )
-      .pipe(
-        finalize(() => {
-          this.loader.hide();
-        })
-      )
-      .subscribe({
-        next: (pagination: Pagination<any[]>) => {
-          this.activeAuctions = pagination.list || [];
-          this.totalItemsActive = pagination.totalCount || 0;
-          this.updateFavState();
-          console.log(this.activeAuctions);
-        },
-        error: (err) => {
-          console.error('Error fetching active auctions', err);
-        },
-      });
+  GetEventDetails(id: number) {
+    this.eventService.GetEventDetails(id).subscribe({
+      next: (res:any) => {
+        this.event = res;
+        this.startCountdown(new Date(res.endDate))
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   addToFav(id: number) {
@@ -103,36 +80,42 @@ export class EventsListComponent implements OnInit {
     }
   }
 
-
   updateFavState() {
     this.activeAuctions.forEach((auction) => {
       this.isFav[auction.id] = this.isFav[auction.id] || false;
     });
   }
 
-  addCatToFav(id: number) {
-    if (this.authService.isLoggedIn) {
-      this.favcatService.AddToFav(id).subscribe({
-        next: (res) => {
-          if (res.result == 'added') {
-            this.isFavCat[id] = true;
-          }
-          if (res.result == 'removed') {
-            this.isFavCat[id] = false;
-          }
-        },
-        error: (err) => {
-          console.log('my err is :', err);
-        },
-      });
-    } else {
-      const returnUrl = this.router.url;
-      this.router.navigate(['/login'], { queryParams: { returnUrl } });
-    }
-  }
-
-  loadMore(){
+  loadMore() {
     this.load += 4;
   }
 
+  startCountdown(endDate:any) {
+    this.countdownInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const endTime = endDate.getTime(); // Use the Date object
+      const timeLeft = endTime - now;
+
+      if (timeLeft > 0) {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        if (days > 0) {
+          this.countdown = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        } else if (hours > 0) {
+          this.countdown = `${hours}h ${minutes}m ${seconds}s`;
+        } else if (minutes > 0) {
+          this.countdown = `${minutes}m ${seconds}s`;
+        } else {
+          this.countdown = `${seconds}s`;
+        }
+      } else {
+        this.countdown = 'Event Ended';
+        clearInterval(this.countdownInterval);
+      }
+    }, 1000);
+  }
 }

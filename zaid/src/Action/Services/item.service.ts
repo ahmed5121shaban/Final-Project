@@ -37,8 +37,8 @@ export class ItemService {
   deleteItem(itemId:number):Observable<any>{
     return this.http.delete(`${this.apiUrl}/delete/${itemId}`);
    }
-   editItem(itemId: number, updatedData: FormData): Observable<any> {
-    return this.http.put(`${this.apiUrl}/edit`, updatedData);
+   editItem(updatedData: FormData): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/edit`, updatedData);
   }
   getItem(itemId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${itemId}`);

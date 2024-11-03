@@ -130,6 +130,8 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
   getAllEvent() {
     this.eventService.GetAllEvent().subscribe({
       next: (res: any) => {
+        console.log(res);
+
         this.events = res.result.map((element: any) => ({
           id: element.id,
           name: element.title,
@@ -139,11 +141,11 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
           category: element.type,
           imageUrl: element.image
         }));
-        this.filteredEvents = [...this.events]; // عرض كل الأحداث بشكل افتراضي
+        this.filteredEvents = [...this.events];
         this.calculatePagination();
       },
       error: (err) => {
-        this.toaster.warning(err, "لم يتم تحميل الأحداث");
+        this.toaster.warning(err);
       }
     });
   }
@@ -155,7 +157,7 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
         console.log(res);
       },
       error: (err) => {
-        this.toaster.error("فشل تحميل الفئات");
+        this.toaster.error(err);
       }
     });
   }

@@ -18,7 +18,7 @@ import { log } from 'console';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  Event:any[]=[];
+  Event:any;
   reviews:any[]=[];
   isauctionFav:{[key:number]:boolean}={};
   favAuctionIds:any[]=[]
@@ -124,6 +124,7 @@ export class HomeComponent implements OnInit {
         this.loadFavAuctions()
         this.getReviews();
         this.getAllFavCatIds();
+        this.GetHomeEvent();
       },
       error: (err) => {
         console.log(err);
@@ -221,19 +222,16 @@ export class HomeComponent implements OnInit {
   })
 }
 
-getEvent(){
-  this.eventService.GetAllEvent().subscribe({
+GetHomeEvent(){
+  this.eventService.GetHomeEvent().subscribe({
     next:(res:any)=>{
-     this.Event= res.result;
-      console.log(this.Event);
-
-    },
-    error:(err)=>{
-      console.log(err);
+        console.log(res);
+        this.Event = res.result
+    },error:(er)=>{
+      console.log(er);
     }
   })
 }
-
 
   customOptions: OwlOptions = {
     loop: false,

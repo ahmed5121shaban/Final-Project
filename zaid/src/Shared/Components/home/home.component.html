@@ -475,22 +475,20 @@
 </section>
 
 <!-- Event Section -->
- @if(Event.length!==0){
+ @if(Event!=null){
 
 
 <section class="event-section d-flex align-items-start py-5"
-    style="height: 90vh; background-image: linear-gradient(#bebebe0e,#363636b4), url('{{Event[0].image}}')">
-    <!-- Your content here -->
-
+    style="height: 90vh; background-image: linear-gradient(#bebebe0e,#363636b4), url('{{Event.image}}')">
 
   <div class="align-self-center  m-auto text-center">
-    <h1 class="mb-4 fw-semibold pt-1 text-light">{{Event[0].title}}</h1>
-    <h4 class="mb-4 pt-1 text-light">{{Event[0].type}}</h4>
+    <h1 class="mb-4 fw-semibold pt-1 text-light">{{Event.title}}</h1>
+    <h4 class="mb-4 pt-1 text-light">{{Event.description}}</h4>
     <p class=" mb-4 fw-semibold opacity-75 text-light">
-      {{Event[0].startDate|date}}
+      {{Event.endDate|date}}
     </p>
     <div>
-      <a routerLink="../action/auction-list" class="btn explore btn-lg me-2 py-2 px-3 fs-6">Explore
+      <a routerLink="../action/events-list/{{Event.id}}" class="btn explore btn-lg me-2 py-2 px-3 fs-6">Explore
         <i class="fa-solid fa-circle-chevron-right ms-2"></i></a>
     </div>
   </div>
