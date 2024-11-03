@@ -74,12 +74,9 @@ export class AuctionService {
 
   getAllActive(): Observable<any> {
     this.loader.show();
-    console.log("noooooooooooooooooooooooooooooooooooooooooooooooooooooo");
-
     return this.http.get<any>(`${this.apiUrl}/Active`).pipe(
       finalize(()=>{
         this.loader.hide();
-        console.log("noooooooooooooooooooooooooooooooooooooooooooooooooooooo");
       })
     );
   }
@@ -107,11 +104,9 @@ export class AuctionService {
       .set('categoryName', categoryName || '')
       .set('filterOption', filterOption || '')
       this.loader.show();
-      console.log("noooooooooooooooooooooooooooooooooooooooooooooooooooooo");
       return this.http.get<Pagination<Auction[]>>(`${this.apiUrl}/GetAuctions`, { params }).pipe(
         finalize(()=>{
           this.loader.hide();
-          console.log("noooooooooooooooooooooooooooooooooooooooooooooooooooooo");
         })
       );
   }

@@ -156,7 +156,7 @@ export class EditAuctionComponent implements OnInit {
       });
     }
 
-      this.itemService.editItem(this.itemId, formData).subscribe({
+      this.itemService.editItem(formData).subscribe({
         next: (response) => {
           console.log('Item updated successfully:', response);
           this.router.navigate(['user/accepted-items']);
@@ -176,10 +176,10 @@ export class EditAuctionComponent implements OnInit {
   GetItemById(){
     this.itemService.getItemById(this.itemId).subscribe({
       next:(res)=>{
-        console.log(res,"item item item item item item item item item item item item item item ");
         this.item = res;
+        console.log(this.item);
       },error:(err)=>{
-        console.log(err,"err err  err  err  err  err  err  err  err  err err err err");
+        console.log(err);
       }
     })
   }

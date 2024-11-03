@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'delete-confirm' , component: DeleteConfirmationComponent,canActivate:[authGuard]},
    { path: 'won-auction/:itemID' , component: WonAuctionComponent,canActivate:[authGuard]},
   { path: 'auction-feedback' , component: AuctionFeedbackComponent},
-  { path: 'events-list' , component: EventsListComponent},
+  { path: 'events-list/:id' , component: EventsListComponent},
 ];
 
 export const ActionRoutes = RouterModule.forChild(routes);
