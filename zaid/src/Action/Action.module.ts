@@ -12,6 +12,7 @@ import { AuctionFeedbackComponent } from './Components/auction-feedback/auction-
 import { WonAuctionComponent } from './Components/won-auction/won-auction.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UserModule } from '../User/User.module';
+import { EventsListComponent } from './Components/events-list/events-list.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { UserModule } from '../User/User.module';
     AuctionDetailsComponent,
     DeleteConfirmationComponent,
     AuctionFeedbackComponent,
-    WonAuctionComponent
+    WonAuctionComponent,
+    EventsListComponent
 
   //exports:[AuctionListComponent,AuctionEditComponent]
   ]

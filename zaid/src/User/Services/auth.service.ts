@@ -105,7 +105,10 @@ export class AuthService {
     private toaster: ToastrService,
     private router: Router
   ) {}
-
+  getCurrentUserId(): string | null {
+    const userId = this.cookieService.get("userId"); // افترض إنك بتخزن ID المستخدم في الكوكيز
+    return userId || null; // ارجع الـ ID أو null لو مش موجود
+  }
   get isLoggedIn() {
     return !!this.cookieService.get(this.localStorageKey);
   }

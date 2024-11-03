@@ -31,14 +31,14 @@ export class ItemService {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
 
   }
- 
+
 
 
   deleteItem(itemId:number):Observable<any>{
     return this.http.delete(`${this.apiUrl}/delete/${itemId}`);
    }
-   editItem(itemId: number, updatedData: FormData): Observable<any> {
-    return this.http.put(`${this.apiUrl}/edit/${itemId}`, updatedData);
+   editItem(updatedData: FormData): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/edit`, updatedData);
   }
   getItem(itemId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${itemId}`);
@@ -51,7 +51,7 @@ export class ItemService {
     return this.http.get(`${this.apiUrl}/Accept/${itemId}`)
   }
   // RejecttItem(itemId:number,message:string):Observable<any>{
-    
+
   //   const headers = new HttpHeaders({
   //     'Content-Type': 'application/json'
   //   });

@@ -9,14 +9,14 @@ import { ApiService } from '../../../User/Services/api.service';
 @Component({
   selector: 'app-auction-details',
   templateUrl: './auction-details.component.html',
-  styleUrls: ['./auction-details.component.css'] // Corrected 'styleUrl' to 'styleUrls'
+  styleUrls: ['./auction-details.component.css'], // Corrected 'styleUrl' to 'styleUrls'
 })
 export class AuctionDetailsComponent implements OnInit, OnDestroy {
   paymentCount!: number;
   auctionId!: number;
   auctionDetails: any;
   similarAuctions: any[] = [];
-  groupedSimilarAuctions: any[][] = []; 
+  groupedSimilarAuctions: any[][] = [];
   successesPayment!: boolean;
   UserCurrency!: string;
   method!: number;
@@ -25,7 +25,7 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
   hubConnection!: signalR.HubConnection;
   highlightNewBid!: boolean;
   isUpcoming: boolean = false;
-  auctionEndDate!: Date; 
+  auctionEndDate!: Date;
   countdown: string = '';
   private countdownInterval: any;
 
@@ -36,7 +36,7 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private userserv: ApiService
   ) {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.auctionId = +params['id'];
       this.getAuctionDetails();
     });
@@ -50,8 +50,6 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
     });
     this.startCountdown();
   }
-
-
 
   ngOnDestroy(): void {
     clearInterval(this.countdownInterval); // Clean up on component destroy
@@ -68,7 +66,9 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
         if (res.count == 3) this.method = res.method[0];
         console.log(res);
       },
-      error: (err) => { console.log(err); }
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
 
@@ -76,7 +76,7 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
     this.auctionService.getAuctionById(this.auctionId).subscribe({
       next: (res: any) => {
         this.auctionDetails = res;
-        this.auctionEndDate = new Date(res.endDate); 
+        this.auctionEndDate = new Date(res.endDate);
         console.log('Auction details:', this.auctionDetails);
         this.checkIfUpcoming();
         this.userHavePayment(res.item.id, this.auctionId);
@@ -85,7 +85,7 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error fetching auction details:', error);
-      }
+      },
     });
   }
 
@@ -98,7 +98,7 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error fetching similar auctions', error);
-      }
+      },
     });
   }
 
@@ -111,61 +111,70 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
   }
 
   firstPayment(paymentMethod: number) {
-    this.paymentService.firstPaymentAuction({
-      auctionID: this.auctionDetails.id,
-      amount: this.auctionDetails.item.startPrice,
-      method: paymentMethod,
-    }).subscribe({
-      next: (res: any) => {
-        window.location.href = res.result;
-      },
-      error: (err) => {
-        console.error("Error", err);
-      }
-    });
+    this.paymentService
+      .firstPaymentAuction({
+        auctionID: this.auctionDetails.id,
+        amount: this.auctionDetails.item.startPrice,
+        method: paymentMethod,
+      })
+      .subscribe({
+        next: (res: any) => {
+          window.location.href = res.result;
+        },
+        error: (err) => {
+          console.error('Error', err);
+        },
+      });
   }
 
   placeBid(bidAmount: string) {
     if (parseFloat(bidAmount) < 1 || isNaN(parseFloat(bidAmount))) {
-      this.toastr.warning("You must bid with more than $1");
+      this.toastr.warning('You must bid with more than $1');
       return;
     }
 
-    this.paymentService.placeBid({
-      auctionID: this.auctionDetails.id,
-      amount: parseFloat(bidAmount),
-    }).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.highlightNewBid = true;
-        setTimeout(() => {
-          this.highlightNewBid = false;
-        }, 3000);
-        this.getAuctionDetails();
-
-      },
-      error: (err) => { console.log(err); }
-    });
+    this.paymentService
+      .placeBid({
+        auctionID: this.auctionDetails.id,
+        amount: parseFloat(bidAmount),
+      })
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.highlightNewBid = true;
+          setTimeout(() => {
+            this.highlightNewBid = false;
+          }, 3000);
+          this.getAuctionDetails();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   openConnectionAndGetAllBidsWithLast() {
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl('http://localhost:5204/bidsHub', {
         transport: signalR.HttpTransportType.WebSockets,
-        skipNegotiation: true
+        skipNegotiation: true,
       })
       .build();
 
-    this.hubConnection.start().then(() => {
-      console.log('SignalR Connection started');
-      return this.hubConnection.invoke('joinGroup', this.auctionId);
-    }).then(() => {
-      console.log('Joined group successfully, fetching bids...');
-      return this.hubConnection.invoke('AllBids', this.auctionId);
-    }).catch((err) => {
-      console.log('SignalR Connection Error: ', err);
-      this.toastr.error(err);
-    });
+    this.hubConnection
+      .start()
+      .then(() => {
+        console.log('SignalR Connection started');
+        return this.hubConnection.invoke('joinGroup', this.auctionId);
+      })
+      .then(() => {
+        console.log('Joined group successfully, fetching bids...');
+        return this.hubConnection.invoke('AllBids', this.auctionId);
+      })
+      .catch((err) => {
+        console.log('SignalR Connection Error: ', err);
+        this.toastr.error(err);
+      });
   }
 
   getUserCurrency(): void {
@@ -175,14 +184,14 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
       },
       error: (err) => {
         console.log(err);
-      }
+      },
     });
   }
 
   checkIfUpcoming(): void {
     const startDate = new Date(this.auctionDetails.startDate);
     this.isUpcoming = startDate.getTime() > Date.now();
-    console.log("Is Upcoming?", this.isUpcoming);
+    console.log('Is Upcoming?', this.isUpcoming);
   }
 
   startCountdown() {
@@ -193,19 +202,20 @@ export class AuctionDetailsComponent implements OnInit, OnDestroy {
 
       if (timeLeft > 0) {
         const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const hours = Math.floor(
+          (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-if(days>0){
-  this.countdown = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-}else if(hours>0){
-  this.countdown = `${hours}h ${minutes}m ${seconds}s`;
-}else if (minutes>0){
-  this.countdown = `${minutes}m ${seconds}s`;
-}else{
-  this.countdown = `${seconds}s`;
-}
-       
+        if (days > 0) {
+          this.countdown = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        } else if (hours > 0) {
+          this.countdown = `${hours}h ${minutes}m ${seconds}s`;
+        } else if (minutes > 0) {
+          this.countdown = `${minutes}m ${seconds}s`;
+        } else {
+          this.countdown = `${seconds}s`;
+        }
       } else {
         this.countdown = 'Auction Ended';
         clearInterval(this.countdownInterval);

@@ -39,7 +39,6 @@
                         @if (allNotifications) {
                         @for (item of allNotifications.slice(0,3); track $index;let i = $index) {
                         <a class="dropdown-item" href="#">
-                            {{item.subjectName}}
                             <div class="notification-text">{{item.description}}.</div>
                             <div class="notification-time">{{item.time|date:"medium"}}</div>
                         </a>

@@ -1,0 +1,76 @@
+<div class="container-fluid my-5">
+  <div class="container">
+
+    <div class="container  p-0">
+      <section class="row">
+
+        <div class="position-relative mb-3 mt-5">
+          <img src="{{event.image}}" class="card-img-top m-auto"
+            alt="Mark Seliger Print" style="width: 60%; height: 300px;">
+          <div class=" category-card card position-absolute" style="width: 15rem; top: 10%; left: 8%;">
+            <div class="card-body">
+              <h5 class="card-title">{{event.name}}</h5>
+              <p class="card-text"> End In : {{countdown}} </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-12">
+
+          <div class="row">
+
+            <div
+              *ngFor="let auction of event.auctions.slice(0,load)"
+              class="col-lg-3 col-md-12 col-12 mt-5">
+              <div class="custom-product-card mt-3 me-2 border border-1">
+                <div class="position-relative">
+                  <div id="carousel{{auction.auctionId}}" class="carousel slide" data-bs-ride="true">
+                    <a [routerLink]="['/action/auction-details', auction.auctionId]" class="text-decoration-none">
+                      <div class="carousel-inner">
+                        <div *ngFor="let image of auction.images; let i = index" [class.active]="i === 0"
+                          class="carousel-item" style="height: 30vh;">
+                          <img [src]="image" class="d-block w-100 card-img-top"
+                            alt="Auction item image">
+                        </div>
+                      </div>
+                    </a>
+                    <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + auction.id"
+                      data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + auction.id"
+                      data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                  <a (click)="addToFav(auction.auctionId)" style="cursor: pointer;">
+                    <div class="card-icon bg-light" style="position: absolute; top: 10px; right: 10px;  z-index: 1200;">
+                      <i class="fa-heart" [ngClass]="isFav[auction.auctionId] ? 'fas' : 'far'"
+                        [style.color]="isFav[auction.auctionId] ? 'red' : 'black'"></i>
+                    </div>
+                  </a>
+                </div>
+                <div class="card-body p-3">
+                  <p class="card-title fw-bold">{{auction.name}}</p>
+                  <p class="mb-1"><small class="text-muted">{{auction.sellerName}}</small></p>
+                  <p class="bids">{{ auction.bidCount }} bids</p>
+                  <p class="price">{{ auction.startPrice | number }} EGP</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+      <div>
+        <div class="my-5">
+          <div class="m-auto" style="width: 80px;"  role="button" (click)="loadMore()"><span></span><span class="fw-bold opacity-75 text-decoration-underline">Load More</span><span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
