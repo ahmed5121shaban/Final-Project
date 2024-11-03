@@ -30,28 +30,34 @@
   </div>
 </section>
 
-
 <!-- Category Section-->
-<section class="py-5 bg-light ">
+<section class="py-5 bg-light">
   <div class="container">
-    <p class="mb-1 fs-2 text-decoration-none">Our Categories</p>
+    <h2 class="py-5">Our Categories</h2>
   </div>
-  <owl-carousel-o [options]="categoriesCarousel" class="d-flex flex-nowrap ">
-    @for (category of Categories; track $index) {
-    <ng-template carouselSlide>
-     <h6>{{category.name}}</h6>
-     <div class="position-relative"  >
-    <img [src]="category.image" class="card-img-top" alt="Mark Seliger Print" style="width: 96%; height: 300px;" [routerLink]= "['../action/auction-list',category.name]">
-    <a style="cursor: pointer;" (click)="addToFav(category.id)">
-      <div class="card-icon bg-light">
-        <i class="fa-heart" [ngClass]="isFavCat[category.id] ? 'fas' : 'far'" [style.color]="isFavCat[category.id] ? 'red' : 'black'" ></i>
+  <owl-carousel-o [options]="categoriesCarousel" class="d-flex flex-nowrap">
+    <ng-template *ngFor="let category of Categories; let i = index" carouselSlide>
+      <div class="position-relative">
+        <img [src]="category.image" class="card-img-top" alt="Mark Seliger Print"
+             style="width: 96%; height: 300px;" 
+             [routerLink]="['../action/auction-list', category.name]">
+
+        <!-- Category name label -->
+        <div class="category-label bg-white text-dark px-3 py-2">
+          <h5 class="m-0">{{ category.name }}</h5>
+        </div>
+
+        <a style="cursor: pointer;" (click)="addToFav(category.id)">
+          <div class="card-icon bg-light">
+            <i class="fa-heart" [ngClass]="isFavCat[category.id] ? 'fas' : 'far'"
+               [style.color]="isFavCat[category.id] ? 'red' : 'black'"></i>
+          </div>
+        </a>
       </div>
-    </a>
-  </div>
     </ng-template>
-    }
   </owl-carousel-o>
 </section>
+
 
 @if(popularAuctions.length!==0){
 <!-- Popular Auctions Section -->
@@ -456,37 +462,6 @@
   </div>
 </section>
 }
-
-<!-- Category Section-->
-<section class="py-5 bg-light">
-  <div class="container">
-    <h2 class="py-5">Our Categories</h2>
-  </div>
-  <owl-carousel-o [options]="categoriesCarousel" class="d-flex flex-nowrap">
-    <ng-template *ngFor="let category of Categories; let i = index" carouselSlide>
-      <div class="position-relative">
-        <img [src]="category.image" class="card-img-top" alt="Mark Seliger Print"
-             style="width: 96%; height: 300px;" 
-             [routerLink]="['../action/auction-list', category.name]">
-
-        <!-- Category name label -->
-        <div class="category-label bg-white text-dark px-3 py-2">
-          <h5 class="m-0">{{ category.name }}</h5>
-        </div>
-
-        <a style="cursor: pointer;" (click)="addToFav(category.id)">
-          <div class="card-icon bg-light">
-            <i class="fa-heart" [ngClass]="isFavCat[category.id] ? 'fas' : 'far'"
-               [style.color]="isFavCat[category.id] ? 'red' : 'black'"></i>
-          </div>
-        </a>
-      </div>
-    </ng-template>
-  </owl-carousel-o>
-</section>
-
-
-
 
 <!-- Why Choose Section -->
 <section class="py-5">
