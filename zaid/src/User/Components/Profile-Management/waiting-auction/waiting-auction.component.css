@@ -33,3 +33,6 @@ th{
   font-size: 14px;
   font-weight: 500;
 }
+.pagination-controls a {
+  text-decoration: none !important; 
+}
