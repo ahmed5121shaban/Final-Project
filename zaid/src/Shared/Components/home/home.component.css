@@ -1,5 +1,5 @@
 .hero-section {
-  background-image:linear-gradient(#bebebe0e,#363636b4), url('https://picsum.photos/1500/1500');
+  background-image:linear-gradient(#bebebe0e,#363636b4), url('/large_1x_theme_6ff6fb40a8.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -449,4 +449,18 @@ border-bottom: 1px solid #999; */
 }
 .custom-product-card{
   max-width: 200px;
+}
+.position-relative {
+  position: relative;
+}
+
+.category-label {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: white;
+  color: black;
+  border-radius: 4px;
+  padding: 1rem 2rem;
+  opacity: 0.8;
 }
