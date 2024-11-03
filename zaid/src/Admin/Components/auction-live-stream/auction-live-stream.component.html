@@ -60,7 +60,7 @@
 
                 <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
                     <p class="title">Bid history</p>
-                    @for (bid of auction.bids; track $index) {
+                    @for (bid of auction.bids.slice().reverse(); track $index) {
                     <div class="row single-bid mb-1">
 
                         <div class="col-4 bidder">{{bid.buyerName}}</div>
