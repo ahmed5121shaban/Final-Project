@@ -1,0 +1,132 @@
+.nav-pills .active{
+
+  background-color: transparent !important;
+  color:#1e0f57 !important;
+  border: none !important;
+
+}
+.nav-pills a{
+  color:#64748b;
+
+}
+.custom-card img {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+.card-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.small-text {
+  font-size: 0.8rem;
+  color: #6c757d;
+  text-align: left;
+}
+
+.bids {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-align: left;
+}
+
+.price {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000000;
+  text-align: left;
+}
+.custom-product-card{
+  background-color: #ffffff;
+
+}
+
+.card-icon{
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  padding: 4px 7px;
+  border-radius: 20px;
+}
+
+.card-title-how{
+  margin: 0 auto;
+}
+
+/* .card-body-work{
+  background-color: #fafafa;
+  border-radius: 0px;
+  color:#007bff;
+} */
+
+.custom-product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-product-card:hover {
+  transform: translateY(-10px); /* Moves the card slightly upward */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+}
+
+.custom-product-card:hover img {
+  filter: brightness(1.1); /* Slightly brightens the image on hover */
+}
+
+.custom-product-card:hover .card-body {
+  background-color: #f8f9fa; /* Optional: Change background color on hover */
+}
+
+.card-icon i:hover {
+  color: #ff5252; /* Change icon color when hovered */
+}
+.category-item{
+  background-color: #f6f6f8;
+}
+.category-item:hover {
+  background-color: #d9d8d8; /* Change background color on hover */
+}
+
+.category-link:hover {
+  opacity: 1; /* Make text fully opaque on hover */
+  text-decoration: underline; /* Optional: add underline on hover */
+  transition: opacity 0.3s ease, background-color 0.3s ease; /* Smooth transition for opacity and background color */
+}
+
+.category-card{
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  top: 30%;
+  left: 10%;
+  padding: 5px 5px;
+  width: 30%;
+  border-radius: 10px;
+}
+
+.text-danger{
+  color: #ff5252;
+}
+.category-card-icon{
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  padding: 4px 7px;
+  border-radius: 20px;
+
+}
+
+.card-icon{
+  z-index: 1200 !important;
+}
+
+
+
+.search-box {
+  margin-top: 10px; /* Add some space above */
+  min-width: 50px;
+}
+
+

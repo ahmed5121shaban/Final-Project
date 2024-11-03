@@ -18,10 +18,10 @@ import { log } from 'console';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  Event: any[] = [];
-  reviews: any[] = [];
-  isauctionFav: { [key: number]: boolean } = {};
-  favAuctionIds: any[] = []
+  Event:any;
+  reviews:any[]=[];
+  isauctionFav:{[key:number]:boolean}={};
+  favAuctionIds:any[]=[]
   mostBids = "mostBids";
   newArrival = "newArrivals";
   noBids = "noBids";
@@ -125,6 +125,14 @@ export class HomeComponent implements OnInit {
 
         this.popularAuctions = response;
 
+        this.updateFavState();
+        this.getEndingSoon();
+        this.getNoBids();
+        this.getUpcoming();
+        this.loadFavAuctions()
+        this.getReviews();
+        this.getAllFavCatIds();
+        this.GetHomeEvent();
       },
       error: (err) => {
         console.log(err);
@@ -222,19 +230,16 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  getEvent() {
-    this.eventService.GetAllEvent().subscribe({
-      next: (res: any) => {
-        this.Event = res.result;
-        console.log("Event", this.Event);
-
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
-  }
-
+GetHomeEvent(){
+  this.eventService.GetHomeEvent().subscribe({
+    next:(res:any)=>{
+        console.log(res);
+        this.Event = res.result
+    },error:(er)=>{
+      console.log(er);
+    }
+  })
+}
 
   customOptions: OwlOptions = {
     loop: false,

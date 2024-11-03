@@ -30,6 +30,7 @@ export class ComplaintService {
 
   // إضافة شكوى
   addComplaint(complaintData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/complaints`, complaintData);
-  }
+    return this.http.post(`${this.apiUrl}/add`, complaintData);
+}
+
 }
