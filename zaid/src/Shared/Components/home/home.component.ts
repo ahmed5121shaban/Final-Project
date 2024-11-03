@@ -18,10 +18,10 @@ import { log } from 'console';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  Event:any;
-  reviews:any[]=[];
-  isauctionFav:{[key:number]:boolean}={};
-  favAuctionIds:any[]=[]
+  Event: any;
+  reviews: any[] = [];
+  isauctionFav: { [key: number]: boolean } = {};
+  favAuctionIds: any[] = []
   mostBids = "mostBids";
   newArrival = "newArrivals";
   noBids = "noBids";
@@ -35,6 +35,9 @@ export class HomeComponent implements OnInit {
   endingSoon: any[] = [];
   Upcoming: any[] = [];
   nobids: any[] = [];
+  auctionEndDate!: Date;
+  countdown: string = '';
+  private countdownInterval: any;
   constructor(private cookieService: CookieService, private categoryService: CategoryService, private FavcategoryService: FavCategoryService, private auctionService: AuctionService, private favauctionService: FavouriteService, private eventService: EventService, private authService: AuthService, private router: Router) {
 
   }
@@ -50,8 +53,14 @@ export class HomeComponent implements OnInit {
     this.loadFavAuctions()
     this.getReviews();
     this.getAllFavCatIds();
+    this.GetHomeEvent();
 
   }
+
+  ngOnDestroy(): void {
+    clearInterval(this.countdownInterval);
+  }
+
   // handling fav categories
 
 
@@ -68,9 +77,6 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
-
-
   addToFav(categoryId: number) {
     if (this.authService.isLoggedIn) {
       this.FavcategoryService.AddToFav(categoryId).subscribe({
@@ -123,15 +129,6 @@ export class HomeComponent implements OnInit {
         console.log(response);
 
         this.popularAuctions = response;
-
-        this.updateFavState();
-        this.getEndingSoon();
-        this.getNoBids();
-        this.getUpcoming();
-        this.loadFavAuctions()
-        this.getReviews();
-        this.getAllFavCatIds();
-        this.GetHomeEvent();
       },
       error: (err) => {
         console.log(err);
@@ -172,20 +169,50 @@ export class HomeComponent implements OnInit {
       }
     })
   }
+  // getEndingSoon() {
+  //   this.auctionService.getEndingSoon().subscribe({
+  //     next: (response) => {
+  //       console.log("ending soon", response);
+  //       this.endingSoon = response;
+  //       this.auctionEndDate = new Date(response.endDate);
+  //       console.log("ending date", this.auctionEndDate);
+  //       this.startCountdown();
+  //       this.updateFavState();
+
+  //     },
+  //     error: (error) => {
+  //       console.log(error);
+
+  //     }
+  //   })
+  // }
   getEndingSoon() {
     this.auctionService.getEndingSoon().subscribe({
       next: (response) => {
-        console.log(response);
-        this.endingSoon = response;
-        this.updateFavState();
-
+        console.log("Ending soon", response);
+        this.endingSoon = response; // Store the array of auctions
+  
+        // Iterate through each auction to start countdowns
+        this.endingSoon.forEach(auction => {
+          const auctionEndDate = new Date(auction.endDate);
+  
+          // Check if the end date is valid
+          if (!isNaN(auctionEndDate.getTime())) {
+            console.log("Ending date for auction:", auctionEndDate);
+            this.startCountdown(auctionEndDate); // Pass the auction end date to the countdown
+          } else {
+            console.error("Invalid end date for auction:", auction.endDate);
+          }
+        });
+  
+        this.updateFavState(); // Update the favorite state as needed
       },
       error: (error) => {
-        console.log(error);
-
+        console.error("Error fetching ending soon auctions:", error);
       }
-    })
+    });
   }
+  
   getNoBids() {
     this.auctionService.getNoBids().subscribe({
       next: (response) => {
@@ -229,16 +256,16 @@ export class HomeComponent implements OnInit {
     })
   }
 
-GetHomeEvent(){
-  this.eventService.GetHomeEvent().subscribe({
-    next:(res:any)=>{
+  GetHomeEvent() {
+    this.eventService.GetHomeEvent().subscribe({
+      next: (res: any) => {
         console.log(res);
         this.Event = res.result
-    },error:(er)=>{
-      console.log(er);
-    }
-  })
-}
+      }, error: (er) => {
+        console.log(er);
+      }
+    })
+  }
 
   customOptions: OwlOptions = {
     loop: false,
@@ -481,5 +508,65 @@ GetHomeEvent(){
 
 
   }
+  // startCountdown() {
+  //   this.countdownInterval = setInterval(() => {
+  //     const now = new Date().getTime();
+  //     const endTime = this.auctionEndDate.getTime();
+  //     const timeLeft = endTime - now;
 
+  //     if (timeLeft > 0) {
+  //       const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  //       const hours = Math.floor(
+  //         (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  //       );
+  //       const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  //       const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+  //       if (days > 0) {
+  //         this.countdown = `${days}d`;
+  //       } else if (hours > 0) {
+  //         this.countdown = `${hours}h ${minutes}m ${seconds}s`;
+  //       } else if (minutes > 0) {
+  //         this.countdown = `${minutes}m ${seconds}s`;
+  //       } else {
+  //         this.countdown = `${seconds}s`;
+  //       }
+  //     } else {
+  //       this.countdown = 'Auction Ended';
+  //       clearInterval(this.countdownInterval);
+  //     }
+  //   }, 1000);
+  // }
+  startCountdown(auctionEndDate: Date) {
+    // Clear any existing countdown intervals to avoid overlaps
+    if (this.countdownInterval) {
+      clearInterval(this.countdownInterval);
+    }
+  
+    this.countdownInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const endTime = auctionEndDate.getTime(); // Use the passed end date
+      const timeLeft = endTime - now;
+  
+      if (timeLeft > 0) {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+  
+        if (days > 0) {
+          this.countdown = `${days}d`;
+        } else if (hours > 0) {
+          this.countdown = `${hours}h ${minutes}m ${seconds}s`;
+        } else if (minutes > 0) {
+          this.countdown = `${minutes}m ${seconds}s`;
+        } else {
+          this.countdown = `${seconds}s`;
+        }
+      } else {
+        this.countdown = 'Auction Ended';
+        clearInterval(this.countdownInterval); // Clear the interval when the countdown ends
+      }
+    }, 1000);
+  }
+  
 }
