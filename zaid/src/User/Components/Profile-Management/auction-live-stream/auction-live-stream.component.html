@@ -45,13 +45,13 @@
                         <div class="heighest-bid col-6">
                             <p>Current price</p>
                             @if (auction.bids.length==0) {
-                              <h5>{{auction.item.startPrice}}$ </h5>
+                              <h5>{{auction.item.startPrice}}EGP </h5>
                             }@else {
                                
-                                <h5>{{auction.currentPrice}}$</h5>
+                                <h5>{{auction.currentPrice}}EGP</h5>
                             }
     
-                            <p class="estimate-price">Start price: {{auction.item.startPrice}}$</p>
+                            <p class="estimate-price">Start price: {{auction.item.startPrice}}EGP</p>
                         </div>      
                         <div class="bid-ends-in col-6">
                             <p>Ends in:</p>

@@ -178,3 +178,6 @@
     margin: 0 auto;
   }
 }
+.pagination-controls a {
+  text-decoration: none !important; 
+}
