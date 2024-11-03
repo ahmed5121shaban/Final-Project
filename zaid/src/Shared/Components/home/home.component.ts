@@ -43,7 +43,6 @@ export class HomeComponent implements OnInit {
     this.getPopularAuctions();
     this.getAllActiveAuctions();
     this.getNewArrivalse();
-    this.getEvent();
     this.updateFavState();
     this.getEndingSoon();
     this.getNoBids();
