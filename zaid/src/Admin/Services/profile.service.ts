@@ -16,6 +16,7 @@ export interface SellerProfile {
     name: string;
     category: string;
     status: string;
+    description : string;
     images: string[];
 
   }>;
