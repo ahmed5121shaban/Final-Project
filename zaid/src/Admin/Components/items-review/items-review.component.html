@@ -34,7 +34,7 @@
             <td>{{ item.sellerName}}</td>
             <td>{{ item.startPrice }}</td>
             <td>{{ item.sellPrice }}</td>
-            <td><a [href]="'http://localhost:5204/' + item.contract" target="_blank"> View Contract</a></td>
+            <td><a [href]="item.contract" target="_blank"> View Contract</a></td>
             <td>
               <!-- Small Carousel inside the table -->
               <div id="carousel{{ i }}" class="carousel slide" data-bs-ride="carousel" style="width: 100px;">

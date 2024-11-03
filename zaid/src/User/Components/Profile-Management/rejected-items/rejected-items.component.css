@@ -87,3 +87,8 @@
     display: inline-block;
     margin: 100px auto;
   }
+
+  th{
+    font-size: 14px;
+    font-weight: 500;
+  }
