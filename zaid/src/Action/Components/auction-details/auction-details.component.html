@@ -46,13 +46,13 @@
                     <div class="heighest-bid col-6">
                         <p>Current price</p>
                         @if (auctionDetails.bids.length==0) {
-                          <h5>{{auctionDetails.item.startPrice}}$ </h5>
+                          <h5>{{auctionDetails.item.startPrice}}EGP </h5>
                         }@else {
                            
-                            <h5>{{auctionDetails.currentPrice}}$</h5>
+                            <h5>{{auctionDetails.currentPrice}}EGP</h5>
                         }
 
-                        <p class="estimate-price">Start price: {{auctionDetails.item.startPrice}}$</p>
+                        <p class="estimate-price">Start price: {{auctionDetails.item.startPrice}}EGP</p>
                     </div>                         
                     <div class="bid-ends-in col-6">
                         <p>Ends in:</p>
@@ -75,7 +75,7 @@
                     <input type="number" disabled name="" id="" class="form-control">
                     <a routerLink="/login" class=" btn btn-dark w-100 mt-3 mb-1">Login Before bid in Auction</a>
                     <p class="bid-limits ">Minimum bid: {{auctionDetails.item.startPrice}} EGP. Or enter your own, higher max bid. The bid will be
-                        converted into USD.</p>
+                        converted into EGP.</p>
                 </div>
                 }@else if (paymentCount == 1){
                   <div class="place-bid text-center">
@@ -87,7 +87,7 @@
                 </div>
                 } @else if (paymentCount == 2){
                   <div class="place-bid text-center">
-                    <input type="number" placeholder="Choose one to Bid The First Price :{{auctionDetails.item.startPrice}}$" name="" disabled id="" class="form-control">
+                    <input type="number" placeholder="Choose one to Bid The First Price :{{auctionDetails.item.startPrice}}EGP" name="" disabled id="" class="form-control">
                     <a (click)="firstPayment(1)" class=" btn btn-primary w-50 mt-3 mb-1">
                       <i class="fa-brands fa-stripe-s"></i>
                     </a>
@@ -108,7 +108,7 @@
                     <input #bid type="number" name="" id="" class="form-control">
                     <a role="button" class=" btn btn-secondary w-100 mt-3 mb-1" (click)="placeBid(bid.value)">Place A Bid</a>
                     <p class="bid-limits ">Minimum bid: {{auctionDetails.item.startPrice}} {{UserCurrency}} . Or enter your own, higher max bid. The bid will be
-                        converted into USD.</p>
+                        converted into EGP.</p>
                 </div>
                 }
 
@@ -128,7 +128,7 @@
                             data-parent="#accordion">
                             <div class="card-body" style="text-align: center;">
                                 Minimum bid: {{auctionDetails.item.startPrice}} {{UserCurrency}}. Or enter your own, higher max bid. The bid will be
-                                converted into USD.
+                                converted into EGP.
                             </div>
 
                         </div>
@@ -138,7 +138,7 @@
 
 
               @if(auctionDetails.bids.length>0){
-                <p class="estimate-price">Last bid: {{allBids[allBids.length-1].bidAmount}}$</p>
+                <p class="estimate-price">Last bid: {{allBids[allBids.length-1].bidAmount}}EGP</p>
                 <div class="bid-history mt-0 mb-5 overflow-y-scroll overflow-x-hidden h-25">
                     <p class="title">Bid history</p>
                     @for (bid of allBids.slice().reverse(); let i = $index; track $index;) {
@@ -170,7 +170,7 @@
                 <div class="bid-info-place  mb-3">
                     <div class="bid-info row bg-light  mb-3">
                         <div class="heighest-bid col-6">
-                            <p class="estimate-price">Start Price: {{auctionDetails.item.startPrice}}$</p>
+                            <p class="estimate-price">Start Price: {{auctionDetails.item.startPrice}}EGP</p>
                         </div>
                         <div class="bid-ends-in col-6">
                             <p>Starts in:</p>
@@ -197,7 +197,7 @@
                                 data-parent="#accordion">
                                 <div class="card-body" style="text-align: center;">
                                     Minimum bid: {{auctionDetails.item.startPrice}} {{UserCurrency}}. Or enter your own, higher max bid. The bid will be
-                                    converted into USD.
+                                    converted into EGP.
                                 </div>
                             </div>
                         </div>
@@ -327,7 +327,7 @@
             <!-- Inner loop to iterate over each auction in the group -->
             <div *ngFor="let auction of group" class="col-md-4">
               <div class="card">
-                <a [routerLink]="['/auction-details', auction.id]">
+                <a [routerLink]="['/action/auction-details', auction.id]">
                     <img [src]="auction.item.images[0]"
                     class="card-img-top" [alt]="auction.item.name">
                 </a>
