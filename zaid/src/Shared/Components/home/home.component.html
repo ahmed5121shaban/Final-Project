@@ -10,7 +10,7 @@
         <div class="d-flex flex-column align-items-center justify-content-center text-center">
           <a href="" class="text-decoration-none d-flex flex-column align-items-center">
             <img [src]="category.icon" alt="" style="width: 20px; margin-bottom: 5px;">
-            <p class="pt-1 fw-semibold opacity-75 m-0" style="font-size: 13px;">{{ category.name }}</p>
+            <p class="pt-1 m-0" style="font-size: 13px;">{{ category.name }}</p>
           </a>
         </div>
       </ng-template>
@@ -33,7 +33,7 @@
 <!-- Category Section-->
 <section class="py-5 bg-light">
   <div class="container">
-    <h2 class="py-5">Our Categories</h2>
+    <p class="mt-0 fs-2 text-decoration-none">Our Categories</p>
   </div>
   <owl-carousel-o [options]="categoriesCarousel" class="d-flex flex-nowrap">
     <ng-template *ngFor="let category of Categories; let i = index" carouselSlide>
@@ -140,7 +140,7 @@
         <ng-template carouselSlide>
           <div class="custom-product-card mt-3 me-2 border border-1">
             <div class="position-relative">
-              <div id="carousel{{auction.id}}" class="carousel slide" data-bs-ride="true">
+              <div id="carousellive{{auction.id}}" class="carousel slide" data-bs-ride="true">
                 <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
                   <div class="carousel-inner">
                     <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
@@ -151,12 +151,12 @@
                 </div>
               </a>
                     <button class="carousel-control-prev" type="button"
-                      [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="prev">
+                      [attr.data-bs-target]="'#carousellive' + auction.id" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
                     </button>
                     <button class="carousel-control-next" type="button"
-                      [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="next">
+                      [attr.data-bs-target]="'#carousellive' + auction.id" data-bs-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </button>
@@ -204,7 +204,7 @@
         <ng-template carouselSlide>
           <div class="custom-product-card mt-3 me-2 border border-1">
             <div class="position-relative">
-              <div id="carousel{{auction.id}}" class="carousel slide" data-bs-ride="true">
+              <div id="carouselnew{{auction.id}}" class="carousel slide" data-bs-ride="true">
                 <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
                   <div class="carousel-inner">
                     <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
@@ -215,12 +215,12 @@
                 </div>
               </a>
                     <button class="carousel-control-prev" type="button"
-                      [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="prev">
+                      [attr.data-bs-target]="'#carouselnew' + auction.id" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
                     </button>
                     <button class="carousel-control-next" type="button"
-                      [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="next">
+                      [attr.data-bs-target]="'#carouselnew' + auction.id" data-bs-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </button>
@@ -269,7 +269,7 @@
         <ng-template carouselSlide>
           <div class="custom-product-card mt-3 me-2 border border-1">
             <div class="position-relative">
-              <div id="carousel{{auction.id}}" class="carousel slide" data-bs-ride="true">
+              <div id="carouselend{{auction.id}}" class="carousel slide" data-bs-ride="true">
                 <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
                   <div class="carousel-inner">
                     <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
@@ -280,12 +280,12 @@
                 </div>
               </a>
                     <button class="carousel-control-prev" type="button"
-                      [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="prev">
+                      [attr.data-bs-target]="'#carouselend' + auction.id" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
                     </button>
                     <button class="carousel-control-next" type="button"
-                      [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="next">
+                      [attr.data-bs-target]="'#carouselend' + auction.id" data-bs-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </button>
@@ -335,7 +335,7 @@
         <ng-template carouselSlide>
           <div class="custom-product-card mt-3 me-2 border border-1">
             <div class="position-relative">
-              <div id="carousel{{auction.id}}" class="carousel slide" data-bs-ride="true">
+              <div id="carouselno{{auction.id}}" class="carousel slide" data-bs-ride="true">
                 <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
                   <div class="carousel-inner">
                     <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
@@ -346,12 +346,12 @@
                 </div>
               </a>
                     <button class="carousel-control-prev" type="button"
-                      [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="prev">
+                      [attr.data-bs-target]="'#carouselno' + auction.id" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
                     </button>
                     <button class="carousel-control-next" type="button"
-                      [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="next">
+                      [attr.data-bs-target]="'#carouselno' + auction.id" data-bs-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </button>
@@ -397,7 +397,7 @@
         <ng-template carouselSlide>
           <div class="custom-product-card mt-3 me-2 border border-1">
             <div class="position-relative">
-              <div id="carousel{{auction.id}}" class="carousel slide" data-bs-ride="true">
+              <div id="carouselup{{auction.id}}" class="carousel slide" data-bs-ride="true">
                 <a [routerLink]="['/action/auction-details', auction.id]" class="text-decoration-none">
                   <div class="carousel-inner">
                     <div *ngFor="let image of auction.item.images; let i = index" [class.active]="i === 0"
@@ -408,12 +408,12 @@
                 </div>
               </a>
                     <button class="carousel-control-prev" type="button"
-                      [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="prev">
+                      [attr.data-bs-target]="'#carouselup' + auction.id" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
                     </button>
                     <button class="carousel-control-next" type="button"
-                      [attr.data-bs-target]="'#carousel' + auction.id" data-bs-slide="next">
+                      [attr.data-bs-target]="'#carouselup' + auction.id" data-bs-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </button>
