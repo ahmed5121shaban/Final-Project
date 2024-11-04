@@ -34,7 +34,7 @@
             <td>{{ item.sellerName}}</td>
             <td>{{ item.startPrice }}</td>
             <td>{{ item.sellPrice }}</td>
-            <td><a [href]="'http://localhost:5204/' + item.contract" target="_blank"> View Contract</a></td>
+            <td><a [href]="item.contract" target="_blank"> View Contract</a></td>
             <td>
               <!-- Small Carousel inside the table -->
               <div id="carousel{{ i }}" class="carousel slide" data-bs-ride="carousel" style="width: 100px;">
@@ -57,8 +57,23 @@
               </div>
             </td>
             <td>
-              <button class="btn btn-secondary me-lg-2 mb-lg-0 mb-2" (click)="acceptItem(item.id)">Accept</button>
-              <button class="btn btn-primary" (click)="openRejectModal(item.id)">Reject</button>
+              <div class="dropdown">
+                <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis-vertical "></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" (click)="acceptItem(item.id)">
+                          Accept
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" (click)="openRejectModal(item.id)">
+                          Reject
+                        </a>
+                    </li>
+                </ul>
+            </div>
             </td>
           </tr>
         </tbody>

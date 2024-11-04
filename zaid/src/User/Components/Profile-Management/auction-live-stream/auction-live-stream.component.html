@@ -43,10 +43,16 @@
                 <div class="bid-info-place  mb-3 ">
                     <div class="bid-info row bg-light  mb-3">
                         <div class="heighest-bid col-6">
-                            <p>Heighest bid:</p>
-                            <h5>{{highestBid}}</h5>
-                            <!-- <p class="estimate-price">Estimate: 257 EUR</p> -->
-                        </div>
+                            <p>Current price</p>
+                            @if (auction.bids.length==0) {
+                              <h5>{{auction.item.startPrice}}EGP </h5>
+                            }@else {
+                               
+                                <h5>{{auction.currentPrice}}EGP</h5>
+                            }
+    
+                            <p class="estimate-price">Start price: {{auction.item.startPrice}}EGP</p>
+                        </div>      
                         <div class="bid-ends-in col-6">
                             <p>Ends in:</p>
                             <h5 id="end-time">{{ countdown }}</h5>

@@ -39,3 +39,6 @@
   max-width: 160px;
   max-height: 160px;
 }
+.pagination-controls a {
+  text-decoration: none !important; 
+}

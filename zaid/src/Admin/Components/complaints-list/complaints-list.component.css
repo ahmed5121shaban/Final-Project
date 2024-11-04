@@ -84,4 +84,23 @@
       margin-bottom: 10px;
     }
   }
+  :host ::ng-deep ngx-datatable {
+    width: 100%;
+    max-width: 100%;
+  }
   
+  :host ::ng-deep ngx-datatable .datatable-header-cell {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  :host ::ng-deep ngx-datatable .datatable-body-cell {
+    text-align: center;
+    padding: 8px;
+  }
+  :host ::ng-deep ngx-datatable .datatable-body-cell {
+    padding: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

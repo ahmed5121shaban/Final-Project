@@ -9,8 +9,8 @@
         <tbody>
             <tr>
                 <td>Withdrawal Balance</td>
-                <td *ngIf="availableBalance!=null">{{availableBalance}}$</td>
-                <td *ngIf="availableBalance==null">0 $</td>
+                <td *ngIf="availableBalance!=null">{{availableBalance}}EGP</td>
+                <td *ngIf="availableBalance==null">0 EGP</td>
                 <td *ngIf="availableBalance!=0">
                    <a  routerLink="/user/seller-withdraw">Withdraw
                     <i class="fa-solid fa-arrow-right ms-1 mt-1"></i>
@@ -22,20 +22,20 @@
             </tr>
             <tr>
                 <td>Withdrawn Balance</td>
-                <td *ngIf="withdrawnbalance!=null">{{withdrawnbalance}}$</td>
-                <td *ngIf="withdrawnbalance==null">0 $</td>
+                <td *ngIf="withdrawnbalance!=null">{{withdrawnbalance}}EGP</td>
+                <td *ngIf="withdrawnbalance==null">0 EGP</td>
                 <td></td>
             </tr>
             <tr>
                 <td>Upcoming Balanace</td>
-                <td *ngIf="upcomingBalance!=null">{{upcomingBalance}}$</td>
-                <td *ngIf="upcomingBalance==null">0 $</td>
+                <td *ngIf="upcomingBalance!=null">{{upcomingBalance}}EGP</td>
+                <td *ngIf="upcomingBalance==null">0 EGP</td>
                 <td></td>
 
             </tr>
             <tr>
                 <td>Total Earnings</td>
-                <td>{{(availableBalance)+(upcomingBalance)+(withdrawnbalance)}}$</td>
+                <td>{{(availableBalance)+(upcomingBalance)+(withdrawnbalance)}}EGP</td>
                 <td></td>
 
             </tr>

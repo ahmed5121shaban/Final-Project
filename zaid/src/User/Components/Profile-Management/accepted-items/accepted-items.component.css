@@ -138,3 +138,13 @@
     display: inline-block;
     margin: 100px auto;
   }
+
+  
+  th{
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .pagination-controls a {
+    text-decoration: none !important; 
+  }
+  

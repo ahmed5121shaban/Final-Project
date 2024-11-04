@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuctionService } from '../../../Action/Services/auction.service';
 import { BidService } from '../../../Action/Services/bid.service';
+import * as signalR from '@microsoft/signalr';
 import { error } from 'console';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -16,10 +18,16 @@ export class AuctionLiveStreamComponent {
   highestBid! :number ;
   startprice! :number;
   auctionEndDate!: Date; 
+  hubConnection!:signalR.HubConnection;
+  allBids:any;
   countdown: string = '';
   private countdownInterval: any;
 
-  constructor(private route :ActivatedRoute,private auctionService :AuctionService,private bidService:BidService){}
+  constructor(private route :ActivatedRoute,private auctionService :AuctionService,
+    private bidService:BidService,
+    private toastr: ToastrService,){
+    this.openConnectionAndGetAllBidsWithLast();
+  }
 
   getHighestBid():void {
     this.bidService.getHighestBid(this.auctionId).subscribe({
@@ -60,23 +68,41 @@ ngOnInit(): void {
     this.auctionId = +params['id'];
     this.getAuctionDetails();
     this.startCountdown();
+    this.hubConnection.on('allBids', (res) => {
+      this.allBids = res;
+      console.log('All bids received:', res);
+    });
   });
   
 }
 ngOnDestroy(): void {
   clearInterval(this.countdownInterval); 
 }
-// Close(id:number):void{
-//   this.auctionService.CloseAuction(id).subscribe({
-//     next:res=>{
-//     console.log(res);
 
-      
-//     }
-//   })
+openConnectionAndGetAllBidsWithLast() {
+  this.hubConnection = new signalR.HubConnectionBuilder()
+    .withUrl('http://localhost:5204/bidsHub', {
+      transport: signalR.HttpTransportType.WebSockets,
+      skipNegotiation: true
+    })
+    .build();
 
-// }
+  this.hubConnection
+    .start()
+    .then(() => {
+      console.log('SignalR Connection started');
+      return this.hubConnection.invoke('joinGroup', this.auctionId);
+    })
+    .then(() => {
+      console.log('Joined group successfully, fetching bids...');
+      return this.hubConnection.invoke('AllBids', this.auctionId);
+    })
+    .catch((err) => {
+      console.log('SignalR Connection Error: ', err);
+      this.toastr.error(err);
+    });
 
+}
 startCountdown() {
   this.countdownInterval = setInterval(() => {
     const now = new Date().getTime();
