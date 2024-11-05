@@ -46,11 +46,7 @@ export class EditAuctionComponent implements OnInit {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
         this.categories = data.result;
-<<<<<<< HEAD
         this.GetItemById();
-=======
-        console.log(this.categories,"fffffffffffffffffffffffffffffffffffffffffffff");
-
         // Now fetch the item details
         this.itemId = +this.route.snapshot.paramMap.get('id')!;
         console.log('ID:', this.itemId);
@@ -80,7 +76,6 @@ export class EditAuctionComponent implements OnInit {
           this.imagePreviews = item.images.map((img: any) => img.src);
 
         });
->>>>>>> 4e39a2c207e4b6a23d41afd02ae49a05a2a53f4e
       },
       error: (err) => {
         console.error('Error loading categories:', err);
@@ -92,9 +87,9 @@ export class EditAuctionComponent implements OnInit {
     this.itemService.getItemById(this.itemId).subscribe({
       next: (item) => {
         this.item = item;
-  
+
         const selectedCategory = this.categories.find((cat) => cat.name === item.category);
-  
+
         this.auctionForm.patchValue({
           Title: item.name,
           Description: item.description,
@@ -102,7 +97,7 @@ export class EditAuctionComponent implements OnInit {
           startPrice: item.startPrice,
           sellPrice: item.sellPrice,
         });
-  
+
         this.Contract = item.contract;
         this.imagePreviews = item.images.map((img: any) => img.src);
       },
@@ -141,18 +136,18 @@ export class EditAuctionComponent implements OnInit {
   onSubmit() {
     if (this.auctionForm.valid) {
       const formData = new FormData();
-  
+
       formData.append('itemId', `${this.itemId}`);
       formData.append('title', this.auctionForm.get('Title')?.value);
       formData.append('description', this.auctionForm.get('Description')?.value);
       formData.append('category', this.auctionForm.get('Category')?.value);
       formData.append('startPrice', this.auctionForm.get('startPrice')?.value);
       formData.append('sellPrice', this.auctionForm.get('sellPrice')?.value || '');
-  
+
       if (this.Contract) {
         formData.append('Contract', this.Contract);
       }
-  
+
       if (this.Images && this.Images.length > 0) {
         this.Images.forEach((image) => {
           formData.append('Images', image, image.name);
@@ -162,7 +157,7 @@ export class EditAuctionComponent implements OnInit {
           formData.append(`existingImages[${index}]`, imageUrl);
         });
       }
-  
+
       this.itemService.editItem(formData).subscribe({
         next: (response) => {
           this.toaster.success("The Item Updated Successfully");

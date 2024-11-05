@@ -7,7 +7,7 @@
 
       <div class="row">
         <!-- Auction Item Image -->
-       
+
         <div class=" col-md-4 align-items-center">
           <div id="carouselExample" class="carousel slide">
             <div class="carousel-inner">
@@ -67,11 +67,12 @@
             <div class="card-body">
               <h6 class="card-subtitle mb-2 text-secondary">Total Price: </h6>
               <p class="card-text text-primary fs-3"><strong>
-                ${{completeAuctionPayment.startPrice}}
+                (${{completeAuctionPayment.startPrice}}
                 +
-                ${{completeAuctionPayment.totalBids}}
+                ${{completeAuctionPayment.totalBids}}) 
+                * %2 Our Profit
                  =
-                ${{(completeAuctionPayment.startPrice+completeAuctionPayment.totalBids)}}</strong></p>
+                ${{(completeAuctionPayment.startPrice+completeAuctionPayment.totalBids)*.02}}</strong></p>
             </div>
           </div>
         </div>
