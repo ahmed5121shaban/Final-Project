@@ -53,7 +53,6 @@ export class LoginComponent {
   }
 
   loginUser() {
-    debugger;
     this.authService.loginUser(this.form.value).subscribe(
       {next:(response: any) => {
         if (response.status == 200) {

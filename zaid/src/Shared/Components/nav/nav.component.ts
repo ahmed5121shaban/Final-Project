@@ -43,12 +43,7 @@ export class NavComponent implements OnInit  {
 
   ) {
     this.audio.src = 'audio/mixkit-correct-answer-tone-2870.wav';
-    this.authService.isLoggedUserSubject.subscribe({
-      next:(res)=>{
-        this.isLoggedIn=res
-      },error:(err)=>console.log(err)
-
-    });
+    this.authService.isLoggedUserSubject.next(this.cookieService.get("token")!='')
     this.authService.roleSubject.subscribe({
       next:(roles)=>{
         console.log("userroles",roles);
@@ -65,6 +60,12 @@ export class NavComponent implements OnInit  {
   }
 
   ngOnInit() {
+    this.authService.isLoggedUserSubject.subscribe({
+      next:(res)=>{
+        this.isLoggedIn=res
+      },error:(err)=>console.log(err)
+
+    });
     this.openConnectionAndGetAllBidsWithLast();
     this.hubConnection.on('threeNotification', (res: Notification[]) => {
       this.allNotifications=res;
