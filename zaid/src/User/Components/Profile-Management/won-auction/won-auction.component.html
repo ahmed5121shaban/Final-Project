@@ -42,8 +42,23 @@
           <td>{{auction.sellerName}}</td>
           <td>{{auction.totalPrice}}</td>
           <td >
-            <a *ngIf="auction?.completed && auction.shippingStatus == 3 && !auction.isReviewd"  [routerLink]="['/user/add-review', auction.auctionID]">Add Review</a>
-            <a *ngIf="!auction?.completed && auction.shippingStatus === 0"  [routerLink]="['/action/won-auction', auction.itemID]">Complete Payment</a>   
+            
+           <!-- زر إضافة مراجعة يظهر فقط إذا كانت الشروط التالية محققة -->
+<a *ngIf="auction?.completed && auction.shippingStatus === 3 && !auction.isReviewd" [routerLink]="['/user/add-review', auction.auctionID]">Add Review</a>
+
+<!-- زر إتمام الدفع يظهر فقط إذا لم تكتمل المزاد و`shippingStatus` يساوي 0 -->
+<a *ngIf="!auction?.completed && auction.shippingStatus === 0" [routerLink]="['/action/won-auction', auction.itemID]">Complete Payment</a>
+
+<!-- عرض الحالة كـ Pending إذا كانت `shippingStatus` تساوي 1 -->
+<span *ngIf="auction?.shippingStatus === 1">Pending</span>
+
+<!-- عرض الحالة كـ OnTheWay إذا كانت `shippingStatus` تساوي 2 -->
+<span *ngIf="auction?.shippingStatus === 2">OnTheWay</span>
+<span *ngIf="auction?.shippingStatus == null">Waiting for Shipping</span>
+
+<!-- زر تقديم شكوى يظهر فقط إذا كانت `shippingStatus` تساوي 3 -->
+<a *ngIf="auction?.shippingStatus === 4" [routerLink]="['/user/complain-add']">Add Complaint</a>
+
           </td>   
         </tr>
       </tbody>
