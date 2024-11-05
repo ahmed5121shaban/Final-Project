@@ -43,8 +43,8 @@
           <td>{{auction.totalPrice}}</td>
           <td >
             <a *ngIf="auction?.completed && auction.shippingStatus == 3 && !auction.isReviewd"  [routerLink]="['/user/add-review', auction.auctionID]">Add Review</a>
-            <a *ngIf="!auction?.completed && auction.shippingStatus === 0"  [routerLink]="['/action/won-auction', auction.itemID]">Complete Payment</a>   
-          </td>   
+            <a *ngIf="!auction?.completed && auction.shippingStatus === 0"  [routerLink]="['/action/won-auction', auction.itemID]">Complete Payment</a>
+          </td>
         </tr>
       </tbody>
     </table>
