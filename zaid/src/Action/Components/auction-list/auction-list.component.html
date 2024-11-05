@@ -90,7 +90,7 @@
               <div *ngFor="let category of categories"
                 class="category-item ps-2 pb-1 pt-1 m-0 border-bottom border-light-subtle">
                 <a [routerLink]="['/action/auction-list', category.name]"
-                  class="nav-link text-dark opacity-75 fw-semibold text-decoration-none d-flex flex-row justify-content-between category-link">
+                  class="nav-link text-dark  text-decoration-none d-flex flex-row justify-content-between category-link">
                   <span class="ms-0 link-underline-opacity-10-hover">{{ category.name }}</span>
                   <!-- <span class="me-2">({{CategoryAuctionCount(category.name)}})</span> -->
                 </a>

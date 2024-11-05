@@ -46,7 +46,41 @@ export class EditAuctionComponent implements OnInit {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
         this.categories = data.result;
+<<<<<<< HEAD
         this.GetItemById();
+=======
+        console.log(this.categories,"fffffffffffffffffffffffffffffffffffffffffffff");
+
+        // Now fetch the item details
+        this.itemId = +this.route.snapshot.paramMap.get('id')!;
+        console.log('ID:', this.itemId);
+
+        this.itemService.getItem(Number(this.itemId)).subscribe((item: any) => {
+          console.log(item);
+
+          // Find the category by name in the retrieved categories
+          const selectedCategory = this.categories.find(
+            (cat) => cat.name === item.category
+          );
+
+          // Set form controls with the selected category ID
+          this.auctionForm.patchValue({
+            Title: item.title,
+            Description: item.description,
+            Category: selectedCategory ? selectedCategory.id : null,
+            startPrice: item.startPrice,
+            sellPrice: item.sellPrice,
+
+            // Contract:item.contract,
+            // Images:item.Images
+
+          });
+          // Set additional properties
+          this.Contract = item.contract;
+          this.imagePreviews = item.images.map((img: any) => img.src);
+
+        });
+>>>>>>> 4e39a2c207e4b6a23d41afd02ae49a05a2a53f4e
       },
       error: (err) => {
         console.error('Error loading categories:', err);

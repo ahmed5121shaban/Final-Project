@@ -130,3 +130,6 @@
 }
 
 
+.pagination-controls a {
+  text-decoration: none !important; /* Force removal of underline */
+}

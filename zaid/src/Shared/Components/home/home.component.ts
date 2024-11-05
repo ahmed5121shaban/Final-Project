@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getAllCategories();
     this.getPopularAuctions();
     this.getAllActiveAuctions();
     this.getNewArrivalse();
@@ -123,7 +124,7 @@ export class HomeComponent implements OnInit {
 
   }
   getPopularAuctions() {
-    this.getAllCategories();
+
     this.auctionService.getPopularAuctions().subscribe({
       next: (response) => {
         console.log(response);
