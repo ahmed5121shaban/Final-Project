@@ -47,35 +47,6 @@ export class EditAuctionComponent implements OnInit {
       next: (data) => {
         this.categories = data.result;
         this.GetItemById();
-        // Now fetch the item details
-        this.itemId = +this.route.snapshot.paramMap.get('id')!;
-        console.log('ID:', this.itemId);
-
-        this.itemService.getItem(Number(this.itemId)).subscribe((item: any) => {
-          console.log(item);
-
-          // Find the category by name in the retrieved categories
-          const selectedCategory = this.categories.find(
-            (cat) => cat.name === item.category
-          );
-
-          // Set form controls with the selected category ID
-          this.auctionForm.patchValue({
-            Title: item.title,
-            Description: item.description,
-            Category: selectedCategory ? selectedCategory.id : null,
-            startPrice: item.startPrice,
-            sellPrice: item.sellPrice,
-
-            // Contract:item.contract,
-            // Images:item.Images
-
-          });
-          // Set additional properties
-          this.Contract = item.contract;
-          this.imagePreviews = item.images.map((img: any) => img.src);
-
-        });
       },
       error: (err) => {
         console.error('Error loading categories:', err);
@@ -87,9 +58,9 @@ export class EditAuctionComponent implements OnInit {
     this.itemService.getItemById(this.itemId).subscribe({
       next: (item) => {
         this.item = item;
-
+  
         const selectedCategory = this.categories.find((cat) => cat.name === item.category);
-
+  
         this.auctionForm.patchValue({
           Title: item.name,
           Description: item.description,
@@ -97,16 +68,18 @@ export class EditAuctionComponent implements OnInit {
           startPrice: item.startPrice,
           sellPrice: item.sellPrice,
         });
-
+  
         this.Contract = item.contract;
-        this.imagePreviews = item.images.map((img: any) => img.src);
+  
+        // تحميل الصور الجديدة فقط للعرض
+        this.imagePreviews = item.images ? item.images.map((img: any) => img.src) : [];
       },
       error: (err) => {
         console.error('Error fetching item:', err);
       }
     });
   }
-
+  
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
 
@@ -122,6 +95,7 @@ export class EditAuctionComponent implements OnInit {
         reader.readAsDataURL(file);
       });
 
+      // تحديث قيمة الحقل في الفورم
       this.auctionForm.patchValue({ Images: this.Images });
     }
   }
@@ -136,34 +110,33 @@ export class EditAuctionComponent implements OnInit {
   onSubmit() {
     if (this.auctionForm.valid) {
       const formData = new FormData();
-
+  
       formData.append('itemId', `${this.itemId}`);
       formData.append('title', this.auctionForm.get('Title')?.value);
       formData.append('description', this.auctionForm.get('Description')?.value);
       formData.append('category', this.auctionForm.get('Category')?.value);
       formData.append('startPrice', this.auctionForm.get('startPrice')?.value);
       formData.append('sellPrice', this.auctionForm.get('sellPrice')?.value || '');
-
+  
       if (this.Contract) {
         formData.append('Contract', this.Contract);
       }
-
-      if (this.Images && this.Images.length > 0) {
-        this.Images.forEach((image) => {
-          formData.append('Images', image, image.name);
-        });
-      } else {
-        this.imagePreviews.forEach((imageUrl, index) => {
-          formData.append(`existingImages[${index}]`, imageUrl);
-        });
-      }
-
+  
+      // إرسال الصور الجديدة فقط، مع التأكد من مسح الصور القديمة أولاً
+      this.Images.forEach((image) => {
+        formData.append('Images', image, image.name);
+      });
+  
       this.itemService.editItem(formData).subscribe({
         next: (response) => {
           this.toaster.success("The Item Updated Successfully");
-
-          // تحديث الصور بعد التعديل
-          this.GetItemById();
+  
+          // مسح الصور القديمة بعد التحديث
+          this.imagePreviews = []; // مسح الصور القديمة
+          this.Images = []; // مسح قائمة الصور القديمة
+  
+          // تحديث البيانات بالصور الجديدة
+          this.GetItemById(); // استدعاء GetItemById لتحديث البيانات بعد التحديث
         },
         error: (error) => {
           this.toaster.error("The Item Not Updated");
