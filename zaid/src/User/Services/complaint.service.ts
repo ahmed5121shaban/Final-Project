@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { Seller } from '../interface/seller';
 import { environment } from '../../environments/environment';
 import { ComplaintResponse } from '../interface/complaint'; // استيراد ../interface/complaint';
+import { AuthService } from './auth.service';
+import { throwError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,7 @@ import { ComplaintResponse } from '../interface/complaint'; // استيراد ..
 export class ComplaintService {
   private apiUrl = environment.apiUrl + 'api/Complain'; // استخدم apiUrl من environment
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private authService: AuthService) {}
 
   // الحصول على قائمة البائعين
   getSellers(): Observable<Seller[]> {
@@ -30,7 +33,15 @@ export class ComplaintService {
 
   // إضافة شكوى
   addComplaint(complaintData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/add`, complaintData);
-}
+    const buyerId = this.authService.getCurrentUserId();
+    if (buyerId) {
+      return this.http.post(`${this.apiUrl}/add`, { ...complaintData, buyerId }, { responseType: 'text' });
+    } else {
+      console.error("User ID is missing.");
+      return throwError(() => new Error("User ID is missing."));
+    }
+  }
+  
+  
 
 }

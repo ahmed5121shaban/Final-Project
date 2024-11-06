@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
     this.categoryService.getCategories().subscribe({
       next: res => {
         this.Categories = res.result;
-        console.log(this.Categories);
+        console.log("getAllCategories",this.Categories);
         this.UpdateCategoris();
 
       },
@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit {
           if (res.result == "removed") {
             this.isFavCat[categoryId] = false;
           }
-          console.log(res.result);
+          console.log("addToFav",res.result);
         },
         error: err => {
           console.log("addtofaverror ", err);
@@ -142,9 +142,9 @@ export class HomeComponent implements OnInit {
 
   }
   getAllActiveAuctions() {
-    this.auctionService.getAllActive().subscribe({
+    this.auctionService.HomeActive().subscribe({
       next: (response) => {
-        console.log(response);
+        console.log("HomeActive",response);
         this.activeAuctions = response;
         this.updateFavState();
 
@@ -555,7 +555,7 @@ export class HomeComponent implements OnInit {
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
   
         if (days > 0) {
-          this.countdown = `${days}d`;
+          this.countdown = `${days}day`;
         } else if (hours > 0) {
           this.countdown = `${hours}h ${minutes}m ${seconds}s`;
         } else if (minutes > 0) {

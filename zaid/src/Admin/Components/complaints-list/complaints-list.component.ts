@@ -15,7 +15,7 @@ export class ComplaintsListComponent implements OnInit {
   filteredComplaints: Complaint[] = [];
   currentPageComplaints: Complaint[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 5;
   totalPages: number = 0;
   pages: number[] = [];
   sortType: SortType = SortType.single;

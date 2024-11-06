@@ -76,9 +76,8 @@ export class AuctionListComponent implements OnInit {
           this.filterOption = '';
         }
 
-        this.getFavCatIds();
+
         this.loadActiveAuctions();
-        this.loadFavAuctions();
       });
     });
   }
@@ -116,6 +115,8 @@ export class AuctionListComponent implements OnInit {
         next: (pagination: Pagination<any[]>) => {
           this.activeAuctions = pagination.list || [];
           this.totalItemsActive = pagination.totalCount || 0;
+        this.loadFavAuctions();
+this.getFavCatIds()
           this.updateFavState();
           console.log(this.activeAuctions);
         },

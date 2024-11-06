@@ -66,6 +66,6 @@ export class WonAuctionComponent  {
     })
   }
 
- 
+
 
 }

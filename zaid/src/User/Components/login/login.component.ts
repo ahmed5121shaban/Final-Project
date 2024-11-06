@@ -53,7 +53,6 @@ export class LoginComponent {
   }
 
   loginUser() {
-    debugger;
     this.authService.loginUser(this.form.value).subscribe(
       {next:(response: any) => {
         if (response.status == 200) {
@@ -65,9 +64,7 @@ export class LoginComponent {
           if (userRole.includes("Admin")) {
             this.router.navigate(['/admin/home']);
           } else {
-            //we have problem in location back
-            this.router.navigate(['']);
-            //this.location.back();
+            this.router.navigate(['/user/profile']);
           }
         } else {
           this.toastr.error('Email or password is wrong', 'Error');

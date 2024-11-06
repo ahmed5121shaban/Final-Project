@@ -23,32 +23,32 @@ export class VerifyIdentityComponent implements OnInit {
     private router: Router // إضافة الـ Router
   ) {
     this.form = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-      lastName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-      BarthDate: ['', [Validators.required]],
-      idNumber: ['', [Validators.required, Validators.maxLength(20)]],
+      // firstName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
+      // lastName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
+      // BarthDate: ['', [Validators.required]],
+      // idNumber: ['', [Validators.required, Validators.maxLength(20)]],
       nationalIdFrontImage: [null, [Validators.required]],
       nationalIdBackImage: [null, [Validators.required]]
     });
   }
 
-  get firstName() { return this.form.get('firstName'); }
-  get lastName() { return this.form.get('lastName'); }
-  get BarthDate() { return this.form.get('BarthDate'); }
-  get idNumber() { return this.form.get('idNumber'); }
+  // get firstName() { return this.form.get('firstName'); }
+  // get lastName() { return this.form.get('lastName'); }
+  // get BarthDate() { return this.form.get('BarthDate'); }
+  // get idNumber() { return this.form.get('idNumber'); }
 
   ngOnInit() {}
 
   addID() {
     if (this.form.valid) {
       const formData = new FormData();
-      const birthDate = new Date(this.form.get('BarthDate')?.value);
-      const formattedDate = `${birthDate.getFullYear()}-${String(birthDate.getMonth() + 1).padStart(2, '0')}-${String(birthDate.getDate()).padStart(2, '0')}`;
+      // const birthDate = new Date(this.form.get('BarthDate')?.value);
+      // const formattedDate = `${birthDate.getFullYear()}-${String(birthDate.getMonth() + 1).padStart(2, '0')}-${String(birthDate.getDate()).padStart(2, '0')}`;
   
-      formData.append('FirstName', this.form.get('firstName')?.value);
-      formData.append('LastName', this.form.get('lastName')?.value);
-      formData.append('BarthDate', formattedDate);
-      formData.append('IdNumber', this.form.get('idNumber')?.value);
+      // formData.append('FirstName', this.form.get('firstName')?.value);
+      // formData.append('LastName', this.form.get('lastName')?.value);
+      // formData.append('BarthDate', formattedDate);
+      // formData.append('IdNumber', this.form.get('idNumber')?.value);
 
       if (this.nationalIdFrontImageFile) {
         formData.append('NationalIdFrontImage', this.nationalIdFrontImageFile);
@@ -66,8 +66,7 @@ export class VerifyIdentityComponent implements OnInit {
           this.router.navigate(['/user/profile']);
         },
         error: (error: any) => {
-          console.error('Error verifying identity', error);
-          this.toastr.error('Error verifying identity'); // عرض رسالة خطأ باستخدام التوستر
+
         }
       });
     } else {
