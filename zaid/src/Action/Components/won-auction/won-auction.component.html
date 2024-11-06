@@ -67,12 +67,13 @@
             <div class="card-body">
               <h6 class="card-subtitle mb-2 text-secondary">Total Price: </h6>
               <p class="card-text text-primary fs-3"><strong>
-                (${{completeAuctionPayment.startPrice}}
+                ${{completeAuctionPayment.startPrice}}
                 +
-                ${{completeAuctionPayment.totalBids}}) 
-                * %2 Our Profit
+                ${{completeAuctionPayment.totalBids}}
+                + %2 Our Profit
                  =
-                ${{(completeAuctionPayment.startPrice+completeAuctionPayment.totalBids)*.02}}</strong></p>
+                ${{((completeAuctionPayment.startPrice+completeAuctionPayment.totalBids)*.02)
+                +(completeAuctionPayment.startPrice+completeAuctionPayment.totalBids)}}</strong></p>
             </div>
           </div>
         </div>

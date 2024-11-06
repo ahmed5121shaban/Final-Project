@@ -42,20 +42,17 @@
           <td>{{auction.sellerName}}</td>
           <td>{{auction.totalPrice}}</td>
           <td >
-            <a *ngIf="auction?.completed && auction.shippingStatus == 3 && !auction.isReviewd"  [routerLink]="['/user/add-review', auction.auctionID]">Add Review</a>
+            <a *ngIf="auction.shippingStatus == 3"  [routerLink]="['/user/add-review', auction.auctionID]">Add Review</a>
             <a *ngIf="!auction?.completed && auction.shippingStatus === 0"  [routerLink]="['/action/won-auction', auction.itemID]">Complete Payment</a>
-            
-           <!-- زر إضافة مراجعة يظهر فقط إذا كانت الشروط التالية محققة -
 
 <span *ngIf="auction?.shippingStatus === 1">Pending</span>
 
 <span *ngIf="auction?.shippingStatus === 2">OnTheWay</span>
 <span *ngIf="auction?.shippingStatus == null">Waiting for Shipping</span>
 
-<!-- زر تقديم شكوى يظهر فقط إذا كانت `shippingStatus` تساوي 3 -->
 <a *ngIf="auction?.shippingStatus === 4" [routerLink]="['/user/complain-add']">Add Complaint</a>
 
-          </td>   
+          </td>
         </tr>
       </tbody>
     </table>
