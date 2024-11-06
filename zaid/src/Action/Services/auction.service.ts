@@ -150,7 +150,14 @@ export class AuctionService {
   return this.http.get<any>(`${this.apiUrl}/Close/${AuctionId}`);
  }
 
-
+ HomeActive(): Observable<any> {
+  this.loader.show();
+  return this.http.get<any>(`${this.apiUrl}/HomeActive`).pipe(
+    finalize(()=>{
+      this.loader.hide();
+    })
+  );
+}
 //  getHomeSections():Observable<any>{
 //   return this.http.get<any>(`${this.apiUrl}/home`);
 // }
