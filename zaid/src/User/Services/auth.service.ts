@@ -119,12 +119,15 @@ export class AuthService {
       return null;
     }
   }
-  
+
   get isLoggedIn() {
     return !!this.cookieService.get(this.localStorageKey);
   }
 
   loginUser(value: any) {
+    this.cookieService.delete('token');
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     return this.http.post(`${this.apiUrl}api/acount/login`, value);
   }
 
@@ -171,6 +174,8 @@ export class AuthService {
   logout() {
     this.cookieService.delete('token');
     this.isLoggedUserSubject.next(false);
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     this.toaster.success('you Logout now');
     this.router.navigate(['/login']);
   }

@@ -56,6 +56,7 @@ export class LoginComponent {
     this.authService.loginUser(this.form.value).subscribe(
       {next:(response: any) => {
         if (response.status == 200) {
+          this.cookieService.delete('token');
           this.cookieService.set('token', response.token);
           this.toastr.success('Logged in successfully', 'Success');
           this.authService.isLoggedUserSubject.next(true);
