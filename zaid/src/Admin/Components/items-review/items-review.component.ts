@@ -16,6 +16,7 @@ export class ItemsReviewComponent implements OnInit {
 
   // List of items with images
   items: any[] = [];
+  page:number=1;
   rejectionReason: string = '';
   itemIdToReject: number | null = null;
   constructor(private itemService: ItemService, private toaster: ToastrService) { }
