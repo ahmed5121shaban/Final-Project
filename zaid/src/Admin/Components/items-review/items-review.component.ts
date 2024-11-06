@@ -16,12 +16,14 @@ export class ItemsReviewComponent implements OnInit {
 
   // List of items with images
   items: any[] = [];
-  constructor(private itemService: ItemService,private toaster:ToastrService) { }
+  rejectionReason: string = '';
+  itemIdToReject: number | null = null;
+  constructor(private itemService: ItemService, private toaster: ToastrService) { }
 
   get(): void {
     this.itemService.getUnreviewdItems().subscribe({
       next: (data) => {
-        this.items = data;
+        this.items = data.reverse();
         console.log('Fetched items:', this.items);
       },
       error: (error) => {
@@ -32,63 +34,54 @@ export class ItemsReviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.itemService.getUnreviewdItems().subscribe({
-      next: (data) => {
-        this.items = data;
-        console.log('Fetched items:', this.items);
+    this.get();
+  }
+
+
+
+  changetext(event: any) {
+    console.log("event", event.target.value)
+    console.log("ngmodel", this.rejectionReason)
+
+  }
+
+  // Function to Accept Item 
+  acceptItem(itemId: number): void {
+    console.log(itemId);
+    this.itemService.AcceptItem(itemId).subscribe({
+      next: (response) => {
+        this.toaster.success("this item successfully accepted");
+        this.items = this.items.filter(item => item.id !== itemId);
+        console.log("updated successfully", response)
       },
       error: (error) => {
-        console.error('Failed to fetch items:', error);
-        // You might want to show a user-friendly message here
-      }});
+        console.log("", error)
+      }
+    });
+  }
+
+  // Function to open the reject modal and set the itemId
+  openRejectModal(itemId: number): void {
+    this.itemIdToReject = itemId;
+    this.rejectionReason = ''; // Reset the input field
+    const modalElement = document.getElementById('rejectModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
     }
+  }
 
 
-        rejectionReason: string = '';
-        itemIdToReject: number | null = null;
-        changetext(event: any){
-          console.log("event", event.target.value)
-          console.log("ngmodel", this.rejectionReason)
-
-        }
-
-        // Function to Accept Item 
-        acceptItem(itemId: number): void {
-          console.log(itemId);
-          this.itemService.AcceptItem(itemId).subscribe({
-            next: (response) => {
-              this.toaster.success("this item successfully accepted");
-              this.items = this.items.filter(item => item.id !== itemId);
-              console.log("updated successfully", response)
-            },
-            error: (error) => {
-              console.log("", error)
-            }
-          });
-        }
-
-        // Function to open the reject modal and set the itemId
-        openRejectModal(itemId: number): void {
-          this.itemIdToReject = itemId;
-          this.rejectionReason = ''; // Reset the input field
-          const modalElement = document.getElementById('rejectModal');
-          if(modalElement) {
-            const modal = new bootstrap.Modal(modalElement);
-            modal.show();
-          }
-        }
-
-
-        // Function to handle rejection 
-        rejectItem(itemId: number | null, rejectReason: string): void {
-          console.log(rejectReason, itemId);
-          if(itemId != null && rejectReason != null) {
+  // Function to handle rejection 
+  rejectItem(itemId: number | null, rejectReason: string): void {
+    console.log(rejectReason, itemId);
+    if (itemId != null && rejectReason != null) {
 
       this.itemService.rejectItem(itemId, rejectReason).subscribe({
         next: (response) => {
           this.toaster.success("this item successfully rejected");
           console.log('Item rejected successfully:', response);
-         this.items=this.items.filter(item => item.id !== itemId)
+          this.items = this.items.filter(item => item.id !== itemId)
         },
         error: error => {
           console.error('Error:', error);

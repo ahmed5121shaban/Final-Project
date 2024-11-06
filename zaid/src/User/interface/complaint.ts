@@ -3,7 +3,8 @@ export interface Complaint {
     reason: string;
     sellerName: string;
     buyerName: string;
-    dateSubmitted: Date;
+    selleremail : string;
+    buyeremail : string;  
   }
   export interface ComplaintResponse {
     list: Complaint[];

@@ -47,6 +47,8 @@ export class EditAuctionComponent implements OnInit {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
         this.categories = data.result;
+        console.log(this.categories,"fffffffffffffffffffffffffffffffffffffffffffff");
+
         // Now fetch the item details
         this.itemId = +this.route.snapshot.paramMap.get('id')!;
         console.log('ID:', this.itemId);

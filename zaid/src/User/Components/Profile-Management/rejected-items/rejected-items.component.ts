@@ -62,4 +62,9 @@ showImage(imageUrl: string) {
     modal.show();
   }
 }
+
+toggleShowMore(item: any, event: Event) {
+  event.preventDefault();
+  item.showMore = !item.showMore;
+}
 }

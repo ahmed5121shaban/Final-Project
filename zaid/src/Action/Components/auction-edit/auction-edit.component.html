@@ -9,8 +9,8 @@
                         <div class="col-12">
                             <div class="mb-3">
                                 <label for="itemTitle" class="form-label">Item Title</label>
-                                <input type="text" value="{{item.name}}" class="form-control" name="Title" id="itemTitle"
-                                    placeholder="Item Title" formControlName="Title" minlength="4" maxlength="20"
+                                <input type="text" class="form-control" name="Title" id="itemTitle"
+                                    placeholder="{{item.name}}" formControlName="Title" minlength="4" maxlength="20"
                                     [ngClass]="{
                                         'is-invalid': auctionForm.controls['name'].invalid && auctionForm.controls['Title'].touched
                                     }">
@@ -20,13 +20,15 @@
                             </div>
 
                             <div class="mb-3">
-                              
+
                                 <label for="Category" class="form-label">Category</label>
-                                <select class="form-select" value="{{item.id}}" id="Category" formControlName="Category" [ngClass]="{
+                                <select class="form-select" id="Category" formControlName="Category" [ngClass]="{
                                     'is-invalid': auctionForm.controls['Category'].invalid && auctionForm.controls['Category'].touched
                                 }">
                                     <option selected disabled>Select category</option>
-                                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                                    @for (category of categories; track $index) {
+                                    <option [value]="category.id">{{category.name}}</option>
+                                  }
                                 </select>
                                 <div class="invalid-feedback">
                                     <span *ngIf="auctionForm.controls['Category'].hasError('required')">Item category is required</span>
@@ -53,7 +55,7 @@
 
                             <div class="mb-3">
                                 <label for="Description" class="form-label">Item Description</label>
-                                <textarea class="form-control" value="{{item.description}}" id="Description" rows="4" style="height: 160px;"
+                                <textarea class="form-control" id="Description" rows="4" style="height: 160px;"
                                      minlength="10" maxlength="200"
                                     formControlName="Description" [ngClass]="{
                                         'is-invalid': auctionForm.controls['Description'].invalid && auctionForm.controls['Description'].touched
@@ -73,7 +75,7 @@
                     <h5 class="mt-3">Item Price</h5>
                     <div class="mb-3">
                         <label for="startPrice" class="form-label">Starting Price</label>
-                        <input type="text" class="form-control" value="{{item.startPrice}}" id="startPrice"
+                        <input type="text" class="form-control" id="startPrice"
                             formControlName="startPrice" [ngClass]="{
                                 'is-invalid': auctionForm.controls['startPrice'].invalid && auctionForm.controls['startPrice'].touched
                             }">
@@ -86,7 +88,7 @@
 
                     <div class="mb-3">
                         <label for="sellPrice" class="form-label">Sell Price</label>
-                        <input type="text" class="form-control" value="{{item.sellPrice}}" id="sellPrice"
+                        <input type="text" class="form-control" id="sellPrice"
                             formControlName="sellPrice" [ngClass]="{
                                 'is-invalid': auctionForm.controls['sellPrice'].invalid
                             }">

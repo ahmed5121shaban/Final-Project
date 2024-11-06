@@ -25,6 +25,7 @@ export class ComplainAddComponent implements OnInit {
       buyerId: ['', Validators.required],
       sellerId: ['', Validators.required],
       reason: ['', Validators.required]
+  
     });
   }
 
@@ -42,9 +43,7 @@ export class ComplainAddComponent implements OnInit {
       error: (err) => {
         if (err.status === 401) {
           this.toastr.error('Unauthorized access. Please login.', 'Error');
-        } else {
-          this.toastr.error('Error loading sellers', 'Error');
-        }
+        } 
       }
     });
   }

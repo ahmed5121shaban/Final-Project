@@ -136,3 +136,6 @@
     padding: 4px 7px;
     border-radius: 5px;
   }
+  .pagination-controls a {
+    text-decoration: none !important; 
+  }
