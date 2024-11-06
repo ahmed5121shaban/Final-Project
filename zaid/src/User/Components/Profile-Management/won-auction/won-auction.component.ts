@@ -34,8 +34,7 @@ export class WonAuctionComponent  {
 
       if (params['success']==1)
         this.toaster.success('Payment completed successfully');
-      else if (params['success']==0)
-        this.toaster.error('Payment not completed');
+
 
 
     });
