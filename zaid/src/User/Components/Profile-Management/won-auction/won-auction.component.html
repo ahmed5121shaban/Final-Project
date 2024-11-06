@@ -42,9 +42,8 @@
           <td>{{auction.sellerName}}</td>
           <td>{{auction.totalPrice}}</td>
           <td >
-            <a *ngIf="auction?.completed && auction.shippingStatus == 3 && !auction.isReviewd"  [routerLink]="['/user/add-review', auction.auctionID]">Add Review</a>
+            <a *ngIf="auction.shippingStatus == 3"  [routerLink]="['/user/add-review', auction.auctionID]">Add Review</a>
             <a *ngIf="!auction?.completed && auction.shippingStatus === 0"  [routerLink]="['/action/won-auction', auction.itemID]">Complete Payment</a>
-            
 
 <span *ngIf="auction?.shippingStatus === 1">Pending</span>
 
@@ -53,7 +52,7 @@
 
 <a *ngIf="auction?.shippingStatus === 4" [routerLink]="['/user/complain-add']">Add Complaint</a>
 
-          </td>   
+          </td>
         </tr>
       </tbody>
     </table>
