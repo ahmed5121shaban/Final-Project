@@ -46,19 +46,7 @@
           </div>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseComplints"
-          aria-expanded="false" aria-controls="collapseComplints">
-          <i class="fas fa-exclamation-circle"></i>
-          <span>Complints</span>
-        </a>
-
-        <div id="collapseComplints" class="collapse" aria-labelledby="headingComplints" data-bs-parent="#accordionSidebar">
-          <div class="text-white py-2 collapse-inner rounded">
-            <a class="collapse-item" routerLink="./complaints-list"> Complin list</a>
-          </div>
-        </div>
-      </li>
+    
 <!-- Items -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseItems"
@@ -69,7 +57,7 @@
 
         <div id="collapseItems" class="collapse" aria-labelledby="headingItems" data-bs-parent="#accordionSidebar">
           <div class="text-white py-2 collapse-inner rounded">
-            <a class="collapse-item" routerLink="items-review">Items Review</a>
+            <a class="collapse-item" routerLink="items-review">Review Item</a>
           </div>
         </div>
       </li>
@@ -89,6 +77,21 @@
           </div>
         </div>
       </li>
+
+      <!-- Complaints -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseComplints"
+          aria-expanded="false" aria-controls="collapseComplints">
+          <i class="fas fa-exclamation-circle"></i>
+          <span>Complints</span>
+        </a>
+
+        <div id="collapseComplints" class="collapse" aria-labelledby="headingComplints" data-bs-parent="#accordionSidebar">
+          <div class="text-white py-2 collapse-inner rounded">
+            <a class="collapse-item" routerLink="./complaints-list"> Complin list</a>
+          </div>
+        </div>
+      </li>
       <!-- Events -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEvents"
@@ -99,8 +102,9 @@
 
         <div id="collapseEvents" class="collapse" aria-labelledby="headingEvents" data-bs-parent="#accordionSidebar">
           <div class="text-white py-2 collapse-inner rounded">
-            <a class="collapse-item" routerLink="./events-list">Events List</a>
             <a class="collapse-item" routerLink="./add-event">Add Event</a>
+            <a class="collapse-item" routerLink="./events-list">Events List</a>
+          
           </div>
         </div>
       </li>
@@ -152,19 +156,6 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form> -->
-
           <!-- Topbar Navbar -->
           <a class="navbar-brand" routerLink="">
             <img src="logo.png" alt="" class="" width="38px">
@@ -183,18 +174,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <!-- <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a> -->
-                <!-- <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a> -->
-                <!-- <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a> -->
+              
                 <!-- <div class="dropdown-divider"></div> -->
                 <a class="dropdown-item" type="button" (click)="logOut()">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
