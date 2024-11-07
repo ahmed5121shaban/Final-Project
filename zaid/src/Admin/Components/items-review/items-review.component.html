@@ -34,7 +34,13 @@
             <td>{{ item.sellerName}}</td>
             <td>{{ item.startPrice }}</td>
             <td>{{ item.sellPrice }}</td>
-            <td><a [href]="item.contract" target="_blank"> View Contract</a></td>
+            <td>
+              <ng-container *ngIf="item.contract !== 'N/A'; else noContract">
+                <a [href]="item.contract" target="_blank">View Contract</a>
+              </ng-container>
+              <ng-template #noContract>No Contract</ng-template>
+            </td>
+            
             <td>
               <!-- Small Carousel inside the table -->
               <div id="carousel{{ i }}" class="carousel slide" data-bs-ride="carousel" style="width: 100px;">
