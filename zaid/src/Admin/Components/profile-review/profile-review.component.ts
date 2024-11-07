@@ -19,7 +19,7 @@ export class ProfileReviewComponent implements OnInit {
   id!: string;
   sellerProfile: any;
   buyerProfile: any;
-  apiUrl = environment.apiUrl;
+
 
   constructor(private route: ActivatedRoute, private profileService: ProfileService) {}
 
@@ -109,24 +109,20 @@ get filteredSellerItems() {
   getProfiles() { 
     this.profileService.getSellerProfile(this.id).subscribe(profile => {
       this.sellerProfile = profile;
-      this.sellerProfile.imageUrl = this.sellerProfile?.imageUrl?.replace(/\\/g, '/').replace(/ /g, '%20');
+      // this.sellerProfile.imageUrl = this.sellerProfile?.imageUrl?.replace(/\\/g, '/').replace(/ /g, '%20');
     }, error => {
       console.error('Error fetching seller profile:', error);
     });
   
     this.profileService.getBuyerProfile(this.id).subscribe(profile => {
       this.buyerProfile = profile;
-      this.buyerProfile.imageUrl = this.buyerProfile?.imageUrl?.replace(/\\/g, '/').replace(/ /g, '%20');
+      // this.buyerProfile.imageUrl = this.buyerProfile?.imageUrl?.replace(/\\/g, '/').replace(/ /g, '%20');
       console.log('Buyer Profile Data:', this.buyerProfile); // عرض بيانات المشتري في الكونسول
     }, error => {
       console.error('Error fetching buyer profile:', error);
     });
   }
-  
-  getImageUrl(imagePath: string | null | undefined): string {
-    return imagePath ? `${this.apiUrl}${imagePath}` : '';
-  }
-  
+ 
 
   
 

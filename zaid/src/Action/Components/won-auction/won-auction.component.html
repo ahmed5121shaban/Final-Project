@@ -47,8 +47,8 @@
             <div class="card-body">
               <p class="card-text text-secondary">Item Name: <strong> {{completeAuctionPayment.itemName}}</strong> </p>
               <p class="card-text text-secondary">Item Description: <strong> {{completeAuctionPayment.itemDescription}}</strong></p>
-              <p class="card-text text-secondary">Start Price: <strong> ${{completeAuctionPayment.startPrice}}</strong></p>
-              <p class="card-text text-secondary">All Bids: <strong> ${{completeAuctionPayment.totalBids}}</strong></p>
+              <p class="card-text text-secondary">Start Price: <strong> {{completeAuctionPayment.startPrice}}EGP</strong></p>
+              <p class="card-text text-secondary">All Bids: <strong> {{completeAuctionPayment.totalBids}}EGP</strong></p>
             </div>
           </div>
           <div class="card mb-3">
@@ -65,9 +65,11 @@
           </div>
           <div class="card mb-3">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2 text-secondary">Total Price: </h6>
-              <p class="card-text text-primary fs-3"><strong>
-                ${{(completeAuctionPayment.startPrice+completeAuctionPayment.totalBids)}}</strong></p>
+              <h6 class="card-subtitle mb-2 text-secondary">{{(completeAuctionPayment.startPrice+completeAuctionPayment.totalBids)}} </h6>
+              <p class="card-text text-secondary">
+               + {{((completeAuctionPayment.startPrice+completeAuctionPayment.totalBids)*0.05)}}EGP  (5% profit) </p>
+              <p class="card-text text-primary fs-3"><strong> Total Price: 
+             {{((completeAuctionPayment.startPrice+completeAuctionPayment.totalBids)*0.05)+(completeAuctionPayment.startPrice+completeAuctionPayment.totalBids)}}EGP</strong></p>
             </div>
           </div>
         </div>

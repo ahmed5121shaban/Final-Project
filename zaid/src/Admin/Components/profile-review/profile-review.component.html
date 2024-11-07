@@ -6,8 +6,7 @@
 
                 <div class="profile-avatar">
                     <img class="rounded-circle"
-                         *ngIf="sellerProfile?.imageUrl || buyerProfile?.imageUrl"
-                         [src]="apiUrl + (sellerProfile?.imageUrl || buyerProfile?.imageUrl)"
+                         [src]="sellerProfile.imageUrl"
                          alt="User Image">
 
 
@@ -262,7 +261,7 @@
                                             <tbody>
                                                 <tr *ngFor="let auction of filteredBuyerItems | paginate: { itemsPerPage: 5, currentPage: buyerCurrentPage }">
                                                     <td class="py-0">
-                                                        <img *ngIf="auction.item.images.length" [src]="getImageUrl(auction.item.images[0])" alt="Auction Image">
+                                                        <img [src]="auction.item.images[0]" alt="Auction Image">
                                                     </td>
                                                     <td>{{ auction.item.name }}</td>
                                                     <td>{{ auction.startDate | date }}</td>

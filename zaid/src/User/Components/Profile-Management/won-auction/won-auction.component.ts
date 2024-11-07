@@ -48,7 +48,7 @@ export class WonAuctionComponent  {
         this.auctioId = auctionId;
       },
       error: (err: any) => {
-        this.toaster.error('Payment not completed');
+        // this.toaster.error('Payment not completed');
       }
     });
   }
